@@ -77,10 +77,10 @@ class EditorialTests(unittest.TestCase):
             self.assertEqual(result.summary['article_tags_added'],0)
             self.assertTrue(result.summary['unlisted_strong_values_preserved'])
             self.assertFalse(result.summary['existing_strong_values_preserved'])
-        self.assertEqual(sum(x['editorial_corrections'] for x in counts),37)
-        self.assertEqual(sum(x['editorial_corrections_marked'] for x in counts),22)
-        self.assertEqual(sum(x['editorial_corrections_inherited'] for x in counts),15)
-        self.assertEqual(sum(x['editorial_hints_removed'] for x in counts),22)
+        self.assertEqual(sum(x['editorial_corrections'] for x in counts),41)
+        self.assertEqual(sum(x['editorial_corrections_marked'] for x in counts),24)
+        self.assertEqual(sum(x['editorial_corrections_inherited'] for x in counts),17)
+        self.assertEqual(sum(x['editorial_hints_removed'] for x in counts),24)
 
     def test_idempotent_and_no_post_correction_bootstrap(self):
         for bid,nt in [('akribos.elb','WH'),('akribos.lut','TR')]:
@@ -98,7 +98,7 @@ class EditorialTests(unittest.TestCase):
             view=_Verse(verse,ref)
             for hint in view.hints:_remove_preserving_tail(view.parents[hint],hint)
         result=self.validate(root,source)
-        self.assertEqual(result.summary['editorial_corrections'],16)
+        self.assertEqual(result.summary['editorial_corrections'],18)
         self.assertEqual(result.summary['editorial_hints_removed'],0)
         self.assertEqual(result.summary['hints_removed'],0)
         self.replay(root,result,source)
@@ -175,6 +175,39 @@ class EditorialTests(unittest.TestCase):
         self.assertEqual(token['text'],'Rohr');self.assertEqual(span.codes,('G2563',))
         self.replay(root,result,source,'TR')
 
+    def test_hebrew_edits_preserve_the_actual_number_and_relative_phrase(self):
+        for bid,nt in [('akribos.elb','WH'),('akribos.lut','TR')]:
+            root,source=self.input(bid);result=self.validate(root,source,nt)
+            for ref,code in [('Gen.19.21','H834'),('Exod.33.5','H259')]:
+                before=_Verse(dict(zef_verses(root))[ref],ref)
+                after=_Verse(dict(zef_verses(result.root))[ref],ref)
+                before_count=sum(code in s.codes for s in before.spans)
+                self.assertGreaterEqual(before_count,1)
+                kept=[s for s in after.spans if code in s.codes]
+                self.assertEqual(len(kept),before_count-1)
+                row=next(r for r in result.audit if r['kind']=='editorial-correction' and r['ref']==ref)
+                self.assertTrue(all(s.start>row['target_end'] for s in kept))
+                self.assertEqual(set(row['proof']['source_file_hashes']),editorial.OT_FILES)
+                self.assertEqual(row['after_strong'],[])
+            self.replay(root,result,source,nt)
+
+    def test_hebrew_correction_requires_actual_tahot_identity_and_witness(self):
+        root,source=self.input()
+        only_ot={'files':[r for r in self.metadata['files'] if r['path'] in editorial.OT_FILES]}
+        result=self.validate(root,source,metadata=only_ot)
+        self.assertEqual(result.summary['editorial_corrections'],2)
+        self.replay(root,result,source,metadata=only_ot)
+        no_ot={'files':[r for r in self.metadata['files'] if r['path'] in editorial.NT_FILES]}
+        result=self.validate(root,source,metadata=no_ot)
+        self.assertEqual(result.summary['editorial_corrections'],16)
+        for change in ({'edition':'other'}, {'origin_id':'Gen.19.21#01=Q'}):
+            changed=copy.deepcopy(source);changed['Gen.19.21'][0].update(change)
+            result=self.validate(root,changed)
+            row=next(r for r in result.audit if r.get('rule_id')=='akribos.elb:Gen.19.21:d015')
+            self.assertEqual(row['reason'],'source-projection-mismatch')
+            self.assertEqual(row['before_strong'],row['after_strong'])
+            self.replay(root,result,changed)
+
     def test_phase_cli_reports_editorial_changes_separately(self):
         from scripts.validate_linguistic import main
         root,source=self.input('akribos.lut');result=self.validate(root,source,'TR')
@@ -182,22 +215,23 @@ class EditorialTests(unittest.TestCase):
         with patch('scripts.validate_linguistic.validate_files',return_value=result),contextlib.redirect_stdout(stream):
             self.assertEqual(main(['input.xml','--nt-edition','TR','--elb-bk','private.xml']),0)
         report=json.loads(stream.getvalue())
-        self.assertEqual(report['editorial_corrections'],21)
-        self.assertEqual(report['editorial_corrections_marked'],7)
+        self.assertEqual(report['editorial_corrections'],23)
+        self.assertEqual(report['editorial_corrections_marked'],9)
         self.assertEqual(report['editorial_corrections_inherited'],14)
-        self.assertEqual(report['editorial_hints_removed'],7)
+        self.assertEqual(report['editorial_hints_removed'],9)
 
     def test_real_file_phase_hashes_metadata_and_rebuild_are_reproducible(self):
         # Real pinned files exercise source selection and the identity gate.
-        profile=next(p for p in json.loads((ROOT/'config/step-profiles.json').read_text()) if p['id']=='tagnt')
+        profiles_data=[dict(p,paths=[path for path in p['paths'] if path in self.catalog['source_files']])
+                       for p in json.loads((ROOT/'config/step-profiles.json').read_text())]
         input_path=ROOT/'tests/fixtures/akribos.elb.editorial-input-1.2.xml'
         input_hash=file_hash(input_path)
         with tempfile.TemporaryDirectory() as directory:
-            temp=Path(directory);profiles=temp/'profiles.json';profiles.write_text(json.dumps([profile]))
+            temp=Path(directory);profiles=temp/'profiles.json';profiles.write_text(json.dumps(profiles_data))
             output=temp/'06-linguistic.xml'
             result=validate_files(input_path,output,source_profiles_path=profiles,source_root=ROOT,
                                   output_identity=('akribos.elb','1.4'))
-            self.assertEqual(result.summary['editorial_corrections'],16)
+            self.assertEqual(result.summary['editorial_corrections'],18)
             self.assertEqual(parse_xml(output).get('revision'),'1.4')
             self.assertEqual(result.summary['article_tags_added'],0)
             phase=json.loads(output.with_suffix('.manifest.json').read_text())
@@ -227,7 +261,7 @@ class EditorialTests(unittest.TestCase):
             lambda row:row.update(action={}),lambda row:row.update(rule_id=[])]
         for mutate in mutations:
             with self.subTest(mutate=mutate):
-                tampered=copy.deepcopy(result);row=next(r for r in tampered.audit if r['kind']=='editorial-correction')
+                tampered=copy.deepcopy(result);row=next(r for r in tampered.audit if r['kind']=='editorial-correction' and r['hint_id'] is not None)
                 mutate(row)
                 # There are no trusted audit/output hashes in this replay: an
                 # attacker recomputing all outer checksums still faces the proof.
@@ -245,7 +279,8 @@ class EditorialTests(unittest.TestCase):
         self.assertEqual(ET.tostring(root,encoding='unicode'),'<VERS>before z<STYLE>u</STYLE> after</VERS>')
 
     def test_catalog_projection_matches_pinned_original_step_rows(self):
-        profile=next(p for p in json.loads((ROOT/'config/step-profiles.json').read_text()) if p['id']=='tagnt')
+        profiles_data=[dict(p,paths=[path for path in p['paths'] if path in self.catalog['source_files']])
+                       for p in json.loads((ROOT/'config/step-profiles.json').read_text())]
         wanted={r['ref'] for r in self.catalog['rules']}
         with tempfile.TemporaryDirectory() as directory:
             temporary=Path(directory)
@@ -256,7 +291,7 @@ class EditorialTests(unittest.TestCase):
                     for line in stream:
                         first=line.split('\t',1)[0]
                         if re.match(r'^[1-3]?[A-Za-z]+\.\d+\.\d+#',first) and canonical_ref(first.split('#')[0]) in wanted:out.write(line)
-            profiles=temporary/'profiles.json';profiles.write_text(json.dumps([profile]))
+            profiles=temporary/'profiles.json';profiles.write_text(json.dumps(profiles_data))
             for nt in ('WH','TR'):
                 source,_=load_reference_occurrences(profiles,temporary,nt)
                 for rule in self.catalog['rules']:

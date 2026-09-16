@@ -130,14 +130,15 @@ gehasht; der öffentliche Replay prüft den tatsächlichen STEP-/Katalogbeleg er
 ### Fest geprüfte redaktionelle Korrekturen
 
 [EDITORIAL-STRONG-CORRECTIONS.md](EDITORIAL-STRONG-CORRECTIONS.md) dokumentiert
-37 einzeln geprüfte Regeln. Sie entfernen konkret falsch verteilte Nummern
+41 einzeln geprüfte Regeln. Sie entfernen konkret falsch verteilte Nummern
 oder ersetzen sie durch den belegten Artikelcode. Eine Mischspanne verliert
 nur ihren falschen Zusatzcode. Auch geerbte Zuordnungen ohne eigenen
 Unsicherheitshinweis sind ausdrücklich und getrennt erfasst.
 
 Die Regeln gelten ausschließlich für eine festgelegte Bibelausgabe,
 WH-/TR-Auswahl, unveränderten ganzen Verstext, genaue Wortposition, den
-ursprünglichen XML-Bereich und dieselben tatsächlichen STEP-Wortvorkommen.
+ursprünglichen XML-Bereich und dieselben tatsächlichen STEP-Wortvorkommen. Vier hebräische Fälle binden
+ausdrücklich die benötigte TAHOT-Datei und ihre L/Q-Vorkommen.
 Fehlt eine Bedingung, bleibt die Stelle unverändert (`not-applicable`). Das
 ist keine allgemeine Löschregel und keine Aliasnormalisierung. Die Pflicht
 für einen unabhängigen Zweitbeleg bei automatischen Artikelergänzungen

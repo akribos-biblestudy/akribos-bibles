@@ -200,7 +200,7 @@ class LinguisticBuildTests(unittest.TestCase):
                 lambda row:row['references'].update({'elb-csv':'PRIVATE REFERENCE CONTENT'}),
                 lambda row:row['proof'].update(private_reference_text='PRIVATE REFERENCE CONTENT'),
             ]:
-                rows=copy.deepcopy(original_rows);mutate(rows[0])
+                rows=copy.deepcopy(original_rows);mutate(next(row for row in rows if row['kind']=='article-addition'))
                 with jsonl_gz(audit_path) as stream:
                     for row in rows:line(stream,row)
                 report_path=destination/'06-linguistic.report.json';report=json.loads(report_path.read_text())
@@ -227,7 +227,7 @@ class LinguisticBuildTests(unittest.TestCase):
                            lambda row:row.update(annotation_origin='inherited'),
                            lambda row:row.update(private_reference_text='PRIVATE')]:
                 rows=copy.deepcopy(original)
-                mutate(next(row for row in rows if row['kind']=='editorial-correction'))
+                mutate(next(row for row in rows if row['kind']=='editorial-correction' and row['annotation_origin']=='uncertain'))
                 with jsonl_gz(audit_path) as stream:
                     for row in rows:line(stream,row)
                 report_path=destination/'06-linguistic.report.json';report=json.loads(report_path.read_text())

@@ -1,8 +1,8 @@
 # Positionsgesicherte Strong-Korrekturen
 
 Der Katalog [editorial-strong-corrections.json](../rules/editorial-strong-corrections.json)
-enthält **37 geprüfte Regeln**: 22 betreffen Zuordnungen, die in Version 1.2
-noch einen eigenen Unsicherheitshinweis trugen, 15 geerbte Zuordnungen ohne
+enthält **41 geprüfte Regeln**: 24 betreffen Zuordnungen, die in Version 1.2
+noch einen eigenen Unsicherheitshinweis trugen, 17 geerbte Zuordnungen ohne
 diesen Hinweis. Das sind Katalogzahlen, keine Aussage über einen späteren
 Release-Lauf. Welche Regeln tatsächlich greifen, weist dessen Audit aus.
 
@@ -11,8 +11,12 @@ Release-Lauf. Welche Regeln tatsächlich greifen, weist dessen Audit aus.
 Jede Regel bindet die Bibel-ID, die gewählte NT-Ausgabe (ELB/WH oder Luther/TR),
 den SHA-256 des vollständigen eigenen Verstexts, Wort-ID, Wortlaut, Offsets,
 den exakten alten Codesatz und den ursprünglichen XML-Bereich ohne Tail.
-Zusätzlich müssen die beiden originalen TAGNT-Dateihashes und die geordnete
-Quellprojektion des ganzen Verses übereinstimmen. Die Projektion umfasst
+Zusätzlich müssen die für die jeweilige Regel benannten originalen
+Quelldateihashes und die geordnete Quellprojektion des ganzen Verses
+übereinstimmen: für NT-Regeln die beiden TAGNT-Dateien, für die vier
+OT-Regeln ausschließlich `TAHOT_Gen-Deu.tsv`. Die ausgewählte NT-Ausgabe
+bleibt Teil des Zielprofils; die OT-Projektion bindet ihre tatsächlichen
+L/Q-Wortvorkommen einschließlich der konkreten `=L`-Kennungen. Die Projektion umfasst
 `origin_id`, `strong`, `morph`, `text`, `lemma` und `edition`; sie wird als
 UTF-8-JSON mit sortierten Schlüsseln, ohne ASCII-Umschreibung und mit den
 Trennzeichen `,` und `:` gehasht. Zusätzliche Importfelder ändern sie nicht.
@@ -35,6 +39,18 @@ Die beiden `es/G3754` in Johannes 20,15 bezeichnen dagegen nicht die
 Konjunktion ὅτι. In Apostelgeschichte 25,10 steht με/G3165 als Akkusativsubjekt
 des passiven Infinitivs κρίνεσθαι nach δεῖ: `wo ich gerichtet werden muss`.
 Daraus entsteht keine pauschale Normalisierung von Pronomen.
+
+### Vier feste hebräische Wortbezüge
+
+In 1. Mose 19,21 gehört אשר/H834 zur späteren Relativphrase `von der du
+geredet hast`. Das erste deutsche `dass` gibt dagegen die Konstruktion
+לבלתי הפכי את העיר wieder und erhält keine eigene H834-Verlinkung.
+In 2. Mose 33,5 gehört אחד/H259 zu רגע אחד, dem späteren `einen Augenblick`.
+Das vorangehende `ein hartnäckiges Volk` steht für אתם עם קשה ערף und
+enthält kein solches Zahlwort. Vorhandene spätere richtige Strong-Zuordnungen bleiben unverändert;
+eine dort fehlende Nummer wird nicht neu ergänzt. Beide Muster sind für ELB und Luther einzeln
+an Wortposition, Text und tatsächliche TAHOT-Vorkommen gebunden; andere
+Verwendungen von H834/H259 werden dadurch nicht verändert.
 
 ## Registrierte Stellen
 
@@ -80,6 +96,10 @@ beziehen sich auf den geprüften Ausgangsstand 1.2.
 | LUT / TR | Acts.25.10 / d019 | ich | G3165 → ∅ | geerbt |
 | LUT / TR | Phil.2.25 / d013 | zu | G4314 → ∅ | geerbt |
 | LUT / TR | Jude.1.15 / d025 | das | G3739 → G3588 | geerbt |
+| ELB / WH | Exod.33.5 / d015 | ein | H259 → ∅ | geerbt |
+| ELB / WH | Gen.19.21 / d015 | dass | H834 → ∅ | geerbt |
+| LUT / TR | Exod.33.5 / d014 | ein | H259 → ∅ | markiert |
+| LUT / TR | Gen.19.21 / d015 | dass | H834 → ∅ | markiert |
 
 Die ausführliche Begründung und die konkreten STEP-Wörter stehen pro Regel
 im Katalog. Bewusst nicht geändert werden ELB Apostelgeschichte 1,2
@@ -122,7 +142,7 @@ Codesatz-/Spannenbindung nicht mehr und werden als nicht anwendbar protokolliert
 
 ## Quellen und Rechte
 
-- STEP Bible, Tyndale House Cambridge: die eingecheckten TAGNT-Grundtextdaten
+- STEP Bible, Tyndale House Cambridge: die eingecheckten TAGNT-/TAHOT-Grundtextdaten
   und die daraus ausgewiesenen Wort-/Morphologiebelege, **CC BY 4.0**.
   [Projekt und Attribution](https://github.com/STEPBible/STEPBible-Data),
   [Lizenz](https://creativecommons.org/licenses/by/4.0/).

@@ -3,9 +3,10 @@
   "method": "fixed-position-source-bound-editorial-corrections-v1",
   "source_files": {
     "sources/originals/TAGNT_Mat-Jhn.tsv": "ab8eaaeb68e17a1dcfa34e1e9350358f22f03bc2a97244d848750ad81044bc8e",
-    "sources/originals/TAGNT_Act-Rev.tsv": "524e32375361e6d3fa2f7ef00b87605fdc4317a762f395651a05fdc31ad031b7"
+    "sources/originals/TAGNT_Act-Rev.tsv": "524e32375361e6d3fa2f7ef00b87605fdc4317a762f395651a05fdc31ad031b7",
+    "sources/originals/TAHOT_Gen-Deu.tsv": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
   },
-  "source_attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge. TAGNT CC BY 4.0.",
+  "source_attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge; TAGNT and TAHOT data CC BY 4.0.",
   "editorial_attribution": "Akribos editorial decisions and own target positions, CC BY 4.0.",
   "rules": [
     {
@@ -221,7 +222,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "4ba31e15a0ebacfb5fba988eade797529a047f531cc1a30f3434fa3fae6fa9a3"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Mark.12.36:d013",
@@ -516,7 +521,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "af79cd622c6020a66d45f018da6249ec838fc2484dd711bc9a577d3d5c0ace0c"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.20.42:d012",
@@ -701,7 +710,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "a04654e69b6fba7d8b6656246f707cf60be5ffdbe8db564b159759f97f3a68ad"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Acts.2.34:d016",
@@ -916,7 +929,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "76fef5e937b169b589c1a5a89dbf4a6c6e98e1b8094ead87a295cc533844fed5"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.14.6:d007",
@@ -1001,7 +1018,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "955c72fc955d12678eac3155769d5eb6ebceded00ea3128fb00d18226b1b3b61"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.20.9:d010",
@@ -1226,7 +1247,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "15f84966aa06c4b53810b5b02bbdae212de5afe7dd170e8fd7f4354c49c58d24"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.23.29:d011",
@@ -1463,7 +1488,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "97af957edc46d42a67bebc4e61040a1b2cccdd3df490c5e54f10acff944d5ee9"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.23.29:d014",
@@ -1700,7 +1729,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "97af957edc46d42a67bebc4e61040a1b2cccdd3df490c5e54f10acff944d5ee9"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Luke.23.29:d020",
@@ -1935,7 +1968,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "97af957edc46d42a67bebc4e61040a1b2cccdd3df490c5e54f10acff944d5ee9"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Acts.1.12:d010",
@@ -2120,7 +2157,11 @@
         "span_xml_without_tail_sha256": "fa4ac989200545eb50463330e79abc7b82f4c7bac22f6a953ea75b950507855d",
         "source_projection_sha256": "a4e68430aebe05a5e01b3895a30dc95d918d33dbd473a668f643d5b8b40c8f0e"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:John.1.29:d019",
@@ -2357,7 +2398,11 @@
         "span_xml_without_tail_sha256": "43b393a68b0dc1315ca6e3929d18948007433c960925ffd69badc0f84ecb3eb3",
         "source_projection_sha256": "654dd11697fdf771a245108f7a054c918268dce567c99ea85c622e4591935271"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:John.20.15:d016",
@@ -2673,7 +2718,11 @@
         "span_xml_without_tail_sha256": "e138ac988c176f5ef9b814d035fed48457ccbe9af50ed3a3a79732fd8d483cc4",
         "source_projection_sha256": "2cf41641646034f771c951572cbd1128cb02bf1a892fe75e62106726abc7927a"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Matt.22.44:d005",
@@ -2888,7 +2937,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "4cd07421bca09b8728b9e606ab9ff8679ee042e987e27535de0a88a778582fae"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Mark.12.36:d013",
@@ -3193,7 +3246,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "4e6bae6c193ce0be27f40149594889f03672a18065a8b3fe0666746ab1f660d9"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.20.42:d012",
@@ -3388,7 +3445,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "358e0c694afd1e89ed561596969351d0cc5dfc106384d48ac3f06ea8481de089"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Acts.2.34:d015",
@@ -3613,7 +3674,11 @@
         "span_xml_without_tail_sha256": "054d91459d42aa30132944930d16e0f8f1d89e8757cb8ad10bed09aae18e68da",
         "source_projection_sha256": "a96ce9bcf77f49f51e820d0232fda49c0c642f3da0a3d449c849886ff6c36639"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.20.9:d005",
@@ -3848,7 +3913,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "72c4a7e09da8808120b227bf09b6de1ca8ed22fe7bc8519c6b332c12f6c648fb"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.23.29:d005",
@@ -4063,7 +4132,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "8c86e0a2cbd182a001e240cf812ba852c531a300179f5634fef3822ad73f1746"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.23.29:d015",
@@ -4280,7 +4353,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "8c86e0a2cbd182a001e240cf812ba852c531a300179f5634fef3822ad73f1746"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.23.29:d018",
@@ -4495,7 +4572,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "8c86e0a2cbd182a001e240cf812ba852c531a300179f5634fef3822ad73f1746"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.23.29:d025",
@@ -4710,7 +4791,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "8c86e0a2cbd182a001e240cf812ba852c531a300179f5634fef3822ad73f1746"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Matt.13.32:d002",
@@ -5025,7 +5110,11 @@
         "span_xml_without_tail_sha256": "c02e470321e8845e974035d76297f95b4adeccd226f464dd9656b53a2d9bf34d",
         "source_projection_sha256": "08f98f292300a63e1be322552c5917984e4615676cb7654b54bc989571b0e8c5"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Acts.1.12:d013",
@@ -5210,7 +5299,11 @@
         "span_xml_without_tail_sha256": "4fede9502fd84b92bb52d0e312943153ca7bb218011ce574415e3aca4aa151a7",
         "source_projection_sha256": "3f87589f1ef686e80aeb8d99b1eb3de1dae162da3691eb27dd89c8e03baa6bb0"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:John.1.29:d018",
@@ -5467,7 +5560,11 @@
         "span_xml_without_tail_sha256": "43b393a68b0dc1315ca6e3929d18948007433c960925ffd69badc0f84ecb3eb3",
         "source_projection_sha256": "964b4022e9d811c2fd7485987aa04e0c8abcea1dda7fca1a4991bbc9296c8801"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Luke.14.6:d009",
@@ -5562,7 +5659,11 @@
         "span_xml_without_tail_sha256": "639bc93ea7ea4037b2840b514ce9aa028bbc99aa4e89dc2368de903810152342",
         "source_projection_sha256": "c7c046bbed929673dd0f010114e19b6f3cdc37b442446096cf039a80b62e1d21"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:John.20.15:d014",
@@ -5888,7 +5989,11 @@
         "span_xml_without_tail_sha256": "e138ac988c176f5ef9b814d035fed48457ccbe9af50ed3a3a79732fd8d483cc4",
         "source_projection_sha256": "770df8de5eb226e348dcbeb61c3bef59464c5012dd699bbc96dbbbc4e3a96ce1"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Acts.25.10:d004",
@@ -6123,7 +6228,11 @@
         "span_xml_without_tail_sha256": "3b3bc7ab454ac54c25cfd23590b990070a513e0a53a06857667cc16866cee4d5",
         "source_projection_sha256": "e04f36b287a8e755d09491c8f65d3c2f239a8e3142e80f82e5a3b5236a0aa64c"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Acts.21.37:d022",
@@ -6378,7 +6487,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "1c165dce6eb2958711330ace559fac31a887958d96b9522d1754f17411495222"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Phil.2.25:d024",
@@ -6623,7 +6736,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "dd1b8134bc7c4c6bf2293df0b29eae48e571e4a23722bbfa63e83f2f25765ff2"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Rev.21.16:d020",
@@ -7008,7 +7125,11 @@
         "span_xml_without_tail_sha256": "e68cfc4d259dd46186e555f7c99e97fb5ef24cbb7d5c3042a065b60286dcb4ca",
         "source_projection_sha256": "6c2253d8fd6a4beae201efa5dc4f0a4c2750be2f5d3df3b3eef26f1b8d7b6c31"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Jude.1.15:d028",
@@ -7293,7 +7414,11 @@
         "span_xml_without_tail_sha256": "70a39d38c8c7dcaf0e985d3d4c5931b36b2461d082733a0e5640d960f1b72e30",
         "source_projection_sha256": "fd8962093bac13472d2c8b0c47dd01614df5ca5c556da101944932278b061042"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Rev.21.16:d022",
@@ -7681,7 +7806,11 @@
         "span_xml_without_tail_sha256": "2c2c8b97fb356640127b07e673141923f495103857e95921e2e2c4a9cea0883a",
         "source_projection_sha256": "6c2253d8fd6a4beae201efa5dc4f0a4c2750be2f5d3df3b3eef26f1b8d7b6c31"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.elb:Rev.21.16:d020",
@@ -8036,7 +8165,11 @@
         "span_xml_without_tail_sha256": "e68cfc4d259dd46186e555f7c99e97fb5ef24cbb7d5c3042a065b60286dcb4ca",
         "source_projection_sha256": "3e0b71eb3f7a54565a12b9b7fd3d02af9e64c40cfe51c0673aff695a5f161717"
       },
-      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Acts.25.10:d004",
@@ -8281,7 +8414,11 @@
         "span_xml_without_tail_sha256": "3b3bc7ab454ac54c25cfd23590b990070a513e0a53a06857667cc16866cee4d5",
         "source_projection_sha256": "1e65c7a019231f3cb52168f10c5d68e9e78751772dae5b0d4f782daf11fa2de3"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Acts.25.10:d019",
@@ -8526,7 +8663,11 @@
         "span_xml_without_tail_sha256": "d9509bdd06dacbe1e94d0152b8fc6369874f3c760ab9b710cba105faabd4c807",
         "source_projection_sha256": "1e65c7a019231f3cb52168f10c5d68e9e78751772dae5b0d4f782daf11fa2de3"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Phil.2.25:d013",
@@ -8771,7 +8912,11 @@
         "span_xml_without_tail_sha256": "86be644ddd2c0d7f647928fb9b47ab525b4b03622e4410e93e89ed71fc30909d",
         "source_projection_sha256": "2b7bd7c6c63b14a95cbe7a56eba7c58f4b7e59f8f7c82dc5dfc90479135ee46a"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
     },
     {
       "id": "akribos.lut:Jude.1.15:d025",
@@ -9058,7 +9203,983 @@
         "span_xml_without_tail_sha256": "c02e470321e8845e974035d76297f95b4adeccd226f464dd9656b53a2d9bf34d",
         "source_projection_sha256": "fd8962093bac13472d2c8b0c47dd01614df5ca5c556da101944932278b061042"
       },
-      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14"
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAGNT_Act-Rev.tsv",
+        "sources/originals/TAGNT_Mat-Jhn.tsv"
+      ]
+    },
+    {
+      "id": "akribos.elb:Exod.33.5:d015",
+      "bible_id": "akribos.elb",
+      "nt_edition": "WH",
+      "ref": "Exod.33.5",
+      "token": "d015",
+      "target_word": "ein",
+      "target_start": 75,
+      "target_end": 78,
+      "before_strong": [
+        "H259"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Die Nominalphrase אתם עם קשה ערף (Quellwörter09–12) bedeutet ihr seid ein halsstarriges Volk. Das deutsche ein ist hier der unbestimmte Artikel. Das einzige אחד/H259 steht dagegen ausdrücklich hinter רגע/H7281 (Quellwörter13–14) und bildet einen Augenblick. Beide Zielspannen sind daher nicht zwei Wiedergaben derselben hebräischen Phrase. Nur die falsche erste H259-Verlinkung entfernen; den tatsächlich zahlenbezogenen späteren einen/H259 vor Augenblick erhalten. Kein Ersatzcode für den unbestimmten Artikel.",
+      "source_projection": [
+        {
+          "origin_id": "Exo.33.5#01=L",
+          "strong": [
+            "H9001",
+            "H559"
+          ],
+          "morph": "Hc/Vqw3ms",
+          "text": "וַ/יֹּ֨אמֶר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#02=L",
+          "strong": [
+            "H3068"
+          ],
+          "morph": "HNpt",
+          "text": "יְהוָ֜ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#03=L",
+          "strong": [
+            "H413",
+            "H9014"
+          ],
+          "morph": "HR",
+          "text": "אֶל\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#04=L",
+          "strong": [
+            "H4872"
+          ],
+          "morph": "HNpm",
+          "text": "מֹשֶׁ֗ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#05=L",
+          "strong": [
+            "H559"
+          ],
+          "morph": "HVqv2ms",
+          "text": "אֱמֹ֤ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#06=L",
+          "strong": [
+            "H413",
+            "H9014"
+          ],
+          "morph": "HR",
+          "text": "אֶל\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#07=L",
+          "strong": [
+            "H1121",
+            "H9014"
+          ],
+          "morph": "HNcmpc",
+          "text": "בְּנֵֽי\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#08=L",
+          "strong": [
+            "H3478"
+          ],
+          "morph": "HNpl",
+          "text": "יִשְׂרָאֵל֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#09=L",
+          "strong": [
+            "H859"
+          ],
+          "morph": "HPp2mp",
+          "text": "אַתֶּ֣ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#10=L",
+          "strong": [
+            "H5971",
+            "H9014"
+          ],
+          "morph": "HNcmsa",
+          "text": "עַם\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#11=L",
+          "strong": [
+            "H7186",
+            "H9014"
+          ],
+          "morph": "HAamsc",
+          "text": "קְשֵׁה\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#12=L",
+          "strong": [
+            "H6203"
+          ],
+          "morph": "HNcmsa",
+          "text": "עֹ֔רֶף",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#13=L",
+          "strong": [
+            "H7281"
+          ],
+          "morph": "HNcmsa",
+          "text": "רֶ֧גַע",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#14=L",
+          "strong": [
+            "H259"
+          ],
+          "morph": "HAcfsa",
+          "text": "אֶחָ֛ד",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#15=L",
+          "strong": [
+            "H5927"
+          ],
+          "morph": "HVqi1cs",
+          "text": "אֶֽעֱלֶ֥ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#16=L",
+          "strong": [
+            "H9003",
+            "H7130",
+            "H9021"
+          ],
+          "morph": "HR/Ncmsc/Sp2ms",
+          "text": "בְ/קִרְבְּ/ךָ֖",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#17=L",
+          "strong": [
+            "H9001",
+            "H3615",
+            "H9031"
+          ],
+          "morph": "Hc/Vpq1cs/Sp2ms",
+          "text": "וְ/כִלִּיתִ֑י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#18=L",
+          "strong": [
+            "H9002",
+            "H6258"
+          ],
+          "morph": "HC/D",
+          "text": "וְ/עַתָּ֗ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#19=L",
+          "strong": [
+            "H3381"
+          ],
+          "morph": "HVhv2ms",
+          "text": "הוֹרֵ֤ד",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#20=L",
+          "strong": [
+            "H5716",
+            "H9021"
+          ],
+          "morph": "HNcmsc/Sp2ms",
+          "text": "עֶדְיְ/ךָ֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#21=L",
+          "strong": [
+            "H9006",
+            "H5921",
+            "H9031"
+          ],
+          "morph": "HR/Rd/Sp2ms",
+          "text": "מֵֽ/עָלֶ֔י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#22=L",
+          "strong": [
+            "H9002",
+            "H3045"
+          ],
+          "morph": "HC/Vqc1cs",
+          "text": "וְ/אֵדְעָ֖ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#23=L",
+          "strong": [
+            "H4100"
+          ],
+          "morph": "HPi",
+          "text": "מָ֥ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#24=L",
+          "strong": [
+            "H6213",
+            "H9014"
+          ],
+          "morph": "HVqi1cs",
+          "text": "אֶֽעֱשֶׂה\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#25=L",
+          "strong": [
+            "H9005",
+            "H9031",
+            "H9016"
+          ],
+          "morph": "HRd/Sp2ms",
+          "text": "לָּֽ/ךְ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "annotation_origin": "inherited",
+      "binding": {
+        "verse_text_sha256": "3369017eb00052a602284f240839c24730a0de209497c169e4e70253cc9dbcd9",
+        "span_xml_without_tail_sha256": "0830ffa1093d7878f6ad261c0a234f5740cf6f19607b5eb5bc8ae39cdb757951",
+        "source_projection_sha256": "d79675b6ac7acdaec30f185e932241ce16d4116caee1ea8381ca8d1e4f191cee"
+      },
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "positive_source_ids": [
+        "Exo.33.5#13=L",
+        "Exo.33.5#14=L"
+      ]
+    },
+    {
+      "id": "akribos.elb:Gen.19.21:d015",
+      "bible_id": "akribos.elb",
+      "nt_edition": "WH",
+      "ref": "Gen.19.21",
+      "token": "d015",
+      "target_word": "dass",
+      "target_start": 76,
+      "target_end": 80,
+      "before_strong": [
+        "H834"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Der erste dass-Satz ich die Stadt nicht umkehre entspricht לבלתי הפכי את העיר (Quellwörter09–12): לבלתי mit Infinitiv הפכי, kein Relativsatz. Das ausdrücklich folgende אשר/H834 (Quellwort13) bildet mit דברת (14) die Relativphrase Stadt, von der du geredet hast. Es gehört nicht zum vorigen dass. Nur H834 an diesem dass entfernen; keinen Ersatz erfinden und vorhandene Verlinkung der echten Relativphrase unverändert lassen.",
+      "source_projection": [
+        {
+          "origin_id": "Gen.19.21#01=L",
+          "strong": [
+            "H9001",
+            "H559"
+          ],
+          "morph": "Hc/Vqw3ms",
+          "text": "וַ/יֹּ֣אמֶר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#02=L",
+          "strong": [
+            "H413",
+            "H9033"
+          ],
+          "morph": "HRd/Sp3ms",
+          "text": "אֵלָ֔י/ו",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#03=L",
+          "strong": [
+            "H2009"
+          ],
+          "morph": "HTj",
+          "text": "הִנֵּה֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#04=L",
+          "strong": [
+            "H5375"
+          ],
+          "morph": "HVqp1cs",
+          "text": "נָשָׂ֣אתִי",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#05=L",
+          "strong": [
+            "H6440",
+            "H9021"
+          ],
+          "morph": "HNcmpc/Sp2ms",
+          "text": "פָנֶ֔י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#06=L",
+          "strong": [
+            "H1571"
+          ],
+          "morph": "HD",
+          "text": "גַּ֖ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#07=L",
+          "strong": [
+            "H9005",
+            "H1697"
+          ],
+          "morph": "HRd/Ncmsa",
+          "text": "לַ/דָּבָ֣ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#08=L",
+          "strong": [
+            "H9009",
+            "H2088"
+          ],
+          "morph": "HTd/Tm",
+          "text": "הַ/זֶּ֑ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#09=L",
+          "strong": [
+            "H9005",
+            "H1115"
+          ],
+          "morph": "HR/Ncbsc",
+          "text": "לְ/בִלְתִּ֛י",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#10=L",
+          "strong": [
+            "H2015",
+            "H9040"
+          ],
+          "morph": "HVqcc/Sp1bs",
+          "text": "הָפְכִּ֥/י",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#11=L",
+          "strong": [
+            "H853",
+            "H9014"
+          ],
+          "morph": "HTo",
+          "text": "אֶת\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#12=L",
+          "strong": [
+            "H9009",
+            "H5892"
+          ],
+          "morph": "HTd/Ncfsa",
+          "text": "הָ/עִ֖יר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#13=L",
+          "strong": [
+            "H834"
+          ],
+          "morph": "HTr",
+          "text": "אֲשֶׁ֥ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#14=L",
+          "strong": [
+            "H1696",
+            "H9016"
+          ],
+          "morph": "HVpp2ms",
+          "text": "דִּבַּֽרְתָּ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "annotation_origin": "inherited",
+      "binding": {
+        "verse_text_sha256": "e112f75d60c03bb6ebcb7e380046814ed965c6e5f5bfa630452cb9403edb1bbf",
+        "span_xml_without_tail_sha256": "4844c67b19122026b074b7c6c2729a517cf7f85e887ab38d5ed751ae8ecbbeda",
+        "source_projection_sha256": "195809cb00addde52dbc6e94e67041ddebec36adbc6cd313f157e1dee03cb89a"
+      },
+      "reviewed_input_sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "positive_source_ids": [
+        "Gen.19.21#09=L",
+        "Gen.19.21#10=L",
+        "Gen.19.21#11=L",
+        "Gen.19.21#12=L",
+        "Gen.19.21#13=L",
+        "Gen.19.21#14=L"
+      ]
+    },
+    {
+      "id": "akribos.lut:Exod.33.5:d014",
+      "bible_id": "akribos.lut",
+      "nt_edition": "TR",
+      "ref": "Exod.33.5",
+      "token": "d014",
+      "target_word": "ein",
+      "target_start": 66,
+      "target_end": 69,
+      "before_strong": [
+        "H259"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Die Nominalphrase אתם עם קשה ערף (Quellwörter09–12) bedeutet ihr seid ein halsstarriges Volk. Das deutsche ein ist hier der unbestimmte Artikel. Das einzige אחד/H259 steht dagegen ausdrücklich hinter רגע/H7281 (Quellwörter13–14) und bildet einen Augenblick. Beide Zielspannen sind daher nicht zwei Wiedergaben derselben hebräischen Phrase. Nur die falsche erste H259-Verlinkung entfernen; den tatsächlich zahlenbezogenen späteren einen/H259 vor Augenblick erhalten. Kein Ersatzcode für den unbestimmten Artikel.",
+      "source_projection": [
+        {
+          "origin_id": "Exo.33.5#01=L",
+          "strong": [
+            "H9001",
+            "H559"
+          ],
+          "morph": "Hc/Vqw3ms",
+          "text": "וַ/יֹּ֨אמֶר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#02=L",
+          "strong": [
+            "H3068"
+          ],
+          "morph": "HNpt",
+          "text": "יְהוָ֜ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#03=L",
+          "strong": [
+            "H413",
+            "H9014"
+          ],
+          "morph": "HR",
+          "text": "אֶל\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#04=L",
+          "strong": [
+            "H4872"
+          ],
+          "morph": "HNpm",
+          "text": "מֹשֶׁ֗ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#05=L",
+          "strong": [
+            "H559"
+          ],
+          "morph": "HVqv2ms",
+          "text": "אֱמֹ֤ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#06=L",
+          "strong": [
+            "H413",
+            "H9014"
+          ],
+          "morph": "HR",
+          "text": "אֶל\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#07=L",
+          "strong": [
+            "H1121",
+            "H9014"
+          ],
+          "morph": "HNcmpc",
+          "text": "בְּנֵֽי\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#08=L",
+          "strong": [
+            "H3478"
+          ],
+          "morph": "HNpl",
+          "text": "יִשְׂרָאֵל֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#09=L",
+          "strong": [
+            "H859"
+          ],
+          "morph": "HPp2mp",
+          "text": "אַתֶּ֣ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#10=L",
+          "strong": [
+            "H5971",
+            "H9014"
+          ],
+          "morph": "HNcmsa",
+          "text": "עַם\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#11=L",
+          "strong": [
+            "H7186",
+            "H9014"
+          ],
+          "morph": "HAamsc",
+          "text": "קְשֵׁה\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#12=L",
+          "strong": [
+            "H6203"
+          ],
+          "morph": "HNcmsa",
+          "text": "עֹ֔רֶף",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#13=L",
+          "strong": [
+            "H7281"
+          ],
+          "morph": "HNcmsa",
+          "text": "רֶ֧גַע",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#14=L",
+          "strong": [
+            "H259"
+          ],
+          "morph": "HAcfsa",
+          "text": "אֶחָ֛ד",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#15=L",
+          "strong": [
+            "H5927"
+          ],
+          "morph": "HVqi1cs",
+          "text": "אֶֽעֱלֶ֥ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#16=L",
+          "strong": [
+            "H9003",
+            "H7130",
+            "H9021"
+          ],
+          "morph": "HR/Ncmsc/Sp2ms",
+          "text": "בְ/קִרְבְּ/ךָ֖",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#17=L",
+          "strong": [
+            "H9001",
+            "H3615",
+            "H9031"
+          ],
+          "morph": "Hc/Vpq1cs/Sp2ms",
+          "text": "וְ/כִלִּיתִ֑י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#18=L",
+          "strong": [
+            "H9002",
+            "H6258"
+          ],
+          "morph": "HC/D",
+          "text": "וְ/עַתָּ֗ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#19=L",
+          "strong": [
+            "H3381"
+          ],
+          "morph": "HVhv2ms",
+          "text": "הוֹרֵ֤ד",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#20=L",
+          "strong": [
+            "H5716",
+            "H9021"
+          ],
+          "morph": "HNcmsc/Sp2ms",
+          "text": "עֶדְיְ/ךָ֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#21=L",
+          "strong": [
+            "H9006",
+            "H5921",
+            "H9031"
+          ],
+          "morph": "HR/Rd/Sp2ms",
+          "text": "מֵֽ/עָלֶ֔י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#22=L",
+          "strong": [
+            "H9002",
+            "H3045"
+          ],
+          "morph": "HC/Vqc1cs",
+          "text": "וְ/אֵדְעָ֖ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#23=L",
+          "strong": [
+            "H4100"
+          ],
+          "morph": "HPi",
+          "text": "מָ֥ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#24=L",
+          "strong": [
+            "H6213",
+            "H9014"
+          ],
+          "morph": "HVqi1cs",
+          "text": "אֶֽעֱשֶׂה\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Exo.33.5#25=L",
+          "strong": [
+            "H9005",
+            "H9031",
+            "H9016"
+          ],
+          "morph": "HRd/Sp2ms",
+          "text": "לָּֽ/ךְ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "annotation_origin": "uncertain",
+      "binding": {
+        "verse_text_sha256": "dd61f772666197f84ad16bfdfe50be49911b27968f509781946daf3e913eb163",
+        "span_xml_without_tail_sha256": "0830ffa1093d7878f6ad261c0a234f5740cf6f19607b5eb5bc8ae39cdb757951",
+        "source_projection_sha256": "d79675b6ac7acdaec30f185e932241ce16d4116caee1ea8381ca8d1e4f191cee"
+      },
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "positive_source_ids": [
+        "Exo.33.5#13=L",
+        "Exo.33.5#14=L"
+      ]
+    },
+    {
+      "id": "akribos.lut:Gen.19.21:d015",
+      "bible_id": "akribos.lut",
+      "nt_edition": "TR",
+      "ref": "Gen.19.21",
+      "token": "d015",
+      "target_word": "dass",
+      "target_start": 74,
+      "target_end": 78,
+      "before_strong": [
+        "H834"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Der erste dass-Satz ich die Stadt nicht umkehre entspricht לבלתי הפכי את העיר (Quellwörter09–12): לבלתי mit Infinitiv הפכי, kein Relativsatz. Das ausdrücklich folgende אשר/H834 (Quellwort13) bildet mit דברת (14) die Relativphrase Stadt, von der du geredet hast. Es gehört nicht zum vorigen dass. Nur H834 an diesem dass entfernen; keinen Ersatz erfinden und vorhandene Verlinkung der echten Relativphrase unverändert lassen.",
+      "source_projection": [
+        {
+          "origin_id": "Gen.19.21#01=L",
+          "strong": [
+            "H9001",
+            "H559"
+          ],
+          "morph": "Hc/Vqw3ms",
+          "text": "וַ/יֹּ֣אמֶר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#02=L",
+          "strong": [
+            "H413",
+            "H9033"
+          ],
+          "morph": "HRd/Sp3ms",
+          "text": "אֵלָ֔י/ו",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#03=L",
+          "strong": [
+            "H2009"
+          ],
+          "morph": "HTj",
+          "text": "הִנֵּה֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#04=L",
+          "strong": [
+            "H5375"
+          ],
+          "morph": "HVqp1cs",
+          "text": "נָשָׂ֣אתִי",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#05=L",
+          "strong": [
+            "H6440",
+            "H9021"
+          ],
+          "morph": "HNcmpc/Sp2ms",
+          "text": "פָנֶ֔י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#06=L",
+          "strong": [
+            "H1571"
+          ],
+          "morph": "HD",
+          "text": "גַּ֖ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#07=L",
+          "strong": [
+            "H9005",
+            "H1697"
+          ],
+          "morph": "HRd/Ncmsa",
+          "text": "לַ/דָּבָ֣ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#08=L",
+          "strong": [
+            "H9009",
+            "H2088"
+          ],
+          "morph": "HTd/Tm",
+          "text": "הַ/זֶּ֑ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#09=L",
+          "strong": [
+            "H9005",
+            "H1115"
+          ],
+          "morph": "HR/Ncbsc",
+          "text": "לְ/בִלְתִּ֛י",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#10=L",
+          "strong": [
+            "H2015",
+            "H9040"
+          ],
+          "morph": "HVqcc/Sp1bs",
+          "text": "הָפְכִּ֥/י",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#11=L",
+          "strong": [
+            "H853",
+            "H9014"
+          ],
+          "morph": "HTo",
+          "text": "אֶת\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#12=L",
+          "strong": [
+            "H9009",
+            "H5892"
+          ],
+          "morph": "HTd/Ncfsa",
+          "text": "הָ/עִ֖יר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#13=L",
+          "strong": [
+            "H834"
+          ],
+          "morph": "HTr",
+          "text": "אֲשֶׁ֥ר",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Gen.19.21#14=L",
+          "strong": [
+            "H1696",
+            "H9016"
+          ],
+          "morph": "HVpp2ms",
+          "text": "דִּבַּֽרְתָּ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "annotation_origin": "uncertain",
+      "binding": {
+        "verse_text_sha256": "004a5dcd64574ec80ea37183433661005f7bbe6e45b9327d257aef6e0a6451d5",
+        "span_xml_without_tail_sha256": "4844c67b19122026b074b7c6c2729a517cf7f85e887ab38d5ed751ae8ecbbeda",
+        "source_projection_sha256": "195809cb00addde52dbc6e94e67041ddebec36adbc6cd313f157e1dee03cb89a"
+      },
+      "reviewed_input_sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "positive_source_ids": [
+        "Gen.19.21#09=L",
+        "Gen.19.21#10=L",
+        "Gen.19.21#11=L",
+        "Gen.19.21#12=L",
+        "Gen.19.21#13=L",
+        "Gen.19.21#14=L"
+      ]
     }
   ]
 }

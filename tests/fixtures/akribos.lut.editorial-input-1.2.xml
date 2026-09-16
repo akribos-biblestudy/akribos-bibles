@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XMLBIBLE>
 <INFORMATION><identifier>akribos.lut</identifier></INFORMATION>
+<BIBLEBOOK bnumber="1">
+<CHAPTER cnumber="19">
+<VERS vnumber="21">Da <gr str="559">sprach</gr> er zu ihm: <gr str="2009">Siehe</gr>, ich <gr str="5375">habe</gr> auch in diesem <gr str="1697">Stück</gr> <gr str="6440">dich</gr> <gr str="5375">angesehen</gr>, <gr str="834">dass</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> ich die <gr str="5892">Stadt</gr> nicht <gr str="2015">umkehre</gr>, <gr str="834">von</gr> der du <gr str="1696">geredet</gr> <gr str="1697">hast</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE>.</VERS>
+</CHAPTER>
+</BIBLEBOOK>
+<BIBLEBOOK bnumber="2">
+<CHAPTER cnumber="33">
+<VERS vnumber="5"><gr str="6203">Und</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> <gr str="3068">der</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> <gr str="3068">HERR</gr> <gr str="559">sprach</gr> <gr str="6213">zu</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> <gr str="4872">Mose</gr>: <gr str="559">Sage</gr> zu den <gr str="1121">Kindern</gr> <gr str="3478">Israel</gr>: <gr str="3045">Ihr</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> seid <gr str="259">ein</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> <gr str="6203 7186">halsstarriges</gr> <gr str="5971">Volk</gr>. Wo ich nur <gr str="259">einen</gr> <gr str="7281">Augenblick</gr> <gr str="7130">mit</gr> dir <gr str="5927">hinaufzöge</gr>, würde ich dich <gr str="3615">vertilgen</gr>. Und nun <gr str="3381">lege</gr> deinen <gr str="5716">Schmuck</gr> <gr str="3381">von</gr> dir, dass ich <gr str="3045">wisse</gr>, was ich dir <gr str="6213">tun</gr> soll.</VERS>
+</CHAPTER>
+</BIBLEBOOK>
 <BIBLEBOOK bnumber="40">
 <CHAPTER cnumber="13">
 <VERS vnumber="32"><gr str="3739">welches</gr> <gr str="3739">das</gr><NOTE type="x-explanation" ex="nl:akribosStrongUncertainty">Automatische Wortzuordnung; fachlich noch nicht bestätigt.</NOTE> <gr str="3398">kleinste</gr> <gr str="2076">ist</gr> <gr str="1722">unter</gr> <gr str="3956">allem</gr> <gr str="4690">Samen</gr>; <gr str="3752">wenn</gr> es <gr str="1161">aber</gr> <gr str="837">erwächst</gr>, so <gr str="2076">ist</gr> es das <gr str="3187">größte</gr> <gr str="1722">unter</gr> dem <gr str="3001">Kohl</gr> <gr str="2532">und</gr> <gr str="1096">wird</gr> ein <gr str="1186">Baum</gr>, <gr str="5620">dass</gr> die <gr str="4071">Vögel</gr> <gr str="1722">unter</gr> dem <gr str="3772">Himmel</gr> <gr str="2064">kommen</gr> <gr str="2532">und</gr> <gr str="2681">wohnen</gr> <gr str="1722">unter</gr> <gr str="846">seinen</gr> <gr str="2798">Zweigen</gr>.</VERS>

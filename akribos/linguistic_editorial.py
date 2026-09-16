@@ -7,7 +7,7 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from .common import digest, require
+from .common import BOOKS, digest, require
 from .confirm import GRAMMAR, _remove_preserving_tail
 from .importers import tag
 
@@ -15,6 +15,8 @@ CATALOG_PATH = Path(__file__).resolve().parents[1] / 'rules/editorial-strong-cor
 METHOD = 'fixed-position-source-bound-editorial-corrections-v1'
 PROVENANCE = 'data-akribos-editorial'
 SOURCE_FIELDS = ('origin_id', 'strong', 'morph', 'text', 'lemma', 'edition')
+NT_FILES = frozenset({'sources/originals/TAGNT_Mat-Jhn.tsv', 'sources/originals/TAGNT_Act-Rev.tsv'})
+OT_FILES = frozenset({'sources/originals/TAHOT_Gen-Deu.tsv'})
 REASONS = frozenset({
     'curated-position-and-source-proof', 'wrong-target-edition', 'missing-target-verse',
     'target-text-hash-mismatch', 'target-token-mismatch', 'target-span-mismatch',
@@ -35,8 +37,7 @@ def span_hash(element):
 def load_catalog():
     catalog = json.loads(CATALOG_PATH.read_text(encoding='utf-8'))
     require(catalog.get('schema') == 1 and catalog.get('method') == METHOD, 'Invalid editorial catalog')
-    require(set(catalog['source_files']) == {'sources/originals/TAGNT_Mat-Jhn.tsv',
-                                           'sources/originals/TAGNT_Act-Rev.tsv'}, 'Invalid editorial source files')
+    require(set(catalog['source_files']) == NT_FILES | OT_FILES, 'Invalid editorial source files')
     ids = set()
     for rule in catalog['rules']:
         require(rule['id'] not in ids, 'Duplicate editorial rule ID'); ids.add(rule['id'])
@@ -50,6 +51,12 @@ def load_catalog():
         require(rule['action'] == ('replace-strong' if rule['after_strong'] else 'unwrap-strong-span'),
                 'Editorial operation and replacement differ')
         require(rule['annotation_origin'] in {'uncertain','inherited'}, 'Unknown editorial annotation origin')
+        is_ot = BOOKS.index(rule['ref'].split('.')[0]) < 39
+        require(set(rule['source_files']) == (OT_FILES if is_ot else NT_FILES),
+                'Editorial rule uses unrelated source files')
+        require(all(code.startswith('H' if is_ot else 'G') for code in rule['before_strong']) and
+                all(token['edition'] == ('L/Q' if is_ot else rule['nt_edition'])
+                    for token in rule['source_projection']), 'Editorial source witness differs')
         require(digest(rule['source_projection']) == rule['binding']['source_projection_sha256'],
                 'Editorial source projection hash differs')
     return catalog
@@ -58,11 +65,12 @@ def load_catalog():
 def decide(rule, view, source, *, nt_edition, source_metadata, source_files, hint_ids, rule_version):
     """Return a complete closed audit row plus the exact span/hint to change."""
     projection = [{key: token.get(key) for key in SOURCE_FIELDS} for token in source]
+    required_files = {path:source_files[path] for path in rule['source_files']}
     actual_files = {row['path']:row['sha256'] for row in (source_metadata or {}).get('files', [])}
     proof = {'rule_sha256':digest(rule),
              'source_projection_sha256':digest(projection),
              'verse_text_sha256':text_hash(view.text) if view else None,
-             'source_file_hashes':{name:actual_files.get(name) for name in source_files}}
+             'source_file_hashes':{name:actual_files.get(name) for name in required_files}}
     token = next((t for t in view.tokens if t['id'] == rule['token']), None) if view else None
     spans = ([span for span in view.spans if span.start < token['end'] and span.end > token['start']]
              if token else [])
@@ -89,7 +97,7 @@ def decide(rule, view, source, *, nt_edition, source_metadata, source_files, hin
     else:
         matches = [candidate for candidate in view.hints if view.hint_span(candidate)[0] is span]
         if len(matches) > 1:reason = 'ambiguous-target-hint'
-        elif proof['source_file_hashes'] != source_files:reason = 'source-file-identity-mismatch'
+        elif proof['source_file_hashes'] != required_files:reason = 'source-file-identity-mismatch'
         elif proof['source_projection_sha256'] != rule['binding']['source_projection_sha256']:reason = 'source-projection-mismatch'
         else:hint = matches[0] if matches else None
     if reason:
@@ -140,8 +148,9 @@ def validate_audit(row, rule_version):
     for key in ('rule_sha256','source_projection_sha256','verse_text_sha256'):
         require((key=='verse_text_sha256' and proof[key] is None) or
                 (type(proof[key]) is str and re.fullmatch(r'[a-f0-9]{64}',proof[key])), 'Invalid editorial proof hash')
-    require(type(proof['source_file_hashes']) is dict and set(proof['source_file_hashes']) ==
-            {'sources/originals/TAGNT_Mat-Jhn.tsv','sources/originals/TAGNT_Act-Rev.tsv'} and
+    require(row['ref'].split('.')[0] in BOOKS, 'Unknown editorial target book')
+    expected_files = OT_FILES if BOOKS.index(row['ref'].split('.')[0]) < 39 else NT_FILES
+    require(type(proof['source_file_hashes']) is dict and set(proof['source_file_hashes']) == expected_files and
             all(value is None or (type(value) is str and re.fullmatch(r'[a-f0-9]{64}',value))
                 for value in proof['source_file_hashes'].values()), 'Invalid editorial source-file proof')
 
