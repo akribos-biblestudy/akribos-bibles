@@ -4,8 +4,10 @@ Der Aufbau für Version 1.4 führt zuerst die [Bestätigung durch beide Referenz
 aus. Danach prüft eine eigene Stufe jeden verbleibenden Unsicherheitshinweis
 an konkreten griechischen oder hebräischen Wortvorkommen. Sie entfernt nur
 belegte Hinweise und ergänzt ausgewählte, belegte griechische Artikel.
-Bibeltext, vorhandene Strong-Nummern und historische Originalnotizen bleiben
-erhalten. Nicht ausreichend belegte Fälle behalten ihren Hinweis.
+Bibeltext und historische Originalnotizen bleiben erhalten. Vorhandene
+Strong-Nummern ändern sich ausschließlich durch die unten beschriebenen
+positionsgesicherten redaktionellen Regeln. Nicht ausreichend belegte Fälle
+behalten ihren Hinweis.
 
 Die Standardversion und die veröffentlichten Dateien bleiben bis zum
 abgeschlossenen Release-Aufbau bei **1.2**. Die folgenden Befehle wählen den
@@ -27,6 +29,11 @@ und [CSV-REFERENCE.md](CSV-REFERENCE.md) beschrieben. Der Aufbau verarbeitet
 zuerst `04-multisource.xml`, dann `05-reference-confirmed.xml` und zuletzt
 `06-linguistic.xml`. Nur Stufe 06 wird für Version 1.4 veröffentlicht. Ein
 vorheriger 1.3-Build ist nicht erforderlich.
+
+Die eigene Sprachstufe kann für 1.4 zusätzliche Korrekturen der deutschen
+HERR-Formen ausführen und protokollieren. Dieser Textunterschied zwischen
+Releases wird gesondert geprüft. Die hier beschriebene Strong-Stufe 05 → 06
+verändert dagegen weiterhin keinerlei Bibelwortlaut.
 
 Für ELB wird die STEP-Grundtextauswahl `WH`, für Luther `TR` verwendet; mit
 `--nt-edition` lässt sie sich ausdrücklich wählen. Ausgewählte Ausgabe,
@@ -120,6 +127,22 @@ und ersetzt keine Namen. Alle bisherigen Vers-, Varianten-, Inventar- und
 Provenienzprüfungen gelten weiter. Katalog, Quellenbelege und Prüfcode werden
 gehasht; der öffentliche Replay prüft den tatsächlichen STEP-/Katalogbeleg erneut.
 
+### Fest geprüfte redaktionelle Korrekturen
+
+[EDITORIAL-STRONG-CORRECTIONS.md](EDITORIAL-STRONG-CORRECTIONS.md) dokumentiert
+37 einzeln geprüfte Regeln. Sie entfernen konkret falsch verteilte Nummern
+oder ersetzen sie durch den belegten Artikelcode. Eine Mischspanne verliert
+nur ihren falschen Zusatzcode. Auch geerbte Zuordnungen ohne eigenen
+Unsicherheitshinweis sind ausdrücklich und getrennt erfasst.
+
+Die Regeln gelten ausschließlich für eine festgelegte Bibelausgabe,
+WH-/TR-Auswahl, unveränderten ganzen Verstext, genaue Wortposition, den
+ursprünglichen XML-Bereich und dieselben tatsächlichen STEP-Wortvorkommen.
+Fehlt eine Bedingung, bleibt die Stelle unverändert (`not-applicable`). Das
+ist keine allgemeine Löschregel und keine Aliasnormalisierung. Die Pflicht
+für einen unabhängigen Zweitbeleg bei automatischen Artikelergänzungen
+bleibt bestehen; redaktionelle Korrekturen haben einen eigenen Audittyp.
+
 ## Protokolle und Erhaltung
 
 Im unveränderlichen Laufarchiv entstehen zusätzlich:
@@ -127,7 +150,7 @@ Im unveränderlichen Laufarchiv entstehen zusätzlich:
 | Datei | Inhalt |
 |---|---|
 | `06-linguistic.xml` | Finale Bibel einschließlich Versionsmetadaten |
-| `06-linguistic.audit.jsonl.gz` | Jede eingehende Markierung und jeder grammatisch belegte Artikelkandidat mit Entscheidung und Begründung |
+| `06-linguistic.audit.jsonl.gz` | Jede eingehende Markierung, jeder belegte Artikelkandidat und jede registrierte redaktionelle Regel mit Entscheidung und Begründung |
 | `06-linguistic.report.json` | Zähler, Erhaltungsprüfungen, Regel- und Quellidentität |
 | `06-linguistic.manifest.json` | Hashes der Eingabe, Quellen, Regeln, Referenzen, Alignment und aller Ausgaben |
 
@@ -143,17 +166,22 @@ Artikelbelege werden erneut gegen STEP geprüft.
 
 Alle Entscheidungen verwenden denselben unveränderten Eingabestand. In
 Stufe 05 bestätigte Zuordnungen können als Anker dienen. Neu in Stufe 06
-bestätigte oder ergänzte Spannen erhalten ausschließlich das eigene Attribut
+bestätigte oder ergänzte Spannen erhalten das eigene Attribut
 `data-akribos-linguistic="1.4.0"`. Solche Spannen dienen auch bei einem
 erneuten Lauf nicht als neue Beweisanker. Dadurch können wiederholte Läufe
-keine Kette sich selbst bestätigender Zuordnungen erzeugen.
+keine Kette sich selbst bestätigender Zuordnungen erzeugen. Redaktionell
+ersetzte Spannen tragen zusätzlich `data-akribos-editorial` mit ihrer Regel-ID.
+Verse mit registrierten redaktionellen Korrekturen bleiben dauerhaft für
+automatische Beweise gesperrt: Auch eine entfernte falsche Doppelzuordnung
+kann deshalb in einem Folgelauf keinen neuen Beweis freischalten.
 
 Der Dateidurchlauf vergleicht sämtliche Vers-/Überschriftentexte,
 Originalnotizen und bisherigen Strong-Elemente vor und nach der Bearbeitung.
 Der Repository-Prüfer prüft zusätzlich alle Hashes und rekonstruiert die
 protokollierten XML-Änderungen aus Stufe 05 gegen die wirklichen STEP-Belege.
 Er erlaubt nur protokollierte Hinweisentfernungen, eigene Provenienz,
-G3588-Ergänzungen und die vorgesehenen Ausgabemetadaten. Der private
+G3588-Ergänzungen, die exakt katalogisierten redaktionellen Strong-Deltas
+und die vorgesehenen Ausgabemetadaten. Der private
 Referenzvergleich lässt sich mit denselben privaten Snapshots wiederholen;
 deren Inhalt wird nicht im öffentlichen Repository abgelegt.
 
@@ -178,7 +206,9 @@ erstellt. Eingaben und verwendete Quellen dürfen nicht als Ausgabeziele
 Die Python-API bietet `akribos.linguistic.validate_files(...)` für Dateien
 sowie `validate_tree(...)` für bereits geladene Bäume. Beide verändern ihre
 Eingaben nicht. Beim Baum-API werden bekannte Versprobleme mit `verse_guards`
-übergeben; das Datei-API liest den übergebenen oder benachbarten
+übergeben. Redaktionelle Korrekturen benötigen außerdem die tatsächliche
+`source_metadata`-Dateiidentität; ohne sie bleiben sie unverändert. Das
+Datei-API lädt diese Identität selbst und liest den übergebenen oder benachbarten
 `alignment.jsonl.gz` und prüft die vollständige Übereinstimmung seiner Texte.
 
 ## Quellen der Regeln

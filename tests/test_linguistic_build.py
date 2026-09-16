@@ -32,7 +32,8 @@ class LinguisticBuildTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name);(self.root/'config').mkdir()
         (self.root/'rules').mkdir()
-        for path in ('rules/proper-name-catalog.json','rules/proper-name-sources.json'):
+        for path in ('rules/proper-name-catalog.json','rules/proper-name-sources.json',
+                     'rules/editorial-strong-corrections.json'):
             (self.root/path).write_bytes((Path(__file__).resolve().parents[1]/path).read_bytes())
         self.bk=self.root/'private-bk.xml';self.csv=self.root/'private-csv.xml'
         for path,title in ((self.bk,'BK fixture'),(self.csv,'CSV fixture')):
@@ -213,6 +214,33 @@ class LinguisticBuildTests(unittest.TestCase):
                 write_json(manifest_path,manifest)
                 self.assertTrue(cached(destination))
                 with self.assertRaisesRegex(DataError,'public .* (audit fields|reference status|proof fields)'):
+                    verify_release_history(release,link,'1.4')
+
+    def test_verifier_rejects_editorial_proof_tampering_after_rehash(self):
+        with self.pipeline():
+            destination=self.run_build();release,link=self.link()
+            audit_path=destination/'06-linguistic.audit.jsonl.gz'
+            with gzip.open(audit_path,'rt',encoding='utf-8') as stream:
+                original=[json.loads(value) for value in stream]
+            for mutate in [lambda row:row['proof'].update(rule_sha256='0'*64),
+                           lambda row:row['proof'].update(source_projection_sha256='0'*64),
+                           lambda row:row.update(annotation_origin='inherited'),
+                           lambda row:row.update(private_reference_text='PRIVATE')]:
+                rows=copy.deepcopy(original)
+                mutate(next(row for row in rows if row['kind']=='editorial-correction'))
+                with jsonl_gz(audit_path) as stream:
+                    for row in rows:line(stream,row)
+                report_path=destination/'06-linguistic.report.json';report=json.loads(report_path.read_text())
+                report['audit_sha256']=file_hash(audit_path);write_json(report_path,report)
+                phase_path=destination/'06-linguistic.manifest.json';phase=json.loads(phase_path.read_text())
+                phase['outputs']['audit']=file_hash(audit_path)
+                phase['outputs']['report']=file_hash(report_path);write_json(phase_path,phase)
+                manifest_path=destination/'manifest.json';manifest=json.loads(manifest_path.read_text())
+                manifest['files']={str(path.relative_to(destination)):file_hash(path)
+                                  for path in destination.rglob('*') if path.is_file() and path!=manifest_path}
+                write_json(manifest_path,manifest)
+                self.assertTrue(cached(destination))
+                with self.assertRaisesRegex(DataError,'(Editorial audit differs|editorial audit fields)'):
                     verify_release_history(release,link,'1.4')
 
     def test_verifier_requires_the_archived_proper_name_catalog(self):

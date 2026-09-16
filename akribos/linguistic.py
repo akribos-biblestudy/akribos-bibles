@@ -1,7 +1,7 @@
 """Reproducible post-confirmation linguistic review with explicit occurrence proofs.
 
-Only designated Akribos uncertainty notes may disappear. Existing Strong numbers,
-Bible text, original notes, and other annotations are immutable. New article tags
+Only designated Akribos uncertainty notes may disappear. Strong changes require
+fixed editorial proofs; Bible text and original notes are immutable. New article tags
 need both German syntax evidence and a linked Greek article occurrence. Accepted
 results carry provenance and cannot become new proof anchors in a repeated run.
 """
@@ -29,6 +29,7 @@ from .linguistic_rules import (ARTICLES, atomic_bridge_proof, classify_uncertain
                               linked_article_proof, selected_verse_has_movement, _source_shape_problem)
 from .linguistic_names import (RULE as NAME_RULE, CATALOG_PATH, SOURCES_PATH,
                                load_name_catalog, proper_name_decision)
+from . import linguistic_editorial as editorial
 from .xmlio import EXCLUDED, annotate, plain, slots, write_xml, zef_verses
 
 METHOD = 'source-linked-linguistic-review-v1'
@@ -70,12 +71,16 @@ REVIEW_REASONS = frozenset({
     'source-name-lemma-not-confirmed', 'not-hebrew-proper-name-morphology',
     'hebrew-name-surface-not-confirmed', 'hebrew-compound-surface',
     'no-independent-word-level-name-corroboration',
+    'curated-editorial-verse',
 })
 
 
 def _validate_audit_schema(row, reference_labels):
     """Reject extra/nested fields and free-text result codes before publication."""
     require(isinstance(row, dict), 'Linguistic audit row must be an object')
+    if row.get('kind') == 'editorial-correction':
+        editorial.validate_audit(row, RULES_VERSION)
+        return
     kind = row.get('kind'); status = row.get('status'); action = row.get('action')
     require(type(status) is str and type(action) is str and type(row.get('reason')) is str,
             'Linguistic audit decision fields must be result codes')
@@ -161,10 +166,11 @@ class ValidationResult:
 
 def rule_identity():
     """Hash rules and semantic/XML dependencies, without machine-specific paths."""
-    names = ('linguistic.py', 'linguistic_rules.py', 'linguistic_names.py', 'confirm.py', 'common.py',
+    names = ('linguistic.py', 'linguistic_rules.py', 'linguistic_names.py', 'linguistic_editorial.py', 'confirm.py', 'common.py',
              'importers.py', 'xmlio.py', 'project.py')
     hashes = {name: file_hash(importlib.import_module('.' + name[:-3], __package__).__file__) for name in names}
-    data_files = {'rules/' + path.name: file_hash(path) for path in (CATALOG_PATH, SOURCES_PATH)}
+    data_files = {'rules/' + path.name: file_hash(path)
+                  for path in (CATALOG_PATH, SOURCES_PATH, editorial.CATALOG_PATH)}
     identity = {'implementation': hashes, 'data_files': data_files}
     return {'version': RULES_VERSION, 'sha256': digest(identity), **identity}
 
@@ -338,6 +344,10 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
     verse_guards = verse_guards or {}
     corroborating_roots = corroborating_roots or {}
     name_catalog = load_name_catalog()
+    correction_catalog = editorial.load_catalog()
+    correction_rules = [r for r in correction_catalog['rules']
+                        if r['bible_id'] == root.findtext('INFORMATION/identifier')]
+    curated_refs = {r['ref'] for r in correction_rules}
     require(set(corroborating_roots) <= {'elb-bk', 'elb-csv'}, 'Supported article references: elb-bk, elb-csv')
     reference_indexes = {label: _verse_index(tree) for label, tree in corroborating_roots.items()}
     corroboration_hashes = {label: hashlib.sha256(ET.tostring(tree, encoding='utf-8')).hexdigest()
@@ -347,8 +357,12 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
     hint_ids = {node: f'u{index:06}' for index, node in enumerate(all_hints, 1)}
     originals = {node: _span_signature(node) for node in output.iter() if tag(node) in GRAMMAR}
     approved_existing = set(); audit = []; handled = set(); added_elements = set()
+    editorial_expected = {}; visited_rules = set()
     counts = Counter({'hints_before': len(all_hints), 'hints_removed': 0,
-                      'article_tags_added': 0, 'hints_rejected': 0, 'article_candidates_retained': 0})
+                      'article_tags_added': 0, 'hints_rejected': 0, 'article_candidates_retained': 0,
+                      'editorial_corrections': 0, 'editorial_corrections_marked': 0,
+                      'editorial_corrections_inherited': 0, 'editorial_hints_removed': 0,
+                      'editorial_not_applicable': 0})
     for ref, verse in zef_verses(output):
         view = _Verse(verse, ref)
         tokens, hints = _token_view(view)
@@ -357,8 +371,26 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
         alignments = {label: forced_alignment(view.tokens, reference.tokens)
                       for label, reference in reference_views.items() if reference is not None}
         source = reference_occurrences.get(ref, [])
+        corrections = []
+        for rule in correction_rules:
+            if rule['ref'] != ref:
+                continue
+            visited_rules.add(rule['id'])
+            row, grammar, hint = editorial.decide(rule, view, source, nt_edition=nt_edition,
+                source_metadata=source_metadata, source_files=correction_catalog['source_files'],
+                hint_ids=hint_ids, rule_version=RULES_VERSION)
+            audit.append(row)
+            if row['status'] == 'applied':
+                corrections.append((row, grammar, hint))
+                if hint is not None:
+                    handled.add(hint)
+            else:
+                counts['editorial_not_applicable'] += 1
         is_nt = BOOKS.index(ref.split('.')[0]) >= 39
-        source_problem = verse_guards.get(ref) or _source_shape_problem(source, nt_edition, is_nt, ref)
+        # A corrected duplicate must never become a fresh automatic proof, even
+        # on a later run. The registered verse remains guarded after unwrapping.
+        source_problem = ('curated-editorial-verse' if ref in curated_refs else None)
+        source_problem = source_problem or verse_guards.get(ref) or _source_shape_problem(source, nt_edition, is_nt, ref)
         inherited_codes = {code for token in tokens for code in token['strong']}
         source_codes = {code for token in source for code in token.get('strong', [])}
         if len(inherited_codes) >= 3 and len(inherited_codes & source_codes) / len(inherited_codes) < 0.65:
@@ -367,6 +399,8 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
         decisions = {d['token']: d for d in classify_uncertain(ref, view.text, tokens, source)}
         removals = []; additions = []; used_source_occurrences = set()
         for hint, span, indices, reason in hints:
+            if hint in handled:
+                continue
             handled.add(hint)
             row = {'kind': 'uncertainty', 'hint_id': hint_ids[hint], 'ref': ref,
                    'status': 'review', 'action': 'retain', 'rule_version': RULES_VERSION}
@@ -440,6 +474,20 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                               'reason': proof['rule'] if approved else 'no-independent-article-corroboration',
                               'references': corroboration,
                               'rule_version': RULES_VERSION, 'proof': proof})
+        for row, grammar, hint in corrections:
+            expected = copy.deepcopy(grammar)
+            if row['action'] == 'replace-strong':
+                expected.set('str', ' '.join(code[1:] for code in row['after_strong']))
+                expected.set(PROVENANCE, RULES_VERSION)
+                expected.set(editorial.PROVENANCE, row['rule_id'])
+                editorial_expected[grammar] = _span_signature(expected)
+            else:
+                editorial_expected[grammar] = None
+            editorial.apply(row, grammar, hint, view.parents, RULES_VERSION)
+            counts['editorial_corrections'] += 1
+            counts['editorial_corrections_' + ('marked' if row['annotation_origin'] == 'uncertain' else 'inherited')] += 1
+            counts['editorial_hints_removed'] += int(hint is not None)
+            counts['hints_removed'] += int(hint is not None)
         for hint, grammar in removals:
             require(not grammar.get(PROVENANCE), 'Previously validated annotation unexpectedly retains a hint')
             grammar.set(PROVENANCE, RULES_VERSION)
@@ -454,6 +502,13 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
             added_elements.add(node)
         counts['hints_removed'] += len(removals)
         counts['article_tags_added'] += added
+    for rule in correction_rules:
+        if rule['id'] not in visited_rules:
+            row, _, _ = editorial.decide(rule, None, reference_occurrences.get(rule['ref'], []),
+                nt_edition=nt_edition, source_metadata=source_metadata,
+                source_files=correction_catalog['source_files'], hint_ids=hint_ids, rule_version=RULES_VERSION)
+            audit.append(row)
+            counts['editorial_not_applicable'] += 1
     for hint in all_hints:
         if hint not in handled:
             audit.append({'kind': 'uncertainty', 'hint_id': hint_ids[hint], 'ref': None,
@@ -463,17 +518,25 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
     require(original_text == {ref: plain(v) for ref, v in zef_verses(output, True)},
             'Linguistic validation changed Bible text or captions')
     require(original_notes == _preserved_notes(output), 'Original note subtrees changed')
+    remaining_elements = set(output.iter())
     for node, signature in originals.items():
-        require(_span_signature(node, node in approved_existing) == signature,
+        if node in editorial_expected:
+            expected = editorial_expected[node]
+            require((node not in remaining_elements if expected is None else
+                     node in remaining_elements and _span_signature(node) == expected),
+                    'Editorial correction changed beyond its approved Strong delta')
+            continue
+        require(node in remaining_elements and _span_signature(node, node in approved_existing) == signature,
                 'Existing Strong annotation changed beyond approved provenance')
     remaining = sum(tag(n) == 'NOTE' and n.get('ex') == HINT for n in output.iter())
     require(remaining + counts['hints_removed'] == counts['hints_before'], 'Uncertainty balance failed')
-    require(sum(r['kind'] == 'uncertainty' for r in audit) == counts['hints_before'],
+    require(sum(r['kind'] == 'uncertainty' or
+                (r['kind'] == 'editorial-correction' and r['hint_id'] is not None) for r in audit) == counts['hints_before'],
             'Not every input uncertainty marker was audited exactly once')
     require(len(added_elements) == counts['article_tags_added'], 'New Strong tag count differs')
     audit.sort(key=lambda r: (0, r['hint_id']) if r['kind'] == 'uncertainty'
                else (1, BOOKS.index(r['ref'].split('.')[0]),
-                     *map(int, r['ref'].split('.')[1:]), r['target_start']))
+                     *map(int, r['ref'].split('.')[1:]), r.get('target_start') or -1, r['kind']))
     for row in audit:
         _validate_audit_schema(row, corroborating_roots)
     summary = dict(counts)
@@ -481,7 +544,8 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                    hints_remaining=remaining,
                    decisions=dict(Counter(r.get('reason', r.get('proof', {}).get('rule')) for r in audit)),
                    text_preserved=True, original_notes_preserved=len(original_notes),
-                   existing_strong_values_preserved=True, no_bootstrapping=True,
+                   existing_strong_values_preserved=not counts['editorial_corrections'],
+                   unlisted_strong_values_preserved=True, no_bootstrapping=True,
                    article_corroboration_required=require_article_corroboration,
                    article_reference_tree_hashes=corroboration_hashes,
                    prior_alignment_guard_count=len(verse_guards))
@@ -584,7 +648,7 @@ def validate_files(input_path, output_path, *, source_profiles_path, source_root
 
 
 def verify_transition(before, after, audit, source_occurrences, *, nt_edition='WH',
-                      verse_guards=None, output_identity=None):
+                      verse_guards=None, output_identity=None, source_metadata=None):
     """Replay only audited, source-proven deltas and compare the entire XML tree.
 
     Public verification can recheck STEP proofs and exact XML changes. The private
@@ -594,6 +658,10 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
     for row in audit:
         _validate_audit_schema(row, {'elb-bk', 'elb-csv'})
     name_catalog = load_name_catalog()
+    correction_catalog = editorial.load_catalog()
+    correction_rules = {r['id']: r for r in correction_catalog['rules']
+                        if r['bible_id'] == before.findtext('INFORMATION/identifier')}
+    curated_refs = {r['ref'] for r in correction_rules.values()}
     replay = copy.deepcopy(before)
     views = {ref: _Verse(verse, ref) for ref, verse in zef_verses(replay)}
     token_views = {ref: _token_view(view)[0] for ref, view in views.items()}
@@ -601,15 +669,25 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
     hint_ids = {f'u{number:06}': node for number, node in enumerate(markers, 1)}
     locations = {hint: (ref, span, indices, failure)
                  for ref, view in views.items() for hint, span, indices, failure in _token_view(view)[1]}
-    hinted_rows = [row for row in audit if row.get('kind') == 'uncertainty']
+    hinted_rows = [row for row in audit if row.get('kind') == 'uncertainty' or
+                   (row.get('kind') == 'editorial-correction' and row['hint_id'] is not None)]
     require(len(hinted_rows) == len(hint_ids) and {row.get('hint_id') for row in hinted_rows} == set(hint_ids),
             'Incomplete or duplicate linguistic uncertainty audit')
-    require(all(row.get('kind') in {'uncertainty', 'article-addition'} for row in audit),
-            'Unknown linguistic audit row kind')
+    correction_rows = [r for r in audit if r['kind'] == 'editorial-correction']
+    require(len(correction_rows) == len(correction_rules) and
+            {r['rule_id'] for r in correction_rows} == set(correction_rules),
+            'Incomplete or duplicate editorial correction audit')
+    correction_decisions = {identifier: editorial.decide(rule, views.get(rule['ref']),
+        source_occurrences.get(rule['ref'], []), nt_edition=nt_edition, source_metadata=source_metadata,
+        source_files=correction_catalog['source_files'],
+        hint_ids={node: identifier for identifier, node in hint_ids.items()}, rule_version=RULES_VERSION)
+        for identifier, rule in correction_rules.items()}
+    correction_counts = Counter({'editorial_corrections': 0, 'editorial_corrections_marked': 0,
+        'editorial_corrections_inherited': 0, 'editorial_hints_removed': 0, 'editorial_not_applicable': 0})
     additions = defaultdict(list); removed = added = 0; used_occurrences = set(); seen_additions = set()
 
     def proof_for(ref, index, row, article, accepted=True):
-        require(ref not in verse_guards, 'Accepted proof uses a guarded verse')
+        require(ref not in verse_guards and ref not in curated_refs, 'Accepted proof uses a guarded verse')
         tokens = token_views[ref]; view = views[ref]; source = source_occurrences.get(ref, [])
         require(not _source_shape_problem(source, nt_edition, BOOKS.index(ref.split('.')[0]) >= 39, ref),
                 'Accepted proof has invalid source occurrence identity')
@@ -637,7 +715,20 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
     for row in audit:
         require(row.get('rule_version') == RULES_VERSION, 'Unknown linguistic audit rule version')
         action = row.get('action')
-        if row['kind'] == 'uncertainty':
+        if row['kind'] == 'editorial-correction':
+            rule = correction_rules[row['rule_id']]
+            view = views.get(rule['ref'])
+            expected, grammar, hint = correction_decisions[row['rule_id']]
+            require(row == expected, 'Editorial audit differs from exact target/source proof')
+            if row['status'] == 'applied':
+                editorial.apply(row, grammar, hint, view.parents, RULES_VERSION)
+                correction_counts['editorial_corrections'] += 1
+                correction_counts['editorial_corrections_' + ('marked' if row['annotation_origin'] == 'uncertain' else 'inherited')] += 1
+                correction_counts['editorial_hints_removed'] += int(hint is not None)
+                removed += int(hint is not None)
+            else:
+                correction_counts['editorial_not_applicable'] += 1
+        elif row['kind'] == 'uncertainty':
             hint = hint_ids[row['hint_id']]
             location = locations.get(hint)
             require(row.get('ref') == (location[0] if location else None), 'Hint audit verse mismatch')
@@ -714,5 +805,5 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
         return ET.tostring(root, encoding='unicode')
 
     require(signature(replay) == signature(after), 'XML contains changes outside the approved linguistic deltas')
-    return {'hints_removed': removed, 'article_tags_added': added,
+    return {**correction_counts, 'hints_removed': removed, 'article_tags_added': added,
             'hints_before': len(markers), 'hints_remaining': len(markers) - removed}

@@ -72,11 +72,11 @@ def verify_linguistic_history(history,manifest,link):
     require(rules==phase.get('rule_identity')==report.get('rule_identity') and rules.get('version')==RULES_VERSION,
             'Linguistic rule identities differ')
     implementation=rules.get('implementation',{})
-    require(set(implementation)=={'linguistic.py','linguistic_rules.py','linguistic_names.py','confirm.py','common.py',
+    require(set(implementation)=={'linguistic.py','linguistic_rules.py','linguistic_names.py','linguistic_editorial.py','confirm.py','common.py',
                                  'importers.py','xmlio.py','project.py'},'Missing linguistic rule dependencies')
     data_files=rules.get('data_files',{})
-    require(set(data_files)=={'rules/proper-name-catalog.json','rules/proper-name-sources.json'},
-            'Missing proper-name catalog identity')
+    require(set(data_files)=={'rules/proper-name-catalog.json','rules/proper-name-sources.json',
+                              'rules/editorial-strong-corrections.json'}, 'Missing linguistic catalog identity')
     require(rules.get('sha256')==digest({'implementation':implementation,'data_files':data_files}),
             'Linguistic rule digest differs')
     require(all(manifest['implementation'].get('akribos/'+name)==sha for name,sha in implementation.items()),
@@ -109,13 +109,15 @@ def verify_linguistic_history(history,manifest,link):
     require(report.get('prior_alignment_guard_count')==len(guards),'Linguistic alignment guard count differs')
     with gzip.open(audit_path,'rt',encoding='utf-8') as stream:rows=[json.loads(line) for line in stream]
     counts=verify_transition(before,after,rows,references,nt_edition=nt_edition,
-                             verse_guards=guards,output_identity=(link['bible_id'],'1.4'))
+                             verse_guards=guards,output_identity=(link['bible_id'],'1.4'),source_metadata=snapshot)
     require(all(report.get(key)==value for key,value in counts.items()),'Linguistic audit balance differs')
     require(report.get('article_candidates_retained')==sum(r['kind']=='article-addition' and r['action']=='retain' for r in rows),
             'Linguistic retained article count differs')
     require(report.get('hints_rejected')==sum(r['kind']=='uncertainty' and r['status']=='reject' for r in rows),
             'Linguistic rejected hint count differs')
-    require(report.get('text_preserved') is True and report.get('existing_strong_values_preserved') is True and
+    require(report.get('text_preserved') is True and
+            report.get('existing_strong_values_preserved') is (counts['editorial_corrections']==0) and
+            report.get('unlisted_strong_values_preserved') is True and
             report.get('no_bootstrapping') is True,'Missing linguistic preservation assertions')
     require(report.get('original_notes_preserved')==len(original_notes(before))==len(original_notes(after)),
             'Linguistic original note count differs')

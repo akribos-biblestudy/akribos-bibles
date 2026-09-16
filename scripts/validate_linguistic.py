@@ -29,7 +29,9 @@ def main(argv=None):
                          source_root=args.source_root,nt_edition=args.nt_edition,
                          corroborating_paths=references,alignment_path=args.alignment)
     print(json.dumps({key:result.summary[key] for key in ('hints_before','hints_removed',
-                     'hints_remaining','hints_rejected','article_tags_added','article_candidates_retained')},
+                     'hints_remaining','hints_rejected','article_tags_added','article_candidates_retained',
+                     'editorial_corrections','editorial_corrections_marked','editorial_corrections_inherited',
+                     'editorial_hints_removed','editorial_not_applicable')},
                      ensure_ascii=False,indent=2))
     return 0
 
