@@ -1,0 +1,977 @@
+{
+  "lexicon_path": "sources/originals/stronggreek_de_kautz.xml",
+  "lexicon_sha256": "f30bcc658ec4a9d863099eef097b9456ef8ec8d95fc1468da3f561a4f359fda9",
+  "entries": [
+    {
+      "strong": "G4151",
+      "german_lemma": "Geist",
+      "german_gender": "M",
+      "singular_forms": [
+        "geist",
+        "geistes",
+        "geists",
+        "geiste"
+      ],
+      "plural_forms": [
+        "geister",
+        "geistern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4151,
+        "entry_sha256": "fa2ea3545dcc289fe3aa3489479f387f20548cbcec45774a5a0e81d852fb3019",
+        "greek_lemma": "πνεῦμα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 7,
+        "matched_term": "Geist"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2250",
+      "german_lemma": "Tag",
+      "german_gender": "M",
+      "singular_forms": [
+        "tag",
+        "tages",
+        "tags",
+        "tage"
+      ],
+      "plural_forms": [
+        "tage",
+        "tagen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2250,
+        "entry_sha256": "b632e6da895dda22a9d0a03e9cea19426c6bf77c9b9aa03df672505f6d555f84",
+        "greek_lemma": "ἡμέρα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 1,
+        "matched_term": "Tag"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3571",
+      "german_lemma": "Nacht",
+      "german_gender": "F",
+      "singular_forms": [
+        "nacht"
+      ],
+      "plural_forms": [
+        "nächte",
+        "nächten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3571,
+        "entry_sha256": "d0dd34872ce5454ca868e7adab46cddace4de50b863ff0001785e9a09a4d8590",
+        "greek_lemma": "νύξ",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Nacht"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G32",
+      "german_lemma": "Engel",
+      "german_gender": "M",
+      "singular_forms": [
+        "engel",
+        "engels"
+      ],
+      "plural_forms": [
+        "engel",
+        "engeln"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 32,
+        "entry_sha256": "2bbcc64a68c97e27e6e098b7566db7d9553ab7d4d0bbe6be184bd5243e71cae4",
+        "greek_lemma": "ἄγγελος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 11,
+        "matched_term": "Engel"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3772",
+      "german_lemma": "Himmel",
+      "german_gender": "M",
+      "singular_forms": [
+        "himmel",
+        "himmels"
+      ],
+      "plural_forms": [
+        "himmel",
+        "himmeln"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3772,
+        "entry_sha256": "364281a4d6f638a92efadb3a924295cee9ae6a355432ca0b9fab86a34642f49c",
+        "greek_lemma": "οὐρανός",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 1,
+        "matched_term": "Himmel"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2288",
+      "german_lemma": "Tod",
+      "german_gender": "M",
+      "singular_forms": [
+        "tod",
+        "todes",
+        "tods",
+        "tode"
+      ],
+      "plural_forms": [
+        "tode",
+        "toden"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2288,
+        "entry_sha256": "f8bd2fb1cc61089bbaed78a1dd9f0bd7206885ea14420f2c162df4e93e98f847",
+        "greek_lemma": "θάνατος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Tod"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2889",
+      "german_lemma": "Welt",
+      "german_gender": "F",
+      "singular_forms": [
+        "welt"
+      ],
+      "plural_forms": [
+        "welten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2889,
+        "entry_sha256": "812eafb8d6217a64fac1aedde239631536c395260806682aacd9e3863e392357",
+        "greek_lemma": "κόσμος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 7,
+        "matched_term": "Welt"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G266",
+      "german_lemma": "Sünde",
+      "german_gender": "F",
+      "singular_forms": [
+        "sünde"
+      ],
+      "plural_forms": [
+        "sünden"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 266,
+        "entry_sha256": "e32e41296d7a54b864485861cba51412f46db262578da3a7bb9fe949293195ce",
+        "greek_lemma": "ἁμαρτία",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Sünde"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G5485",
+      "german_lemma": "Gnade",
+      "german_gender": "F",
+      "singular_forms": [
+        "gnade"
+      ],
+      "plural_forms": [
+        "gnaden"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 5485,
+        "entry_sha256": "fe7c470e0c1cc9177b4eb44f0afc42c472a48c04369b456d67b469333f9542e4",
+        "greek_lemma": "χάρις",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Gnade"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3101",
+      "german_lemma": "Jünger",
+      "german_gender": "M",
+      "singular_forms": [
+        "jünger",
+        "jüngers"
+      ],
+      "plural_forms": [
+        "jünger",
+        "jüngern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3101,
+        "entry_sha256": "9d763cb56d3606c4ae1d92fba5b411a84dc56e025a8e2ac194a5f4d4308e84cb",
+        "greek_lemma": "μαθητής",
+        "evidence_kind": "definition-before-word-family",
+        "definition_line": 2,
+        "matched_term": "Jünger"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G652",
+      "german_lemma": "Apostel",
+      "german_gender": "M",
+      "singular_forms": [
+        "apostel",
+        "apostels"
+      ],
+      "plural_forms": [
+        "apostel",
+        "aposteln"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 652,
+        "entry_sha256": "4eb951ea13b2d2b5d01e018bbd7542994e6012ebea3c39153124e54694283507",
+        "greek_lemma": "ἀπόστολος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Apostel"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G80",
+      "german_lemma": "Bruder",
+      "german_gender": "M",
+      "singular_forms": [
+        "bruder",
+        "bruders"
+      ],
+      "plural_forms": [
+        "brüder",
+        "brüdern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 80,
+        "entry_sha256": "dbba5bf686801ddb32fc5c59edfe586560bb67c46de2fa52d33fef1d6e1d9192",
+        "greek_lemma": "ἀδελφός",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Bruder"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1135",
+      "german_lemma": "Frau",
+      "german_gender": "F",
+      "singular_forms": [
+        "frau"
+      ],
+      "plural_forms": [
+        "frauen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1135,
+        "entry_sha256": "2a116593b8420ccfd184261c59dffdc084199b4bd764395933270db7c211439f",
+        "greek_lemma": "γυνή",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 1,
+        "matched_term": "Frau"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G5043",
+      "german_lemma": "Kind",
+      "german_gender": "N",
+      "singular_forms": [
+        "kind",
+        "kindes",
+        "kinds",
+        "kinde"
+      ],
+      "plural_forms": [
+        "kinder",
+        "kindern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 5043,
+        "entry_sha256": "9a8f53237b79ba343aa9e1dbf42fc1c28e50326e38aa6f24b808b88428a71722",
+        "greek_lemma": "τέκνον",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Kind"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1411",
+      "german_lemma": "Macht",
+      "german_gender": "F",
+      "singular_forms": [
+        "macht"
+      ],
+      "plural_forms": [
+        "mächte",
+        "mächten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1411,
+        "entry_sha256": "07b9762ba56df0aba0447e876473ac865f26a7b9d51b0ee913830be17e969b95",
+        "greek_lemma": "δύναμις",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Macht"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1411",
+      "german_lemma": "Kraft",
+      "german_gender": "F",
+      "singular_forms": [
+        "kraft"
+      ],
+      "plural_forms": [
+        "kräfte",
+        "kräften"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1411,
+        "entry_sha256": "07b9762ba56df0aba0447e876473ac865f26a7b9d51b0ee913830be17e969b95",
+        "greek_lemma": "δύναμις",
+        "evidence_kind": "definition-before-word-family",
+        "definition_line": 1,
+        "matched_term": "Kraft"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1391",
+      "german_lemma": "Herrlichkeit",
+      "german_gender": "F",
+      "singular_forms": [
+        "herrlichkeit"
+      ],
+      "plural_forms": [
+        "herrlichkeiten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1391,
+        "entry_sha256": "db51917912226d48edaedc51816468cbea8012a9b6bb6a5f655f7bcec950c0de",
+        "greek_lemma": "δόξα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Herrlichkeit"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G225",
+      "german_lemma": "Wahrheit",
+      "german_gender": "F",
+      "singular_forms": [
+        "wahrheit"
+      ],
+      "plural_forms": [
+        "wahrheiten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 225,
+        "entry_sha256": "bcbf81abbdd7a3574d96a6b481cff668cc6d6a34cd9141569406e86b4ba1ee2e",
+        "greek_lemma": "ἀλήθεια",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Wahrheit"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3551",
+      "german_lemma": "Gesetz",
+      "german_gender": "N",
+      "singular_forms": [
+        "gesetz",
+        "gesetzes",
+        "gesetze"
+      ],
+      "plural_forms": [
+        "gesetze",
+        "gesetzen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3551,
+        "entry_sha256": "5e6c9d964e898f839f8b91f2e41fc1755abef2e026d3334781911b73295491b1",
+        "greek_lemma": "νόμος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Gesetz"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4983",
+      "german_lemma": "Leib",
+      "german_gender": "M",
+      "singular_forms": [
+        "leib",
+        "leibes",
+        "leibs",
+        "leibe"
+      ],
+      "plural_forms": [
+        "leiber",
+        "leibern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4983,
+        "entry_sha256": "b15600718fe2dbe73730be8e0cd0628f8cbc98ece61dd7ea73129d0862fc0b4f",
+        "greek_lemma": "σῶμα",
+        "evidence_kind": "definition-before-word-family",
+        "definition_line": 1,
+        "matched_term": "Leib"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4983",
+      "german_lemma": "Körper",
+      "german_gender": "M",
+      "singular_forms": [
+        "körper",
+        "körpers"
+      ],
+      "plural_forms": [
+        "körper",
+        "körpern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4983,
+        "entry_sha256": "b15600718fe2dbe73730be8e0cd0628f8cbc98ece61dd7ea73129d0862fc0b4f",
+        "greek_lemma": "σῶμα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Körper"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G129",
+      "german_lemma": "Blut",
+      "german_gender": "N",
+      "singular_forms": [
+        "blut",
+        "blutes",
+        "bluts",
+        "blute"
+      ],
+      "plural_forms": [],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 129,
+        "entry_sha256": "eda37508b858368f54549547fd2b4f3ef2ca7bafdb45bba9a97e25e1ed6f8255",
+        "greek_lemma": "αἷμα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Blut"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4561",
+      "german_lemma": "Fleisch",
+      "german_gender": "N",
+      "singular_forms": [
+        "fleisch",
+        "fleisches",
+        "fleischs",
+        "fleische"
+      ],
+      "plural_forms": [],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4561,
+        "entry_sha256": "e1a483953e646ae27de27e471b9e33d779ca331b6180207c0d34e2d0abf9350d",
+        "greek_lemma": "σάρξ",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 1,
+        "matched_term": "Fleisch"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G5590",
+      "german_lemma": "Seele",
+      "german_gender": "F",
+      "singular_forms": [
+        "seele"
+      ],
+      "plural_forms": [
+        "seelen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 5590,
+        "entry_sha256": "cc1b8525877f7d34046824f29b42b94b6f12da635349e52d7f341bacce30494d",
+        "greek_lemma": "ψυχή",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Seele"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2588",
+      "german_lemma": "Herz",
+      "german_gender": "N",
+      "singular_forms": [
+        "herz",
+        "herzens",
+        "herzen"
+      ],
+      "plural_forms": [
+        "herzen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2588,
+        "entry_sha256": "c4f16e2f6c9442f4b256a6dab1984e3b6a46903ea11238c783b89256a8538bee",
+        "greek_lemma": "καρδία",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Herz"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3788",
+      "german_lemma": "Auge",
+      "german_gender": "N",
+      "singular_forms": [
+        "auge",
+        "auges"
+      ],
+      "plural_forms": [
+        "augen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3788,
+        "entry_sha256": "9a0f6431d6dd4bcc5fc2b7426e07c9b51ff61170eff7764d2822e2d8f39053e4",
+        "greek_lemma": "ὀφθαλμός",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Auge"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G5495",
+      "german_lemma": "Hand",
+      "german_gender": "F",
+      "singular_forms": [
+        "hand"
+      ],
+      "plural_forms": [
+        "hände",
+        "händen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 5495,
+        "entry_sha256": "408febff9a531c077909c09bba1ca62ebad0247636bcd2360454ebb42b3f0b74",
+        "greek_lemma": "χείρ",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Hand"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4228",
+      "german_lemma": "Fuß",
+      "german_gender": "M",
+      "singular_forms": [
+        "fuß",
+        "fußes",
+        "fuße"
+      ],
+      "plural_forms": [
+        "füße",
+        "füßen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4228,
+        "entry_sha256": "69766a88ba9c57d6d3339ee2915e443e23963870942355735fbad3a5078e099f",
+        "greek_lemma": "πούς",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Fuß"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4750",
+      "german_lemma": "Mund",
+      "german_gender": "M",
+      "singular_forms": [
+        "mund",
+        "mundes",
+        "munds",
+        "munde"
+      ],
+      "plural_forms": [
+        "münder",
+        "mündern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4750,
+        "entry_sha256": "6066da3525b1312439a07f3543fb2f62cbb96ace4807e1ca96ec1b03444a88eb",
+        "greek_lemma": "στόμα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Mund"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3775",
+      "german_lemma": "Ohr",
+      "german_gender": "N",
+      "singular_forms": [
+        "ohr",
+        "ohres",
+        "ohrs",
+        "ohre"
+      ],
+      "plural_forms": [
+        "ohren"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3775,
+        "entry_sha256": "bfd2bfa1aa475665881d48a7f5532470f8b5ac4b87a7d2d44eab5f0b75b238be",
+        "greek_lemma": "οὖς",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 1,
+        "matched_term": "Ohr"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3624",
+      "german_lemma": "Haus",
+      "german_gender": "N",
+      "singular_forms": [
+        "haus",
+        "hauses",
+        "hause"
+      ],
+      "plural_forms": [
+        "häuser",
+        "häusern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3624,
+        "entry_sha256": "9700723077180ef04ce34dd21317611cf6e62f9516698af12fe14322226cc0e8",
+        "greek_lemma": "οἶκος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Haus"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3485",
+      "german_lemma": "Tempel",
+      "german_gender": "M",
+      "singular_forms": [
+        "tempel",
+        "tempels"
+      ],
+      "plural_forms": [
+        "tempel",
+        "tempeln"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3485,
+        "entry_sha256": "0b8ce390e1c70e2e3e2c57c6af55f2efab629584a16fb1c2916c61f414094e16",
+        "greek_lemma": "ναός",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Tempel"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4335",
+      "german_lemma": "Gebet",
+      "german_gender": "N",
+      "singular_forms": [
+        "gebet",
+        "gebetes",
+        "gebets",
+        "gebete"
+      ],
+      "plural_forms": [
+        "gebete",
+        "gebeten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4335,
+        "entry_sha256": "f88d741b7a57ce7502fb2e132c2507f70c3e0cc08d4515301247b5c61c448d6f",
+        "greek_lemma": "προσευχή",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Gebet"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2307",
+      "german_lemma": "Wille",
+      "german_gender": "M",
+      "singular_forms": [
+        "wille",
+        "willens",
+        "willen"
+      ],
+      "plural_forms": [
+        "willen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2307,
+        "entry_sha256": "9de5f34e61253b91c17358974fb8b603260216cdaad755b2b80011c2c6eee6b3",
+        "greek_lemma": "θέλημα",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Wille"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G5457",
+      "german_lemma": "Licht",
+      "german_gender": "N",
+      "singular_forms": [
+        "licht",
+        "lichtes",
+        "lichts",
+        "lichte"
+      ],
+      "plural_forms": [
+        "lichter",
+        "lichtern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 5457,
+        "entry_sha256": "9e40749c08e6a8b7b809838165c1c9ffc5ca6d5e9dd2d20aac4d5d6d152c29a3",
+        "greek_lemma": "φῶς",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Licht"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4655",
+      "german_lemma": "Finsternis",
+      "german_gender": "F",
+      "singular_forms": [
+        "finsternis"
+      ],
+      "plural_forms": [
+        "finsternisse",
+        "finsternissen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4655,
+        "entry_sha256": "87e834459a9143bc9d018b699bcbfa6099420a69828030f9265d16b152a0516c",
+        "greek_lemma": "σκότος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Finsternis"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G2440",
+      "german_lemma": "Kleid",
+      "german_gender": "N",
+      "singular_forms": [
+        "kleid",
+        "kleides",
+        "kleids",
+        "kleide"
+      ],
+      "plural_forms": [
+        "kleider",
+        "kleidern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 2440,
+        "entry_sha256": "62214d636c435874a45f544676b4e0f3821258a978ad938a50f9d90a73545478",
+        "greek_lemma": "ἱμάτιον",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Kleid"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G4166",
+      "german_lemma": "Hirte",
+      "german_gender": "M",
+      "singular_forms": [
+        "hirte",
+        "hirten"
+      ],
+      "plural_forms": [
+        "hirten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 4166,
+        "entry_sha256": "69da73d18c72b0f07ec632eb7955a435b856cbc9d0ffd24455e75d1092fb35f8",
+        "greek_lemma": "ποιμήν",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 5,
+        "matched_term": "Hirte"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G3144",
+      "german_lemma": "Zeuge",
+      "german_gender": "M",
+      "singular_forms": [
+        "zeuge",
+        "zeugen"
+      ],
+      "plural_forms": [
+        "zeugen"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 3144,
+        "entry_sha256": "66a73078edf2ac17794ecbee64efadd39cd7e30e0da319ff626e08c920f43eaa",
+        "greek_lemma": "μάρτυς",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Zeuge"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G749",
+      "german_lemma": "Hohepriester",
+      "german_gender": "M",
+      "singular_forms": [
+        "hohepriester",
+        "hohepriesters",
+        "hohenpriester",
+        "hohenpriesters"
+      ],
+      "plural_forms": [
+        "hohepriester",
+        "hohenpriester",
+        "hohepriestern",
+        "hohenpriestern"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 749,
+        "entry_sha256": "b8276f6a509a22654aab05a252908ecf7fd242a98dabef029b717d697d420857",
+        "greek_lemma": "ἀρχιερεύς",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 3,
+        "matched_term": "Hohepriester"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1401",
+      "german_lemma": "Knecht",
+      "german_gender": "M",
+      "singular_forms": [
+        "knecht",
+        "knechtes",
+        "knechts",
+        "knechte"
+      ],
+      "plural_forms": [
+        "knechte",
+        "knechten"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1401,
+        "entry_sha256": "853c01d33a5b9f4de7f2486155dd662297d9188d4002c4ed0c25974e1263c68d",
+        "greek_lemma": "δοῦλος",
+        "evidence_kind": "definition-before-word-family",
+        "definition_line": 1,
+        "matched_term": "Knecht"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    },
+    {
+      "strong": "G1401",
+      "german_lemma": "Sklave",
+      "german_gender": "M",
+      "singular_forms": [
+        "sklave",
+        "sklaven"
+      ],
+      "plural_forms": [
+        "sklaven"
+      ],
+      "lexicon_evidence": {
+        "source": "sources/originals/stronggreek_de_kautz.xml",
+        "strong_entry": 1401,
+        "entry_sha256": "853c01d33a5b9f4de7f2486155dd662297d9188d4002c4ed0c25974e1263c68d",
+        "greek_lemma": "δοῦλος",
+        "evidence_kind": "primary-sense-heading",
+        "definition_line": 4,
+        "matched_term": "Sklave"
+      },
+      "form_scope": "German noun paradigm, editorially specified; not inferred from Greek gender."
+    }
+  ],
+  "distinct_strong": 39,
+  "scope": "Additional explicit German nominal paradigms used only for independently confirmed noun anchors."
+}

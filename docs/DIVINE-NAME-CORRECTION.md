@@ -50,3 +50,34 @@ python scripts/verify_repository.py
 ```
 
 `build` führt die Sprachbearbeitung selbst aus. Bei erneutem Aufruf mit `--rebuild` müssen alle Dateien des jeweiligen Laufordners bytegleich entstehen; die Pipeline bricht andernfalls mit einem Reproduzierbarkeitsfehler ab. Die fertigen Dateien stehen unter `releases/`.
+
+## Ergänzung in Version 1.4
+
+Beim Referenzabgleich fiel eine weitere Verwechslung von Anrede und Beifügung
+auf: Die ältere Regel behandelte auch `Jehova, dein Gott` als Anrede. Die
+Skripte berücksichtigen jetzt die ausdrücklich bezeichneten Fälle:
+
+- `Jehova, dein Gott` → `der HERR, dein Gott` (Nominativ), etwa 5. Mose 5,12 und 5,15.
+- `Jehova, deinen Gott` → `den HERRN, deinen Gott` (Akkusativ), etwa 1. Samuel 12,19.
+- `Jehova, deinem Gott` → `dem HERRN, deinem Gott` (Dativ), auch nach `bist du`, etwa 5. Mose 7,6.
+- Dasselbe gilt für die ausdrücklich aufgeführten Gottestitel Erlöser, Erbarmer und Herr.
+- In `spricht Jehova, du wirst …` ist der HERR der Sprecher; das folgende `du`
+  gehört zur Aussage. In `Vergeltet ihr also Jehova` (5. Mose 32,6) ist er der
+  Empfänger und steht im Dativ.
+- In Psalm 24,8 und 24,10 beantwortet der Name die unmittelbar vorangehende
+  Frage nach dem König der Herrlichkeit. Diese Antworten stehen im Nominativ;
+  ohne die Frage liefert eine ähnliche Anrede keine Grundlage für diese Regel.
+
+Der vollständige Vergleich der ELB-Originalverse mit dem Skriptstand von 1.3
+ergibt **213 geänderte Namensersetzungen in 190 Versen**: 162 nominative,
+23 dative und 18 akkusative Titelbeifügungen, sechs Sprecher-Konstruktionen und
+den genannten Dativ nach `vergeltet ihr` sowie drei Antworten in Psalm 24.
+Die unabhängige Prüfung umfasst alle
+geänderten Positionen. Anreden wie `Jehova, dein Name …`, `Lehre mich, Jehova,
+deinen Weg` und `Jehova, du bist mein Gott` bleiben artikellos.
+
+Diese Sprachkorrektur erfolgt in Stufe 01 und wird im normalen Änderungs- und
+Offsetprotokoll erfasst. Der anschließende Strong-Abgleich in Stufe 05 und die
+sprachwissenschaftliche Strong-Prüfung in Stufe 06 verändern den dort bereits
+fertigen Wortlaut nicht. Die vollständigen Aufrufe für 1.4 stehen in
+[LINGUISTIC-VALIDATION.md](LINGUISTIC-VALIDATION.md).

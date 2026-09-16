@@ -1,6 +1,6 @@
-# Strong-Bestätigung durch zwei Referenzen – Version 1.3
+# Strong-Bestätigung durch zwei Referenzen – Stufe 05
 
-Version 1.3 prüft jede bestehende Unsicherheitsmarkierung der eigenen Strong-
+Die in Version 1.3 eingeführte Stufe 05 prüft jede bestehende Unsicherheitsmarkierung der eigenen Strong-
 Zuordnungen gegen **ELB BK** und die **Elberfelder Ausgabe des CSV-Verlags**.
 Bestätigen beide Referenzen die vollständige bereits vorhandene Nummernmenge
 am eindeutig zugeordneten Wortbereich und greift keines der unten beschriebenen
@@ -36,11 +36,11 @@ späteren identischen Aufbau beide privaten XML-Snapshots unverändert
 aufbewahren; ein neuer Abruf kann andere Dateihashes ergeben.
 
 ```bash
-python bible.py build --edition all --version 1.3 \
+python bible.py build --edition all --version 1.4 \
   --elb-bk .local/references/elb-bk.xml \
   --elb-csv .local/references/elb-csv.xml
 
-python scripts/verify_repository.py --version 1.3
+python scripts/verify_repository.py --version 1.4
 ```
 
 `--edition elb` und `--edition lut` sind einzeln möglich. Die zwei Quellen
@@ -48,14 +48,16 @@ werden für beide Zielausgaben unabhängig zugeordnet. Referenzdateien gehören
 unter `.local/` und werden nicht in Git, öffentliche Laufarchive oder Pakete
 kopiert. Ein vorheriger `edit`-Aufruf ist nicht erforderlich.
 
-Die Standardversion in `akribos/project.py` ist **1.3**. Ein regulärer Build
-benötigt deshalb auch ohne `--version` beide Referenzoptionen und veröffentlicht
-`05-reference-confirmed.xml`. Diese Anleitung beschreibt ausschließlich den
-Stand 1.3. Die früheren Ausgaben 1.1 und 1.2 mit Stufe 04 lassen sich über
-ihre Git-Tags nachbauen; siehe [Versionshistorie](HISTORY.md).
+Die Standardversion in `akribos/project.py` ist **1.4**. Ein regulärer Build
+benötigt auch ohne `--version` beide Referenzoptionen. Er führt die hier
+beschriebene Stufe 05 aus und hängt die [sprachliche Strong-Prüfung](LINGUISTIC-VALIDATION.md)
+als Stufe 06 an; veröffentlicht wird `06-linguistic.xml`. Version 1.3 endete
+bei `05-reference-confirmed.xml`, Versionen 1.1 und 1.2 bei Stufe 04. Für den
+ursprünglichen Stand einer früheren Version den passenden Git-Tag verwenden;
+`--version` allein lädt keinen historischen Code. Siehe [Versionshistorie](HISTORY.md).
 
 Der vollständige CSV-Abruf und die Konvertierung mit `--require-complete`
-gehören zur Vorbereitung des regulären 1.3-Aufbaus. Der Bestätigungskern
+gehören zur Vorbereitung des vollständigen Aufbaus. Der Bestätigungskern
 unterstützt daneben private Teilprüfungen: Fehlende Kapitel werden dort nicht
 als erfolgreiche Bestätigung gewertet. Eine solche Teilprüfung ist kein
 vollständiger Release-Aufbau.
@@ -204,13 +206,14 @@ Der Aufrufer muss tatsächlich die beiden benannten Quellen bereitstellen.
 
 Die festen Ausgabepfade bleiben `releases/akribos.elb.xml` und
 `releases/akribos.lut.xml`. Das jeweilige `.build.json` enthält für Version 1.3
-zusätzlich `"artifact": "05-reference-confirmed.xml"`. Fehlt dieses Feld in
-älteren Links, gilt weiterhin `04-multisource.xml`.
+zusätzlich `"artifact": "05-reference-confirmed.xml"`; in Version 1.4 verweist
+es auf `06-linguistic.xml`. Fehlt dieses Feld in älteren Links, gilt weiterhin
+`04-multisource.xml`.
 
 ## Wiederholung und Integrität
 
 ```bash
-python bible.py build --edition all --version 1.3 --rebuild \
+python bible.py build --edition all --version 1.4 --rebuild \
   --elb-bk .local/references/elb-bk.xml \
   --elb-csv .local/references/elb-csv.xml
 ```
@@ -221,7 +224,7 @@ verglichen. Veränderte Referenzhashes erzeugen einen eigenen Lauf, ohne alte
 Läufe zu überschreiben. Auch beim Wiederverwenden eines vorhandenen Laufs sind
 die beiden Referenzsnapshots erforderlich.
 
-Nach der Transformation und nach dem XML-Schreiben werden Bibeltext,
+Nach Stufe 05 und nach dem Schreiben ihres XML werden Bibeltext,
 Strong-Attribute und Originalnotizen mit Stufe 04 verglichen. Der
 Repository-Prüfer kontrolliert zusätzlich den ausgewählten Release-Bestandteil,
 die unterschiedlichen Referenzhashes und die gehashten STEP-/Alignmentbelege.
@@ -236,7 +239,7 @@ Referenzsnapshots reproduzierbar; deren Texte werden dafür nicht veröffentlich
 Der bestehende Befehl `compare` bleibt ein rein lesender Vergleich. Die
 Python-Analysefunktion `confirm_uncertainty(target, bk, None)` kann eine
 unvollständige Vorprüfung liefern; sie entfernt ohne zweite Referenz keinen
-Hinweis und erzeugt keinen veröffentlichten 1.3-Bestand. Auch bei zwei Referenzen
+Hinweis und erzeugt keinen veröffentlichten Release-Bestand. Auch bei zwei Referenzen
 bleiben die acht genannten Funktionscodes ohne `safety_evidence` markiert.
 Für eine vollständige lokale Prüfung lädt
 `load_confirmation_evidence(target, occurrences_path, alignment_path, nt_edition="WH")`

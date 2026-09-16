@@ -156,6 +156,54 @@ class DivineNameTests(unittest.TestCase):
                 _, reviews = name_edits(text)
                 self.assertTrue(any(r['kind'] == 'divine-name-syntax' for r in reviews))
 
+    def test_second_person_divine_titles_have_their_own_case(self):
+        expected = {
+            'Deut.5.12': ['der HERR'],
+            'Deut.5.15': ['der HERR', 'der HERR'],
+            'Deut.6.13': ['Den HERRN'],
+            'Deut.7.6': ['dem HERRN', 'der HERR'],
+            'Deut.10.12': ['der HERR', 'den HERRN', 'dem HERRN'],
+            'Deut.30.1': ['der HERR'],
+            'Deut.32.6': ['dem HERRN'],
+            '1Sam.12.19': ['den HERRN'],
+            'Isa.48.17': ['der HERR', 'der HERR'],
+            'Isa.51.22': ['der HERR'],
+            'Hos.13.4': ['der HERR'],
+        }
+        for ref, names in expected.items():
+            with self.subTest(ref=ref):
+                actual, reviews = name_edits(self.verses[ref])
+                self.assertEqual(actual, names)
+                self.assertFalse([r for r in reviews if r['kind'] == 'divine-name-syntax'])
+
+    def test_reported_speech_does_not_turn_the_speaker_into_an_addressee(self):
+        for ref in ('Exod.5.1', 'Exod.9.1', 'Exod.9.13', 'Isa.49.18', 'Jer.15.6', 'Jer.51.25'):
+            with self.subTest(ref=ref):
+                self.assertEqual(name_edits(self.verses[ref])[0],
+                                 ['der HERR'] * (2 if ref in {'Exod.9.1', 'Exod.9.13'} else 1))
+
+    def test_actual_addresses_and_title_boundaries_remain_distinct(self):
+        for text, expected in {
+            'Lehre mich, Jehova, deinen Weg.': ['HERR'],
+            'Jehova, dein Name währt ewiglich.': ['HERR'],
+            'Jehova, dein Ohr neige zu mir.': ['HERR'],
+            'Vergib, Jehova, deinem Volke!': ['HERR'],
+            'Jehova, du bist mein Gott.': ['HERR'],
+            'Ich sprach: Jehova, du weißt es.': ['HERR'],
+            'Jehova, mein Gott, hilf mir!': ['HERR'],
+            'Jehova, dein Gott, hilft dir.': ['Der HERR'],
+            'So vergelte Jehova mir.': ['der HERR'],
+        }.items():
+            with self.subTest(text=text):
+                self.assertEqual(name_edits(text)[0], expected)
+
+    def test_psalm_title_question_has_nominative_answers(self):
+        self.assertEqual(name_edits(self.verses['Ps.24.8'])[0], ['Der HERR', 'Der HERR'])
+        self.assertEqual(name_edits(self.verses['Ps.24.10'])[0], ['Der HERR'])
+        for text in ('Jehova, stark und mächtig!', 'O Jehova, mächtig im Kampf!'):
+            with self.subTest(text=text):
+                self.assertEqual(name_edits(text)[0], ['HERR'])
+
     def test_all_samuel_name_occurrences_classified(self):
         for ref, text in self.verses.items():
             if ref.startswith('1Sam.'):

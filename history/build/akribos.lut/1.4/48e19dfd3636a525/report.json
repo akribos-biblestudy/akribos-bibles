@@ -1,0 +1,238 @@
+{
+  "bible_id": "akribos.lut",
+  "version": "1.4",
+  "stages": {
+    "02-baseline": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 350710,
+      "word_coverage_percent": 50.237,
+      "studynotes": 0,
+      "word_hints": 0,
+      "sha256": "3220631351c796427a24257caa48ce427522a00097e7496b5dad6708a8d894a2",
+      "methods": {
+        "inherited": 350710
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "03-lexicon": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 351840,
+      "word_coverage_percent": 50.3989,
+      "studynotes": 0,
+      "word_hints": 1130,
+      "sha256": "11f70a6135378fb6ecea3eaaa21ead18d2ca922b8d91eb36db93d91b9f2b3233",
+      "methods": {
+        "inherited": 350710,
+        "lexicon": 1130
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "04-multisource": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 392021,
+      "word_coverage_percent": 56.1545,
+      "studynotes": 0,
+      "word_hints": 41311,
+      "sha256": "2ada5c5b808f24386c8bed453e29defb6af217f72173f408fedaeff643dda9ad",
+      "methods": {
+        "inherited": 350710,
+        "other-translation": 34287,
+        "lexicon": 1130,
+        "concordance": 5530,
+        "verse-consensus": 364
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "05-reference-confirmed": {
+      "method": "two-reference-exact-strong-set-with-vetoes-v2",
+      "normalization": "NFC-lowercase-v1",
+      "safety_profile": "greek-hebrew-function-word-vetoes-v2",
+      "alignment": "forced-matches-in-all-optimal-LCS-alignments",
+      "hints_before": 41311,
+      "hints_removed": 3095,
+      "hints_remaining": 38216,
+      "decisions": {
+        "ambiguous-word-alignment": 1840,
+        "article-right-context-not-forced-adjacent": 24,
+        "article-target-context-boundary": 1,
+        "both-references-confirm-complete-set": 3095,
+        "conjunction-on-isolated-german-es": 1,
+        "different-strong-set": 4266,
+        "function-code-over-assigned-in-verse": 65,
+        "hebrew-source-occurrence-count-unproved": 2,
+        "missing-reference-strong-tags": 23419,
+        "missing-reference-verse": 1,
+        "preposition-on-possible-infinitival-zu": 1,
+        "source-verse-numbering-unproved": 1,
+        "word-not-aligned": 8595
+      },
+      "references": {
+        "elb-bk": {
+          "ambiguous-word-alignment": 1808,
+          "article-right-context-not-forced-adjacent": 23,
+          "article-target-context-boundary": 1,
+          "confirmed": 4776,
+          "different-strong-set": 4224,
+          "missing-reference-strong-tags": 21918,
+          "missing-reference-verse": 1,
+          "word-not-aligned": 8560
+        },
+        "elb-csv": {
+          "ambiguous-word-alignment": 1801,
+          "article-right-context-not-forced-adjacent": 26,
+          "article-target-context-boundary": 1,
+          "confirmed": 3378,
+          "different-strong-set": 3423,
+          "missing-reference-strong-tags": 23859,
+          "missing-reference-verse": 2,
+          "word-not-aligned": 8821
+        }
+      },
+      "new_strong_assignments": 0,
+      "changed_strong_assignments": 0,
+      "public_audit": "Target assignments and decisions only; no reference text or associations.",
+      "input_profile": "zefania-word-spans-with-article-context-v2",
+      "reference_sha256": {
+        "elb-bk": "cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5",
+        "elb-csv": "9cc0e72a334567f2bad23baefc0b7489d9b0e0dd25b7453a7869a462441410d9"
+      },
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 392021,
+      "word_coverage_percent": 56.1545,
+      "studynotes": 0,
+      "word_hints": 38216,
+      "input_sha256": "2ada5c5b808f24386c8bed453e29defb6af217f72173f408fedaeff643dda9ad",
+      "sha256": "ba2735fb58586c7364266ba56de8522fcef5ec23bf99d3326dd956c365f6195b",
+      "safety_evidence_sha256": {
+        "source_occurrences": "b25f452f91e406c3afee64c0145d0a319d77aa1e651336c4e0480908cb525853",
+        "alignment": "b0d51dc93e74408119ac9f6d30d13053c645483ad5237ad33bed6b1e46a0b599"
+      },
+      "selected_nt_edition": "TR",
+      "original_notes_preserved": 0,
+      "text_preserved": true,
+      "strong_attributes_preserved": true
+    },
+    "06-linguistic": {
+      "hints_before": 38216,
+      "hints_removed": 11,
+      "article_tags_added": 355,
+      "hints_rejected": 0,
+      "article_candidates_retained": 50,
+      "editorial_corrections": 24,
+      "editorial_corrections_marked": 10,
+      "editorial_corrections_baseline": 23,
+      "editorial_corrections_rebuild": 1,
+      "editorial_corrections_inherited": 14,
+      "editorial_hints_removed": 10,
+      "editorial_not_applicable": 0,
+      "method": "source-linked-linguistic-review-v1",
+      "rule_identity": {
+        "version": "1.4.0",
+        "sha256": "f73ef8b546e09f15fef97b7dec82c605ef04cc60a4ca8785a243f7c50f955029",
+        "implementation": {
+          "linguistic.py": "d5d3da17bef727e8cc75ce156072540eabd6c85d8fdabd8c013b1ad6fe93ea55",
+          "linguistic_rules.py": "d5036a404c6ecd3a5b0821dae4a7d935cb81aa765a0af1c1916e3d5457d82455",
+          "linguistic_names.py": "8d4dfa038dc3ac172bb71454a36a430dba39ff7d0b743ebe70458686af449d08",
+          "linguistic_editorial.py": "d83c558dafe66b2c969d0e26794cd188ea773663dda35a4a4558425a649fe6f1",
+          "confirm.py": "3883b6b20781c3c553ceff6fea58aa3bb7cd29a9ca425dc6b2e4fcaaa6fb2562",
+          "common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+          "importers.py": "525059f3ad3914f603afd7d2f8ea7b34dccb5fe2e01bd7784804dba7172f9db0",
+          "xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+          "project.py": "8c18f398d5ea021f16ee08d9f37cc708846716cdcc6f11b9d5336a4e7280782b"
+        },
+        "data_files": {
+          "rules/proper-name-catalog.json": "b46a589b65e88fb709297868bc31e242e1fba1d31bd479b59d043ac3466030e1",
+          "rules/proper-name-sources.json": "8b9d29abe819842303134e35d8b5d5e380be599501a567810382252b6b7ab84f",
+          "rules/editorial-strong-corrections.json": "d6d07f6a6b00d900025f21aca2728f4ce26f5b9d8413f3db5b5bfcccde2c3dcd"
+        }
+      },
+      "selected_nt_edition": "TR",
+      "hints_remaining": 38205,
+      "decisions": {
+        "repeated-source-lexeme": 7181,
+        "shared-german-translation-span": 28533,
+        "alignment-needs-semantic-evidence": 1379,
+        "curated-editorial-verse": 28,
+        "german-name-form-not-confirmed": 72,
+        "repeated-target-code-including-composite-spans": 3,
+        "source-order-or-versification-variation": 993,
+        "multiple-target-strong-codes": 13,
+        "verse-inventory-mismatch": 1,
+        "greek-article-linked-noun-with-left-anchor": 356,
+        "repeated-german-name-family": 1,
+        "no-independent-article-corroboration": 51,
+        "curated-position-and-source-proof": 24
+      },
+      "text_preserved": true,
+      "original_notes_preserved": 0,
+      "existing_strong_values_preserved": false,
+      "unlisted_strong_values_preserved": true,
+      "no_bootstrapping": true,
+      "article_corroboration_required": true,
+      "article_reference_tree_hashes": {
+        "elb-bk": "b6f8a6b01936a9ecf76c4628df939626d01bdf928f0a5ce910861567784db788",
+        "elb-csv": "495dd1bc8c66882834adb4b8ab4d5f968b8c197ce38b26e4df1942b07c0cb25b"
+      },
+      "prior_alignment_guard_count": 2182,
+      "source_snapshot": {
+        "profile": "step-occurrence-links-and-atomic-morphology-v1",
+        "selected_nt_edition": "TR",
+        "profiles_sha256": "3bbfc75b00752ab92ecbca6ec73124c9569bbdac8429c8a251f75cdbf61f4ebb",
+        "files": [
+          {
+            "source": "tahot",
+            "path": "sources/originals/TAHOT_Gen-Deu.tsv",
+            "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
+          },
+          {
+            "source": "tahot",
+            "path": "sources/originals/TAHOT_Isa-Mal.tsv",
+            "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5"
+          },
+          {
+            "source": "tahot",
+            "path": "sources/originals/TAHOT_Job-Sng.tsv",
+            "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5"
+          },
+          {
+            "source": "tahot",
+            "path": "sources/originals/TAHOT_Jos-Est.tsv",
+            "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775"
+          },
+          {
+            "source": "tagnt",
+            "path": "sources/originals/TAGNT_Act-Rev.tsv",
+            "sha256": "524e32375361e6d3fa2f7ef00b87605fdc4317a762f395651a05fdc31ad031b7"
+          },
+          {
+            "source": "tagnt",
+            "path": "sources/originals/TAGNT_Mat-Jhn.tsv",
+            "sha256": "ab8eaaeb68e17a1dcfa34e1e9350358f22f03bc2a97244d848750ad81044bc8e"
+          }
+        ],
+        "sha256": "da1b2bec2b595bfe86d3c8712e8a329159d5ca85012d83b68dfc88b34d70eaf5"
+      },
+      "input_sha256": "ba2735fb58586c7364266ba56de8522fcef5ec23bf99d3326dd956c365f6195b",
+      "output_sha256": "b5219860807dce4542de7b0edd557db31747191af9c02e72f8254185ec8c6aa8",
+      "audit_sha256": "9eb152aa0b3627b9b26f3fcc2c74a88e0616e406427e7e82a5a02fc446503fb9",
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 392356,
+      "word_coverage_percent": 56.2025,
+      "studynotes": 0,
+      "word_hints": 38205,
+      "sha256": "b5219860807dce4542de7b0edd557db31747191af9c02e72f8254185ec8c6aa8"
+    }
+  },
+  "review_items": 20262,
+  "warning": "Source-linked linguistic rules review every remaining uncertainty; only independently corroborated articles are added.",
+  "step_edition": "TR",
+  "language_history": "history/edit/akribos.lut/1.4/9893cbaa76208385"
+}

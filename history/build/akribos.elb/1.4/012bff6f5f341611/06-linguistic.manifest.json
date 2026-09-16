@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "phase": "06-linguistic",
+  "method": "source-linked-linguistic-review-v1",
+  "rule_identity": {
+    "version": "1.4.0",
+    "sha256": "f73ef8b546e09f15fef97b7dec82c605ef04cc60a4ca8785a243f7c50f955029",
+    "implementation": {
+      "linguistic.py": "d5d3da17bef727e8cc75ce156072540eabd6c85d8fdabd8c013b1ad6fe93ea55",
+      "linguistic_rules.py": "d5036a404c6ecd3a5b0821dae4a7d935cb81aa765a0af1c1916e3d5457d82455",
+      "linguistic_names.py": "8d4dfa038dc3ac172bb71454a36a430dba39ff7d0b743ebe70458686af449d08",
+      "linguistic_editorial.py": "d83c558dafe66b2c969d0e26794cd188ea773663dda35a4a4558425a649fe6f1",
+      "confirm.py": "3883b6b20781c3c553ceff6fea58aa3bb7cd29a9ca425dc6b2e4fcaaa6fb2562",
+      "common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+      "importers.py": "525059f3ad3914f603afd7d2f8ea7b34dccb5fe2e01bd7784804dba7172f9db0",
+      "xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+      "project.py": "8c18f398d5ea021f16ee08d9f37cc708846716cdcc6f11b9d5336a4e7280782b"
+    },
+    "data_files": {
+      "rules/proper-name-catalog.json": "b46a589b65e88fb709297868bc31e242e1fba1d31bd479b59d043ac3466030e1",
+      "rules/proper-name-sources.json": "8b9d29abe819842303134e35d8b5d5e380be599501a567810382252b6b7ab84f",
+      "rules/editorial-strong-corrections.json": "d6d07f6a6b00d900025f21aca2728f4ce26f5b9d8413f3db5b5bfcccde2c3dcd"
+    }
+  },
+  "input_sha256": "6627a06073bf130b8d68a5ebd095fc8bf0d7fab2f97984d7d7eb86a5a551c44a",
+  "source_snapshot": {
+    "profile": "step-occurrence-links-and-atomic-morphology-v1",
+    "selected_nt_edition": "WH",
+    "profiles_sha256": "3bbfc75b00752ab92ecbca6ec73124c9569bbdac8429c8a251f75cdbf61f4ebb",
+    "files": [
+      {
+        "source": "tahot",
+        "path": "sources/originals/TAHOT_Gen-Deu.tsv",
+        "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
+      },
+      {
+        "source": "tahot",
+        "path": "sources/originals/TAHOT_Isa-Mal.tsv",
+        "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5"
+      },
+      {
+        "source": "tahot",
+        "path": "sources/originals/TAHOT_Job-Sng.tsv",
+        "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5"
+      },
+      {
+        "source": "tahot",
+        "path": "sources/originals/TAHOT_Jos-Est.tsv",
+        "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775"
+      },
+      {
+        "source": "tagnt",
+        "path": "sources/originals/TAGNT_Act-Rev.tsv",
+        "sha256": "524e32375361e6d3fa2f7ef00b87605fdc4317a762f395651a05fdc31ad031b7"
+      },
+      {
+        "source": "tagnt",
+        "path": "sources/originals/TAGNT_Mat-Jhn.tsv",
+        "sha256": "ab8eaaeb68e17a1dcfa34e1e9350358f22f03bc2a97244d848750ad81044bc8e"
+      }
+    ],
+    "sha256": "3729f59e3f7b07838d2b8f46000483541b0558ab2854e34ba628fc6a743aa9d7"
+  },
+  "selected_nt_edition": "WH",
+  "article_corroboration_required": true,
+  "alignment_sha256": "d7f5924be866850f50527a6be75c925ebb6aae6508f41fc4764ea753fc24a831",
+  "output_identity": [
+    "akribos.elb",
+    "1.4"
+  ],
+  "article_reference_hashes": {
+    "elb-bk": "cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5",
+    "elb-csv": "9cc0e72a334567f2bad23baefc0b7489d9b0e0dd25b7453a7869a462441410d9"
+  },
+  "outputs": {
+    "xml": "d9796bcfd32f086ee7109af1dadab624ac72113f8e6827d253c9ea6ccaf32548",
+    "audit": "c38407b86d8effda8dfc3686d86e5b8b4f9565ec1bb84fe7d849c79f52123460",
+    "report": "86d1c812912f623e95e58462dbd43fdb2e727ae2016f4d8c90e10b3a9a64236f"
+  }
+}

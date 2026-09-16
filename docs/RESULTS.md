@@ -1,5 +1,33 @@
 # Messergebnisse
 
+## Version 1.4
+
+Vollständiger Aufbau mit denselben eingefrorenen Referenzen: ELB BK und Edition CSV,
+jeweils 66 Bücher und 1.189 Kapitel. Die Referenzen enthalten 31.169 beziehungsweise
+31.166 Haupttextverse. Abweichende Verskennungen werden nicht automatisch umnummeriert.
+
+| Ausgabe | Hinweise entfernt: 05 | Hinweise entfernt: 06 | Verbleibend | Neue G3588-Artikel | Redaktionelle Korrekturen |
+|---|---:|---:|---:|---:|---:|
+| ELB | 20.832 | 18 | 31.149 | 791 | 19 |
+| Luther | 3.095 | 11 | 38.205 | 355 | 24 |
+
+Die Stufen 05 und 06 erhalten ihren Eingangswortlaut und sämtliche Originalnotizen.
+Die vorgelagerte Sprachstufe ändert gegenüber 1.3 genau 213 ELB-Namensersetzungen in 190 Versen;
+Luthers Wortlaut bleibt gleich. Weitere 196 ELB- und 176 Luther-Verlinkungen deutscher Artikel
+mit H3068 stammen aus bestehenden Mehrwortbezügen und zählen keine zusätzlichen hebräischen Vorkommen.
+Die Hinweise der Stufe 06 schließen entfernte redaktionelle Hinweise bereits ein. Ihre Zahl
+ist nicht mit der Anzahl redaktioneller Korrekturen gleichzusetzen.
+
+Zwei vollständige Aufbauten sind über 396 Dateien bytegleich;
+der anschließende Cache-Lauf ist ebenfalls identisch. Beide Repository-Prüfungen sind bestanden.
+Der tatsächliche Akribos-Parser liest beide Ausgaben ohne Warnungen und mit unverändertem
+Wortlaut der jeweiligen Prüfstufe; die Strong-Änderungen entsprechen exakt den erwarteten Änderungen.
+291 Python-Tests und acht Abruf-Tests sind erfolgreich.
+Originale und frühere Laufarchive bleiben unverändert.
+
+Die Zahlen beschreiben angewandte Regeln und Prüfentscheidungen. Nicht eindeutig belegte
+Zuordnungen bleiben markiert. Die aktuellen Integritätsdaten stehen in [verification.json](verification.json).
+
 ## Version 1.3
 
 Vollständiger Aufbau mit denselben eingefrorenen Referenzen: ELB BK und Edition CSV,
