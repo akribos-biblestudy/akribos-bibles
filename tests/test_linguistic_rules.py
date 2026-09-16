@@ -1,4 +1,8 @@
 import unittest
+import json
+import unicodedata
+from pathlib import Path
+from akribos.importers import import_reference_tsv
 from akribos.linguistic_rules import linked_article_proof,classify_uncertain,atomic_bridge_proof
 
 def german(words):
@@ -66,6 +70,28 @@ class ArticleTests(unittest.TestCase):
         text,tokens=german([('war',['G2258'],True)])
         refs=[source(1,'G1510','V-IAI-3S')|{'alternate':['G2258']}]
         self.assertEqual(classify_uncertain('John.1.1',text,tokens,refs)[0]['reason'],'alternate-strong-encoding')
+    def test_actual_matthew_22_44_ego_lemma_is_not_rejected_or_normalized(self):
+        root=Path(__file__).resolve().parents[1]
+        profile=next(p for p in json.loads((root/'config/step-profiles.json').read_text())
+                     if p['options']['profile']=='tagnt')
+        path=next(root/p for p in profile['paths'] if 'Mat-Jhn' in p)
+        for edition in ('WH','TR'):
+            refs=import_reference_tsv(path,profile['id'],profile['options']|{
+                'edition':edition,'row_pattern':r'^Mat\.22\.44#'})[0]['tokens']
+            mou=[row for row in refs if row['morph']=='P-1GS']
+            self.assertEqual(len(mou),2)
+            self.assertTrue(all(row['strong']==['G3165'] and row['alternate']==['G3450'] for row in mou))
+            self.assertTrue(all(unicodedata.normalize('NFC',row['lemma'])=='ἐγώ' for row in mou))
+            # Deliberate lemma-coded test candidate, not a claim that this tag
+            # carries an uncertainty note in the current released German verse.
+            for code,reason in [('G1473','code-absent-in-selected-source'),
+                                ('G3450','alternate-strong-encoding'),('G4675','alternate-strong-encoding')]:
+                with self.subTest(edition=edition,code=code):
+                    text,tokens=german([('deiner' if code=='G4675' else 'meiner',[code],True)])
+                    decision=classify_uncertain('Matt.22.44',text,tokens,refs)[0]
+                    self.assertEqual((decision['status'],decision['reason']),('review',reason))
+                    self.assertEqual(tokens[0]['strong'],[code])
+                    self.assertNotIn('proof',decision)
     def test_reference_mismatch_preserves_review(self):
         self.tokens[1]|={'strong':['G3588'],'uncertain':True}
         result=classify_uncertain('John.1.1',self.text,self.tokens,self.source,True)

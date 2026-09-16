@@ -93,9 +93,16 @@ dem vorherigen Alignment sperren automatische Änderungen. Kein Hinweis
 entfällt allein, weil seine Nummer im Versinventar vorkommt.
 
 Jeder Hinweis erhält eine Entscheidung: `accepted` entfernt den bewiesenen
-Hinweis, `review` erhält ihn wegen fehlender Beweise, `reject` dokumentiert
-einen Widerspruch. Auch bei `reject` bleiben Nummer und Hinweis erhalten;
-eine unbewiesene Ersatznummer wird nicht eingesetzt.
+Hinweis, `review` erhält ihn wegen fehlender Beweise. Fehlt eine Nummer sowohl
+in den Haupt- als auch den Alternativangaben der gewählten Quelle, lautet der
+Prüfgrund `code-absent-in-selected-source`. Das beweist keinen lexikalischen
+Fehler: Verschiedene Quellen können ein Lemma und seine Flexionsformen mit
+unterschiedlichen Nummern kennzeichnen. Beispielsweise führt STEP in
+Matthäus 22,44 das Lemma ἐγώ, die Form `μου` unter G3165 und zusätzlich G3450
+als Alternativnummer. Ein hypothetischer G1473-Lemmaeintrag bleibt deshalb
+zur Prüfung erhalten. Daraus entstehen weder Aliasnormalisierungen noch
+Freigaben oder Ersatznummern. Die vorhandenen Regeln erzeugen kein `reject`;
+ein tatsächlicher Widerspruch benötigt einen gesonderten positiven Beleg.
 
 ### Bestehende Eigennamen
 

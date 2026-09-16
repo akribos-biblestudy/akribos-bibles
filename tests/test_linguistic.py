@@ -347,12 +347,19 @@ class TreeTests(unittest.TestCase):
             else:source[1]['origin_id']=source[0]['origin_id']
             self.assertEqual(self.run_article(article_target(True),source).summary['hints_removed'],0)
 
-    def test_rejected_assignment_is_reported_and_preserved(self):
+    def test_absent_code_is_missing_evidence_and_preserved_for_review(self):
         target=bible('<gr str="999">Fremd</gr>'+hint())
         result=validate_tree(target,{'Matt.1.1':article_source()})
-        self.assertEqual(result.audit[0]['status'],'reject')
+        self.assertEqual(result.audit[0]['status'],'review')
+        self.assertEqual(result.audit[0]['reason'],'code-absent-in-selected-source')
+        self.assertEqual(result.summary['hints_rejected'],0)
         self.assertEqual(hints(result.root),1)
         self.assertEqual(result.root.find('.//gr').get('str'),'999')
+        self.assertEqual(ET.tostring(result.root),ET.tostring(target))
+        verify_transition(target,result.root,result.audit,{'Matt.1.1':article_source()})
+        result.audit[0]['status']='reject'
+        with self.assertRaisesRegex(DataError,'Invalid retained uncertainty decision'):
+            verify_transition(target,result.root,result.audit,{'Matt.1.1':article_source()})
 
     def test_duplicate_target_verse_fails_before_changes(self):
         target=article_target();chapter=target.find('.//CHAPTER');chapter.append(copy.deepcopy(chapter[0]))

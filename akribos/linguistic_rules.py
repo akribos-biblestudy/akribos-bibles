@@ -254,9 +254,11 @@ def atomic_bridge_proof(text,tokens,index,source):
 
 
 def classify_uncertain(ref,text,tokens,source,inventory_mismatch=False):
-    """Account for every uncertain assignment. REJECT is evidence, not deletion.
+    """Account for every uncertain assignment without inferring lexical errors.
 
     A source inventory proves availability, never the translation alignment.
+    Absence of a code is missing evidence, not a proven lexical contradiction:
+    sources can encode a lemma and its inflected forms under different numbers.
     Existing spans may share one Strong across several German words, so repeated
     German tags are a review category, not a count-based automatic rejection.
     """
@@ -271,7 +273,8 @@ def classify_uncertain(ref,text,tokens,source,inventory_mismatch=False):
         elif not source:status,reason='review','missing-reference-verse'
         elif selected_verse_has_movement(source):status,reason='review','source-order-or-versification-variation'
         elif not set(t['strong'])<=inventory:
-            status,reason=('review','alternate-strong-encoding') if set(t['strong'])<=(inventory|aliases) else ('reject','code-absent-in-selected-source')
+            status,reason='review',('alternate-strong-encoding' if set(t['strong'])<=(inventory|aliases)
+                                    else 'code-absent-in-selected-source')
         elif (proof:=linked_article_proof(text,tokens,i,source)) and proof['source_article'] not in used_articles:
             status,reason='accepted',proof['rule'];row['proof']=proof
             used_articles.add(proof['source_article'])

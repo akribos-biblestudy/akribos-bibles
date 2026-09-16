@@ -59,7 +59,7 @@ REVIEW_REASONS = frozenset({
     'multiple-target-strong-codes', 'unsupported-target-annotation',
     'no-independent-article-corroboration', 'source-occurrence-already-used',
     'outside-supported-verse-text', 'verse-reference-mismatch', 'missing-reference-verse',
-    'source-order-or-versification-variation', 'alternate-strong-encoding',
+    'source-order-or-versification-variation', 'alternate-strong-encoding', 'code-absent-in-selected-source',
     'multi-code-translation-span', 'repeated-source-lexeme',
     'shared-german-translation-span', 'alignment-needs-semantic-evidence',
     'prior-verse-alignment-guard', 'missing-source-verse',
@@ -96,8 +96,7 @@ def _validate_audit_schema(row, reference_labels):
             if row['reason'] in {ARTICLE_RULE, NAME_RULE}:
                 fields.add('references')
         else:
-            require(action == 'retain' and ((status == 'review' and row['reason'] in REVIEW_REASONS)
-                    or (status == 'reject' and row['reason'] == 'code-absent-in-selected-source')),
+            require(action == 'retain' and status == 'review' and row['reason'] in REVIEW_REASONS,
                     'Invalid retained uncertainty decision')
             if row['reason'] in {'no-independent-article-corroboration',
                                  'no-independent-word-level-name-corroboration'}:
@@ -411,8 +410,6 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                             used_source_occurrences.add(occurrence)
                             row.update(action='remove-hint', proof=proof)
                             removals.append((hint, span.element))
-                    elif decision['status'] == 'reject':
-                        counts['hints_rejected'] += 1
             if reason:
                 row['reason'] = reason
             audit.append(row)
@@ -654,7 +651,7 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
                 require(not {'target_text', 'target_strong', 'target_tokens'}.intersection(row),
                         'Unlocated hint audit contains an unrelated target')
             if action == 'retain':
-                require(row.get('status') in {'review', 'reject'}, 'Retained hint has invalid status')
+                require(row.get('status') == 'review', 'Retained hint has invalid status')
                 if row['reason'] in {'no-independent-article-corroboration',
                                      'no-independent-word-level-name-corroboration'}:
                     require('confirmed' not in row['references'].values(),
