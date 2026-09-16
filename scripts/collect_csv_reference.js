@@ -37,8 +37,9 @@
     running:false, stopped:false, error:null, done:0, total:0, current:null,
     stop() { this.stopped = true; },
     async status() { return {running:this.running, error:this.error, done:this.done, total:this.total, current:this.current, cached:await access('readonly', s=>s.count()), delayMs:delay}; },
-    async records(offset=0, limit=5) {
-      const keys = await access('readonly', s=>s.getAllKeys());
+    async records(offset=0, limit=5, excludedKeys=[]) {
+      const excluded = new Set(excludedKeys);
+      const keys = (await access('readonly', s=>s.getAllKeys())).filter(key=>!excluded.has(key));
       const records = [];
       for (const key of keys.slice(offset, offset+limit)) records.push(await access('readonly', s=>s.get(key)));
       return records;

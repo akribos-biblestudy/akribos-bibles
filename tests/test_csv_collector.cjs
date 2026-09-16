@@ -46,6 +46,7 @@ test('serial requests obey robots delay; cache resumes without chapter requests'
   const first=b.rows.get('01.001');
   assert.equal(gunzipSync(Buffer.from(first.html_gzip_base64,'base64')).toString(),'bible-verse-text bible-book-1');
   assert.match(first.sha256,/^[a-f0-9]{64}$/);
+  assert.deepEqual(Array.from(await b.api.records(0,5,['01.001']),row=>row.key),['01.002']);
   status=await b.api.start(chapters);
   assert.equal(status.done,2);assert.equal(b.requests.length,4);
   assert.equal(b.requests[3].path,'/robots.txt');
