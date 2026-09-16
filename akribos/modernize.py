@@ -101,6 +101,14 @@ def contextual_name_case(left, right):
         return 'HERR','direct-address-title'
     if re.match(r'\s*,\s*Gott\s+[^,;:.!?]+,\s*(?:tue|höre|gedenke|rette)\b',right,re.I):
         return 'HERR','direct-address-title-imperative'
+    # Psalm 24 answers a title question with two verbless nominative clauses.
+    # Without the actual preceding question the same words may be an address.
+    title_question=re.search(r'\bWer ist (?:er, dieser |dieser )König der Herrlichkeit\?\s*(.*)$',left,re.I)
+    if title_question and (not title_question[1].strip() or
+            re.fullmatch(r'Jehova,\s*stark und mächtig!\s*',title_question[1],re.I)):
+        if re.match(r'\s*,\s*(?:stark und mächtig|mächtig im Kampf)!',right,re.I) or \
+                re.match(r'\s+der Heerscharen,\s*er ist der König der Herrlichkeit\b',right,re.I):
+            return 'der HERR','nominative-answer-to-title-question'
     if before and before[-1]=='ich' and re.match(r'\s*(?:,\s*[^,;:.!?]+,\s*)?bin\b',right,re.I):
         return 'der HERR','predicate-name-subordinate'
     if before and before[-1]=='du' and after[:1]==['bist']:

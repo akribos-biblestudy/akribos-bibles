@@ -197,6 +197,13 @@ class DivineNameTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(name_edits(text)[0], expected)
 
+    def test_psalm_title_question_has_nominative_answers(self):
+        self.assertEqual(name_edits(self.verses['Ps.24.8'])[0], ['Der HERR', 'Der HERR'])
+        self.assertEqual(name_edits(self.verses['Ps.24.10'])[0], ['Der HERR'])
+        for text in ('Jehova, stark und mächtig!', 'O Jehova, mächtig im Kampf!'):
+            with self.subTest(text=text):
+                self.assertEqual(name_edits(text)[0], ['HERR'])
+
     def test_all_samuel_name_occurrences_classified(self):
         for ref, text in self.verses.items():
             if ref.startswith('1Sam.'):

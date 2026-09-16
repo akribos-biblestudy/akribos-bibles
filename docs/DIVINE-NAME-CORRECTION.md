@@ -64,11 +64,15 @@ Skripte berücksichtigen jetzt die ausdrücklich bezeichneten Fälle:
 - In `spricht Jehova, du wirst …` ist der HERR der Sprecher; das folgende `du`
   gehört zur Aussage. In `Vergeltet ihr also Jehova` (5. Mose 32,6) ist er der
   Empfänger und steht im Dativ.
+- In Psalm 24,8 und 24,10 beantwortet der Name die unmittelbar vorangehende
+  Frage nach dem König der Herrlichkeit. Diese Antworten stehen im Nominativ;
+  ohne die Frage liefert eine ähnliche Anrede keine Grundlage für diese Regel.
 
 Der vollständige Vergleich der ELB-Originalverse mit dem Skriptstand von 1.3
-ergibt **210 geänderte Namensersetzungen in 188 Versen**: 162 nominative,
+ergibt **213 geänderte Namensersetzungen in 190 Versen**: 162 nominative,
 23 dative und 18 akkusative Titelbeifügungen, sechs Sprecher-Konstruktionen und
-den genannten Dativ nach `vergeltet ihr`. Die unabhängige Prüfung umfasst alle
+den genannten Dativ nach `vergeltet ihr` sowie drei Antworten in Psalm 24.
+Die unabhängige Prüfung umfasst alle
 geänderten Positionen. Anreden wie `Jehova, dein Name …`, `Lehre mich, Jehova,
 deinen Weg` und `Jehova, du bist mein Gott` bleiben artikellos.
 
