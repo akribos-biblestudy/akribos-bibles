@@ -297,6 +297,14 @@ def _parse_chapter_html(html, *, source_url, book, chapter):
     for verse in verses:
         name = verse.attrs.get('name')
         buttons = [n for n in verse.walk() if n.tag == 'button' and 'btn-verse-no' in n.classes]
+        descendants = list(verse.walk())
+        if (name is None and len(descendants) == 2
+                and all(n.tag == 'span' and set(n.attrs) == {'class'} for n in descendants)
+                and 'bible-verse-text' in descendants[1].classes
+                and not verse.text().strip()):
+            # Psalm 41 contains an entirely empty layout block before verse 14.
+            # It has no verse identity, annotations, notes or hidden content.
+            continue
         if name is not None:
             _need(not variant_state['open'], 'Unclosed variant bracket range in verse')
             number = re.fullmatch(r'v([1-9]\d*)', name)
@@ -307,7 +315,12 @@ def _parse_chapter_html(html, *, source_url, book, chapter):
             _need(len(buttons) == 1, 'Expected one reference button per verse')
             button = buttons[0]
             reference = re.search(r'\s(\d+),(\d+)$', button.attrs.get('data-reference', ''))
-            _need(reference is not None and (int(reference[1]), int(reference[2])) == (chapter, vno)
+            matches_reference = reference is not None and (int(reference[1]), int(reference[2])) == (chapter, vno)
+            if not matches_reference and chapter == 1 and CSV_CHAPTER_COUNTS[book - 1] == 1:
+                # One-chapter books display only the verse, e.g. "Phlm 2".
+                single = re.search(r'\s(\d+)$', button.attrs.get('data-reference', ''))
+                matches_reference = single is not None and int(single[1]) == vno
+            _need(matches_reference
                   and button.attrs.get('data-url') == source_url + f'#v{vno}',
                   'Verse button reference differs from expected chapter/verse')
             out = ET.SubElement(out_chapter, 'VERS', {'vnumber': str(vno)})

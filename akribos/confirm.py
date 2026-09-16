@@ -8,6 +8,8 @@ target identifiers/assignments and decision categories, never reference content.
 from __future__ import annotations
 
 import copy
+import gzip
+import json
 import re
 import unicodedata
 import xml.etree.ElementTree as ET
@@ -15,15 +17,29 @@ from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
-from .common import BOOKS, file_hash, require, tokenize
+from .common import BOOKS, canonical_ref, file_hash, require, tokenize
 from .importers import parse_xml, tag
 from .xmlio import EXCLUDED, plain, strong_fingerprints, zef_verses
 
 HINT = 'nl:akribosStrongUncertainty'
 GRAMMAR = {'gr', 'GRAM', 'w'}
 NORMALIZATION = 'NFC-lowercase-v1'
-METHOD = 'two-reference-exact-strong-set-v1'
-INPUT_PROFILE = 'zefania-word-spans-v1'
+METHOD = 'two-reference-exact-strong-set-with-vetoes-v2'
+INPUT_PROFILE = 'zefania-word-spans-with-article-context-v2'
+SAFETY_PROFILE = 'greek-function-word-vetoes-v1'
+FUNCTION_CODES = frozenset({'G1537', 'G1909', 'G3165', 'G4314', 'G3739', 'G3588'})
+PREPOSITION_CODES = frozenset({'G1537', 'G4314'})
+ARTICLE_CONTEXT_STATUSES = frozenset({
+    'article-multiword-context-unproved', 'article-without-right-context',
+    'article-target-context-boundary', 'article-right-context-not-forced-adjacent',
+    'article-reference-context-boundary',
+})
+SAFETY_VETOES = frozenset({
+    'missing-function-word-source-evidence', 'missing-function-word-source-verse',
+    'prior-verse-inventory-mismatch', 'preposition-on-possible-infinitival-zu',
+    'function-code-over-assigned-in-verse', 'source-verse-numbering-unproved',
+    'conjunction-on-isolated-german-es',
+})
 PLACEHOLDER = re.compile(r'\[\s*\?\s*\]')
 REFERENCE_STATUSES = frozenset({
     'confirmed', 'missing-reference-source', 'missing-reference-verse',
@@ -32,7 +48,7 @@ REFERENCE_STATUSES = frozenset({
     'invalid-reference-strong-set', 'reference-annotation-crosses-span',
     'incomplete-reference-word-span', 'missing-reference-strong-tags',
     'different-strong-set',
-})
+}) | ARTICLE_CONTEXT_STATUSES
 TARGET_FAILURES = frozenset({
     'structured-uncertainty-note', 'no-preceding-strong-span',
     'text-between-assignment-and-hint', 'target-placeholder-in-span',
@@ -43,7 +59,163 @@ AUDIT_FIELDS = frozenset({'ref', 'hint', 'target_token_ids', 'target_strong',
                           'status', 'reason', 'references'})
 
 
-def verify_confirmation_transition(before, after, audit, *, output_identity=None):
+@dataclass(frozen=True)
+class ConfirmationSafetyEvidence:
+    occurrences: dict
+    guarded_verses: frozenset
+    nt_edition: str
+    sha256: dict
+    source_guarded_verses: frozenset = frozenset()
+
+
+def load_confirmation_evidence(target, occurrences_path, alignment_path, *, nt_edition):
+    """Load existing build evidence; no downloads or private reference content.
+
+    Alignment rows must identify every target verse and its exact token positions.
+    STEP occurrences keep their own verse/witness identity. Only fields needed
+    by the veto are retained, not original-language text, glosses or lexica.
+    """
+    require(nt_edition in {'WH', 'TR'}, 'Unsupported confirmation NT edition')
+    targets = {ref: plain(verse) for ref, verse in zef_verses(target)}
+    paths = {'source_occurrences': Path(occurrences_path), 'alignment': Path(alignment_path)}
+    hashes = {label: file_hash(path) for label, path in paths.items()}
+    seen = set(); guarded = set()
+    with gzip.open(paths['alignment'], 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            row = json.loads(line)
+            require(isinstance(row, dict) and isinstance(row.get('ref'), str),
+                    'Malformed confirmation alignment row')
+            ref = row['ref']
+            require(ref in targets and ref not in seen, 'Unknown or duplicate confirmation alignment verse')
+            seen.add(ref)
+            require(row.get('text') == targets[ref], 'Confirmation alignment text differs from stage 04')
+            tokens = row.get('tokens')
+            expected_tokens = tokenize(targets[ref])
+            require(isinstance(tokens, list) and len(tokens) == len(expected_tokens),
+                    'Confirmation alignment token inventory differs')
+            require(all(isinstance(token, dict) and
+                        all(token.get(key) == expected[key] for key in ('id', 'text', 'start', 'end'))
+                        for token, expected in zip(tokens, expected_tokens)),
+                    'Confirmation alignment token positions differ')
+            expected_edition = nt_edition if BOOKS.index(ref.split('.')[0]) >= 39 else 'L/Q'
+            require(row.get('step_profile') == expected_edition and type(row.get('inventory_mismatch')) is bool,
+                    'Confirmation alignment profile or guard differs')
+            if row['inventory_mismatch']:
+                guarded.add(ref)
+    require(seen == set(targets), 'Missing confirmation alignment verses')
+
+    occurrences = {}; seen_origins = set(); source_guards = set()
+    with gzip.open(paths['source_occurrences'], 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            row = json.loads(line)
+            require(isinstance(row, dict) and isinstance(row.get('ref'), str) and
+                    isinstance(row.get('tokens'), list), 'Malformed confirmation source occurrence row')
+            ref = row['ref']
+            require(canonical_ref(ref) == ref and ref not in occurrences,
+                    'Noncanonical or duplicate confirmation source verse')
+            is_nt = BOOKS.index(ref.split('.')[0]) >= 39
+            compact = []
+            for token in row['tokens']:
+                require(isinstance(token, dict), 'Malformed confirmation source occurrence')
+                origin = token.get('origin_id'); codes = token.get('strong'); morph = token.get('morph')
+                require(isinstance(origin, str) and origin not in seen_origins,
+                        'Missing or duplicate confirmation source occurrence identity')
+                match = re.match(r'^([1-3]?[A-Za-z]+\.\d+\.\d+)'
+                                 r'(\([\d.]+\)|\[[\d.]+\]|\{[\d.]+\})?#.+=(.+)$', origin)
+                require(match is not None and canonical_ref(match[1]) == ref,
+                        'Confirmation source occurrence belongs to another verse')
+                require(isinstance(codes, list) and all(isinstance(code, str) and
+                        re.fullmatch(('G' if is_nt else 'H') + r'[1-9]\d*', code) for code in codes)
+                        and isinstance(morph, str), 'Malformed confirmation source code or morphology')
+                require(token.get('edition') == (nt_edition if is_nt else 'L/Q'),
+                        'Confirmation source occurrence has a different edition')
+                require(is_nt or match[3].startswith(('L', 'Q')),
+                        'Unsupported confirmation Hebrew witness')
+                if is_nt and match[2]:
+                    # Alternative verse numbers cannot establish an exact
+                    # occurrence count for this conservative Greek veto profile.
+                    source_guards.add(ref)
+                seen_origins.add(origin)
+                compact.append({'origin_id': origin, 'strong': codes, 'morph': morph,
+                                'edition': token['edition']})
+            # The narrowly reviewed veto profile concerns Greek function codes.
+            # Hebrew occurrence rows are checked, but need not remain in memory.
+            occurrences[ref] = compact if is_nt else []
+    require(occurrences, 'Missing confirmation source occurrences')
+    require(hashes == {label: file_hash(path) for label, path in paths.items()},
+            'Confirmation evidence changed while loading')
+    return ConfirmationSafetyEvidence(occurrences, frozenset(guarded), nt_edition, hashes,
+                                      frozenset(source_guards))
+
+
+def article_target_context_status(target, indices):
+    """The target half of article context can also be checked by public replay."""
+    if len(indices) != 1:
+        return 'article-multiword-context-unproved'
+    index = indices[0]
+    if index + 1 >= len(target.tokens):
+        return 'article-without-right-context'
+    current, following = target.tokens[index:index + 2]
+    if target.text[current['end']:following['start']].strip():
+        return 'article-target-context-boundary'
+    return None
+
+
+def article_context_status(target, indices, reference, alignment):
+    """A reference article also needs its forced, immediately adjacent neighbour."""
+    failure = article_target_context_status(target, indices)
+    if failure:
+        return failure
+    index = indices[0]
+    left, left_status = alignment[index]
+    right, right_status = alignment[index + 1]
+    if left_status != 'aligned' or right_status != 'aligned' or right != left + 1:
+        return 'article-right-context-not-forced-adjacent'
+    a, b = reference.tokens[left:right + 1]
+    if reference.text[a['end']:b['start']].strip():
+        return 'article-reference-context-boundary'
+    return 'confirmed'
+
+
+def confirmation_veto(view, ref, indices, codes, evidence):
+    """Refuse suspicious function assignments; counts never prove an assignment."""
+    if ('G3754' in codes and len(indices) == 1 and
+            view.tokens[indices[0]]['text'].casefold() == 'es'):
+        return 'conjunction-on-isolated-german-es'
+    selected = set(codes) & FUNCTION_CODES
+    if not selected:
+        return None
+    if evidence is None:
+        return 'missing-function-word-source-evidence'
+    require(isinstance(evidence, ConfirmationSafetyEvidence), 'Invalid confirmation safety evidence')
+    source = evidence.occurrences.get(ref)
+    if not source:
+        return 'missing-function-word-source-verse'
+    if ref in evidence.guarded_verses:
+        return 'prior-verse-inventory-mismatch'
+    if ref in evidence.source_guarded_verses:
+        return 'source-verse-numbering-unproved'
+    if selected & PREPOSITION_CODES and len(indices) == 1:
+        index = indices[0]
+        if view.tokens[index]['text'].casefold() == 'zu' and index + 1 < len(view.tokens):
+            current, following = view.tokens[index:index + 2]
+            word = following['text']
+            if (word.islower() and (word.endswith(('en', 'eln', 'ern')) or word in {'sein', 'tun'})
+                    and not view.text[current['end']:following['start']].strip()):
+                following_codes = {code for span in view.spans if span.valid and
+                                   span.start <= following['start'] and following['end'] <= span.end
+                                   for code in span.codes}
+                if any(set(token['strong']) & following_codes and token['morph'].startswith('V-')
+                       for token in source):
+                    return 'preposition-on-possible-infinitival-zu'
+    assigned = Counter(code for span in view.spans for code in set(span.codes))
+    actual = Counter(code for token in source for code in set(token['strong']))
+    if any(assigned[code] > actual[code] for code in selected):
+        return 'function-code-over-assigned-in-verse'
+    return None
+
+
+def verify_confirmation_transition(before, after, audit, *, output_identity=None, safety_evidence=None):
     """Replay the exact public stage-05 delta without needing private sources.
 
     Every input hint must have one correctly located audit entry. A removal
@@ -52,7 +224,7 @@ def verify_confirmation_transition(before, after, audit, *, output_identity=None
     private comparison still requires the separately identified source files.
     """
     rows = {}
-    reasons = REFERENCE_STATUSES | TARGET_FAILURES | {
+    reasons = REFERENCE_STATUSES | TARGET_FAILURES | SAFETY_VETOES | {
         'both-references-confirm-complete-set', 'outside-supported-verse-text'}
     for row in audit:
         require(isinstance(row, dict) and set(row) == AUDIT_FIELDS,
@@ -103,16 +275,31 @@ def verify_confirmation_transition(before, after, audit, *, output_identity=None
             else:
                 require(all(value in REFERENCE_STATUSES for value in statuses.values()),
                         'Eligible confirmation hint has invalid reference statuses')
+                require('G3588' in span.codes or not (set(statuses.values()) & ARTICLE_CONTEXT_STATUSES),
+                        'Non-article assignment has an article reference status')
+                if 'G3588' in span.codes:
+                    target_failure = article_target_context_status(verse, indices)
+                    target_statuses = {'article-multiword-context-unproved', 'article-without-right-context',
+                                       'article-target-context-boundary'}
+                    for status in statuses.values():
+                        if status == 'confirmed' or status in ARTICLE_CONTEXT_STATUSES:
+                            require(status == target_failure if target_failure else status not in target_statuses,
+                                    'Article target context differs from confirmation audit')
                 failures = [statuses[label] for label in ('elb-bk', 'elb-csv')
                             if statuses[label] != 'confirmed']
                 if failures:
                     require(row['status'] == 'retained' and row['reason'] == failures[0],
                             'Confirmation decision disagrees with reference statuses')
                 else:
-                    require(row['status'] == 'confirmed' and
-                            row['reason'] == 'both-references-confirm-complete-set',
-                            'Confirmation removal lacks two recorded confirmations')
-                    decisions.append((verse.parents[hint], hint))
+                    veto = confirmation_veto(verse, ref, indices, span.codes, safety_evidence)
+                    if veto:
+                        require(row['status'] == 'retained' and row['reason'] == veto,
+                                'Confirmation safety veto was not retained')
+                    else:
+                        require(row['status'] == 'confirmed' and
+                                row['reason'] == 'both-references-confirm-complete-set',
+                                'Confirmation removal lacks two recorded confirmations')
+                        decisions.append((verse.parents[hint], hint))
         for parent, hint in decisions:
             _remove_preserving_tail(parent, hint)
             removed += 1
@@ -391,6 +578,7 @@ def prepare_confirmation(version, elb_bk=None, elb_csv=None):
                 f'No Strong annotations found in {label}')
     return {'references': references, 'settings': {
         'method': METHOD, 'input_profile': INPUT_PROFILE, 'normalization': NORMALIZATION,
+        'safety_profile': SAFETY_PROFILE,
         'reference_sha256': hashes}}
 
 
@@ -401,13 +589,15 @@ class ConfirmationResult:
     summary: dict
 
 
-def confirm_uncertainty(target, elb_bk, elb_csv, *, in_place=False):
+def confirm_uncertainty(target, elb_bk, elb_csv, *, in_place=False, safety_evidence=None):
     """Review every hint and return transformed XML plus a publication-safe audit.
 
     Inputs are parsed Zefania roots. An absent reference is ``None`` and retains
     every affected hint. Input reference trees are never mutated. By default the
     target is copied. Verse IDs must agree; no implicit verse-number remapping.
     Public audit rows include only target span/code values and decision labels.
+    The six reviewed Greek function codes additionally require existing build
+    evidence. Without it they remain uncertain, even when both references agree.
     """
     root = target if in_place else copy.deepcopy(target)
     before_text = {ref: plain(v) for ref, v in _verse_index(root, include_captions=True).items()}
@@ -449,14 +639,20 @@ def confirm_uncertainty(target, elb_bk, elb_csv, *, in_place=False):
                     status = 'missing-reference-verse'
                 else:
                     status = source_verses[label].confirm_span(indices, span.codes, alignments[label])
+                    if status == 'confirmed' and 'G3588' in span.codes:
+                        status = article_context_status(verse, indices, source_verses[label], alignments[label])
                 row['references'][label] = status
                 reference_counts[label][status] += 1
             if not failure:
                 statuses = list(row['references'].values())
                 if all(status == 'confirmed' for status in statuses):
-                    row['status'] = 'confirmed'
-                    row['reason'] = 'both-references-confirm-complete-set'
-                    decisions.append((verse.parents[hint], hint))
+                    veto = confirmation_veto(verse, ref, indices, span.codes, safety_evidence)
+                    if veto:
+                        row['reason'] = veto
+                    else:
+                        row['status'] = 'confirmed'
+                        row['reason'] = 'both-references-confirm-complete-set'
+                        decisions.append((verse.parents[hint], hint))
                 else:
                     # Keep all per-source failures in the audit; a stable first
                     # failure is the summary category when both fail differently.
@@ -482,6 +678,7 @@ def confirm_uncertainty(target, elb_bk, elb_csv, *, in_place=False):
     require(before_strongs == strong_fingerprints(root), 'Uncertainty review changed Strong tags')
     require(before_notes == _preserved_notes(root), 'Uncertainty review changed original notes')
     summary = {'method': METHOD, 'normalization': NORMALIZATION,
+               'safety_profile': SAFETY_PROFILE,
                'alignment': 'forced-matches-in-all-optimal-LCS-alignments',
                'hints_before': len(original_hints), 'hints_removed': removed, 'hints_remaining': after_hints,
                'decisions': dict(sorted(reasons.items())),
@@ -492,7 +689,8 @@ def confirm_uncertainty(target, elb_bk, elb_csv, *, in_place=False):
     return ConfirmationResult(root, audit, summary)
 
 
-def confirm_files(target_path, elb_bk_path, elb_csv_path):
+def confirm_files(target_path, elb_bk_path, elb_csv_path, *, occurrences_path=None,
+                  alignment_path=None, nt_edition='WH'):
     """Read XML snapshots and add hashes; the caller owns writing/history/metadata."""
     paths = [Path(p) if p is not None else None for p in (target_path, elb_bk_path, elb_csv_path)]
     require(paths[0] is not None, 'A target input is required')
@@ -504,8 +702,14 @@ def confirm_files(target_path, elb_bk_path, elb_csv_path):
     if paths[1] is not None and paths[2] is not None:
         require(hashes[1] != hashes[2], 'Reference snapshots have identical SHA-256 hashes; two independent sources are required')
     trees = [parse_xml(path) if path is not None else None for path in paths]
-    result = confirm_uncertainty(*trees)
+    require((occurrences_path is None) == (alignment_path is None),
+            'Confirmation safety evidence needs both occurrences and alignment')
+    evidence = (load_confirmation_evidence(trees[0], occurrences_path, alignment_path, nt_edition=nt_edition)
+                if occurrences_path is not None else None)
+    result = confirm_uncertainty(*trees, safety_evidence=evidence)
     result.summary['input_sha256'] = hashes[0]
     result.summary['reference_sha256'] = {
         label: value for label, value in zip(('elb-bk', 'elb-csv'), hashes[1:])}
+    result.summary['safety_evidence_sha256'] = evidence.sha256 if evidence else None
+    result.summary['selected_nt_edition'] = nt_edition if evidence else None
     return result

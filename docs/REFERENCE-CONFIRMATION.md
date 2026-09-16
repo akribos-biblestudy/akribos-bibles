@@ -3,14 +3,22 @@
 Version 1.3 prüft jede bestehende Unsicherheitsmarkierung der eigenen Strong-
 Zuordnungen gegen **ELB BK** und die **Elberfelder Ausgabe des CSV-Verlags**.
 Bestätigen beide Referenzen die vollständige bereits vorhandene Nummernmenge
-am eindeutig zugeordneten Wortbereich, entfällt ausschließlich der zugehörige
-Hinweis. Bibeltext, Strong-Nummern und historische Originalnotizen bleiben
+am eindeutig zugeordneten Wortbereich und greift keines der unten beschriebenen
+Sicherheitsvetos, entfällt ausschließlich der zugehörige Hinweis. Bibeltext,
+Strong-Nummern und historische Originalnotizen bleiben
 unverändert. Es werden keine neuen Nummern aus den Referenzen übernommen.
 
 ## Vollständig aufbauen
 
 Beide Referenzdateien werden als lokale Zefania-XML-Snapshots benötigt. „CSV“
 bezeichnet hier den Verlag, nicht das Dateiformat.
+
+ELB BK wird als Zefania-Modul auf der offiziellen
+[Downloadseite von bibelkommentare.de](https://www.bibelkommentare.de/downloads/module)
+angeboten: [ZIP herunterladen](https://www.bibelkommentare.de/data/modules/bible_elb_bk_zefania.zip),
+entpacken und `bible_elb_bk_mybible.xml` privat als
+`.local/references/elb-bk.xml` ablegen. Die dortige Modulnummer 1.3 bezeichnet
+die Referenzausgabe und ist unabhängig von der Akribos-Ausgabenummer.
 
 Die CSV-Webseiten können mit dem [vorsichtigen Browser-Abruf](CSV-REFERENCE.md)
 privat zwischengespeichert und reproduzierbar in dieses Eingabeformat
@@ -56,6 +64,12 @@ Alle folgenden Bedingungen müssen in **beiden** Referenzen erfüllt sein:
    jedoch mehreren vollständig getaggten Referenzwörtern entsprechen.
 5. Die gesamte Strong-Menge ist exakt gleich. Teilmengen, zusätzliche Nummern
    oder das bloße Vorkommen einer Nummer irgendwo im selben Vers reichen nicht.
+6. Bei G3588 muss auch das unmittelbar folgende Zielwort in beiden Referenzen
+   eindeutig auf das unmittelbar folgende Wort passen. Zwischen diesen Wörtern
+   darf jeweils nur Leerraum stehen. Ein Artikel am Versende, ein größerer
+   Zielbereich oder ein abweichender beziehungsweise mehrdeutiger rechter
+   Kontext bleibt zur Prüfung stehen. Das gilt auch für G3588 in einer
+   Mehrfachnummerierung.
 
 Die Ausrichtung untersucht sämtliche optimalen längsten gemeinsamen
 Wortfolgen. Sie entscheidet bei wiederholten Wörtern nicht willkürlich zwischen
@@ -71,8 +85,48 @@ eindeutigen Bezug auf das vorhergehende Strong-Element bleiben unverändert.
 Hinweise innerhalb historischer Notizen werden ebenfalls erhalten und im
 Prüfprotokoll als nicht unterstützt erfasst.
 
-Die Bestätigung belegt Übereinstimmung mit zwei Ausgaben. Sie ist keine
-eigenständige sprachwissenschaftliche Neubewertung der Zuordnung.
+### Gemeinsame Referenzfehler konservativ abfangen
+
+Auch zwei übereinstimmende Ausgaben können dieselbe problematische Zuordnung
+enthalten. Vier eng begrenzte Prüfungen bewahren deshalb den Hinweis:
+
+- Der oben beschriebene rechte Artikelkontext verhindert, dass ein Artikel aus
+  einer Referenzphrase ein anders verwendetes deutsches Pronomen bestätigt.
+- G1537 oder G4314 an einem einzelnen deutschen `zu` bleibt unsicher, wenn
+  unmittelbar ein kleingeschriebenes mögliches Infinitivwort folgt und dessen
+  vorhandene Nummer im gewählten STEP-Vers tatsächlich als Verb vorkommt.
+  Großgeschriebene Substantivierungen und bloß ähnlich endende Possessivformen
+  liefern diesen Verbbeleg nicht.
+- Für G1537, G1909, G3165, G4314, G3739 und G3588 werden die bereits vorhandenen deutschen
+  Markierungsspannen mit den tatsächlichen STEP-Wortvorkommen im Vers verglichen.
+  Übersteigt die Zahl der Zielspannen die Zahl der Quellvorkommen, bleiben die
+  betroffenen Hinweise stehen. Codes in Mehrfachnummerierungen zählen mit;
+  eine Mehrwortspanne zählt als eine Spanne. Eine griechische Form kann korrekt
+  durch mehrere deutsche Spannen wiedergegeben sein: Das Veto erklärt deshalb
+  keine einzelne Nummer für falsch und wählt keinen vermeintlich richtigen
+  Ersatzplatz aus. Insbesondere wird G3165 nicht pauschal an deutschem `ich`
+  gesperrt: Ein griechisches Akkusativsubjekt beim Infinitiv kann im Deutschen
+  ein eigenes `ich` ergeben. Entscheidend ist hier allein die konservative
+  Belegzählung, ohne Alias-Normalisierung.
+- G3754 an einem isolierten deutschen `es` bleibt markiert. Dieser
+  Konjunktionscode bestätigt kein solches Subjektpronomen, auch wenn beide
+  Referenzen dieselbe Nummer tragen. Die Regel erfasst keine anderen Pronomen,
+  leitet keine Ersatznummer ab und behandelt eine größere Spanne wie `es sei`
+  nicht als isoliertes Wort.
+
+Diese Prüfungen übernehmen die bereits beim Aufbau erzeugten
+`source-occurrences.jsonl.gz` und `alignment.jsonl.gz`. Deren Hashes, die
+ausgewählte NT-Ausgabe und das Sicherheitsprofil werden festgehalten. Der
+Alignmenttext und seine Wortpositionen müssen zur unveränderten Stufe 04
+passen; fehlende Belege, alternative griechische Versnummern oder ein bereits festgestellter Inventarkonflikt
+verhindern die Freigabe der betroffenen Funktionscodes.
+
+Das Verfahren heißt `two-reference-exact-strong-set-with-vetoes-v2`, das
+Eingabeprofil `zefania-word-spans-with-article-context-v2` und das
+Sicherheitsprofil `greek-function-word-vetoes-v1`. Es bestätigt eingeschränkte
+Referenzübereinstimmung mit konservativen Ausschlussregeln; eine vollständige
+sprachwissenschaftliche Neubewertung aller Nummerierungen ist damit nicht
+behauptet.
 
 ## Ergebnisse und Nachvollziehbarkeit
 
@@ -118,10 +172,23 @@ die beiden Referenzsnapshots erforderlich.
 Nach der Transformation und nach dem XML-Schreiben werden Bibeltext,
 Strong-Attribute und Originalnotizen mit Stufe 04 verglichen. Der
 Repository-Prüfer kontrolliert zusätzlich den ausgewählten Release-Bestandteil,
-die unterschiedlichen Referenzhashes, die vollständige Zahl der
-Einzelentscheidungen und die Zahl der entfernten Hinweise.
+die unterschiedlichen Referenzhashes und die gehashten STEP-/Alignmentbelege.
+Er ordnet jede protokollierte Entscheidung exakt dem ursprünglichen Hinweis
+zu, berechnet die öffentlichen Sicherheitsvetos erneut und spielt ausschließlich
+die erlaubten Hinweisentfernungen nach. Die gesamte rekonstruierte XML-Struktur
+muss mit der Ausgabe übereinstimmen. Auditfelder und Ergebnisgründe sind
+geschlossen; zusätzliche Felder oder freie Referenztexte werden abgewiesen.
+Die eigentliche private Wort-/Nachbarprüfung ist anhand der festgehaltenen
+Referenzsnapshots reproduzierbar; deren Texte werden dafür nicht veröffentlicht.
 
 Der bestehende Befehl `compare` bleibt ein rein lesender Vergleich. Die
 Python-Analysefunktion `confirm_uncertainty(target, bk, None)` kann eine
 unvollständige Vorprüfung liefern; sie entfernt ohne zweite Referenz keinen
-Hinweis und erzeugt keinen veröffentlichten 1.3-Bestand.
+Hinweis und erzeugt keinen veröffentlichten 1.3-Bestand. Auch bei zwei Referenzen
+bleiben die sechs genannten Funktionscodes ohne `safety_evidence` markiert.
+Für eine vollständige lokale Prüfung lädt
+`load_confirmation_evidence(target, occurrences_path, alignment_path, nt_edition="WH")`
+die bestehenden Belege; ihr Ergebnis wird als `safety_evidence` an
+`confirm_uncertainty` beziehungsweise den XML-Replay übergeben. Der normale
+CLI-Aufbau erledigt dies automatisch. Es gibt keinen Freigabeschalter zum
+Umgehen der Vetos.

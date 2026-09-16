@@ -6,7 +6,8 @@ from akribos.common import file_hash,require,digest
 from akribos.project import VERSION,EDITION_TITLES,check_sources,cached,original_notes
 from akribos.importers import parse_xml
 from akribos.xmlio import zef_verses,plain,strong_fingerprints
-from akribos.confirm import METHOD,INPUT_PROFILE,NORMALIZATION,verify_confirmation_transition
+from akribos.confirm import (METHOD,INPUT_PROFILE,NORMALIZATION,SAFETY_PROFILE,
+                             verify_confirmation_transition,load_confirmation_evidence)
 
 
 def verify_release_history(path,link,version):
@@ -26,12 +27,18 @@ def verify_release_history(path,link,version):
             'Missing reference identities for confirmed release')
     require(len(set(hashes.values()))==2,'Confirmed release uses identical references')
     require(settings.get('method')==METHOD and settings.get('input_profile')==INPUT_PROFILE and
-            settings.get('normalization')==NORMALIZATION,'Unknown reference-confirmation profile')
+            settings.get('normalization')==NORMALIZATION and settings.get('safety_profile')==SAFETY_PROFILE,
+            'Unknown reference-confirmation profile')
     report=json.loads((history/'05-reference-confirmed.report.json').read_text(encoding='utf-8'))
     require(report.get('reference_sha256')==hashes,'Confirmation reference hashes differ from manifest')
     require(report.get('sha256')==link['sha256'] and report.get('input_sha256')==file_hash(history/'04-multisource.xml'),
             'Confirmation report input/output mismatch')
     before=parse_xml(history/'04-multisource.xml');after=parse_xml(path)
+    nt_edition=manifest['settings'].get('nt_edition')
+    evidence=load_confirmation_evidence(before,history/'source-occurrences.jsonl.gz',
+                                        history/'alignment.jsonl.gz',nt_edition=nt_edition)
+    require(report.get('safety_profile')==SAFETY_PROFILE and report.get('selected_nt_edition')==nt_edition and
+            report.get('safety_evidence_sha256')==evidence.sha256,'Confirmation safety evidence identity differs')
     require({ref:plain(v) for ref,v in zef_verses(before,True)}=={ref:plain(v) for ref,v in zef_verses(after,True)},
             'Confirmation changed Bible text')
     require(strong_fingerprints(before)==strong_fingerprints(after),'Confirmation changed Strong attributes')
@@ -41,7 +48,8 @@ def verify_release_history(path,link,version):
             report.get('hints_removed')==hints(before)-hints(after),'Confirmation hint counts differ')
     with gzip.open(history/'05-reference-confirmed.audit.jsonl.gz','rt',encoding='utf-8') as stream:
         rows=[json.loads(line) for line in stream]
-    counts=verify_confirmation_transition(before,after,rows,output_identity=(link['bible_id'],version))
+    counts=verify_confirmation_transition(before,after,rows,output_identity=(link['bible_id'],version),
+                                          safety_evidence=evidence)
     require(all(report.get(key)==value for key,value in counts.items()),'Confirmation audit totals differ')
     return artifact
 

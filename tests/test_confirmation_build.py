@@ -49,6 +49,12 @@ class ConfirmationBuildTests(unittest.TestCase):
     @contextlib.contextmanager
     def pipeline(self):
         def edit(edition,*args,**kwargs):return self.edits[edition]
+        def inventory(folder,nt_edition):
+            with jsonl_gz(folder/'source-occurrences.jsonl.gz') as stream:
+                line(stream,{'ref':'Gen.1.1','tokens':[
+                    {'origin_id':'Gen.1.1#01=L','strong':['H430'],'morph':'HNcmsa','edition':'L/Q'},
+                    {'origin_id':'Gen.1.1#02=L','strong':['H1254'],'morph':'HVqp3ms','edition':'L/Q'}]})
+            return {'Gen.1.1':{'H430','H1254'}}
         def additions(tokens,*args,**kwargs):
             for token in tokens:
                 if token['text']=='schuf':
@@ -60,7 +66,7 @@ class ConfirmationBuildTests(unittest.TestCase):
             stack.enter_context(patch('akribos.pipeline.check_sources'))
             stack.enter_context(patch('akribos.pipeline.edit',side_effect=edit))
             stack.enter_context(patch('akribos.pipeline.prepare_kjv',return_value=self.edits['elb1905']/'01-language.xml'))
-            stack.enter_context(patch('akribos.pipeline.reference_inventory',return_value={'Gen.1.1':{'H430','H1254'}}))
+            stack.enter_context(patch('akribos.pipeline.reference_inventory',side_effect=inventory))
             stack.enter_context(patch('akribos.pipeline.lexicons',return_value=({},{})))
             stack.enter_context(patch('akribos.pipeline.learn',return_value=({},{})))
             addition=stack.enter_context(patch('akribos.pipeline.additional_fill',side_effect=additions))
@@ -215,6 +221,22 @@ class ConfirmationBuildTests(unittest.TestCase):
                         for row in rows:line(stream,row)
                     self.rehash_confirmation(destination,release,link)
                     with self.assertRaises(DataError):verify_release_history(release,link,'1.3')
+
+    def test_verifier_requires_hashed_existing_safety_evidence(self):
+        with self.pipeline():
+            destination=self.run_build();release=self.root/'releases/akribos.elb.xml'
+            link=json.loads(release.with_suffix('.build.json').read_text())
+            report_path=destination/'05-reference-confirmed.report.json';original=report_path.read_bytes()
+            report=json.loads(original)
+            self.assertEqual(report['safety_evidence_sha256'],{
+                'source_occurrences':file_hash(destination/'source-occurrences.jsonl.gz'),
+                'alignment':file_hash(destination/'alignment.jsonl.gz')})
+            report['safety_evidence_sha256']['alignment']='0'*64;write_json(report_path,report)
+            with self.assertRaisesRegex(DataError,'safety evidence identity'):
+                verify_release_history(release,link,'1.3')
+            report_path.write_bytes(original)
+            path=destination/'source-occurrences.jsonl.gz';path.unlink()
+            with self.assertRaises(FileNotFoundError):verify_release_history(release,link,'1.3')
 
     def test_prepare_rejects_duplicate_verses_and_wrong_profile(self):
         invalid=parse_xml(self.csv);chapter=invalid.find('.//CHAPTER');chapter.append(copy.deepcopy(chapter[0]))

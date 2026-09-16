@@ -281,10 +281,10 @@ class ConfirmationTests(unittest.TestCase):
         self.assertEqual(second.summary['hints_before'], 0)
 
     def test_new_testament_prefix(self):
-        target = bible('<gr str="3588">der</gr>' + hint(), book=40)
-        reference = bible('<gr str="3588">der</gr>', book=40)
+        target = bible('<gr str="3056">Wort</gr>' + hint(), book=40)
+        reference = bible('<gr str="3056">Wort</gr>', book=40)
         result = confirm_uncertainty(target, reference, copy.deepcopy(reference))
-        self.assertEqual(result.audit[0]['target_strong'], ['G3588'])
+        self.assertEqual(result.audit[0]['target_strong'], ['G3056'])
         self.assertEqual(result.summary['hints_removed'], 1)
 
     def test_path_wrapper_hashes_sources_but_never_changes_them(self):

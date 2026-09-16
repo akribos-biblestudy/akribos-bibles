@@ -12,7 +12,7 @@ from .xmlio import zef_verses,verse_tokens,annotate,plain,write_xml,strong_finge
 from .importers import parse_xml
 from .verify import verify
 from .lexical import key,lexicons,reference_inventory,learn,STOP
-from .confirm import prepare_confirmation,confirm_uncertainty
+from .confirm import prepare_confirmation,confirm_uncertainty,load_confirmation_evidence
 
 
 def edit(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=None,rebuild=False,profile=None):
@@ -104,13 +104,15 @@ def additional_fill(tokens,ref,inv,donors,primary,index,origins,lex,review):
         elif candidates:review.append({'ref':ref,'token':t['id'],'kind':'concordance-ambiguity','candidates':sorted(candidates)})
 
 
-def reference_confirmation_stage(work,bid,version,confirmation):
+def reference_confirmation_stage(work,bid,version,confirmation,nt_edition):
     """Write stage 05 and a deterministic audit without copying reference data."""
     require(version=='1.3' and confirmation is not None,'Stage 05 requires a complete version 1.3 request')
     input_path=work/'04-multisource.xml'
     target=parse_xml(input_path)
     sources=confirmation['references']
-    result=confirm_uncertainty(target,sources['elb-bk'],sources['elb-csv'])
+    evidence=load_confirmation_evidence(target,work/'source-occurrences.jsonl.gz',
+                                        work/'alignment.jsonl.gz',nt_edition=nt_edition)
+    result=confirm_uncertainty(target,sources['elb-bk'],sources['elb-csv'],safety_evidence=evidence)
     stage='05-reference-confirmed'
     metadata(result.root,bid,version,stage)
     output=work/(stage+'.xml');write_xml(output,result.root)
@@ -123,6 +125,7 @@ def reference_confirmation_stage(work,bid,version,confirmation):
         for row in result.audit:line(audit,row)
     report=result.summary|confirmation['settings']|stats(serialized)|{
         'input_sha256':file_hash(input_path),'sha256':file_hash(output),
+        'safety_evidence_sha256':evidence.sha256,'selected_nt_edition':nt_edition,
         'original_notes_preserved':len(original_notes(target)),'text_preserved':True,
         'strong_attributes_preserved':True}
     write_json(work/(stage+'.report.json'),report)
@@ -207,7 +210,7 @@ def build(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=
     with jsonl_gz(work/'review.jsonl.gz') as f:
         for row in review:line(f,row)
     if confirmation:
-        reports['05-reference-confirmed']=reference_confirmation_stage(work,bid,version,confirmation)
+        reports['05-reference-confirmed']=reference_confirmation_stage(work,bid,version,confirmation,nt_edition)
     write_json(work/'report.json',{'bible_id':bid,'version':version,'stages':reports,'review_items':len(review),
         'warning':('Coverage is not accuracy. Reference confirmation removes matching uncertainty notes; it never transfers Strong assignments.' if confirmation else
                    'Coverage is not accuracy. Reference verse numbers provisionally aligned. Existing annotations retained; new candidates require review. No BK input used.'),

@@ -173,6 +173,18 @@ class CSVReferenceTests(unittest.TestCase):
         with self.assertRaisesRegex(CSVReferenceError, 'Duplicate verse'):
             parse(verse(link()) + verse(link()))
 
+    def test_single_chapter_reference_omits_chapter_number(self):
+        for book in (31, 57, 63, 64, 65):
+            prefix = 'H' if book < 40 else 'G'
+            content = verse(link(codes=prefix+'1', bcv=str(book*1000000+1001)))
+            content = content.replace('Example 1,1', 'Example 1')
+            with self.subTest(book=book):
+                self.assertEqual(parse(content, book=book).find('.//gr').get('str'), prefix+'1')
+        with self.assertRaisesRegex(CSVReferenceError, 'reference differs'):
+            parse(verse(link()).replace('Example 1,1', 'Example 1'))
+        with self.assertRaisesRegex(CSVReferenceError, 'reference differs'):
+            parse(verse(link(bcv='57001001')).replace('Example 1,1', 'Example 2'), book=57)
+
     def test_anonymous_poetry_continuation_uses_verified_previous_verse(self):
         continuation = ('<p><span class="bible-verse"><span class="bible-verse-text">' +
                         link('Fortsetzung', 'G2') + '</span></span></p>')
@@ -189,6 +201,16 @@ class CSVReferenceTests(unittest.TestCase):
         continuation = '<span class="bible-verse"><span class="bible-verse-text">Wort</span></span>'
         with self.assertRaisesRegex(CSVReferenceError, 'preceding verse'):
             parse(verse(link()) + continuation)
+
+    def test_empty_anonymous_layout_block_does_not_create_a_verse(self):
+        empty = '<span class="bible-verse"><span class="bible-verse-text"> </span></span>'
+        root = parse(verse(link()) + empty + verse(link(bcv='40001002'), 2))
+        self.assertEqual([v.get('vnumber') for v in root.findall('.//VERS')], ['1', '2'])
+        self.assertEqual(''.join(root.find('.//VERS').itertext()), 'Beispiel')
+        for content in ('Wort', '<sup class="footnote" data-footnote="Note"></sup>',
+                        '<span class="cp-none">Hidden</span>'):
+            with self.subTest(content=content), self.assertRaises(CSVReferenceError):
+                parse(verse(link()) + empty.replace('> </span>', '>' + content + '</span>'))
 
     def test_shared_group_links_and_empty_star_markers_remain_untagged(self):
         primary = link('Mehrdeutig', 'G1').replace('strong-G1', 'strong-G1 strong-G2')
