@@ -9,7 +9,8 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from akribos.csv_reference import (
-    CSVReferenceError, cache_to_reference, main, merge_reference_chapters, parse_chapter_html,
+    CSV_CHAPTER_COUNTS, CSVReferenceError, cache_to_reference, main,
+    merge_reference_chapters, parse_chapter_html, require_complete_reference,
 )
 
 
@@ -69,6 +70,22 @@ class CSVReferenceTests(unittest.TestCase):
     def test_hebrew_seven_digit_verse_id_and_zero_padded_codes(self):
         root = parse(verse(link(codes='H0430', bcv='1001001', label='H430')), book=1)
         self.assertEqual(root.find('.//gr').get('str'), 'H430')
+
+    def test_note_only_numbered_verse_is_absent_from_reference(self):
+        content = (verse(link()) + verse(
+            '<span class="cp-none"></span>'
+            '<sup class="footnote" data-footnote="A textual variant is documented here">a</sup>', 2)
+            + verse(link(bcv='40001003'), 3))
+        root = parse(content)
+        self.assertEqual([v.get('vnumber') for v in root.findall('.//VERS')], ['1', '3'])
+        self.assertNotIn('textual variant', ''.join(root.itertext()))
+
+    def test_unexplained_empty_verse_and_note_only_chapter_fail(self):
+        for content in ('', '<span class="cp-none">Hidden</span>'):
+            with self.subTest(content=content), self.assertRaisesRegex(CSVReferenceError, 'Empty verse'):
+                parse(verse(link()) + verse(content, 2))
+        with self.assertRaisesRegex(CSVReferenceError, 'No main-text verses'):
+            parse(verse('<sup class="footnote" data-footnote="Variant">a</sup>'))
 
     def test_parenthetical_components_never_confirm(self):
         root = parse(verse(link(label='(G1519+G3588)', occurrence=-1)))
@@ -249,6 +266,31 @@ class CSVReferenceTests(unittest.TestCase):
             parsed = ET.parse(output).getroot()
             self.assertEqual(parsed.tag, 'XMLBIBLE')
             self.assertEqual(len(parsed.findall('.//VERS')), 1)
+
+    def test_complete_reference_checks_chapter_identity_not_only_count(self):
+        root = ET.Element('XMLBIBLE')
+        for number, count in enumerate(CSV_CHAPTER_COUNTS, 1):
+            book = ET.SubElement(root, 'BIBLEBOOK', bnumber=str(number))
+            for chapter in range(1, count + 1):
+                ET.SubElement(book, 'CHAPTER', cnumber=str(chapter))
+        self.assertEqual(len(root.findall('.//CHAPTER')), 1189)
+        require_complete_reference(root)
+        # Same total count, but an English Joel/Malachi split is not this edition.
+        joel, malachi = root.findall('BIBLEBOOK')[28], root.findall('BIBLEBOOK')[38]
+        joel.remove(joel[-1])
+        ET.SubElement(malachi, 'CHAPTER', cnumber='4')
+        with self.assertRaisesRegex(CSVReferenceError, '1 missing chapters, 1 unexpected'):
+            require_complete_reference(root)
+
+    def test_incomplete_cache_does_not_replace_existing_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'chunk-0.json').write_text(json.dumps([cache_record(page(verse(link())))]))
+            output = root / 'reference.xml'
+            output.write_text('existing snapshot')
+            with self.assertRaisesRegex(CSVReferenceError, 'Incomplete CSV reference'):
+                main(['--cache-dir', directory, '--output', str(output), '--require-complete'])
+            self.assertEqual(output.read_text(), 'existing snapshot')
 
 
 if __name__ == '__main__':

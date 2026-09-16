@@ -21,6 +21,15 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
+# Public book index observed on csv-bibel.de, 2026-09-16. Its chapter
+# numbering has Joel 1-4 and Malachi 1-3; do not substitute an English index.
+CSV_CHAPTER_COUNTS = (
+    50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42,
+    150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 4, 9, 1, 4, 7, 3, 3, 3, 2, 14, 3,
+    28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5,
+    5, 3, 5, 1, 1, 1, 22,
+)
+
 
 class CSVReferenceError(ValueError):
     """The cached page does not satisfy the explicit reference profile."""
@@ -317,8 +326,19 @@ def _parse_chapter_html(html, *, source_url, book, chapter):
         texts = [n for n in verse.walk() if 'bible-verse-text' in n.classes]
         _need(len(texts) == 1, 'Expected exactly one text span per verse')
         _render(texts[0], out, book, chapter, vno, variant_state)
-        _need(bool(''.join(out.itertext()).strip()), 'Empty verse text')
+        if not ''.join(out.itertext()).strip():
+            # Some numbered verses have no main-text reading in this edition
+            # (observed in Mark 15:28). Its textual variant is only a footnote;
+            # importing that note as verse text would change the witness.
+            _need(name is not None and not variant_state['open']
+                  and any('footnote' in n.classes and n.attrs.get('data-footnote')
+                          for n in texts[0].walk())
+                  and not any('strong-link' in n.classes for n in texts[0].walk()),
+                  'Empty verse text without an explicit note-only verse')
+            out_chapter.remove(out)
+            out = None
     _need(not variant_state['open'], 'Unclosed variant bracket range in verse')
+    _need(len(out_chapter) > 0, 'No main-text verses in chapter page')
     return root
 
 
@@ -348,7 +368,20 @@ def merge_reference_chapters(chapters):
     return root
 
 
-def cache_to_reference(cache_dir):
+def require_complete_reference(root):
+    """Require every chapter in the publisher's index, without inventing verses."""
+    expected = {(book, chapter) for book, count in enumerate(CSV_CHAPTER_COUNTS, 1)
+                for chapter in range(1, count + 1)}
+    actual = [(int(book.get('bnumber')), int(chapter.get('cnumber')))
+              for book in root.findall('BIBLEBOOK') for chapter in book.findall('CHAPTER')]
+    _need(len(actual) == len(set(actual)), 'Duplicate reference chapter')
+    missing, extra = expected - set(actual), set(actual) - expected
+    _need(not missing and not extra,
+          f'Incomplete CSV reference: {len(missing)} missing chapters, {len(extra)} unexpected chapters; '
+          f'first missing={sorted(missing)[:5]}, first unexpected={sorted(extra)[:5]}')
+
+
+def cache_to_reference(cache_dir, *, require_complete=False):
     """Verify exported browser-cache chunks and return XML with fixed provenance.
 
     Expected records contain key, book, chapter, url, retrieved_at, sha256 and
@@ -394,6 +427,8 @@ def cache_to_reference(cache_dir):
                   'Cache retrieval timestamp is missing')
             manifest.append({k: record[k] for k in ('key', 'book', 'chapter', 'url', 'retrieved_at', 'sha256')})
     root = merge_reference_chapters(chapters)
+    if require_complete:
+        require_complete_reference(root)
     manifest.sort(key=lambda item: item['key'])
     serialized = json.dumps(manifest, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
     info = root.find('INFORMATION')
@@ -406,8 +441,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--cache-dir', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--require-complete', action='store_true',
+                        help='Require all 1,189 chapters in the CSV publisher book index')
     args = parser.parse_args(argv)
-    root = cache_to_reference(args.cache_dir)
+    root = cache_to_reference(args.cache_dir, require_complete=args.require_complete)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     payload = ET.tostring(root, encoding='utf-8', xml_declaration=True) + b'\n'
     temporary = args.output.with_name(args.output.name + '.tmp')

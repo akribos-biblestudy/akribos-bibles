@@ -55,7 +55,7 @@ denselben Server starten.
 ```bash
 python -m akribos.csv_reference \
   --cache-dir .local/references/csv-cache \
-  --output .local/references/elb-csv.xml
+  --output .local/references/elb-csv.xml --require-complete
 ```
 
 Der Import prüft die Prüfsummen, Kapitel- und Versnummern sowie die
@@ -63,6 +63,13 @@ Der Import prüft die Prüfsummen, Kapitel- und Versnummern sowie die
 Nummern. Mehrfachnummern werden vollständig erhalten. Qualifizierte Angaben,
 Textvarianten und nicht unterstützte Unterkennungen bleiben unbestätigt.
 Fußnoten und Bedienoberfläche werden nicht als Bibeltext eingelesen.
+Nummerierte Verse, deren Text nur in einer Fußnote steht, bleiben fehlende
+Vergleichsverse; der Fußnotentext wird nicht als Haupttext übernommen.
+
+`--require-complete` prüft alle 1.189 Kapitel gegen den Kapitelindex dieser
+Ausgabe, einschließlich Joel 1–4 und Maleachi 1–3. Ein unvollständiger Cache
+ersetzt damit keinen vorhandenen Snapshot. Für private Zwischenprüfungen
+während des Abrufs kann der Schalter entfallen.
 
 Die Ausgabe nennt Herausgeber, Herkunftsseiten und deren Prüfsummen.
 Identische Cache-Dateien erzeugen identisches XML. Für spätere Builds genügt
