@@ -3,9 +3,49 @@ from pathlib import Path
 import argparse,gzip,json,re,sys,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from akribos.common import file_hash,require,digest
-from akribos.project import VERSION,EDITION_TITLES,check_sources,cached
+from akribos.project import VERSION,EDITION_TITLES,check_sources,cached,original_notes
 from akribos.importers import parse_xml
-from akribos.xmlio import zef_verses,plain
+from akribos.xmlio import zef_verses,plain,strong_fingerprints
+from akribos.confirm import METHOD,INPUT_PROFILE,NORMALIZATION
+
+
+def verify_release_history(path,link,version):
+    """Validate optional stage selection while preserving historical stage-04 links."""
+    artifact=link.get('artifact','04-multisource.xml')
+    require(artifact in {'04-multisource.xml','05-reference-confirmed.xml'},'Unsupported release artifact')
+    require(version!='1.3' or artifact=='05-reference-confirmed.xml','Version 1.3 must publish confirmed stage 05')
+    require(artifact!='05-reference-confirmed.xml' or version=='1.3','Stage 05 requires version 1.3')
+    history=(ROOT/link['history']).resolve()
+    require(history.is_relative_to(ROOT.resolve()),'Release history escapes repository')
+    require(file_hash(path)==link['sha256']==file_hash(history/artifact),'Release/history mismatch')
+    if artifact=='04-multisource.xml':return artifact
+    manifest=json.loads((history/'manifest.json').read_text(encoding='utf-8'))
+    settings=manifest['settings'].get('reference_confirmation',{})
+    hashes=settings.get('reference_sha256',{})
+    require(set(hashes)=={'elb-bk','elb-csv'} and all(re.fullmatch(r'[a-f0-9]{64}',value) for value in hashes.values()),
+            'Missing reference identities for confirmed release')
+    require(len(set(hashes.values()))==2,'Confirmed release uses identical references')
+    require(settings.get('method')==METHOD and settings.get('input_profile')==INPUT_PROFILE and
+            settings.get('normalization')==NORMALIZATION,'Unknown reference-confirmation profile')
+    report=json.loads((history/'05-reference-confirmed.report.json').read_text(encoding='utf-8'))
+    require(report.get('reference_sha256')==hashes,'Confirmation reference hashes differ from manifest')
+    require(report.get('sha256')==link['sha256'] and report.get('input_sha256')==file_hash(history/'04-multisource.xml'),
+            'Confirmation report input/output mismatch')
+    before=parse_xml(history/'04-multisource.xml');after=parse_xml(path)
+    require({ref:plain(v) for ref,v in zef_verses(before,True)}=={ref:plain(v) for ref,v in zef_verses(after,True)},
+            'Confirmation changed Bible text')
+    require(strong_fingerprints(before)==strong_fingerprints(after),'Confirmation changed Strong attributes')
+    require(original_notes(before)==original_notes(after),'Confirmation changed original notes')
+    hints=lambda tree:sum(note.get('ex')=='nl:akribosStrongUncertainty' for note in tree.iter('NOTE'))
+    require(report.get('hints_before')==hints(before) and report.get('hints_remaining')==hints(after) and
+            report.get('hints_removed')==hints(before)-hints(after),'Confirmation hint counts differ')
+    with gzip.open(history/'05-reference-confirmed.audit.jsonl.gz','rt',encoding='utf-8') as stream:
+        rows=[json.loads(line) for line in stream]
+    require(len(rows)==hints(before),'Incomplete reference-confirmation audit')
+    require(sum(row.get('status')=='confirmed' for row in rows)==report['hints_removed'],'Confirmation audit totals differ')
+    require(all(set(row)=={'ref','hint','target_token_ids','target_strong','status','reason','references'} for row in rows),
+            'Unexpected public confirmation audit fields')
+    return artifact
 
 
 def verify_repository(version=VERSION):
@@ -50,7 +90,7 @@ def verify_repository(version=VERSION):
         require(leftovers==0,'Requested divine-name normalization incomplete')
         link=json.loads(p.with_suffix('.build.json').read_text(encoding='utf-8'))
         require(link['bible_id']==bid and link['version']==version,'Release manifest identity/version mismatch')
-        require(file_hash(p)==link['sha256']==file_hash(ROOT/link['history']/'04-multisource.xml'),'Release/history mismatch')
+        verify_release_history(p,link,version)
         results[bid]={'sha256':file_hash(p),'original_studynotes':notes,'normalized_names':True}
     # Public comparison schema has no reference word/code columns.
     for p in (ROOT/'comparisons').rglob('verse-differences.csv'):

@@ -8,10 +8,11 @@ from .common import require, file_hash, write_json, digest
 from .project import (ROOT,VERSION,source,check_sources,identity,workspace,finalize,cached,
     metadata,load_input,stats,original_notes,prepare_kjv,jsonl_gz,line,csv_write)
 from .modernize import modernize
-from .xmlio import zef_verses,verse_tokens,annotate,plain,write_xml
+from .xmlio import zef_verses,verse_tokens,annotate,plain,write_xml,strong_fingerprints
 from .importers import parse_xml
 from .verify import verify
 from .lexical import key,lexicons,reference_inventory,learn,STOP
+from .confirm import prepare_confirmation,confirm_uncertainty
 
 
 def edit(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=None,rebuild=False,profile=None):
@@ -103,7 +104,36 @@ def additional_fill(tokens,ref,inv,donors,primary,index,origins,lex,review):
         elif candidates:review.append({'ref':ref,'token':t['id'],'kind':'concordance-ambiguity','candidates':sorted(candidates)})
 
 
-def build(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=None,rebuild=False,profile=None,nt_edition=None):
+def reference_confirmation_stage(work,bid,version,confirmation):
+    """Write stage 05 and a deterministic audit without copying reference data."""
+    require(version=='1.3' and confirmation is not None,'Stage 05 requires a complete version 1.3 request')
+    input_path=work/'04-multisource.xml'
+    target=parse_xml(input_path)
+    sources=confirmation['references']
+    result=confirm_uncertainty(target,sources['elb-bk'],sources['elb-csv'])
+    stage='05-reference-confirmed'
+    metadata(result.root,bid,version,stage)
+    output=work/(stage+'.xml');write_xml(output,result.root)
+    serialized=parse_xml(output)
+    require({ref:plain(v) for ref,v in zef_verses(target,True)}==
+            {ref:plain(v) for ref,v in zef_verses(serialized,True)},'Serialized confirmation changed Bible text')
+    require(strong_fingerprints(target)==strong_fingerprints(serialized),'Serialized confirmation changed Strong attributes')
+    require(original_notes(target)==original_notes(serialized),'Serialized confirmation changed original notes')
+    with jsonl_gz(work/(stage+'.audit.jsonl.gz')) as audit:
+        for row in result.audit:line(audit,row)
+    report=result.summary|confirmation['settings']|stats(serialized)|{
+        'input_sha256':file_hash(input_path),'sha256':file_hash(output),
+        'original_notes_preserved':len(original_notes(target)),'text_preserved':True,
+        'strong_attributes_preserved':True}
+    write_json(work/(stage+'.report.json'),report)
+    return report
+
+
+def build(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=None,rebuild=False,profile=None,nt_edition=None,
+          elb_bk=None,elb_csv=None):
+    # This must precede edit(), workspace creation and all release mutations.
+    confirmation=prepare_confirmation(version,elb_bk,elb_csv)
+    artifact='05-reference-confirmed.xml' if confirmation else '04-multisource.xml'
     check_sources()
     edited=edit(edition,version,input_path,bible_id,overrides,rebuild,profile)
     em=json.loads((edited/'manifest.json').read_text(encoding='utf-8'))['settings']
@@ -117,10 +147,11 @@ def build(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=
               'nt_edition':nt_edition,'donors':{s:file_hash(p) for s,p in donor_paths.items()},'kjv_prepared_sha256':file_hash(kjv_path),
               'primary':'elb1905' if edition=='elb' else 'luther1912' if edition=='lut' else None,
               'language_history':str(edited.relative_to(ROOT))}
+    if confirmation:settings['reference_confirmation']=confirmation['settings']
     run=identity('build',settings)
     dest=ROOT/('.local/custom-history' if input_path else 'history')/'build'/bid/version/run
     if cached(dest) and not rebuild:
-        publish(dest,bid,version,bool(input_path));return dest
+        publish(dest,bid,version,bool(input_path),artifact=artifact);return dest
     work=workspace('build',run)
     print(f'build {bid}: loading German witnesses, STEP and lexicons ({nt_edition})',flush=True)
     donors={sid:compact_rows(p) for sid,p in donor_paths.items()}
@@ -175,19 +206,27 @@ def build(edition='elb',version=VERSION,input_path=None,bible_id=None,overrides=
         write_json(work/(stage+'.report.json'),reports[stage])
     with jsonl_gz(work/'review.jsonl.gz') as f:
         for row in review:line(f,row)
+    if confirmation:
+        reports['05-reference-confirmed']=reference_confirmation_stage(work,bid,version,confirmation)
     write_json(work/'report.json',{'bible_id':bid,'version':version,'stages':reports,'review_items':len(review),
-        'warning':'Coverage is not accuracy. Reference verse numbers provisionally aligned. Existing annotations retained; new candidates require review. No BK input used.',
+        'warning':('Coverage is not accuracy. Reference confirmation removes matching uncertainty notes; it never transfers Strong assignments.' if confirmation else
+                   'Coverage is not accuracy. Reference verse numbers provisionally aligned. Existing annotations retained; new candidates require review. No BK input used.'),
         'step_edition':nt_edition,'language_history':str(edited.relative_to(ROOT))})
-    finalize(work,dest,settings);publish(dest,bid,version,bool(input_path))
-    print(bid,reports['04-multisource'],flush=True)
+    finalize(work,dest,settings);publish(dest,bid,version,bool(input_path),artifact=artifact)
+    print(bid,reports[artifact.removesuffix('.xml')],flush=True)
     return dest
 
 
-def publish(dest,bid,version,custom=False):
+def publish(dest,bid,version,custom=False,artifact='04-multisource.xml'):
     # Public filenames stay stable; Git commits/tags identify editorial releases.
     # Immutable run directories still retain all build inputs and intermediate files.
+    require(artifact in {'04-multisource.xml','05-reference-confirmed.xml'},'Unsupported release artifact')
+    require(version!='1.3' or artifact=='05-reference-confirmed.xml','Version 1.3 requires the confirmed stage 05 artifact')
+    require(artifact!='05-reference-confirmed.xml' or version=='1.3','Stage 05 is the version 1.3 release artifact')
     out=ROOT/('.local/custom-releases' if custom else 'releases')
     if custom:out=out/version
     out.mkdir(parents=True,exist_ok=True)
-    shutil.copyfile(dest/'04-multisource.xml',out/(bid+'.xml'))
-    write_json(out/(bid+'.build.json'),{'history':str(dest.relative_to(ROOT)),'bible_id':bid,'version':version,'sha256':file_hash(out/(bid+'.xml'))})
+    shutil.copyfile(dest/artifact,out/(bid+'.xml'))
+    link={'history':str(dest.relative_to(ROOT)),'bible_id':bid,'version':version,'sha256':file_hash(out/(bid+'.xml'))}
+    if artifact!='04-multisource.xml':link['artifact']=artifact
+    write_json(out/(bid+'.build.json'),link)
