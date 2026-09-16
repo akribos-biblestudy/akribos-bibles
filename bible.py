@@ -22,8 +22,8 @@ def main():
         p.add_argument('--rebuild',action='store_true',help='Erneut berechnen und Bytegleichheit des vorhandenen Laufs prüfen')
         if name=='build':
             p.add_argument('--nt-edition',choices=['WH','TR'])
-            p.add_argument('--elb-bk',type=Path,help='Private ELB-BK-Zefania-Referenz für Version 1.3')
-            p.add_argument('--elb-csv',type=Path,help='Private Edition-CSV-Zefania-Referenz für Version 1.3')
+            p.add_argument('--elb-bk',type=Path,help='Private ELB-BK-Zefania-Referenz für Version 1.3/1.4')
+            p.add_argument('--elb-csv',type=Path,help='Private Edition-CSV-Zefania-Referenz für Version 1.3/1.4')
     p=sub.add_parser('repair-kjv',help='Syntaxreparierte KJV als importierbare XML-Datei exportieren')
     p.add_argument('--rebuild',action='store_true',help='Reparatur neu ausführen und Bytegleichheit prüfen')
     p=sub.add_parser('compare')

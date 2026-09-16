@@ -581,13 +581,11 @@ def prepare_confirmation(version, elb_bk=None, elb_csv=None):
     contains hashes and profile names, without private filesystem paths.
     """
     requested = elb_bk is not None or elb_csv is not None
-    if version == '1.4':
-        require(False, 'Version 1.4 requires the separate language-validation stage, which is not available in this command yet')
-    if version != '1.3':
-        require(not requested, '--elb-bk/--elb-csv require --version 1.3')
+    if version not in {'1.3', '1.4'}:
+        require(not requested, '--elb-bk/--elb-csv require --version 1.3 or 1.4')
         return None
     require(elb_bk is not None and elb_csv is not None,
-            'Version 1.3 requires both --elb-bk and --elb-csv reference snapshots')
+            f'Version {version} requires both --elb-bk and --elb-csv reference snapshots')
     paths = {'elb-bk': Path(elb_bk), 'elb-csv': Path(elb_csv)}
     require(paths['elb-bk'].resolve() != paths['elb-csv'].resolve(),
             'Two independent reference snapshots are required')

@@ -276,10 +276,11 @@ class ConfirmationBuildTests(unittest.TestCase):
             self.assertEqual(builder.call_args.kwargs['elb_csv'],self.csv)
             self.assertTrue(builder.call_args.kwargs['rebuild'])
 
-    def test_reference_options_cannot_change_version12_or_claim_version14(self):
+    def test_reference_options_cannot_change_version12_and_14_requires_both(self):
         with self.assertRaises(DataError):prepare_confirmation('1.2',self.bk,self.csv)
-        with self.assertRaisesRegex(DataError,'separate language-validation stage'):
-            prepare_confirmation('1.4',self.bk,self.csv)
+        with self.assertRaisesRegex(DataError,'requires both'):
+            prepare_confirmation('1.4',self.bk,None)
+        self.assertEqual(set(prepare_confirmation('1.4',self.bk,self.csv)['references']),{'elb-bk','elb-csv'})
 
 
 if __name__=='__main__':unittest.main()

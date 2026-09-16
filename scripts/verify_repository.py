@@ -8,14 +8,15 @@ from akribos.importers import parse_xml
 from akribos.xmlio import zef_verses,plain,strong_fingerprints
 from akribos.confirm import (METHOD,INPUT_PROFILE,NORMALIZATION,SAFETY_PROFILE,
                              verify_confirmation_transition,load_confirmation_evidence)
+from akribos.linguistic import (METHOD as LINGUISTIC_METHOD,RULES_VERSION,load_reference_occurrences,
+                                verify_transition,_load_alignment_guards)
 
 
 def verify_release_history(path,link,version):
     """Validate optional stage selection while preserving historical stage-04 links."""
     artifact=link.get('artifact','04-multisource.xml')
-    require(artifact in {'04-multisource.xml','05-reference-confirmed.xml'},'Unsupported release artifact')
-    require(version!='1.3' or artifact=='05-reference-confirmed.xml','Version 1.3 must publish confirmed stage 05')
-    require(artifact!='05-reference-confirmed.xml' or version=='1.3','Stage 05 requires version 1.3')
+    expected={'1.3':'05-reference-confirmed.xml','1.4':'06-linguistic.xml'}.get(version,'04-multisource.xml')
+    require(artifact==expected,f'Version {version} must publish {expected}')
     history=(ROOT/link['history']).resolve()
     require(history.is_relative_to(ROOT.resolve()),'Release history escapes repository')
     require(file_hash(path)==link['sha256']==file_hash(history/artifact),'Release/history mismatch')
@@ -31,9 +32,9 @@ def verify_release_history(path,link,version):
             'Unknown reference-confirmation profile')
     report=json.loads((history/'05-reference-confirmed.report.json').read_text(encoding='utf-8'))
     require(report.get('reference_sha256')==hashes,'Confirmation reference hashes differ from manifest')
-    require(report.get('sha256')==link['sha256'] and report.get('input_sha256')==file_hash(history/'04-multisource.xml'),
+    require(report.get('sha256')==file_hash(history/'05-reference-confirmed.xml') and report.get('input_sha256')==file_hash(history/'04-multisource.xml'),
             'Confirmation report input/output mismatch')
-    before=parse_xml(history/'04-multisource.xml');after=parse_xml(path)
+    before=parse_xml(history/'04-multisource.xml');after=parse_xml(history/'05-reference-confirmed.xml')
     nt_edition=manifest['settings'].get('nt_edition')
     evidence=load_confirmation_evidence(before,history/'source-occurrences.jsonl.gz',
                                         history/'alignment.jsonl.gz',nt_edition=nt_edition)
@@ -51,7 +52,67 @@ def verify_release_history(path,link,version):
     counts=verify_confirmation_transition(before,after,rows,output_identity=(link['bible_id'],version),
                                           safety_evidence=evidence)
     require(all(report.get(key)==value for key,value in counts.items()),'Confirmation audit totals differ')
+    if artifact=='06-linguistic.xml':verify_linguistic_history(history,manifest,link)
     return artifact
+
+
+def verify_linguistic_history(history,manifest,link):
+    """Verify phase identities, all hints, proofs and the exact allowed XML delta."""
+    phase=json.loads((history/'06-linguistic.manifest.json').read_text(encoding='utf-8'))
+    report=json.loads((history/'06-linguistic.report.json').read_text(encoding='utf-8'))
+    settings=manifest['settings'].get('linguistic_validation',{})
+    require(settings.get('method')==phase.get('method')==report.get('method')==LINGUISTIC_METHOD,
+            'Unknown or missing linguistic validation method')
+    require(phase.get('schema')==1 and phase.get('phase')=='06-linguistic','Invalid linguistic phase manifest')
+    require(settings.get('article_corroboration_required') is True and
+            phase.get('article_corroboration_required') is True and
+            report.get('article_corroboration_required') is True,'Release disabled independent article corroboration')
+    require(settings.get('prior_alignment_required') is True,'Release omitted original alignment guards')
+    rules=settings.get('rule_identity',{})
+    require(rules==phase.get('rule_identity')==report.get('rule_identity') and rules.get('version')==RULES_VERSION,
+            'Linguistic rule identities differ')
+    implementation=rules.get('implementation',{})
+    require(set(implementation)=={'linguistic.py','linguistic_rules.py','confirm.py','common.py',
+                                 'importers.py','xmlio.py','project.py'},'Missing linguistic rule dependencies')
+    require(rules.get('sha256')==digest(implementation),'Linguistic rule digest differs')
+    require(all(manifest['implementation'].get('akribos/'+name)==sha for name,sha in implementation.items()),
+            'Linguistic rules differ from archived build implementation')
+    source_snapshot=settings.get('source_snapshot')
+    require(source_snapshot==phase.get('source_snapshot')==report.get('source_snapshot'),
+            'Linguistic source snapshots differ')
+    nt_edition=manifest['settings'].get('nt_edition')
+    require(nt_edition in {'WH','TR'} and phase.get('selected_nt_edition')==nt_edition and
+            report.get('selected_nt_edition')==nt_edition,'Linguistic NT edition mismatch')
+    references,snapshot=load_reference_occurrences(ROOT/'config/step-profiles.json',ROOT,nt_edition)
+    require(snapshot==source_snapshot,'Linguistic source inputs changed')
+    hashes=manifest['settings']['reference_confirmation']['reference_sha256']
+    require(phase.get('article_reference_hashes')==hashes,'Article comparison inputs differ from phase 05')
+    require(set(report.get('article_reference_tree_hashes',{}))==set(hashes),'Missing article comparison identities')
+    require(phase.get('output_identity')==[link['bible_id'],'1.4'],'Wrong linguistic output identity')
+    before_path=history/'05-reference-confirmed.xml';after_path=history/'06-linguistic.xml'
+    audit_path=history/'06-linguistic.audit.jsonl.gz';report_path=history/'06-linguistic.report.json'
+    require(phase.get('outputs')=={'xml':file_hash(after_path),'audit':file_hash(audit_path),'report':file_hash(report_path)},
+            'Linguistic output hashes differ')
+    require(phase.get('input_sha256')==report.get('input_sha256')==file_hash(before_path),
+            'Linguistic input hash mismatch')
+    require(report.get('output_sha256')==file_hash(after_path)==link['sha256'] and
+            report.get('audit_sha256')==file_hash(audit_path),'Linguistic report hashes differ')
+    require(phase.get('alignment_sha256')==file_hash(history/'alignment.jsonl.gz'),'Linguistic alignment hash mismatch')
+    before=parse_xml(before_path);after=parse_xml(after_path)
+    guards=_load_alignment_guards(history/'alignment.jsonl.gz',before)
+    require(report.get('prior_alignment_guard_count')==len(guards),'Linguistic alignment guard count differs')
+    with gzip.open(audit_path,'rt',encoding='utf-8') as stream:rows=[json.loads(line) for line in stream]
+    counts=verify_transition(before,after,rows,references,nt_edition=nt_edition,
+                             verse_guards=guards,output_identity=(link['bible_id'],'1.4'))
+    require(all(report.get(key)==value for key,value in counts.items()),'Linguistic audit balance differs')
+    require(report.get('article_candidates_retained')==sum(r['kind']=='article-addition' and r['action']=='retain' for r in rows),
+            'Linguistic retained article count differs')
+    require(report.get('hints_rejected')==sum(r['kind']=='uncertainty' and r['status']=='reject' for r in rows),
+            'Linguistic rejected hint count differs')
+    require(report.get('text_preserved') is True and report.get('existing_strong_values_preserved') is True and
+            report.get('no_bootstrapping') is True,'Missing linguistic preservation assertions')
+    require(report.get('original_notes_preserved')==len(original_notes(before))==len(original_notes(after)),
+            'Linguistic original note count differs')
 
 
 def verify_repository(version=VERSION):

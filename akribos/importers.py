@@ -63,7 +63,11 @@ def import_reference_tsv(path, source_id, options):
                           'morph_scheme': options.get('morph_scheme', 'source-specific'),
                           'gloss': value('gloss'), 'origin_id': raw_ref,
                           'source': source_id, 'variants': value('variants'),
-                          'edition': edition or options.get('witness', '')})
+                          'edition': edition or options.get('witness', ''),
+                          'word': raw_ref.split('#', 1)[1].split('=', 1)[0] if '#' in raw_ref else '',
+                          'conjoined': value('conjoined'),
+                          'alternate': strongs(value('alternate'), prefix),
+                          'editions_raw': value('editions')})
     require(groups, f'No TSV data matched profile: {path}')
     return [{'ref': ref, 'tokens': toks} for ref, toks in groups.items()]
 

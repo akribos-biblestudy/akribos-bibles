@@ -27,7 +27,8 @@
         "gloss": 3,
         "strong": 4,
         "morph": 5,
-        "variants": 7
+        "variants": 7,
+        "alternate": 9
       }
     }
   },
@@ -59,7 +60,9 @@
         "combined": 3,
         "lemma": 4,
         "editions": 5,
-        "variants": 6
+        "variants": 6,
+        "alternate": 12,
+        "conjoined": 10
       }
     }
   }
