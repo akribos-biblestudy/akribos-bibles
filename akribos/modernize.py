@@ -219,6 +219,22 @@ def divine_name(text, words, i):
             replacement='den HERRN';reason='accusative-reliance-on';review=None
         elif previous=='an' and ('teil' in recent or 'glaubten' in recent):
             replacement='dem HERRN' if 'teil' in recent else 'den HERRN';reason='preposition-an-context';review=None
+    # "dein Gott" names the God of the person being addressed; it does not
+    # address God. Its inflection identifies the name's case even when a
+    # second-person subject immediately precedes it ("bist du Jehova, deinem
+    # Gott"). Other possessive phrases, e.g. "deinen Weg", remain addresses.
+    elif re.match(r'\s*,\s*deinem\s+(?:Gott|Erlöser|Erbarmer|Herrn)\b',right,re.I):
+        replacement='dem HERRN';reason='dative-second-person-title';review=None
+    elif re.match(r'\s*,\s*deinen\s+(?:Gott|Erlöser|Erbarmer|Herrn)\b',right,re.I):
+        replacement='den HERRN';reason='accusative-second-person-title';review=None
+    elif re.match(r'\s*,\s*dein\s+(?:Gott|Erlöser|Erbarmer|Herr)\b',right,re.I):
+        replacement='der HERR';reason='nominative-second-person-title';review=None
+    # In a reporting clause, the following "du" belongs to the quotation:
+    # "spricht Jehova, du wirst ...", not an address to the divine name.
+    elif previous in NOM_BEFORE and not (set(recent[:-1])&HUMAN_SUBJECTS):
+        replacement='der HERR';reason='subject-after-speech-verb';review=None
+    elif re.search(r'\b(?:vergeltet\s+ihr|vergelten\s+wir)(?:\s+(?:es|also|so|nun|heute))*\s*$',clause,re.I):
+        replacement='dem HERRN';reason='dative-vergelten-with-explicit-subject';review=None
     elif previous in {'o','ach'} or re.search(r'\bdu\s*,?\s*$',left,re.I):
         replacement='HERR';reason='direct-address';review=None
     elif re.search(r'\bich\s*,\s*$',left,re.I):
@@ -249,8 +265,6 @@ def divine_name(text, words, i):
         replacement='den HERRN';reason='accusative-attested-verb';review=None
     elif previous and ACC_VERBS.fullmatch(spelling_key(previous)):
         replacement='den HERRN';reason='accusative-verb';review=None
-    elif previous in NOM_BEFORE and not (set(recent[:-1])&HUMAN_SUBJECTS):
-        replacement='der HERR';reason='subject-after-speech-verb';review=None
     elif previous in SUBJECT_AUX and not (set(recent[:-1])&HUMAN_SUBJECTS):
         replacement='der HERR';reason='subject-after-auxiliary';review=None
     elif previous in SUBORDINATORS and not (set(following[:3])&{'ich','du','wir'}) and (previous!='wie' or set(following)&FINITE_AFTER):
