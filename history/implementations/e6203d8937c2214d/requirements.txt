@@ -1,0 +1,1 @@
+simplemma==2.0.0 --hash=sha256:db33b15f5aed6485a748ce34d1f510ca760af2633289ab9a8493e2afa785c352

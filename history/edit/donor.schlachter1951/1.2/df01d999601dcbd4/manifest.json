@@ -1,0 +1,39 @@
+{
+  "settings": {
+    "edition": "schlachter1951",
+    "bible_id": "donor.schlachter1951",
+    "version": "1.2",
+    "input_sha256": "39920ae6f3101476994e6b8057c26d77daf5785a546924926ddf2c6446b58985",
+    "profile": "generic",
+    "overrides_sha256": null
+  },
+  "implementation": {
+    "akribos/__init__.py": "ffb3a541d6d590ae2369dd022dda48d20ad3fb31006feaa01661f9985cc35e20",
+    "akribos/common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+    "akribos/compare.py": "0487ddc39bce4c09f0007bd23226df84e775a197898f2a62fd5abf6ca5ce0f9e",
+    "akribos/importers.py": "7115c6e77de6b2452247332678fc6abaedff2e2861a850957cdb189c72d42f74",
+    "akribos/kautz.py": "e2e53bab82e63e7124e08e0e6baf6da5027545f75b51c9a0eca0de20112edd18",
+    "akribos/lexical.py": "98e3cdef4701c2a2bf8732ce99889cf08e9d44713716732aabfc14a001d381cb",
+    "akribos/modernize.py": "3ecf88b9e6cda5416ac66258c1f6a4a85a817baaac467491e4fbb4f134917d29",
+    "akribos/pipeline.py": "4a263df9f8f92325f3a334d5a6696eadc70e5c283e08febd843d8da0e5845532",
+    "akribos/project.py": "1fc827632aa8fa8f0de0ee6af62d468bcc180560f6801a7d97f87ed3f02b68dc",
+    "akribos/verify.py": "7abc5bb8854a0ee2a38a66e8f17d6c2441a22a610dfe6550900a6496a0a62d70",
+    "akribos/xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+    "rules/de-strong.seed.json": "ac79e7afed3762546ae9f7f86da4009d85533459608f0c8337a09dc4ef5dbc15",
+    "rules/orthography.json": "edc8837342f0bc34132eb79b2f25d3bd75fbccf9400fb913efc1e3ea779f4ede",
+    "rules/overrides.example.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "config/sources.lock.json": "8ba0176cc2a201f534740c1214d69caf2587c6acd9b01f6220f8e72c6c8b07e4",
+    "config/step-profiles.json": "135d4644f2652b50726704475e8bbe0fb8578e0f603c4064b87fe6db50fe5d44",
+    "requirements.txt": "d68a9528e8cafb502411066094db593ec87bb6c5a44cd5b492db535fb8db0f46"
+  },
+  "files": {
+    "00-import.xml": "658d1b316558bbb01222306b7e559194fc065efa67ddef1e5ba0bc9f591470df",
+    "01-language.changes.csv": "0704d3ac99f3c470901fd5fe68c9bd7ca7007ba34734a790a9513fd78ce27c4a",
+    "01-language.offset-map.jsonl": "621835015a448a98bd78aac61cf883e570ff4580490311f0d6337c73953a4837",
+    "01-language.report.json": "51e5957f0bed60a09833fb8d514f5d67eb88e3ec4f02849259db6ac4682f967b",
+    "01-language.review.csv": "0bc355ae1aa4f6caacf02556af1bd572b482e1a62a9dec47f82f352c4bf8f2de",
+    "01-language.xml": "775d4552ac5fb72d566ffef56c47021b07005af87f202b2cff6900148cc13018",
+    "coverage.json": "a67bae0e0032b7cf8a2f96b37d136718ec209e1f304a0ea8cd23616be884c629",
+    "verification.json": "1c96e4e8d7400ad541d157e972027c8d5e717d856f779c47f6414c9dbdaf911d"
+  }
+}

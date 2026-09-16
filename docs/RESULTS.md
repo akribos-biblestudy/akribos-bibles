@@ -1,0 +1,34 @@
+# Messergebnisse – Akribos Version 1.2
+
+Vollständiger Skriptlauf vom 16. September 2026 nach der [Artikel-/Kasuskorrektur](DIVINE-NAME-CORRECTION.md). Die endgültigen Dateien sind in `releases/` mit dem jeweiligen Laufordner verknüpft.
+
+## Aufbau aus Originalen
+
+| Stufe | ELB | Luther |
+|---|---:|---:|
+| Vorhandene/übertragene Ausgangszuordnungen | 43,29 % | 50,24 % |
+| Nach Lexika | 44,14 % | 50,40 % |
+| Nach weiteren Übersetzungen und Konkordanz | 50,43 % | 56,13 % |
+
+ELB: **367.044 von 727.791** Worttokens kodiert. Luther: **391.844 von 698.111**. Die Nenner beziehen sich auf die sprachlich bearbeiteten Ausgaben. Eingefügte Artikel können Wortzahlen und damit die Quote ändern. Die Korrektur der ELB1905-Sprachfassung verändert auch deren Strong-Übertragung als Spender für Luther; der Luther-Wortlaut bleibt gleich.
+
+## Sprache, Notizen und offene Prüfung
+
+| Merkmal | ELB | Luther |
+|---|---:|---:|
+| Protokollierte Textänderungen | 14980 | 8509 |
+| Geänderte Verse/Überschriften | 10727 | 6689 |
+| Vollständig erhaltene Originalnotizen | 9481 | 0 |
+| Sprachliche Prüfaufgaben | 1253 | 797 |
+
+Die ELB-Quelle enthält **9.481 Studynotes**, Luther in diesem Quell-Snapshot keine. Die Null bei Luther ist keine Löschung von Notizen. Alle vorhandenen Notiz-Unterbäume wurden vor/nach Bearbeitung und nach XML-Serialisierung verglichen.
+
+Offen sind insbesondere **441 ELB-Vorkommen mit nicht eindeutig regelbasiert bestimmtem Kasus/Artikel des Gottesnamens**, gegenüber zuvor 1.289. Die Ausgabe setzt dort HERR und dokumentiert den Kontext in der Sprachprüfliste; nicht jeder Satz ist damit bereits grammatisch fertig. In 1. Samuel sind alle 322 Vorkommen klassifiziert. Weitere Aufgaben betreffen Genus-/Pronomenbezüge bei Frau und kontextabhängige Rechtschreibung. Sichere Präpositionsfälle wie „zu Jehova“ wurden zu „zu dem HERRN“ angepasst.
+
+Die 29 automatisierten Tests prüfen unter anderem die Jehova-/HERR-Korrektur an Originalversen und Gegenbeispielen, Präpositionskasus, Frau-Kongruenz, HErr-Großschreibung, Notiz-/Formatierungserhalt, Strong-Mehrfachnummern, Mehrdeutigkeiten, XML-Sicherheit, OSIS-Container/Meilensteine sowie Nenner und Datenschutz des Vergleichs. Zusätzlich werden die versionierten Metadaten, das Überschreiben der festen Ergebnisdateien bei unveränderter Laufhistorie und die KJV-Reparatur einschließlich Änderungsprotokoll geprüft. Die vollständige Wiederholbarkeitsprüfung wird in `docs/verification.json` dokumentiert.
+
+## Grenzen der Lexikonstufe
+
+Kautz: 5.489 klassische Einträge eingelesen, 5.373 mit nutzbaren primären Bedeutungsüberschriften, 6.056 gewonnene Formulierungen. 216 Anhangeinträge außerhalb des klassischen Strong-Bereichs werden nicht als reguläre Codes verwendet. Wortfamilien und zitierte Bibelstellen werden nicht als zusätzliche Bedeutungen des jeweiligen Eintrags behandelt.
+
+Das hebräisch-deutsche Lexikon liefert 3.557 kurze Definitionsformulierungen. Seine deutsche Fassung ist ein maschineller Entwurf. Die Lemmakandidaten und die STEP-Morphologie sind Prüfmaterial; eine eindeutige Ausrichtung jedes deutschen Wortes auf ein bestimmtes Urtextvorkommen ist damit noch nicht erreicht. Die KJV wird als zusätzliche Versbestätigung aufgeführt und nicht als verdeckte englisch-deutsche Wortübersetzung behandelt.

@@ -1,0 +1,57 @@
+{
+  "bible_id": "akribos.elb",
+  "version": "1.2",
+  "stages": {
+    "02-baseline": {
+      "verses": 31170,
+      "words": 727791,
+      "tagged_words": 315046,
+      "word_coverage_percent": 43.288,
+      "studynotes": 9481,
+      "word_hints": 0,
+      "sha256": "0848ef5f0be53544a2a8ae6b4d3266a04f715efdbdc77f3f7c6bede0a9986372",
+      "methods": {
+        "baseline-transfer": 315046
+      },
+      "original_notes_preserved": 9481,
+      "text_preserved": true
+    },
+    "03-lexicon": {
+      "verses": 31170,
+      "words": 727791,
+      "tagged_words": 321278,
+      "word_coverage_percent": 44.1443,
+      "studynotes": 9481,
+      "word_hints": 6232,
+      "sha256": "e0c0a30b4641c4ffab4428dc5eb941e4800dde0a07c37fbeb187b528c041680f",
+      "methods": {
+        "baseline-transfer": 315046,
+        "lexicon": 6232
+      },
+      "original_notes_preserved": 9481,
+      "text_preserved": true
+    },
+    "04-multisource": {
+      "verses": 31170,
+      "words": 727791,
+      "tagged_words": 367044,
+      "word_coverage_percent": 50.4326,
+      "studynotes": 9481,
+      "word_hints": 51998,
+      "sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "methods": {
+        "baseline-transfer": 315046,
+        "other-translation": 28880,
+        "verse-consensus": 1907,
+        "concordance": 14979,
+        "lexicon": 6232
+      },
+      "original_notes_preserved": 9481,
+      "text_preserved": true
+    }
+  },
+  "review_items": 22675,
+  "warning": "Coverage is not accuracy. Reference verse numbers provisionally aligned. Existing annotations retained; new candidates require review. No BK input used.",
+  "step_edition": "WH",
+  "language_history": "history/edit/akribos.elb/1.2/01bd45d3ce55e640"
+}

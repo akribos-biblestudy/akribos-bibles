@@ -1,0 +1,39 @@
+{
+  "settings": {
+    "edition": "lut",
+    "bible_id": "akribos.lut",
+    "version": "1.2",
+    "input_sha256": "cfa85f9c33b7a6ed039ed62a0978b77c5d4175567176ebdbc29378df76a706ff",
+    "profile": "lut",
+    "overrides_sha256": null
+  },
+  "implementation": {
+    "akribos/__init__.py": "ffb3a541d6d590ae2369dd022dda48d20ad3fb31006feaa01661f9985cc35e20",
+    "akribos/common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+    "akribos/compare.py": "0487ddc39bce4c09f0007bd23226df84e775a197898f2a62fd5abf6ca5ce0f9e",
+    "akribos/importers.py": "7115c6e77de6b2452247332678fc6abaedff2e2861a850957cdb189c72d42f74",
+    "akribos/kautz.py": "e2e53bab82e63e7124e08e0e6baf6da5027545f75b51c9a0eca0de20112edd18",
+    "akribos/lexical.py": "98e3cdef4701c2a2bf8732ce99889cf08e9d44713716732aabfc14a001d381cb",
+    "akribos/modernize.py": "3ecf88b9e6cda5416ac66258c1f6a4a85a817baaac467491e4fbb4f134917d29",
+    "akribos/pipeline.py": "4a263df9f8f92325f3a334d5a6696eadc70e5c283e08febd843d8da0e5845532",
+    "akribos/project.py": "1fc827632aa8fa8f0de0ee6af62d468bcc180560f6801a7d97f87ed3f02b68dc",
+    "akribos/verify.py": "7abc5bb8854a0ee2a38a66e8f17d6c2441a22a610dfe6550900a6496a0a62d70",
+    "akribos/xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+    "rules/de-strong.seed.json": "ac79e7afed3762546ae9f7f86da4009d85533459608f0c8337a09dc4ef5dbc15",
+    "rules/orthography.json": "edc8837342f0bc34132eb79b2f25d3bd75fbccf9400fb913efc1e3ea779f4ede",
+    "rules/overrides.example.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "config/sources.lock.json": "8ba0176cc2a201f534740c1214d69caf2587c6acd9b01f6220f8e72c6c8b07e4",
+    "config/step-profiles.json": "135d4644f2652b50726704475e8bbe0fb8578e0f603c4064b87fe6db50fe5d44",
+    "requirements.txt": "d68a9528e8cafb502411066094db593ec87bb6c5a44cd5b492db535fb8db0f46"
+  },
+  "files": {
+    "00-import.xml": "74210ce3de711977597796fd45e2f515c457284ace69e8b13773e17c2431039f",
+    "01-language.changes.csv": "9d5fbfd39f85b4584f8c1cf2970a378b27c3d70a56b3a8be8176aba870adef35",
+    "01-language.offset-map.jsonl": "947a47d132280cd20c2e2fa026dc5df077671879c5dc7063d620e407e78b11a7",
+    "01-language.report.json": "34877ce7fb67e8c18bb2f3912085fef5472482834dd03ad83247811baf60844e",
+    "01-language.review.csv": "9fcb71f554a501f4933acb1f74a02537e47f9c7846efefb424b940b2b20bdb66",
+    "01-language.xml": "13b96b797ece5e37d8ffb61859b674c2faa3da45459fa305e91347b83f68c50c",
+    "coverage.json": "808ba6964eadfafe382a92981939117a1a64cf79954c1efc03a4960508c7e99b",
+    "verification.json": "bdf81e9f2c768d3e13fb78c37576965224c762edf9dc87d05762562d25782e3d"
+  }
+}
