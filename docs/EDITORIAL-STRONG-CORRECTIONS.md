@@ -1,9 +1,11 @@
 # Positionsgesicherte Strong-Korrekturen
 
 Der Katalog [editorial-strong-corrections.json](../rules/editorial-strong-corrections.json)
-enthält **41 geprüfte Regeln**: 24 betreffen Zuordnungen, die in Version 1.2
+enthält **43 geprüfte Regeln**: 24 betreffen Zuordnungen, die in Version 1.2
 noch einen eigenen Unsicherheitshinweis trugen, 17 geerbte Zuordnungen ohne
-diesen Hinweis. Das sind Katalogzahlen, keine Aussage über einen späteren
+diesen Hinweis. Zwei weitere betreffen neue Codes aus dem vollständigen
+1.4-Probeaufbau und sind ausdrücklich an dessen Eingang gebunden. Das sind
+Katalogzahlen, keine Aussage über einen späteren
 Release-Lauf. Welche Regeln tatsächlich greifen, weist dessen Audit aus.
 
 ## Bindung und erlaubte Änderungen
@@ -13,7 +15,7 @@ den SHA-256 des vollständigen eigenen Verstexts, Wort-ID, Wortlaut, Offsets,
 den exakten alten Codesatz und den ursprünglichen XML-Bereich ohne Tail.
 Zusätzlich müssen die für die jeweilige Regel benannten originalen
 Quelldateihashes und die geordnete Quellprojektion des ganzen Verses
-übereinstimmen: für NT-Regeln die beiden TAGNT-Dateien, für die vier
+übereinstimmen: für NT-Regeln die beiden TAGNT-Dateien, für die sechs
 OT-Regeln ausschließlich `TAHOT_Gen-Deu.tsv`. Die ausgewählte NT-Ausgabe
 bleibt Teil des Zielprofils; die OT-Projektion bindet ihre tatsächlichen
 L/Q-Wortvorkommen einschließlich der konkreten `=L`-Kennungen. Die Projektion umfasst
@@ -52,10 +54,31 @@ eine dort fehlende Nummer wird nicht neu ergänzt. Beide Muster sind für ELB un
 an Wortposition, Text und tatsächliche TAHOT-Vorkommen gebunden; andere
 Verwendungen von H834/H259 werden dadurch nicht verändert.
 
+### Zwei Fehlübertragungen aus dem 1.4-Neuaufbau
+
+In ELB 5. Mose 32,6 gehört קנך/H7069 (Quellwort 12) zum späteren
+`der dich erkauft hat`. Das frühere `also` gibt zusammen mit `Vergeltet ihr`
+תגמלו זאת (03–04) wieder. Der nach der Artikelkorrektur längere Abgleich
+hat `also/H7069` erstmals in Stufe 04 des Neuaufbaus erzeugt. Nur diese
+Verlinkung entfällt; das bisher ungetaggte `erkauft` bleibt ungetaggt.
+
+In Luther 5. Mose 21,10 gehört תצא/H3318 (02) zum bereits richtig
+verlinkten `ziehst`. Das folgende `und` leitet dagegen den Satz `der HERR ...
+gibt` ein und gehört zu ונתנו (06). Die neue Zuordnung `und/H3318` wird
+entfernt. Der dort zuvor stehende Code H7617 wird nicht wiederhergestellt:
+ושבית/H7617 (10) gehört zum späteren `wegführst`. Der Unsicherheitshinweis
+an `und` bestand schon in 1.2, der jetzt korrigierte Codesatz erst in 1.4.
+
+Diese Regeln sind keine allgemeine Behandlung von Konjunktionen oder
+Pronomen. Insbesondere bleibt Luther 5. Mose 8,5 `dich/H3256` samt Hinweis
+unverändert: מיסרך enthält ein echtes Objektsuffix (`H9031`, `Sp2ms`) und
+begründet die deutsche Mehrwortwiedergabe `dich gezogen`.
+
 ## Registrierte Stellen
 
 `∅` bedeutet: die aufgeführte Verlinkung entfernen. `markiert` und `geerbt`
-beziehen sich auf den geprüften Ausgangsstand 1.2.
+beziehen sich auf den geprüften Ausgangsstand 1.2; `Neuaufbau 1.4` benennt
+die zwei gesondert geprüften neuen Codesätze.
 
 | Ausgabe | Stelle / Wort-ID | Wort | Vorher → nachher | Ursprung |
 |---|---|---|---|---|
@@ -100,6 +123,8 @@ beziehen sich auf den geprüften Ausgangsstand 1.2.
 | ELB / WH | Gen.19.21 / d015 | dass | H834 → ∅ | geerbt |
 | LUT / TR | Exod.33.5 / d014 | ein | H259 → ∅ | markiert |
 | LUT / TR | Gen.19.21 / d015 | dass | H834 → ∅ | markiert |
+| ELB / WH | Deut.32.6 / d003 | also | H7069 → ∅ | Neuaufbau 1.4, markiert |
+| LUT / TR | Deut.21.10 / d010 | und | H3318 → ∅ | Neuaufbau 1.4, markiert |
 
 Die ausführliche Begründung und die konkreten STEP-Wörter stehen pro Regel
 im Katalog. Bewusst nicht geändert werden ELB Apostelgeschichte 1,2
@@ -126,7 +151,13 @@ abgelehnt, auch wenn äußere Datei- und Manifesthashes neu berechnet wurden.
 Katalogdatei und Regelmodul gehören zur gehashten Implementierungsidentität.
 
 Der Bericht trennt `editorial_corrections_marked` und
-`editorial_corrections_inherited` nach dem ursprünglichen Katalogbefund.
+`editorial_corrections_inherited` nach dem jeweiligen Katalogbefund.
+Unabhängig davon trennen `editorial_corrections_baseline` und
+`editorial_corrections_rebuild` die 41 älteren von den zwei neu entstandenen
+Codesätzen. Beide Zählerpaare summieren sich jeweils zu
+`editorial_corrections`; sie dürfen nicht miteinander addiert werden.
+`reviewed_input_version` steht geschlossen als `1.2` oder `1.4` in Katalog
+und Audit und wird beim Replay erneut an die konkrete Regel gebunden.
 `editorial_hints_removed` zählt die tatsächlich noch vorhandenen entfernten
 Hinweise; eine vorherige Bestätigung in Stufe 05 kann diese Zahl verringern.
 `editorial_not_applicable` zählt zurückgestellte Regeln. Alle übrigen
@@ -147,7 +178,8 @@ Codesatz-/Spannenbindung nicht mehr und werden als nicht anwendbar protokolliert
   [Projekt und Attribution](https://github.com/STEPBible/STEPBible-Data),
   [Lizenz](https://creativecommons.org/licenses/by/4.0/).
 - Zielpositionen und redaktionelle Entscheidungen: Akribos, **CC BY 4.0**.
-  Die eigenen Testausschnitte stammen aus den veröffentlichten Akribos-1.2-Ausgaben;
+  Die eigenen Testausschnitte stammen aus den veröffentlichten Akribos-1.2-Ausgaben
+  und dem ausdrücklich getrennten eigenen 1.4-Probeaufbau;
   Grundtexte sind Elberfelder 1932 beziehungsweise Luther 1912.
 - Private BK-/CSV-Referenztexte und deren Wortpositionen werden weder im
   Katalog noch in den Testausschnitten übernommen.

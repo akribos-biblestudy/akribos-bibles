@@ -31,6 +31,7 @@ def main(argv=None):
     print(json.dumps({key:result.summary[key] for key in ('hints_before','hints_removed',
                      'hints_remaining','hints_rejected','article_tags_added','article_candidates_retained',
                      'editorial_corrections','editorial_corrections_marked','editorial_corrections_inherited',
+                     'editorial_corrections_baseline','editorial_corrections_rebuild',
                      'editorial_hints_removed','editorial_not_applicable')},
                      ensure_ascii=False,indent=2))
     return 0

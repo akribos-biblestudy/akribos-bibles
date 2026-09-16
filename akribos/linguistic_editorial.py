@@ -51,6 +51,7 @@ def load_catalog():
         require(rule['action'] == ('replace-strong' if rule['after_strong'] else 'unwrap-strong-span'),
                 'Editorial operation and replacement differ')
         require(rule['annotation_origin'] in {'uncertain','inherited'}, 'Unknown editorial annotation origin')
+        require(rule['reviewed_input_version'] in {'1.2','1.4'}, 'Unknown editorial reviewed input version')
         is_ot = BOOKS.index(rule['ref'].split('.')[0]) < 39
         require(set(rule['source_files']) == (OT_FILES if is_ot else NT_FILES),
                 'Editorial rule uses unrelated source files')
@@ -81,7 +82,8 @@ def decide(rule, view, source, *, nt_edition, source_metadata, source_files, hin
            'target_text':token['text'] if token else None,
            'target_start':token['start'] if token else None,'target_end':token['end'] if token else None,
            'before_strong':before,'after_strong':before,'proposed_strong':rule['after_strong'],
-           'annotation_origin':rule['annotation_origin'],'hint_id':None,
+           'annotation_origin':rule['annotation_origin'],
+           'reviewed_input_version':rule['reviewed_input_version'],'hint_id':None,
            'status':'not-applicable','action':'retain','reason':None,
            'rule_version':rule_version,'proof':proof}
     reason = None; hint = None
@@ -110,7 +112,8 @@ def decide(rule, view, source, *, nt_edition, source_metadata, source_files, hin
 
 def validate_audit(row, rule_version):
     fields = {'kind','rule_id','bible_id','nt_edition','ref','target_token','target_text','target_start',
-              'target_end','before_strong','after_strong','proposed_strong','annotation_origin','hint_id',
+              'target_end','before_strong','after_strong','proposed_strong','annotation_origin',
+              'reviewed_input_version','hint_id',
               'status','action','reason','rule_version','proof'}
     require(type(row) is dict and set(row) == fields, 'Unexpected public editorial audit fields')
     require(row['kind'] == 'editorial-correction' and row['rule_version'] == rule_version,
@@ -122,6 +125,8 @@ def validate_audit(row, rule_version):
             re.fullmatch(r'd\d{3,}',row['target_token']) and
             row['rule_id'] == f"{row['bible_id']}:{row['ref']}:{row['target_token']}" and
             row['annotation_origin'] in {'uncertain','inherited'}, 'Invalid editorial audit location')
+    require(type(row['reviewed_input_version']) is str and row['reviewed_input_version'] in {'1.2','1.4'},
+            'Invalid editorial reviewed input version')
     require(row['hint_id'] is None or (type(row['hint_id']) is str and
             re.fullmatch(r'u\d{6,}',row['hint_id'])), 'Invalid editorial uncertainty identifier')
     require(row['target_text'] is None or type(row['target_text']) is str, 'Invalid editorial target text')

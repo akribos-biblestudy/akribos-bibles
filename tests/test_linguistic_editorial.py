@@ -1,4 +1,4 @@
-"""Fixed public 1.2 excerpts: tests remain stable when release files advance."""
+"""Fixed own 1.2 and 1.4 excerpts remain stable when release files advance."""
 import copy
 import contextlib
 import gzip
@@ -30,6 +30,18 @@ class EditorialTests(unittest.TestCase):
                      for bid in ('akribos.elb','akribos.lut')}
         cls.metadata = {'files':[{'path':path,'sha256':sha}
                                 for path,sha in cls.catalog['source_files'].items()]}
+        # Load the positive suffix counterexample from actual pinned Hebrew rows.
+        relative='sources/originals/TAHOT_Gen-Deu.tsv'
+        assert file_hash(ROOT/relative)==cls.catalog['source_files'][relative]
+        profiles=json.loads((ROOT/'config/step-profiles.json').read_text())
+        profile=next(p for p in profiles if p['id']=='tahot')
+        with tempfile.TemporaryDirectory() as directory:
+            temporary=Path(directory);target=temporary/relative;target.parent.mkdir(parents=True)
+            with (ROOT/relative).open(encoding='utf-8-sig') as stream,target.open('w',encoding='utf-8') as out:
+                for line in stream:
+                    if line.startswith('Deu.8.5#'):out.write(line)
+            path=temporary/'profiles.json';path.write_text(json.dumps([dict(profile,paths=[relative])]))
+            cls.suffix_source,_=load_reference_occurrences(path,temporary,'TR')
 
     def input(self, bid='akribos.elb'):
         return copy.deepcopy(self.roots[bid]), {r['ref']:copy.deepcopy(r['source_projection'])
@@ -42,6 +54,13 @@ class EditorialTests(unittest.TestCase):
     def replay(self, root, result, source, nt='WH', metadata=None):
         return verify_transition(root,result.root,result.audit,source,nt_edition=nt,
                                  source_metadata=self.metadata if metadata is None else metadata)
+
+    def rebuilt_input(self, bid):
+        root=parse_xml(ROOT/'tests/fixtures'/f'{bid}.editorial-input-1.4.xml')
+        source={r['ref']:copy.deepcopy(r['source_projection']) for r in self.catalog['rules']
+                if r['bible_id']==bid and r['reviewed_input_version']=='1.4'}
+        if bid=='akribos.lut':source.update(copy.deepcopy(self.suffix_source))
+        return root,source
 
     def test_all_reviewed_edits_and_only_these_change(self):
         counts=[]
@@ -81,6 +100,81 @@ class EditorialTests(unittest.TestCase):
         self.assertEqual(sum(x['editorial_corrections_marked'] for x in counts),24)
         self.assertEqual(sum(x['editorial_corrections_inherited'] for x in counts),17)
         self.assertEqual(sum(x['editorial_hints_removed'] for x in counts),24)
+        self.assertEqual(sum(x['editorial_corrections_baseline'] for x in counts),41)
+        self.assertEqual(sum(x['editorial_corrections_rebuild'] for x in counts),0)
+
+    def test_new_rebuild_transfers_are_corrected_separately_and_exactly(self):
+        for bid,nt,ref,token in [('akribos.elb','WH','Deut.32.6','d003'),
+                                  ('akribos.lut','TR','Deut.21.10','d010')]:
+            root,source=self.rebuilt_input(bid);result=self.validate(root,source,nt)
+            old={r:_Verse(v,r) for r,v in zef_verses(root)}
+            new={r:_Verse(v,r) for r,v in zef_verses(result.root)}
+            row=next(r for r in result.audit if r.get('rule_id')==f'{bid}:{ref}:{token}')
+            self.assertEqual(row['status'],'applied');self.assertEqual(row['after_strong'],[])
+            self.assertEqual(row['annotation_origin'],'uncertain')
+            self.assertEqual(row['reviewed_input_version'],'1.4')
+            self.assertIsNotNone(row['hint_id'])
+            for key,value in [('editorial_corrections',1),('editorial_corrections_marked',1),
+                              ('editorial_corrections_baseline',0),('editorial_corrections_rebuild',1),
+                              ('editorial_corrections_inherited',0),('editorial_hints_removed',1)]:
+                self.assertEqual(result.summary[key],value)
+            for rr,view in old.items():
+                self.assertEqual(view.text,new[rr].text)
+                for span in view.spans:
+                    matches=[s for s in new[rr].spans if (s.start,s.end)==(span.start,span.end)]
+                    if rr==ref and span.start==row['target_start']:self.assertEqual(matches,[])
+                    else:
+                        self.assertEqual(len(matches),1)
+                        self.assertEqual(_span_signature(span.element),_span_signature(matches[0].element))
+            self.assertEqual(_preserved_notes(root),_preserved_notes(result.root))
+            # ELB erkauft has no code to preserve or supply; LUT ziehst already does.
+            word='erkauft' if bid=='akribos.elb' else 'ziehst'
+            for view in (old[ref],new[ref]):
+                target=next(t for t in view.tokens if t['text']==word)
+                spans=[s for s in view.spans if s.start<=target['start'] and s.end>=target['end']]
+                self.assertEqual([s.codes for s in spans],[] if bid=='akribos.elb' else [('H3318',)])
+            if bid=='akribos.lut':
+                self.assertFalse(any(s.start==row['target_start'] and 'H7617' in s.codes for s in new[ref].spans))
+            self.replay(root,result,source,nt)
+            second=self.validate(result.root,source,nt)
+            self.assertEqual(ET.tostring(result.root),ET.tostring(second.root))
+            self.assertEqual(second.summary['editorial_corrections_rebuild'],0)
+            self.replay(result.root,second,source,nt)
+
+    def test_true_hebrew_object_suffix_remains_linked_and_open(self):
+        root,source=self.rebuilt_input('akribos.lut')
+        suffix=[s for s in source['Deut.8.5'] if 'H3256' in s['strong'] and 'H9031' in s['strong']]
+        self.assertEqual(len(suffix),1);self.assertIn('/Sp2ms',suffix[0]['morph'])
+        self.assertEqual(suffix[0]['origin_id'],'Deu.8.5#12=L')
+        result=self.validate(root,source,'TR')
+        self.assertEqual(ET.tostring(dict(zef_verses(root))['Deut.8.5']),
+                         ET.tostring(dict(zef_verses(result.root))['Deut.8.5']))
+        view=_Verse(dict(zef_verses(result.root))['Deut.8.5'],'Deut.8.5')
+        token=next(t for t in view.tokens if t['text']=='dich')
+        span=next(s for s in view.spans if s.start==token['start'])
+        self.assertEqual(span.codes,('H3256',))
+        self.assertTrue(any(view.hint_span(hint)[0] is span for hint in view.hints))
+        row=next(r for r in result.audit if r['kind']=='uncertainty' and r['ref']=='Deut.8.5'
+                 and r['target_tokens']==[token['id']])
+        self.assertEqual(row['status'],'review');self.assertEqual(row['action'],'retain')
+        self.replay(root,result,source,'TR')
+
+    def test_new_rules_reject_old_code_text_and_changed_source_bindings(self):
+        for bid,nt,ref,token in [('akribos.elb','WH','Deut.32.6','d003'),
+                                  ('akribos.lut','TR','Deut.21.10','d010')]:
+            for change in ('source','code','text','span'):
+                root,source=self.rebuilt_input(bid);verse=dict(zef_verses(root))[ref]
+                view=_Verse(verse,ref);target=next(t for t in view.tokens if t['id']==token)
+                span=next(s.element for s in view.spans if s.start==target['start'])
+                if change=='source':source[ref][0]['origin_id']=source[ref][0]['origin_id'].replace('=L','=Q')
+                elif change=='code':span.set('str','7617' if bid=='akribos.lut' else '2063')
+                elif change=='text':verse.text=(verse.text or '')+'anders '
+                else:span.set('custom','changed')
+                result=self.validate(root,source,nt)
+                row=next(r for r in result.audit if r.get('rule_id')==f'{bid}:{ref}:{token}')
+                self.assertEqual(row['status'],'not-applicable')
+                self.assertEqual(ET.tostring(root),ET.tostring(result.root))
+                self.replay(root,result,source,nt)
 
     def test_idempotent_and_no_post_correction_bootstrap(self):
         for bid,nt in [('akribos.elb','WH'),('akribos.lut','TR')]:
@@ -109,7 +203,8 @@ class EditorialTests(unittest.TestCase):
              ('WH',{'files':[dict(row,sha256='0'*64) for row in self.metadata['files']]},'source-file-identity-mismatch')]:
             root,source=self.input();result=self.validate(root,source,nt,metadata)
             self.assertEqual(ET.tostring(root),ET.tostring(result.root))
-            self.assertTrue(all(r['reason']==reason for r in result.audit if r['kind']=='editorial-correction'))
+            self.assertTrue(all(r['reason'] in {reason,'missing-target-verse'}
+                                for r in result.audit if r['kind']=='editorial-correction'))
             self.replay(root,result,source,nt,metadata)
 
     def test_exact_target_token_span_text_and_codes_are_required(self):
@@ -219,6 +314,8 @@ class EditorialTests(unittest.TestCase):
         self.assertEqual(report['editorial_corrections_marked'],9)
         self.assertEqual(report['editorial_corrections_inherited'],14)
         self.assertEqual(report['editorial_hints_removed'],9)
+        self.assertEqual(report['editorial_corrections_baseline'],23)
+        self.assertEqual(report['editorial_corrections_rebuild'],0)
 
     def test_real_file_phase_hashes_metadata_and_rebuild_are_reproducible(self):
         # Real pinned files exercise source selection and the identity gate.
@@ -254,6 +351,8 @@ class EditorialTests(unittest.TestCase):
         root,source=self.input();result=self.validate(root,source)
         mutations=[lambda row:row.update(after_strong=['G991']),lambda row:row.update(before_strong=['G991']),
             lambda row:row.update(annotation_origin='inherited'),lambda row:row.update(hint_id=None),
+            lambda row:row.update(reviewed_input_version='1.4'),
+            lambda row:row.update(reviewed_input_version='private text'),
             lambda row:row.update(target_text='private peer text'),lambda row:row.update(private_path='/secret'),
             lambda row:row['proof'].update(source_projection_sha256='0'*64),
             lambda row:row['proof'].update(rule_sha256='0'*64),

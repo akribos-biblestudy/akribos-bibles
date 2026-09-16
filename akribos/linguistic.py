@@ -361,6 +361,7 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
     counts = Counter({'hints_before': len(all_hints), 'hints_removed': 0,
                       'article_tags_added': 0, 'hints_rejected': 0, 'article_candidates_retained': 0,
                       'editorial_corrections': 0, 'editorial_corrections_marked': 0,
+                      'editorial_corrections_baseline': 0, 'editorial_corrections_rebuild': 0,
                       'editorial_corrections_inherited': 0, 'editorial_hints_removed': 0,
                       'editorial_not_applicable': 0})
     for ref, verse in zef_verses(output):
@@ -485,6 +486,7 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                 editorial_expected[grammar] = None
             editorial.apply(row, grammar, hint, view.parents, RULES_VERSION)
             counts['editorial_corrections'] += 1
+            counts['editorial_corrections_' + ('baseline' if row['reviewed_input_version'] == '1.2' else 'rebuild')] += 1
             counts['editorial_corrections_' + ('marked' if row['annotation_origin'] == 'uncertain' else 'inherited')] += 1
             counts['editorial_hints_removed'] += int(hint is not None)
             counts['hints_removed'] += int(hint is not None)
@@ -683,6 +685,7 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
         hint_ids={node: identifier for identifier, node in hint_ids.items()}, rule_version=RULES_VERSION)
         for identifier, rule in correction_rules.items()}
     correction_counts = Counter({'editorial_corrections': 0, 'editorial_corrections_marked': 0,
+        'editorial_corrections_baseline': 0, 'editorial_corrections_rebuild': 0,
         'editorial_corrections_inherited': 0, 'editorial_hints_removed': 0, 'editorial_not_applicable': 0})
     additions = defaultdict(list); removed = added = 0; used_occurrences = set(); seen_additions = set()
 
@@ -723,6 +726,7 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
             if row['status'] == 'applied':
                 editorial.apply(row, grammar, hint, view.parents, RULES_VERSION)
                 correction_counts['editorial_corrections'] += 1
+                correction_counts['editorial_corrections_' + ('baseline' if row['reviewed_input_version'] == '1.2' else 'rebuild')] += 1
                 correction_counts['editorial_corrections_' + ('marked' if row['annotation_origin'] == 'uncertain' else 'inherited')] += 1
                 correction_counts['editorial_hints_removed'] += int(hint is not None)
                 removed += int(hint is not None)

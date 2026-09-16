@@ -226,7 +226,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Mark.12.36:d013",
@@ -525,7 +526,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.20.42:d012",
@@ -714,7 +716,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Acts.2.34:d016",
@@ -933,7 +936,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.14.6:d007",
@@ -1022,7 +1026,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.20.9:d010",
@@ -1251,7 +1256,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.23.29:d011",
@@ -1492,7 +1498,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.23.29:d014",
@@ -1733,7 +1740,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Luke.23.29:d020",
@@ -1972,7 +1980,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Acts.1.12:d010",
@@ -2161,7 +2170,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:John.1.29:d019",
@@ -2402,7 +2412,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:John.20.15:d016",
@@ -2722,7 +2733,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Matt.22.44:d005",
@@ -2941,7 +2953,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Mark.12.36:d013",
@@ -3250,7 +3263,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.20.42:d012",
@@ -3449,7 +3463,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Acts.2.34:d015",
@@ -3678,7 +3693,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.20.9:d005",
@@ -3917,7 +3933,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.23.29:d005",
@@ -4136,7 +4153,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.23.29:d015",
@@ -4357,7 +4375,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.23.29:d018",
@@ -4576,7 +4595,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.23.29:d025",
@@ -4795,7 +4815,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Matt.13.32:d002",
@@ -5114,7 +5135,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Acts.1.12:d013",
@@ -5303,7 +5325,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:John.1.29:d018",
@@ -5564,7 +5587,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Luke.14.6:d009",
@@ -5663,7 +5687,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:John.20.15:d014",
@@ -5993,7 +6018,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Acts.25.10:d004",
@@ -6232,7 +6258,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Acts.21.37:d022",
@@ -6491,7 +6518,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Phil.2.25:d024",
@@ -6740,7 +6768,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Rev.21.16:d020",
@@ -7129,7 +7158,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Jude.1.15:d028",
@@ -7418,7 +7448,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Rev.21.16:d022",
@@ -7810,7 +7841,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Rev.21.16:d020",
@@ -8169,7 +8201,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Acts.25.10:d004",
@@ -8418,7 +8451,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Acts.25.10:d019",
@@ -8667,7 +8701,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Phil.2.25:d013",
@@ -8916,7 +8951,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Jude.1.15:d025",
@@ -9207,7 +9243,8 @@
       "source_files": [
         "sources/originals/TAGNT_Act-Rev.tsv",
         "sources/originals/TAGNT_Mat-Jhn.tsv"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Exod.33.5:d015",
@@ -9507,7 +9544,8 @@
       "positive_source_ids": [
         "Exo.33.5#13=L",
         "Exo.33.5#14=L"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.elb:Gen.19.21:d015",
@@ -9693,7 +9731,8 @@
         "Gen.19.21#12=L",
         "Gen.19.21#13=L",
         "Gen.19.21#14=L"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Exod.33.5:d014",
@@ -9993,7 +10032,8 @@
       "positive_source_ids": [
         "Exo.33.5#13=L",
         "Exo.33.5#14=L"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
     },
     {
       "id": "akribos.lut:Gen.19.21:d015",
@@ -10179,7 +10219,361 @@
         "Gen.19.21#12=L",
         "Gen.19.21#13=L",
         "Gen.19.21#14=L"
-      ]
+      ],
+      "reviewed_input_version": "1.2"
+    },
+    {
+      "id": "akribos.elb:Deut.32.6:d003",
+      "bible_id": "akribos.elb",
+      "nt_edition": "WH",
+      "ref": "Deut.32.6",
+      "token": "d003",
+      "target_word": "also",
+      "target_start": 14,
+      "target_end": 18,
+      "before_strong": [
+        "H7069"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Das frühe also gehört zur deutschen Wiedergabe von תגמלו זאת, Deu.32.6#03–04=L. Das einzige קנך/H7069, #12=L, HVqp3ms/Sp2ms, gehört positiv belegt zum späteren der dich erkauft hat. Es ist kein Wortbeleg für also. Der neue längere Schlachter-Abgleich hat die falsche Zuordnung in04 erstmals übernommen. Nur dieses gr entfernen, kein Ersatzcode und keine neue Verlinkung an erkauft. Erkauft ist im tatsächlichen Ziel noch unmarkiert; alle vorhandenen übrigen Tags unverändert erhalten.",
+      "source_projection": [
+        {
+          "origin_id": "Deu.32.6#01=L",
+          "strong": [
+            "H9008",
+            "H9014"
+          ],
+          "morph": "HTi",
+          "text": "הֲ\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#02=L",
+          "strong": [
+            "H9005",
+            "H3068"
+          ],
+          "morph": "HR/Npt",
+          "text": "לַ/יְהוָה֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#03=L",
+          "strong": [
+            "H1580",
+            "H9014"
+          ],
+          "morph": "HVqi2mp",
+          "text": "תִּגְמְלוּ\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#04=L",
+          "strong": [
+            "H2063"
+          ],
+          "morph": "HTm",
+          "text": "זֹ֔את",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#05=L",
+          "strong": [
+            "H5971"
+          ],
+          "morph": "HNcmsa",
+          "text": "עַ֥ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#06=L",
+          "strong": [
+            "H5036"
+          ],
+          "morph": "HAamsa",
+          "text": "נָבָ֖ל",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#07=L",
+          "strong": [
+            "H9002",
+            "H3808"
+          ],
+          "morph": "HC/Tn",
+          "text": "וְ/לֹ֣א",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#08=L",
+          "strong": [
+            "H2450"
+          ],
+          "morph": "HAamsa",
+          "text": "חָכָ֑ם",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#09=L",
+          "strong": [
+            "H9008",
+            "H3808",
+            "H9014"
+          ],
+          "morph": "HTi/Tn",
+          "text": "הֲ/לוֹא\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#10=L",
+          "strong": [
+            "H1931"
+          ],
+          "morph": "HPp3ms",
+          "text": "הוּא֙",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#11=L",
+          "strong": [
+            "H1",
+            "H9021"
+          ],
+          "morph": "HNcmsc/Sp2ms",
+          "text": "אָבִ֣י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#12=L",
+          "strong": [
+            "H7069",
+            "H9031"
+          ],
+          "morph": "HVqp3ms/Sp2ms",
+          "text": "קָּנֶ֔/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#13=L",
+          "strong": [
+            "H1931"
+          ],
+          "morph": "HPp3ms",
+          "text": "ה֥וּא",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#14=L",
+          "strong": [
+            "H6213",
+            "H9031"
+          ],
+          "morph": "HVqp3ms/Sp2ms",
+          "text": "עָֽשְׂ/ךָ֖",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.32.6#15=L",
+          "strong": [
+            "H9001",
+            "H3559",
+            "H9031",
+            "H9016"
+          ],
+          "morph": "Hc/Vpw3ms/Sp2ms",
+          "text": "וַֽ/יְכֹנְנֶֽ/ךָ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "positive_source_ids": [
+        "Deu.32.6#03=L",
+        "Deu.32.6#04=L",
+        "Deu.32.6#11=L",
+        "Deu.32.6#12=L"
+      ],
+      "annotation_origin": "uncertain",
+      "reviewed_input_version": "1.4",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "reviewed_input_sha256": "2d1ec103c267e89b56aba9b04ba31956361f91a887b7e1fed6f69deb944d6029",
+      "binding": {
+        "verse_text_sha256": "1bf857a361a848010efbaffd3ac8436e9064057374c2617e303b8ed0211abbd5",
+        "span_xml_without_tail_sha256": "e8d72c19e914711eced332b68538be742d5f1da704fd3b6e6f9530be41a2cd7e",
+        "source_projection_sha256": "5e931fd18da634df547440db0a673aad11f03d1a64eb9d499d328a8521dc1127"
+      }
+    },
+    {
+      "id": "akribos.lut:Deut.21.10:d010",
+      "bible_id": "akribos.lut",
+      "nt_edition": "TR",
+      "ref": "Deut.21.10",
+      "token": "d010",
+      "target_word": "und",
+      "target_start": 51,
+      "target_end": 54,
+      "before_strong": [
+        "H3318"
+      ],
+      "after_strong": [],
+      "action": "unwrap-strong-span",
+      "reason": "Das einzige תצא/H3318 Deu.21.10#02=L HVqi2ms gehört positiv belegt zum ersten wenn du ... ziehst; d006/ziehst ist bereits korrekt H3318. Das beanstandete und leitet hingegen den Satz der HERR gibt ein und entspricht ונתנו #06=L (H9001/H5414/H9033). Der früher hier stehende H7617-Code gehörte ebenfalls zu einer anderen Phrase, nämlich ושבית #10=L / wegführst. Daher ausschließlich aktuelles und/H3318 entlinken, nicht H7617 wiederherstellen und keinen Ersatzcode ergänzen. Alle übrigen Spannen unverändert.",
+      "source_projection": [
+        {
+          "origin_id": "Deu.21.10#01=L",
+          "strong": [
+            "H3588",
+            "H9014"
+          ],
+          "morph": "HTc",
+          "text": "כִּֽי\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#02=L",
+          "strong": [
+            "H3318"
+          ],
+          "morph": "HVqi2ms",
+          "text": "תֵצֵ֥א",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#03=L",
+          "strong": [
+            "H9005",
+            "H4421"
+          ],
+          "morph": "HRd/Ncfsa",
+          "text": "לַ/מִּלְחָמָ֖ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#04=L",
+          "strong": [
+            "H5921",
+            "H9014"
+          ],
+          "morph": "HR",
+          "text": "עַל\\־",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#05=L",
+          "strong": [
+            "H341",
+            "H9021"
+          ],
+          "morph": "HVqrmpc/Sp2ms",
+          "text": "אֹיְבֶ֑י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#06=L",
+          "strong": [
+            "H9001",
+            "H5414",
+            "H9033"
+          ],
+          "morph": "Hc/Vqq3ms/Sp3ms",
+          "text": "וּ/נְתָנ֞/וֹ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#07=L",
+          "strong": [
+            "H3068"
+          ],
+          "morph": "HNpt",
+          "text": "יְהוָ֧ה",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#08=L",
+          "strong": [
+            "H430",
+            "H9021"
+          ],
+          "morph": "HNcmpc/Sp2ms",
+          "text": "אֱלֹהֶ֛י/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#09=L",
+          "strong": [
+            "H9003",
+            "H3027",
+            "H9021"
+          ],
+          "morph": "HR/Ncbsc/Sp2ms",
+          "text": "בְּ/יָדֶ֖/ךָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#10=L",
+          "strong": [
+            "H9001",
+            "H7617"
+          ],
+          "morph": "Hc/Vqq2ms",
+          "text": "וְ/שָׁבִ֥יתָ",
+          "lemma": "",
+          "edition": "L/Q"
+        },
+        {
+          "origin_id": "Deu.21.10#11=L",
+          "strong": [
+            "H7628",
+            "H9023",
+            "H9016"
+          ],
+          "morph": "HNcmsc/Sp3ms",
+          "text": "שִׁבְיֽ/וֹ\\׃",
+          "lemma": "",
+          "edition": "L/Q"
+        }
+      ],
+      "positive_source_ids": [
+        "Deu.21.10#02=L",
+        "Deu.21.10#06=L",
+        "Deu.21.10#10=L"
+      ],
+      "annotation_origin": "uncertain",
+      "reviewed_input_version": "1.4",
+      "source_files": [
+        "sources/originals/TAHOT_Gen-Deu.tsv"
+      ],
+      "reviewed_input_sha256": "3c1426db0f85f6f000a2d34f81f2813e8b769c1312199aceceeb0c60a0c76835",
+      "binding": {
+        "verse_text_sha256": "eeb933de253afa5aa0265a72f7565e356e9543ef24b2aa20b4c35193026d7181",
+        "span_xml_without_tail_sha256": "30b7924d3e09dab0316f3f7327e7510463139d77998e850f5bfabf3463149244",
+        "source_projection_sha256": "1ee1e6332761c4ef48b3f6e05d9601af95cf5f134a52d048ffcb816b30d4c616"
+      }
     }
   ]
 }

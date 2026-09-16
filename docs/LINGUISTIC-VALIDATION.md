@@ -130,19 +130,31 @@ gehasht; der öffentliche Replay prüft den tatsächlichen STEP-/Katalogbeleg er
 ### Fest geprüfte redaktionelle Korrekturen
 
 [EDITORIAL-STRONG-CORRECTIONS.md](EDITORIAL-STRONG-CORRECTIONS.md) dokumentiert
-41 einzeln geprüfte Regeln. Sie entfernen konkret falsch verteilte Nummern
+43 einzeln geprüfte Regeln. Sie entfernen konkret falsch verteilte Nummern
 oder ersetzen sie durch den belegten Artikelcode. Eine Mischspanne verliert
 nur ihren falschen Zusatzcode. Auch geerbte Zuordnungen ohne eigenen
 Unsicherheitshinweis sind ausdrücklich und getrennt erfasst.
 
 Die Regeln gelten ausschließlich für eine festgelegte Bibelausgabe,
 WH-/TR-Auswahl, unveränderten ganzen Verstext, genaue Wortposition, den
-ursprünglichen XML-Bereich und dieselben tatsächlichen STEP-Wortvorkommen. Vier hebräische Fälle binden
+ursprünglichen XML-Bereich und dieselben tatsächlichen STEP-Wortvorkommen. Sechs hebräische Fälle binden
 ausdrücklich die benötigte TAHOT-Datei und ihre L/Q-Vorkommen.
+Die 41 im älteren Bestand geprüften Regeln und zwei erst beim vollständigen
+1.4-Neuaufbau entstandene falsche Codesätze werden getrennt gezählt.
 Fehlt eine Bedingung, bleibt die Stelle unverändert (`not-applicable`). Das
 ist keine allgemeine Löschregel und keine Aliasnormalisierung. Die Pflicht
 für einen unabhängigen Zweitbeleg bei automatischen Artikelergänzungen
 bleibt bestehen; redaktionelle Korrekturen haben einen eigenen Audittyp.
+
+### Artikelverlinkungen der vorgelagerten Sprachkorrektur
+
+Der vollständige Vergleich der Strong-Stufen vor der Referenzprüfung weist
+372 zusätzliche H3068-Verlinkungen an deutschen Artikeln aus: 196 in ELB
+und 176 in Luther. Jede wurde bis zum selben ursprünglichen einzelnen
+`Jehova/H3068`-Abschnitt des Spendertexts zurückverfolgt. Sie verteilen dessen
+Zuordnung auf die deutsche Mehrwortwiedergabe mit `HERR`; die Zahl der
+hebräischen Wortvorkommen bleibt gleich. Diese Verlinkungen bleiben erhalten
+und werden getrennt von den neuen G3588-Artikelbelegen der Stufe 06 gezählt.
 
 ## Protokolle und Erhaltung
 
