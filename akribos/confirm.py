@@ -26,9 +26,13 @@ GRAMMAR = {'gr', 'GRAM', 'w'}
 NORMALIZATION = 'NFC-lowercase-v1'
 METHOD = 'two-reference-exact-strong-set-with-vetoes-v2'
 INPUT_PROFILE = 'zefania-word-spans-with-article-context-v2'
-SAFETY_PROFILE = 'greek-function-word-vetoes-v1'
-FUNCTION_CODES = frozenset({'G1537', 'G1909', 'G3165', 'G4314', 'G3739', 'G3588'})
+SAFETY_PROFILE = 'greek-hebrew-function-word-vetoes-v2'
+FUNCTION_CODES = frozenset({'G1537', 'G1909', 'G3165', 'G4314', 'G3739', 'G3588',
+                            'H259', 'H834'})
+HEBREW_FUNCTION_CODES = frozenset({'H259', 'H834'})
 PREPOSITION_CODES = frozenset({'G1537', 'G4314'})
+SOURCE_ORIGIN = re.compile(r'^([1-3]?[A-Za-z]+\.\d+\.\d+)'
+                           r'(\([\d.]+\)|\[[\d.]+\]|\{[\d.]+\})?#([^=]+)=(.+)$')
 ARTICLE_CONTEXT_STATUSES = frozenset({
     'article-multiword-context-unproved', 'article-without-right-context',
     'article-target-context-boundary', 'article-right-context-not-forced-adjacent',
@@ -38,7 +42,7 @@ SAFETY_VETOES = frozenset({
     'missing-function-word-source-evidence', 'missing-function-word-source-verse',
     'prior-verse-inventory-mismatch', 'preposition-on-possible-infinitival-zu',
     'function-code-over-assigned-in-verse', 'source-verse-numbering-unproved',
-    'conjunction-on-isolated-german-es',
+    'conjunction-on-isolated-german-es', 'hebrew-source-occurrence-count-unproved',
 })
 PLACEHOLDER = re.compile(r'\[\s*\?\s*\]')
 REFERENCE_STATUSES = frozenset({
@@ -120,8 +124,7 @@ def load_confirmation_evidence(target, occurrences_path, alignment_path, *, nt_e
                 origin = token.get('origin_id'); codes = token.get('strong'); morph = token.get('morph')
                 require(isinstance(origin, str) and origin not in seen_origins,
                         'Missing or duplicate confirmation source occurrence identity')
-                match = re.match(r'^([1-3]?[A-Za-z]+\.\d+\.\d+)'
-                                 r'(\([\d.]+\)|\[[\d.]+\]|\{[\d.]+\})?#.+=(.+)$', origin)
+                match = SOURCE_ORIGIN.fullmatch(origin)
                 require(match is not None and canonical_ref(match[1]) == ref,
                         'Confirmation source occurrence belongs to another verse')
                 require(isinstance(codes, list) and all(isinstance(code, str) and
@@ -129,18 +132,16 @@ def load_confirmation_evidence(target, occurrences_path, alignment_path, *, nt_e
                         and isinstance(morph, str), 'Malformed confirmation source code or morphology')
                 require(token.get('edition') == (nt_edition if is_nt else 'L/Q'),
                         'Confirmation source occurrence has a different edition')
-                require(is_nt or match[3].startswith(('L', 'Q')),
+                require(is_nt or match[4].startswith(('L', 'Q')),
                         'Unsupported confirmation Hebrew witness')
-                if is_nt and match[2]:
+                if match[2]:
                     # Alternative verse numbers cannot establish an exact
-                    # occurrence count for this conservative Greek veto profile.
+                    # occurrence count for this conservative veto profile.
                     source_guards.add(ref)
                 seen_origins.add(origin)
                 compact.append({'origin_id': origin, 'strong': codes, 'morph': morph,
                                 'edition': token['edition']})
-            # The narrowly reviewed veto profile concerns Greek function codes.
-            # Hebrew occurrence rows are checked, but need not remain in memory.
-            occurrences[ref] = compact if is_nt else []
+            occurrences[ref] = compact
     require(occurrences, 'Missing confirmation source occurrences')
     require(hashes == {label: file_hash(path) for label, path in paths.items()},
             'Confirmation evidence changed while loading')
@@ -177,6 +178,28 @@ def article_context_status(target, indices, reference, alignment):
     return 'confirmed'
 
 
+def _hebrew_count_unproved(source, ref):
+    """Require one ordered L witness per word; Q alternatives are not added.
+
+    A composite witness label such as LAB(h) is one L occurrence, not three
+    words. Any competing reading or unexplained position keeps the hint open.
+    This check also protects callers that provide an evidence object directly.
+    """
+    previous = 0
+    for token in source:
+        match = SOURCE_ORIGIN.fullmatch(token.get('origin_id', ''))
+        if (match is None or canonical_ref(match[1]) != ref or match[2]
+                or token.get('edition') != 'L/Q'
+                or not re.fullmatch(r'L[A-Z]*(?:\([A-Za-z]+(?:\+[A-Za-z]+)*\))?', match[4])
+                or not re.fullmatch(r'[0-9]+', match[3])):
+            return True
+        position = int(match[3])
+        if position <= previous:
+            return True
+        previous = position
+    return False
+
+
 def confirmation_veto(view, ref, indices, codes, evidence):
     """Refuse suspicious function assignments; counts never prove an assignment."""
     if ('G3754' in codes and len(indices) == 1 and
@@ -195,6 +218,8 @@ def confirmation_veto(view, ref, indices, codes, evidence):
         return 'prior-verse-inventory-mismatch'
     if ref in evidence.source_guarded_verses:
         return 'source-verse-numbering-unproved'
+    if selected & HEBREW_FUNCTION_CODES and _hebrew_count_unproved(source, ref):
+        return 'hebrew-source-occurrence-count-unproved'
     if selected & PREPOSITION_CODES and len(indices) == 1:
         index = indices[0]
         if view.tokens[index]['text'].casefold() == 'zu' and index + 1 < len(view.tokens):

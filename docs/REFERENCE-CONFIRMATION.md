@@ -97,11 +97,11 @@ enthalten. Vier eng begrenzte Prüfungen bewahren deshalb den Hinweis:
   vorhandene Nummer im gewählten STEP-Vers tatsächlich als Verb vorkommt.
   Großgeschriebene Substantivierungen und bloß ähnlich endende Possessivformen
   liefern diesen Verbbeleg nicht.
-- Für G1537, G1909, G3165, G4314, G3739 und G3588 werden die bereits vorhandenen deutschen
+- Für G1537, G1909, G3165, G4314, G3739, G3588 sowie H259 und H834 werden die bereits vorhandenen deutschen
   Markierungsspannen mit den tatsächlichen STEP-Wortvorkommen im Vers verglichen.
   Übersteigt die Zahl der Zielspannen die Zahl der Quellvorkommen, bleiben die
   betroffenen Hinweise stehen. Codes in Mehrfachnummerierungen zählen mit;
-  eine Mehrwortspanne zählt als eine Spanne. Eine griechische Form kann korrekt
+  eine Mehrwortspanne zählt als eine Spanne. Eine griechische oder hebräische Form kann korrekt
   durch mehrere deutsche Spannen wiedergegeben sein: Das Veto erklärt deshalb
   keine einzelne Nummer für falsch und wählt keinen vermeintlich richtigen
   Ersatzplatz aus. Insbesondere wird G3165 nicht pauschal an deutschem `ich`
@@ -114,16 +114,32 @@ enthalten. Vier eng begrenzte Prüfungen bewahren deshalb den Hinweis:
   leitet keine Ersatznummer ab und behandelt eine größere Spanne wie `es sei`
   nicht als isoliertes Wort.
 
+Die hebräische Erweiterung gilt ausschließlich für H259 und H834. In Exodus
+33,5 gehört das ausdrückliche `einer/einen` zum Augenblick, nicht zum deutschen
+unbestimmten Artikel vor dem Volk; in Genesis 19,21 gehört H834 zur relativen
+Stadtphrase. Die Zählprüfung bewahrt überzählige Hinweise, ohne selbst eine
+einzelne Verlinkung zu ändern. Andere hebräische Nummern sind nicht Teil
+dieser Erweiterung.
+
+Für diese beiden Codes werden die tatsächlichen OT-Wortvorkommen übernommen.
+Ihre numerischen Wortpositionen müssen eindeutig und streng aufsteigend sein.
+Eine Quellenkennung wie `L(abh)` oder `LAB(h)` bezeichnet dabei genau ein
+L-Wortvorkommen. Echte Q-Lesarten werden nicht als zusätzliche Wörter zu L
+addiert: Enthält der betreffende Vers Q-Zeilen, konkurrierende beziehungsweise
+umgestellte Positionen oder nicht deutbare Positions-/Zeugenkennungen, bleibt
+der Hinweis mit `hebrew-source-occurrence-count-unproved` erhalten. Das gilt
+auch dann, wenn die problematische Quellenzeile eine andere Nummer trägt.
+
 Diese Prüfungen übernehmen die bereits beim Aufbau erzeugten
 `source-occurrences.jsonl.gz` und `alignment.jsonl.gz`. Deren Hashes, die
 ausgewählte NT-Ausgabe und das Sicherheitsprofil werden festgehalten. Der
 Alignmenttext und seine Wortpositionen müssen zur unveränderten Stufe 04
-passen; fehlende Belege, alternative griechische Versnummern oder ein bereits festgestellter Inventarkonflikt
+passen; fehlende Belege, alternative Quellversnummern oder ein bereits festgestellter Inventarkonflikt
 verhindern die Freigabe der betroffenen Funktionscodes.
 
 Das Verfahren heißt `two-reference-exact-strong-set-with-vetoes-v2`, das
 Eingabeprofil `zefania-word-spans-with-article-context-v2` und das
-Sicherheitsprofil `greek-function-word-vetoes-v1`. Es bestätigt eingeschränkte
+Sicherheitsprofil `greek-hebrew-function-word-vetoes-v2`. Es bestätigt eingeschränkte
 Referenzübereinstimmung mit konservativen Ausschlussregeln; eine vollständige
 sprachwissenschaftliche Neubewertung aller Nummerierungen ist damit nicht
 behauptet.
@@ -185,7 +201,7 @@ Der bestehende Befehl `compare` bleibt ein rein lesender Vergleich. Die
 Python-Analysefunktion `confirm_uncertainty(target, bk, None)` kann eine
 unvollständige Vorprüfung liefern; sie entfernt ohne zweite Referenz keinen
 Hinweis und erzeugt keinen veröffentlichten 1.3-Bestand. Auch bei zwei Referenzen
-bleiben die sechs genannten Funktionscodes ohne `safety_evidence` markiert.
+bleiben die acht genannten Funktionscodes ohne `safety_evidence` markiert.
 Für eine vollständige lokale Prüfung lädt
 `load_confirmation_evidence(target, occurrences_path, alignment_path, nt_edition="WH")`
 die bestehenden Belege; ihr Ergebnis wird als `safety_evidence` an
