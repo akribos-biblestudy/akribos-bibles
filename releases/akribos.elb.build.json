@@ -1,6 +1,7 @@
 {
-  "history": "history/build/akribos.elb/1.2/5c1b2aa5a4d490ea",
+  "history": "history/build/akribos.elb/1.3/36d1baba66e8c2f8",
   "bible_id": "akribos.elb",
-  "version": "1.2",
-  "sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1"
+  "version": "1.3",
+  "sha256": "e96c492938d6f538ec1c01b14ac3509d43e87f2b21b43a39ad91b5df761b6e65",
+  "artifact": "05-reference-confirmed.xml"
 }

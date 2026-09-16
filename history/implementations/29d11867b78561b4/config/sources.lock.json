@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "id": "elb1932",
+      "path": "sources/originals/elb1932.xml",
+      "url": "https://www.bibelkommentare.de/data/modules/bible_elb_1932_zefania.zip",
+      "sha256": "933233f2f5fda8a7a95e1944acebcf8b6470d24569a45d8af77f900d701f6542",
+      "license": "Public-Domain",
+      "attribution": "Elberfelder 1932; digitale Ausgabe bibelkommentare.de, Revision 202307",
+      "rights_scope": "Originaldatei einschließlich historischer Studynotes: Anbieterangabe Public Domain; kein ELB-BK-Strong-Datensatz.",
+      "redistribution_basis": "provider-declaration",
+      "format": "zefania"
+    },
+    {
+      "id": "elb1905",
+      "path": "sources/originals/elb1905.xml",
+      "url": "https://raw.githubusercontent.com/akribos-biblestudy/akribos/b95299ec7f702f0898494100db0d28e83ec83a1a/data/bibles/GER_ELB1905_STRONG.xml",
+      "sha256": "4bcb3fe97199a8cda1a68313d32f4d01ae734e6f114a97efc6db9a9650752b67",
+      "license": "Public-Domain",
+      "attribution": "Elberfelder 1905 mit Strongs; Akribos-Quellrepository, XML 2009-01-22",
+      "rights_scope": "Bibeltext mit Strong-Zuordnungen; Public Domain laut Quellmetadaten.",
+      "redistribution_basis": "provider-declaration",
+      "format": "zefania"
+    },
+    {
+      "id": "luther1912",
+      "path": "sources/originals/luther1912.xml",
+      "url": "https://www.toledot.info/download/bibel/SF_2022-02-27_GER_LUTH1912_Strongs_xml.php",
+      "sha256": "cfa85f9c33b7a6ed039ed62a0978b77c5d4175567176ebdbc29378df76a706ff",
+      "license": "Public-Domain",
+      "attribution": "Luther 1912 mit Strongs; TOLEDOT/Jens Grabner/J. Barkowsky, 2022-02-27",
+      "rights_scope": "Bibeltext mit Strong-Zuordnungen; Public Domain laut TOLEDOT und Quellmetadaten.",
+      "redistribution_basis": "provider-declaration",
+      "format": "zefania"
+    },
+    {
+      "id": "TAGNT_Act-Rev",
+      "path": "sources/originals/TAGNT_Act-Rev.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAGNT%20Act-Rev%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY.txt",
+      "sha256": "524e32375361e6d3fa2f7ef00b87605fdc4317a762f395651a05fdc31ad031b7",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "TAGNT_Mat-Jhn",
+      "path": "sources/originals/TAGNT_Mat-Jhn.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAGNT%20Mat-Jhn%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY.txt",
+      "sha256": "ab8eaaeb68e17a1dcfa34e1e9350358f22f03bc2a97244d848750ad81044bc8e",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "TAHOT_Gen-Deu",
+      "path": "sources/originals/TAHOT_Gen-Deu.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Gen-Deu%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+      "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "TAHOT_Isa-Mal",
+      "path": "sources/originals/TAHOT_Isa-Mal.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Isa-Mal%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+      "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "TAHOT_Job-Sng",
+      "path": "sources/originals/TAHOT_Job-Sng.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Job-Sng%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+      "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "TAHOT_Jos-Est",
+      "path": "sources/originals/TAHOT_Jos-Est.tsv",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/ae39711d7843b2902d54993e432de9c12d6a4b9a/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Jos-Est%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+      "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+      "rights_scope": "TAHOT/TAGNT-Quelltext, lexikalische und morphologische Annotationen",
+      "redistribution_basis": "explicit-license",
+      "format": "step-tsv"
+    },
+    {
+      "id": "schlachter1951",
+      "path": "sources/originals/schlachter1951.xml",
+      "sha256": "39920ae6f3101476994e6b8057c26d77daf5785a546924926ddf2c6446b58985",
+      "url": "https://raw.githubusercontent.com/akribos-biblestudy/akribos/b95299ec7f702f0898494100db0d28e83ec83a1a/data/bibles/GER_SCH1951_STRONG.xml",
+      "license": "Public-Domain",
+      "attribution": "Schlachter 1951; Jens Grabner / Free Bible Software Group",
+      "rights_scope": "Bibeltext mit Strong-Zuordnungen; Public Domain laut Quellmetadaten.",
+      "redistribution_basis": "provider-declaration",
+      "format": "zefania"
+    },
+    {
+      "id": "kautz",
+      "path": "sources/originals/stronggreek_de_kautz.xml",
+      "sha256": "f30bcc658ec4a9d863099eef097b9456ef8ec8d95fc1468da3f561a4f359fda9",
+      "url": "https://raw.githubusercontent.com/akribos-biblestudy/akribos/b95299ec7f702f0898494100db0d28e83ec83a1a/data/stronggreek_de_kautz.xml",
+      "license": "LicenseRef-Kautz-Akribos-Permission",
+      "attribution": "Gerhard Kautz, Update 5/2026",
+      "rights_scope": "Veröffentlichung der Originaldatei auf GitHub mit Genehmigung. Copyright und Benutzungshinweise von Gerhard Kautz bleiben erhalten.",
+      "redistribution_basis": "owner-permission",
+      "format": "lexicon-xml"
+    },
+    {
+      "id": "hebrew-de",
+      "path": "sources/originals/hebrewstrong.xml",
+      "sha256": "447c1cdf31f2026c47eac67884d892901e8de455826e9a69284d964a31422ed8",
+      "url": "https://raw.githubusercontent.com/akribos-biblestudy/akribos/b95299ec7f702f0898494100db0d28e83ec83a1a/data/hebrewstrong.xml",
+      "license": "CC-BY-4.0 AND AGPL-3.0-only",
+      "attribution": "Open Scriptures Hebrew Bible / Akribos deutsche maschinelle Ergänzungen",
+      "rights_scope": "Historischer Strong-Text gemeinfrei; elektronische Open-Scriptures-Daten CC BY 4.0; deutsche Ergänzungen aus Akribos AGPLv3. Siehe sources/evidence/hebrew-lexicon.md.",
+      "redistribution_basis": "provider-declaration",
+      "format": "lexicon-xml"
+    },
+    {
+      "id": "greek-pd",
+      "path": "sources/originals/strongsgreek.xml",
+      "sha256": "25c8816f2a4a8481d0d3f270a727b1093525b53c2eddfaa2edffe0d4a82eefd0",
+      "url": "https://raw.githubusercontent.com/akribos-biblestudy/akribos/b95299ec7f702f0898494100db0d28e83ec83a1a/data/strongsgreek.xml",
+      "license": "Public-Domain",
+      "attribution": "James Strong; Michael Grier; Ulrik Sandborg-Petersen",
+      "rights_scope": "Prolog: Public Domain -- Copy Freely. Original enthält interne DTD; hier als unveränderte Archivquelle enthalten.",
+      "redistribution_basis": "provider-declaration",
+      "format": "lexicon-xml"
+    },
+    {
+      "id": "kjv1611",
+      "path": "sources/originals/kjv1611.xml",
+      "sha256": "b3a6699778bbd7f727f1acc107a2fb53f37ea6c292b1c66bc0ea1609a07c8ffe",
+      "url": "https://www.bibelkommentare.de/data/modules/bible_kjv1611_zefania.zip",
+      "license": "Public-Domain",
+      "attribution": "King James 1611/1769 mit Strongs, bibelkommentare.de Revision 201909",
+      "rights_scope": "XML-Metadaten: Public Domain. Mechanische XML-Reparatur wird separat protokolliert; Original bleibt unverändert.",
+      "redistribution_basis": "provider-declaration",
+      "format": "zefania"
+    }
+  ]
+}

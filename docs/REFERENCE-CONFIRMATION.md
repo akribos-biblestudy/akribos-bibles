@@ -22,7 +22,18 @@ die Referenzausgabe und ist unabhängig von der Akribos-Ausgabenummer.
 
 Die CSV-Webseiten können mit dem [vorsichtigen Browser-Abruf](CSV-REFERENCE.md)
 privat zwischengespeichert und reproduzierbar in dieses Eingabeformat
-überführt werden.
+überführt werden. Für den vollständigen Aufbau zunächst den gesamten Cache
+exportieren und mit Vollständigkeitsprüfung konvertieren:
+
+```bash
+python -m akribos.csv_reference \
+  --cache-dir .local/references/csv-cache \
+  --output .local/references/elb-csv.xml --require-complete
+```
+
+`--require-complete` verlangt alle Kapitel des CSV-Kapitelindex. Für einen
+späteren identischen Aufbau beide privaten XML-Snapshots unverändert
+aufbewahren; ein neuer Abruf kann andere Dateihashes ergeben.
 
 ```bash
 python bible.py build --edition all --version 1.3 \
@@ -37,11 +48,17 @@ werden für beide Zielausgaben unabhängig zugeordnet. Referenzdateien gehören
 unter `.local/` und werden nicht in Git, öffentliche Laufarchive oder Pakete
 kopiert. Ein vorheriger `edit`-Aufruf ist nicht erforderlich.
 
-Die Standardversion in `akribos/project.py` bleibt vorerst **1.2**. Bei einem
-normalen 1.2-Build wird weiterhin ausschließlich `04-multisource.xml`
-veröffentlicht. Die Referenzoptionen sind dem ausdrücklich gewählten
-1.3-Aufbau vorbehalten. Version 1.4 benötigt eine eigene sprachwissenschaftliche
-Prüfstufe und kann mit diesem Stand noch nicht gebaut werden.
+Die Standardversion in `akribos/project.py` ist **1.3**. Ein regulärer Build
+benötigt deshalb auch ohne `--version` beide Referenzoptionen und veröffentlicht
+`05-reference-confirmed.xml`. Diese Anleitung beschreibt ausschließlich den
+Stand 1.3. Die früheren Ausgaben 1.1 und 1.2 mit Stufe 04 lassen sich über
+ihre Git-Tags nachbauen; siehe [Versionshistorie](HISTORY.md).
+
+Der vollständige CSV-Abruf und die Konvertierung mit `--require-complete`
+gehören zur Vorbereitung des regulären 1.3-Aufbaus. Der Bestätigungskern
+unterstützt daneben private Teilprüfungen: Fehlende Kapitel werden dort nicht
+als erfolgreiche Bestätigung gewertet. Eine solche Teilprüfung ist kein
+vollständiger Release-Aufbau.
 
 Fehlt eine der beiden Dateien, sind ihre Prüfsummen identisch, enthält eine
 Datei doppelte Vers-IDs oder passt das XML-Profil nicht, bricht der Aufruf vor
@@ -49,6 +66,25 @@ dem Anlegen eines Implementierungssnapshots und vor der Sprachbearbeitung ab.
 Fehlende einzelne Verse verhindern nur die Bestätigung der jeweiligen Hinweise.
 
 ## Wann ein Hinweis entfällt
+
+### Vollständige Quellen und unterschiedliche Verszählung
+
+Die eingefrorenen Referenzen enthalten jeweils 66 Bücher und 1.189 Kapitel:
+ELB BK hat 31.169 Haupttextverse, Edition CSV 31.166. Der vollständige
+CSV-Kapitelindex wurde geprüft. Markus 15,28, Apostelgeschichte 15,34 und
+28,29 stehen dort ausschließlich als Fußnotenverse ohne Haupttext und ohne
+Strong-Verknüpfungen; sie ergeben keine Bestätigungsverse.
+
+Weitere Unterschiede betreffen Versaufteilungen: ELB Lukas 17,36 entspricht
+in den Referenzen 17,37; Apostelgeschichte 19,40–41 ist dort unter 19,40
+zusammengefasst. In Luther sind 2. Könige 15,38–39 und Psalm 13,6–7 anders
+aufgeteilt. Nehemia 7 weist ebenfalls einen Versversatz und einen anders
+aufgeteilten Anschluss an 8,1 auf. Der Vergleich nummeriert diese Stellen
+nicht automatisch um. Fehlende oder nicht eindeutig passende Belege
+bestätigen keinen Hinweis. Gleiche Versnummern allein sind kein Beleg für
+gleiche Textaufteilung.
+
+### Bedingungen am konkreten Wortbereich
 
 Alle folgenden Bedingungen müssen in **beiden** Referenzen erfüllt sein:
 

@@ -1,0 +1,66 @@
+{
+  "settings": {
+    "bible_id": "akribos.elb",
+    "version": "1.3",
+    "edition": "elb",
+    "edited_sha256": "b21bdc1f14a7ff2d76c7af37c7f16201d616991d807632f73e1ebff633d64ee0",
+    "nt_edition": "WH",
+    "donors": {
+      "elb1905": "7ceee587ab5f46153a7a304f713ecbc12d025ae6ba570e623efb4483c6409d22",
+      "luther1912": "df63a5c738948c12e639d1379d5fe9ff1f6ad955be34704dd3e4bd2ac75202e8",
+      "schlachter1951": "59e34be7f426f4d42550ee95c73327e672f5235c7c0809f952d315cff4e09e16"
+    },
+    "kjv_prepared_sha256": "b0f829e0008ffd7a5c254e00813f62a404933c4aa651282507b7d295cc9ed334",
+    "primary": "elb1905",
+    "language_history": "history/edit/akribos.elb/1.3/af0f22d8c50c9d9b",
+    "reference_confirmation": {
+      "method": "two-reference-exact-strong-set-with-vetoes-v2",
+      "input_profile": "zefania-word-spans-with-article-context-v2",
+      "normalization": "NFC-lowercase-v1",
+      "safety_profile": "greek-hebrew-function-word-vetoes-v2",
+      "reference_sha256": {
+        "elb-bk": "cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5",
+        "elb-csv": "9cc0e72a334567f2bad23baefc0b7489d9b0e0dd25b7453a7869a462441410d9"
+      }
+    }
+  },
+  "implementation": {
+    "akribos/__init__.py": "ffb3a541d6d590ae2369dd022dda48d20ad3fb31006feaa01661f9985cc35e20",
+    "akribos/common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+    "akribos/compare.py": "0487ddc39bce4c09f0007bd23226df84e775a197898f2a62fd5abf6ca5ce0f9e",
+    "akribos/confirm.py": "1bbeb496048e0335fa67115c9275ca733aa580ead16c44232c50c01e180b34de",
+    "akribos/csv_reference.py": "d9063266b7c4e30a51664d449850ee9c9597f308d32b3204724b48ee322e4a7f",
+    "akribos/importers.py": "7115c6e77de6b2452247332678fc6abaedff2e2861a850957cdb189c72d42f74",
+    "akribos/kautz.py": "e2e53bab82e63e7124e08e0e6baf6da5027545f75b51c9a0eca0de20112edd18",
+    "akribos/lexical.py": "98e3cdef4701c2a2bf8732ce99889cf08e9d44713716732aabfc14a001d381cb",
+    "akribos/modernize.py": "3ecf88b9e6cda5416ac66258c1f6a4a85a817baaac467491e4fbb4f134917d29",
+    "akribos/pipeline.py": "7641db85a9de53b6414f94fcc37efbfcf3bcfeca40f5473654567acb3b164796",
+    "akribos/project.py": "ba4b71a56cd3b9502333662bfdfd4e383b77e8924c9edfb88a5ec4a6398c6008",
+    "akribos/verify.py": "7abc5bb8854a0ee2a38a66e8f17d6c2441a22a610dfe6550900a6496a0a62d70",
+    "akribos/xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+    "rules/de-strong.seed.json": "ac79e7afed3762546ae9f7f86da4009d85533459608f0c8337a09dc4ef5dbc15",
+    "rules/orthography.json": "edc8837342f0bc34132eb79b2f25d3bd75fbccf9400fb913efc1e3ea779f4ede",
+    "rules/overrides.example.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "config/sources.lock.json": "8ba0176cc2a201f534740c1214d69caf2587c6acd9b01f6220f8e72c6c8b07e4",
+    "config/step-profiles.json": "135d4644f2652b50726704475e8bbe0fb8578e0f603c4064b87fe6db50fe5d44",
+    "requirements.txt": "d68a9528e8cafb502411066094db593ec87bb6c5a44cd5b492db535fb8db0f46"
+  },
+  "files": {
+    "02-baseline.report.json": "401266baf1a31e6201d0c20b7660e5cd6dde7242c78faa16e90854fe11aa0cac",
+    "02-baseline.xml": "8eddde041021939551c03b90c916ed2d464a688a52afb62b58b8a8947b40c4b3",
+    "03-lexicon.report.json": "f9106446baf4dd13372d2f528f19c3408d1435999495617b9302236d803a5984",
+    "03-lexicon.xml": "4c746212c87e478edc52466fc386278f16d07f06490651f8587c60d9317d9a26",
+    "04-multisource.report.json": "3be666dd1585073e9d504b49c11f8b3056429c964d416cf8b2c6f34271215ecc",
+    "04-multisource.xml": "eedbac33954828124424231819d8defff6a956af00a29dded8c4986e6976fa89",
+    "05-reference-confirmed.audit.jsonl.gz": "7a9063356104d39cdf6d909142b17dfad0a0d55284cd8ccbf9dfe3c4fee33b05",
+    "05-reference-confirmed.report.json": "034bd78e2b49c1e03003d5c9f5202ad89e3b97b851a59e7e9ec9053eb7cef351",
+    "05-reference-confirmed.xml": "e96c492938d6f538ec1c01b14ac3509d43e87f2b21b43a39ad91b5df761b6e65",
+    "alignment.jsonl.gz": "7402e100d871263aee8a01f9e7e2a7b606cc1206a0cf5bf316bbdbc205d664c4",
+    "lexical-index.jsonl.gz": "e558bcac08f7dac9d4390a919429cd770ef913e75e20cb2aefe70f7131af91d0",
+    "lexicon-report.json": "5dbb80238618cf0e378fc70f7f5cc692eb5aa379a9290f01396e5e7d1c03ae18",
+    "report.json": "b8ecb93f5faa56969f8fcb0ea37ce841abff518d5041c93cffdd53b042f7e237",
+    "review.jsonl.gz": "f244ca00a63ad89324ccb56e2f409b9ec0ed81c67069b4dd129e0f5c49fe423d",
+    "source-occurrences.jsonl.gz": "ce65f80d2610685325e5c51e5d90b1b093eb905f6c50a088a6f20f0f81bd13aa",
+    "unassigned-source.jsonl.gz": "9491f4f9d9e43c54aa28dbbc73b5cea7b4ce46df8a89b13b62dfd7a8167c323c"
+  }
+}

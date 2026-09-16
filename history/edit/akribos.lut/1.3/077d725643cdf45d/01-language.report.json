@@ -1,0 +1,43 @@
+{
+  "edition": "lut",
+  "version": "1.3",
+  "input_sha256": "74210ce3de711977597796fd45e2f515c457284ace69e8b13773e17c2431039f",
+  "output_sha256": "df63a5c738948c12e639d1379d5fe9ff1f6ad955be34704dd3e4bd2ac75202e8",
+  "rule_sha256": "edc8837342f0bc34132eb79b2f25d3bd75fbccf9400fb913efc1e3ea779f4ede",
+  "implementation_sha256": {
+    "modernize.py": "3ecf88b9e6cda5416ac66258c1f6a4a85a817baaac467491e4fbb4f134917d29",
+    "xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+    "common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+    "importers.py": "7115c6e77de6b2452247332678fc6abaedff2e2861a850957cdb189c72d42f74"
+  },
+  "overrides_sha256": null,
+  "edits": 8509,
+  "changed_verses": 6689,
+  "rules": {
+    "grammar:Frau-determiner": 562,
+    "word:Weib-Frau": 962,
+    "name:Luther-divine-capitalization": 6894,
+    "grammar:Frau-relative": 19,
+    "grammar:Frau-adjective": 33,
+    "orthography:wordlist": 38,
+    "orthography:phrase": 1
+  },
+  "notes_preserved": 0,
+  "strong_elements_preserved": 350406,
+  "review_items": 797,
+  "review_kinds": {
+    "gender-agreement": 695,
+    "spelling-context": 102
+  },
+  "preservation_checks": {
+    "note_subtrees": true,
+    "strong_attributes_and_order": true,
+    "serialized_xml": true
+  },
+  "limits": [
+    "Deterministic partial spelling modernization; not a new translation or expert-verified edition.",
+    "Jehova/HERR uses explicit case/context rules; unclassified articles/case are queued for review.",
+    "Original study notes and their quotations retain source spelling.",
+    "Old external token offsets are obsolete; use offset-map.jsonl and re-tokenize."
+  ]
+}
