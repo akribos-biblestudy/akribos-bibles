@@ -110,6 +110,72 @@ class AuditSchemaTests(unittest.TestCase):
                           verse_guards={'Matt.1.1':'PRIVATE REFERENCE CONTENT'})
 
 
+class ProperNamePhaseTests(unittest.TestCase):
+    def fixture(self, hebrew=False, corroborated=True):
+        code,word,ref,book = ('H85','Abraham','Gen.1.1',1) if hebrew else ('G2424','Jesus','Matt.1.1',40)
+        target=bible(f'<gr str="{code[1:]}" custom="preserve">{word}</gr>'+hint()+
+                     '<NOTE type="x-studynote">Original <STYLE>Notiz</STYLE></NOTE> geht.',book)
+        reference=bible(f'<gr str="{code[1:] if corroborated else "1"}">{word}</gr> geht.',book)
+        different=bible(f'<gr str="1">{word}</gr> geht.',book)
+        source={ref:[occurrence(1,code,'HNpm' if hebrew else 'N-NSM-P',ref=ref,
+                               text='אַבְרָהָ֔ם' if hebrew else 'Ἰησοῦς',lemma='Ἰησοῦς')]}
+        references={'elb-bk':reference,'elb-csv':different}
+        return target,source,references
+
+    def test_name_confirmation_preserves_tag_text_notes_and_is_idempotent(self):
+        for hebrew in (False,True):
+            with self.subTest(hebrew=hebrew):
+                target,source,refs=self.fixture(hebrew);before=ET.tostring(target)
+                result=validate_tree(target,source,corroborating_roots=refs)
+                self.assertEqual(result.summary['hints_removed'],1)
+                self.assertEqual(result.summary['article_tags_added'],0)
+                self.assertEqual(result.audit[0]['proof']['rule'],'unique-proper-name-with-independent-reference')
+                self.assertEqual(result.root.find('.//gr').get('custom'),'preserve')
+                self.assertEqual(result.root.find('.//gr').get('str'),target.find('.//gr').get('str'))
+                self.assertEqual(result.root.find('.//NOTE/STYLE').text,'Notiz')
+                self.assertEqual(ET.tostring(target),before)
+                verify_transition(target,result.root,result.audit,source)
+                repeated=validate_tree(result.root,source,corroborating_roots=refs)
+                self.assertEqual(ET.tostring(repeated.root),ET.tostring(result.root))
+                self.assertEqual(repeated.summary['hints_removed'],0)
+
+    def test_missing_precise_name_confirmation_is_retained_with_closed_statuses(self):
+        target,source,refs=self.fixture(corroborated=False)
+        result=validate_tree(target,source,corroborating_roots=refs)
+        self.assertEqual(result.summary['hints_removed'],0)
+        self.assertEqual(result.audit[0]['reason'],'no-independent-word-level-name-corroboration')
+        verify_transition(target,result.root,result.audit,source)
+        result.audit[0]['references']['elb-csv']='PRIVATE REFERENCE CONTENT'
+        with self.assertRaises(DataError):verify_transition(target,result.root,result.audit,source)
+
+    def test_name_proof_is_bound_to_catalog_source_and_reference(self):
+        target,source,refs=self.fixture()
+        result=validate_tree(target,source,corroborating_roots=refs)
+        for mutation in [
+            lambda row:row['proof'].update(catalog_entry_sha256='0'*64),
+            lambda row:row['proof'].update(source_token='Matt.1.1#99=NKO'),
+            lambda row:row['proof'].update(strong='G3972'),
+            lambda row:row['proof'].update(morph='N-NSM'),
+            lambda row:row['proof'].update(private_reference_text='PRIVATE REFERENCE CONTENT'),
+            lambda row:row['references'].update({'elb-bk':'different-strong-set'}),
+        ]:
+            rows=copy.deepcopy(result.audit);mutation(rows[0])
+            with self.assertRaises(DataError):verify_transition(target,result.root,rows,source)
+        changed=copy.deepcopy(source);changed['Matt.1.1'][0]['lemma']='Παῦλος'
+        with self.assertRaises(DataError):verify_transition(target,result.root,result.audit,changed)
+
+    def test_name_rule_keeps_guards_and_cannot_add_an_unmarked_code(self):
+        target,source,refs=self.fixture()
+        for change in ('guard','provenance','unmarked'):
+            current=copy.deepcopy(target);kwargs={}
+            if change=='guard':kwargs['verse_guards']={'Matt.1.1':'prior-verse-inventory-mismatch'}
+            elif change=='provenance':current.find('.//gr').set(PROVENANCE,'1.4.0')
+            else:current.find('.//gr').attrib.pop('str')
+            result=validate_tree(current,source,corroborating_roots=refs,**kwargs)
+            self.assertEqual(result.summary['hints_removed'],0)
+            self.assertEqual(result.summary['article_tags_added'],0)
+
+
 class TreeTests(unittest.TestCase):
     def run_article(self, root=None, source=None, **kwargs):
         return validate_tree(root if root is not None else article_target(),

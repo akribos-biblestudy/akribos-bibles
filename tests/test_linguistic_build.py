@@ -31,6 +31,9 @@ class LinguisticBuildTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name);(self.root/'config').mkdir()
+        (self.root/'rules').mkdir()
+        for path in ('rules/proper-name-catalog.json','rules/proper-name-sources.json'):
+            (self.root/path).write_bytes((Path(__file__).resolve().parents[1]/path).read_bytes())
         self.bk=self.root/'private-bk.xml';self.csv=self.root/'private-csv.xml'
         for path,title in ((self.bk,'BK fixture'),(self.csv,'CSV fixture')):
             write_xml(path,tree('<gr str="991">sieht</gr> <gr str="3588">den</gr> <gr str="5207">Sohn</gr>.',title))
@@ -61,7 +64,8 @@ class LinguisticBuildTests(unittest.TestCase):
         with contextlib.ExitStack() as stack:
             for module in ('akribos.pipeline','akribos.project','scripts.verify_repository'):
                 stack.enter_context(patch(module+'.ROOT',self.root))
-            implementation={'akribos/'+name:sha for name,sha in rule_identity()['implementation'].items()}
+            identity=rule_identity()
+            implementation={'akribos/'+name:sha for name,sha in identity['implementation'].items()} | identity['data_files']
             stack.enter_context(patch('akribos.project.code_identity',return_value=implementation))
             stack.enter_context(patch('akribos.pipeline.check_sources'))
             stack.enter_context(patch('akribos.pipeline.edit',side_effect=edit))
@@ -210,6 +214,14 @@ class LinguisticBuildTests(unittest.TestCase):
                 self.assertTrue(cached(destination))
                 with self.assertRaisesRegex(DataError,'public .* (audit fields|reference status|proof fields)'):
                     verify_release_history(release,link,'1.4')
+
+    def test_verifier_requires_the_archived_proper_name_catalog(self):
+        with self.pipeline():
+            destination=self.run_build();release,link=self.link()
+            catalog=self.root/'rules/proper-name-catalog.json'
+            original=catalog.read_bytes();catalog.write_bytes(original+b'\n')
+            with self.assertRaisesRegex(DataError,'Proper-name catalog differs'):
+                verify_release_history(release,link,'1.4')
 
 
 if __name__=='__main__':unittest.main()

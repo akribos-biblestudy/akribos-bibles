@@ -72,11 +72,17 @@ def verify_linguistic_history(history,manifest,link):
     require(rules==phase.get('rule_identity')==report.get('rule_identity') and rules.get('version')==RULES_VERSION,
             'Linguistic rule identities differ')
     implementation=rules.get('implementation',{})
-    require(set(implementation)=={'linguistic.py','linguistic_rules.py','confirm.py','common.py',
+    require(set(implementation)=={'linguistic.py','linguistic_rules.py','linguistic_names.py','confirm.py','common.py',
                                  'importers.py','xmlio.py','project.py'},'Missing linguistic rule dependencies')
-    require(rules.get('sha256')==digest(implementation),'Linguistic rule digest differs')
+    data_files=rules.get('data_files',{})
+    require(set(data_files)=={'rules/proper-name-catalog.json','rules/proper-name-sources.json'},
+            'Missing proper-name catalog identity')
+    require(rules.get('sha256')==digest({'implementation':implementation,'data_files':data_files}),
+            'Linguistic rule digest differs')
     require(all(manifest['implementation'].get('akribos/'+name)==sha for name,sha in implementation.items()),
             'Linguistic rules differ from archived build implementation')
+    require(all(manifest['implementation'].get(name)==sha==file_hash(ROOT/name) for name,sha in data_files.items()),
+            'Proper-name catalog differs from archived build implementation')
     source_snapshot=settings.get('source_snapshot')
     require(source_snapshot==phase.get('source_snapshot')==report.get('source_snapshot'),
             'Linguistic source snapshots differ')

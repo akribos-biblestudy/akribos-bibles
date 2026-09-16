@@ -26,7 +26,9 @@ from .confirm import (HINT, GRAMMAR, _Verse, _preserved_notes, _remove_preservin
                       forced_alignment, _verse_index)
 from .importers import import_reference_tsv, parse_xml, tag
 from .linguistic_rules import (ARTICLES, atomic_bridge_proof, classify_uncertain,
-                              linked_article_proof, selected_verse_has_movement)
+                              linked_article_proof, selected_verse_has_movement, _source_shape_problem)
+from .linguistic_names import (RULE as NAME_RULE, CATALOG_PATH, SOURCES_PATH,
+                               load_name_catalog, proper_name_decision)
 from .xmlio import EXCLUDED, annotate, plain, slots, write_xml, zef_verses
 
 METHOD = 'source-linked-linguistic-review-v1'
@@ -44,7 +46,7 @@ ARTICLE_REFERENCE_STATUSES = frozenset({
     'missing-reference-strong-tags', 'different-strong-set',
 })
 ARTICLE_RULE = 'greek-article-linked-noun-with-left-anchor'
-ACCEPTED_RULES = frozenset({ARTICLE_RULE, 'atomic-function-word-between-confirmed-anchors',
+ACCEPTED_RULES = frozenset({ARTICLE_RULE, NAME_RULE, 'atomic-function-word-between-confirmed-anchors',
     'hebrew-atomic-noun-between-confirmed-anchors', 'hebrew-divine-name-between-confirmed-anchors'})
 REVIEW_REASONS = frozenset({
     'structured-uncertainty-note', 'no-preceding-strong-span',
@@ -60,6 +62,14 @@ REVIEW_REASONS = frozenset({
     'source-order-or-versification-variation', 'alternate-strong-encoding',
     'multi-code-translation-span', 'repeated-source-lexeme',
     'shared-german-translation-span', 'alignment-needs-semantic-evidence',
+    'prior-verse-alignment-guard', 'missing-source-verse',
+    'not-single-existing-uncertain-name-span', 'name-code-outside-explicit-catalog',
+    'german-name-form-not-confirmed', 'repeated-german-name-family',
+    'repeated-target-code-including-composite-spans', 'source-name-occurrence-not-unique',
+    'source-name-is-composite', 'not-greek-personal-proper-name-morphology',
+    'source-name-lemma-not-confirmed', 'not-hebrew-proper-name-morphology',
+    'hebrew-name-surface-not-confirmed', 'hebrew-compound-surface',
+    'no-independent-word-level-name-corroboration',
 })
 
 
@@ -83,13 +93,14 @@ def _validate_audit_schema(row, reference_labels):
             require(action == 'remove-hint' and row['reason'] in ACCEPTED_RULES,
                     'Invalid accepted uncertainty decision')
             fields |= targets | {'proof'}
-            if row['reason'] == ARTICLE_RULE:
+            if row['reason'] in {ARTICLE_RULE, NAME_RULE}:
                 fields.add('references')
         else:
             require(action == 'retain' and ((status == 'review' and row['reason'] in REVIEW_REASONS)
                     or (status == 'reject' and row['reason'] == 'code-absent-in-selected-source')),
                     'Invalid retained uncertainty decision')
-            if row['reason'] == 'no-independent-article-corroboration':
+            if row['reason'] in {'no-independent-article-corroboration',
+                                 'no-independent-word-level-name-corroboration'}:
                 fields |= targets | {'references'}
             elif row['reason'] == 'source-occurrence-already-used' and 'references' in row:
                 fields |= targets | {'references'}
@@ -131,6 +142,8 @@ def _validate_audit_schema(row, reference_labels):
         article = proof['rule'] == ARTICLE_RULE
         proof_fields = ({'rule', 'source_article', 'source_head', 'source_left',
                          'head_strong', 'article_morph', 'head_morph'} if article else
+                        {'rule', 'source_token', 'strong', 'morph', 'catalog_entry_sha256'}
+                        if proof['rule'] == NAME_RULE else
                         {'rule', 'source_token', 'source_left', 'source_right', 'strong', 'morph'})
         require(set(proof) == proof_fields and
                 all(type(value) is str or (key == 'source_left' and article and value is None)
@@ -149,10 +162,12 @@ class ValidationResult:
 
 def rule_identity():
     """Hash rules and semantic/XML dependencies, without machine-specific paths."""
-    names = ('linguistic.py', 'linguistic_rules.py', 'confirm.py', 'common.py',
+    names = ('linguistic.py', 'linguistic_rules.py', 'linguistic_names.py', 'confirm.py', 'common.py',
              'importers.py', 'xmlio.py', 'project.py')
     hashes = {name: file_hash(importlib.import_module('.' + name[:-3], __package__).__file__) for name in names}
-    return {'version': RULES_VERSION, 'sha256': digest(hashes), 'implementation': hashes}
+    data_files = {'rules/' + path.name: file_hash(path) for path in (CATALOG_PATH, SOURCES_PATH)}
+    identity = {'implementation': hashes, 'data_files': data_files}
+    return {'version': RULES_VERSION, 'sha256': digest(identity), **identity}
 
 
 def _source_extras(path, profile):
@@ -302,36 +317,11 @@ def _span_signature(element, remove_provenance=False):
     return ET.tostring(clone, encoding='unicode')
 
 
-def _source_shape_problem(source, nt_edition, is_nt, expected_ref):
-    """Malformed/mixed fixtures and unsupported source mixtures cannot be evidence."""
-    seen = set()
-    for token in source:
-        origin = token.get('origin_id')
-        if not origin or origin in seen:
-            return 'duplicate-or-missing-source-occurrence-id'
-        seen.add(origin)
-        match = re.match(r'^([1-3]?[A-Za-z]+\.\d+\.\d+)', origin)
-        if not match:
-            return 'invalid-source-verse-reference'
-        try:
-            actual_ref = canonical_ref(match[1])
-        except ValueError:
-            return 'invalid-source-verse-reference'
-        if actual_ref != expected_ref:
-            return 'source-occurrence-belongs-to-other-verse'
-        edition = token.get('edition')
-        if is_nt and edition not in (None, '', nt_edition):
-            return 'wrong-selected-nt-edition'
-        if not is_nt and '=' in origin and not origin.split('=', 1)[1].startswith(('L', 'Q')):
-            return 'unsupported-hebrew-witness'
-    return None
-
-
-def _corroborate_article(view, target_indices, reference_views, alignments):
+def _corroborate_assignment(view, target_indices, reference_views, alignments, codes=('G3588',)):
     statuses = {}
     for label, reference in reference_views.items():
         statuses[label] = ('missing-reference-verse' if reference is None else
-                           reference.confirm_span(target_indices, ('G3588',), alignments[label]))
+                           reference.confirm_span(target_indices, codes, alignments[label]))
     return statuses
 
 
@@ -348,6 +338,7 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
     original_notes = _preserved_notes(root)
     verse_guards = verse_guards or {}
     corroborating_roots = corroborating_roots or {}
+    name_catalog = load_name_catalog()
     require(set(corroborating_roots) <= {'elb-bk', 'elb-csv'}, 'Supported article references: elb-bk, elb-csv')
     reference_indexes = {label: _verse_index(tree) for label, tree in corroborating_roots.items()}
     corroboration_hashes = {label: hashlib.sha256(ET.tostring(tree, encoding='utf-8')).hexdigest()
@@ -394,6 +385,12 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
             if not reason:
                 token = tokens[indices[0]]
                 decision = decisions.get(token['id'])
+                if decision and decision['status'] == 'review' and span.codes[0] in name_catalog:
+                    name_references = _corroborate_assignment(view, indices, reference_views, alignments, span.codes)
+                    decision = proper_name_decision(ref, tokens, indices[0], source, name_catalog,
+                        nt_edition=nt_edition, reference_statuses=name_references)
+                    if decision['reason'] == 'no-independent-word-level-name-corroboration':
+                        row['references'] = name_references
                 if decision is None:
                     reason = 'unsupported-target-annotation'
                 else:
@@ -401,8 +398,8 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                     if decision['status'] == 'accepted':
                         proof = decision['proof']
                         occurrence = proof.get('source_article', proof.get('source_token'))
-                        corroboration = (_corroborate_article(view, indices, reference_views, alignments)
-                                         if proof.get('source_article') else None)
+                        corroboration = (_corroborate_assignment(view, indices, reference_views, alignments)
+                                         if proof.get('source_article') else decision.get('references'))
                         if corroboration is not None:
                             row['references'] = corroboration
                         if (corroboration is not None and require_article_corroboration
@@ -429,7 +426,7 @@ def validate_tree(root, reference_occurrences, *, nt_edition='WH', source_metada
                     continue
                 if proof['source_article'] in used_source_occurrences:
                     continue
-                corroboration = _corroborate_article(view, [index], reference_views, alignments)
+                corroboration = _corroborate_assignment(view, [index], reference_views, alignments)
                 approved = not require_article_corroboration or 'confirmed' in corroboration.values()
                 if approved:
                     used_source_occurrences.add(proof['source_article'])
@@ -599,6 +596,7 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
     verse_guards = verse_guards or {}
     for row in audit:
         _validate_audit_schema(row, {'elb-bk', 'elb-csv'})
+    name_catalog = load_name_catalog()
     replay = copy.deepcopy(before)
     views = {ref: _Verse(verse, ref) for ref, verse in zef_verses(replay)}
     token_views = {ref: _token_view(view)[0] for ref, view in views.items()}
@@ -622,17 +620,22 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
         inherited = {code for token in tokens for code in token['strong']}
         require(len(inherited) < 3 or len(inherited & available) / len(inherited) >= 0.65,
                 'Accepted proof uses a mismatched verse inventory')
-        proof = (linked_article_proof(view.text, tokens, index, source) if article else
-                 atomic_bridge_proof(view.text, tokens, index, source))
+        if row.get('proof', {}).get('rule') == NAME_RULE:
+            decision = proper_name_decision(ref, tokens, index, source, name_catalog,
+                nt_edition=nt_edition, reference_statuses=row.get('references', {}))
+            proof = decision.get('proof') if decision['status'] == 'accepted' else None
+        else:
+            proof = (linked_article_proof(view.text, tokens, index, source) if article else
+                     atomic_bridge_proof(view.text, tokens, index, source))
         require(proof is not None and row.get('proof') == proof, 'Linguistic proof differs from source occurrences')
         occurrence = (ref, proof.get('source_article', proof.get('source_token')))
         if accepted:
             require(occurrence not in used_occurrences, 'A source occurrence was accepted more than once')
             used_occurrences.add(occurrence)
-        if article and accepted:
+        if accepted and (article or proof['rule'] == NAME_RULE):
             statuses = row.get('references', {})
             require(set(statuses) == {'elb-bk', 'elb-csv'} and 'confirmed' in statuses.values(),
-                    'Article lacks independent corroboration')
+                    'Article or proper name lacks independent corroboration')
 
     for row in audit:
         require(row.get('rule_version') == RULES_VERSION, 'Unknown linguistic audit rule version')
@@ -652,7 +655,8 @@ def verify_transition(before, after, audit, source_occurrences, *, nt_edition='W
                         'Unlocated hint audit contains an unrelated target')
             if action == 'retain':
                 require(row.get('status') in {'review', 'reject'}, 'Retained hint has invalid status')
-                if row['reason'] == 'no-independent-article-corroboration':
+                if row['reason'] in {'no-independent-article-corroboration',
+                                     'no-independent-word-level-name-corroboration'}:
                     require('confirmed' not in row['references'].values(),
                             'Retained article hint claims successful corroboration')
                 continue

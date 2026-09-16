@@ -1,0 +1,1056 @@
+{
+  "G2": {
+    "strong": "G2",
+    "german_forms": [
+      "Aaron",
+      "Aarons"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2,
+      "german_entry_sha256": "4b7b8484fb2583387886ff24edc19e6434370a8c57d084c6096c3fc0b0ba1faa",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Aaron"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "2ae25e4738882cd8eef3943d35eeec95025463a9665abc071d5573115ffe7088",
+      "dictionary_lemma_forms": [
+        "Ἀαρών"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.7.40#03=NKO",
+        "row_sha256": "aee58f74dd49ae64f4efcc7ddb5d4ada278d21c48c953f1b2f606b2accc7460f"
+      }
+    },
+    "evidence_sha256": "0f7ce30f230312b308394100a289954de8976bf73d7c8bfbd57117af722e3f9a",
+    "source_lemmas": [
+      "Ἀαρών"
+    ]
+  },
+  "H175": {
+    "strong": "H175",
+    "german_forms": [
+      "Aaron",
+      "Aarons"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2,
+      "german_entry_sha256": "4b7b8484fb2583387886ff24edc19e6434370a8c57d084c6096c3fc0b0ba1faa",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Aaron"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "2ae25e4738882cd8eef3943d35eeec95025463a9665abc071d5573115ffe7088",
+      "dictionary_lemma_forms": [
+        "Ἀαρών"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.7.40#03=NKO",
+        "row_sha256": "aee58f74dd49ae64f4efcc7ddb5d4ada278d21c48c953f1b2f606b2accc7460f"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H175",
+      "hebrew_entry_sha256": "d093e4181006347dcc7f25ba543c12131d9d97d4ed8181f4acb6a964503bec84",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "אַהֲרוֹן"
+      ]
+    },
+    "evidence_sha256": "c07d3129353be6f2d2dbed1af69daf4ac36c837ede59a63e722de3645fb89d5f",
+    "hebrew_consonants": [
+      "אהרון"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G11": {
+    "strong": "G11",
+    "german_forms": [
+      "Abraham",
+      "Abrahams"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 11,
+      "german_entry_sha256": "8deb799a6b22d324428f81c036770b0fd3a8f322cf6b0209d5027906558eeaea",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Abraham"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "c9fc3e8629a43b4c511c6bc1b0a40c5f629058c2154ff6a4ec6f93ba93c879ab",
+      "dictionary_lemma_forms": [
+        "Ἀβραάμ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#03=NKO",
+        "row_sha256": "839094700ce421172791ac484f89c128fdb686ea65dab4d223f36c9099c0cfc5"
+      }
+    },
+    "evidence_sha256": "2a9531e9e412dcf9f8aa9abc9cc8caf3bb473736bdeeadc0f05a2ec619b178d4",
+    "source_lemmas": [
+      "Ἀβραάμ"
+    ]
+  },
+  "H85": {
+    "strong": "H85",
+    "german_forms": [
+      "Abraham",
+      "Abrahams"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 11,
+      "german_entry_sha256": "8deb799a6b22d324428f81c036770b0fd3a8f322cf6b0209d5027906558eeaea",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Abraham"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "c9fc3e8629a43b4c511c6bc1b0a40c5f629058c2154ff6a4ec6f93ba93c879ab",
+      "dictionary_lemma_forms": [
+        "Ἀβραάμ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#03=NKO",
+        "row_sha256": "839094700ce421172791ac484f89c128fdb686ea65dab4d223f36c9099c0cfc5"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H85",
+      "hebrew_entry_sha256": "066e9a99f487de33a3a2afc39728e077b402491e0ab46fc80ccfb53af23634a4",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "אַבְרָהָם"
+      ]
+    },
+    "evidence_sha256": "b4c649892bff6ef36ce6ae5deca05399cc2e807713a6037f3c718a0b1d9563d5",
+    "hebrew_consonants": [
+      "אברהם"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G1138": {
+    "strong": "G1138",
+    "german_forms": [
+      "David",
+      "Davids"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 1138,
+      "german_entry_sha256": "8d48dc28fbb9bb89a7ea75d7fd10febc08c025dc1a97850835a72bbae06d9fdf",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) David"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "a6914e449f3b0ad2f364a649abdb29a8b56fa4e1d0e0f96417c8f281279fdb26",
+      "dictionary_lemma_forms": [
+        "Δαβίδ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.16#16=NKO",
+        "row_sha256": "882a1b074d07733e1dbae9a638bd76fe6c77fa760df8acce74b65612bf4f1115"
+      }
+    },
+    "evidence_sha256": "fffe2644fedcf06812977fe179c6a4ab308841223b8a0379ba2d51bd394ceac9",
+    "source_lemmas": [
+      "Δαυείδ, Δαυίδ, Δαβίδ"
+    ]
+  },
+  "H1732": {
+    "strong": "H1732",
+    "german_forms": [
+      "David",
+      "Davids"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 1138,
+      "german_entry_sha256": "8d48dc28fbb9bb89a7ea75d7fd10febc08c025dc1a97850835a72bbae06d9fdf",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) David"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "a6914e449f3b0ad2f364a649abdb29a8b56fa4e1d0e0f96417c8f281279fdb26",
+      "dictionary_lemma_forms": [
+        "Δαβίδ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.16#16=NKO",
+        "row_sha256": "882a1b074d07733e1dbae9a638bd76fe6c77fa760df8acce74b65612bf4f1115"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H1732",
+      "hebrew_entry_sha256": "6f43eb367de9fcc4adfec49ec48c95436ba76c72285a2881422f243914b1be09",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "דָּוִד",
+        "דָּוִיד"
+      ]
+    },
+    "evidence_sha256": "907fa6b98957906e3a2b1bb77a648d55241fd33928277caca739de6cf21002f1",
+    "hebrew_consonants": [
+      "דוד",
+      "דויד"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G2384": {
+    "strong": "G2384",
+    "german_forms": [
+      "Jakob",
+      "Jakobs"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2384,
+      "german_entry_sha256": "7944fe2b7af53ff17c9d087b1849cdd9d6a8f2c7a45fa0792d8772748103d693",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Jakob"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "731bfe12da69651039df0f54bd4f1d39e0ffe01cfd31fce77d6beece94a0fc61",
+      "dictionary_lemma_forms": [
+        "Ἰακώβ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#11=NKO",
+        "row_sha256": "1fd81f253f0affb6f417124d1f3661d849072bd2c551a557d2068b58bd6f3cf1"
+      }
+    },
+    "evidence_sha256": "bc1519ac9fede1dfd696c89e61aae15d7df30fa8ce8dc10c27ac36d3f2f59d19",
+    "source_lemmas": [
+      "Ἰακώβ"
+    ]
+  },
+  "H3290": {
+    "strong": "H3290",
+    "german_forms": [
+      "Jakob",
+      "Jakobs"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2384,
+      "german_entry_sha256": "7944fe2b7af53ff17c9d087b1849cdd9d6a8f2c7a45fa0792d8772748103d693",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Jakob"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "731bfe12da69651039df0f54bd4f1d39e0ffe01cfd31fce77d6beece94a0fc61",
+      "dictionary_lemma_forms": [
+        "Ἰακώβ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#11=NKO",
+        "row_sha256": "1fd81f253f0affb6f417124d1f3661d849072bd2c551a557d2068b58bd6f3cf1"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H3290",
+      "hebrew_entry_sha256": "650b5fbafcb99f3fbe9f6733005322851ba9e543e9a43680766b41ecbf7a310e",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "יַעֲקֹב"
+      ]
+    },
+    "evidence_sha256": "f893049135b0c6349fc2cad0613e2ebaa1386953c5df006084da79a746ecbb2f",
+    "hebrew_consonants": [
+      "יעקב"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G2464": {
+    "strong": "G2464",
+    "german_forms": [
+      "Isaak",
+      "Isaaks"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2464,
+      "german_entry_sha256": "ed59ec974da51eded485a3999514daf8dd50fa2bd5cfe4fe63c22de31fc9f943",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Isaak"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "179f3a1ec98ba58683491b5982f7d9061a17def2bbcf03c80de8792125bae388",
+      "dictionary_lemma_forms": [
+        "Ἰσαάκ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#07=NKO",
+        "row_sha256": "1dab0c95387a0a85fcbf6c4abb78b4961e9823c8023fd0c44fac1f45b5aa79e8"
+      }
+    },
+    "evidence_sha256": "fe6536fb220ee7638a54838e795ce4b12a9e8f4956d921336b7b367ac00d9233",
+    "source_lemmas": [
+      "Ἰσαάκ"
+    ]
+  },
+  "H3327": {
+    "strong": "H3327",
+    "german_forms": [
+      "Isaak",
+      "Isaaks"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2464,
+      "german_entry_sha256": "ed59ec974da51eded485a3999514daf8dd50fa2bd5cfe4fe63c22de31fc9f943",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Isaak"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "179f3a1ec98ba58683491b5982f7d9061a17def2bbcf03c80de8792125bae388",
+      "dictionary_lemma_forms": [
+        "Ἰσαάκ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#07=NKO",
+        "row_sha256": "1dab0c95387a0a85fcbf6c4abb78b4961e9823c8023fd0c44fac1f45b5aa79e8"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H3327",
+      "hebrew_entry_sha256": "d159161c2b1240760f2889e8450756e9202f6c4bc9e83ab4a86ba6b531cd1c2d",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "יִצְחָק"
+      ]
+    },
+    "evidence_sha256": "36257776807556657fb0dccbd4878100788d75372865d9d18deb46603488dd11",
+    "hebrew_consonants": [
+      "יצחק"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G2474": {
+    "strong": "G2474",
+    "german_forms": [
+      "Israel",
+      "Israels"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2474,
+      "german_entry_sha256": "d5c92ccb40ec9a8db282ed10827311caf68cf377908189d5a63aa93a56e9c50a",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Israel"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "452bafb9ffc9dfcb8a4e70263c0d9dd758f78f1f7a96771e9f44eb65b215fe78",
+      "dictionary_lemma_forms": [
+        "Ἰσραήλ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.6#18=NKO",
+        "row_sha256": "bb39ef085157a5899119a1744b9e890adcd53514b0ab1a03be0cd0e00b1d7dea"
+      }
+    },
+    "evidence_sha256": "a15440a7eb32540161d845da7afcbf12b91b4662d32dc9e27782bab3f336b129",
+    "source_lemmas": [
+      "Ἰσραήλ"
+    ]
+  },
+  "H3478": {
+    "strong": "H3478",
+    "german_forms": [
+      "Israel",
+      "Israels"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2474,
+      "german_entry_sha256": "d5c92ccb40ec9a8db282ed10827311caf68cf377908189d5a63aa93a56e9c50a",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Israel"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "452bafb9ffc9dfcb8a4e70263c0d9dd758f78f1f7a96771e9f44eb65b215fe78",
+      "dictionary_lemma_forms": [
+        "Ἰσραήλ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.6#18=NKO",
+        "row_sha256": "bb39ef085157a5899119a1744b9e890adcd53514b0ab1a03be0cd0e00b1d7dea"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H3478",
+      "hebrew_entry_sha256": "5055ae90fd1cea34e6b74d228a6ec545a047dc20a9c8e9a7126d1dadefe0469d",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "יִשְׂרָאֵל"
+      ]
+    },
+    "evidence_sha256": "42dbe2495f98e7053789a8f81f8d0e476c53f81f53b03c36a46d74a1cc072dd4",
+    "hebrew_consonants": [
+      "ישראל"
+    ],
+    "source_morphs": [
+      "HNpm",
+      "HNpl"
+    ]
+  },
+  "G2501": {
+    "strong": "G2501",
+    "german_forms": [
+      "Joseph",
+      "Josephs",
+      "Josef",
+      "Josefs"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2501,
+      "german_entry_sha256": "d2a9b6ab1362935dad9848b004d828dee100fcb3de7a9a9f3d38670671f42c99",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Joseph"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "6577ae2f70f3584f262178248bfde06f176bc48e569e7fe3b31993f07d5ac199",
+      "dictionary_lemma_forms": [
+        "Ἰωσήφ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.23#04=NKO",
+        "row_sha256": "3a767bd4cd98e61c1353d5cc27c0d3f9c4dabea8dd255dede9d389c4841f558c"
+      }
+    },
+    "evidence_sha256": "a7ff147255717af341a4e7ef815e16a986f09481216f561e657ebaea32a268b4",
+    "source_lemmas": [
+      "Ἰωσήφ"
+    ]
+  },
+  "H3130": {
+    "strong": "H3130",
+    "german_forms": [
+      "Joseph",
+      "Josephs",
+      "Josef",
+      "Josefs"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2501,
+      "german_entry_sha256": "d2a9b6ab1362935dad9848b004d828dee100fcb3de7a9a9f3d38670671f42c99",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Joseph"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "6577ae2f70f3584f262178248bfde06f176bc48e569e7fe3b31993f07d5ac199",
+      "dictionary_lemma_forms": [
+        "Ἰωσήφ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.23#04=NKO",
+        "row_sha256": "3a767bd4cd98e61c1353d5cc27c0d3f9c4dabea8dd255dede9d389c4841f558c"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H3130",
+      "hebrew_entry_sha256": "79ef54a2207d6504c092fddc14384d800e50af1bb3e1e716b1211f77badac62f",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "יוֹסֵף"
+      ]
+    },
+    "evidence_sha256": "69d95650249b876641fd8b737b70a8f5a29c90363b30c61a9408d4739c804d6f",
+    "hebrew_consonants": [
+      "יוסף"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G3475": {
+    "strong": "G3475",
+    "german_forms": [
+      "Mose",
+      "Moses",
+      "Mosen",
+      "Mosi"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 3475,
+      "german_entry_sha256": "5bc122394f63cc65bfad9a51ba8335c9df5c59139d6d62686f3f218a05d34ba3",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Mose"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "6faaf960356479ba1289b7fc21b36c2cd9eacf7a44ad3179720b44a7c287bf8d",
+      "dictionary_lemma_forms": [
+        "Μωσεύς",
+        "Μωσῆς",
+        "Μωϋσῆς"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.22#01=NKO",
+        "row_sha256": "045ce91eebe86cda1efbff09e104fed2a2c3043cd5cf94d11b5c710592813caa"
+      }
+    },
+    "evidence_sha256": "dea0cdfb687d5f013c044e9d349492badfef00bd8fb4d3c37857ede8fa04d67c",
+    "source_lemmas": [
+      "Μωϋσῆς, Μωσῆς"
+    ]
+  },
+  "H4872": {
+    "strong": "H4872",
+    "german_forms": [
+      "Mose",
+      "Moses",
+      "Mosen",
+      "Mosi"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 3475,
+      "german_entry_sha256": "5bc122394f63cc65bfad9a51ba8335c9df5c59139d6d62686f3f218a05d34ba3",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Mose"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "6faaf960356479ba1289b7fc21b36c2cd9eacf7a44ad3179720b44a7c287bf8d",
+      "dictionary_lemma_forms": [
+        "Μωσεύς",
+        "Μωσῆς",
+        "Μωϋσῆς"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.22#01=NKO",
+        "row_sha256": "045ce91eebe86cda1efbff09e104fed2a2c3043cd5cf94d11b5c710592813caa"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H4872",
+      "hebrew_entry_sha256": "77e1ff218eb75647f97913c8e3f450a5639f4d88b9f2fb0d4d95e0b74a26a2b5",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "מֹשֶׁה"
+      ]
+    },
+    "evidence_sha256": "3b162e4f7b52e01e73bef11360759e664820a84547facd2c1bfa4b0198831fe9",
+    "hebrew_consonants": [
+      "משה"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G4545": {
+    "strong": "G4545",
+    "german_forms": [
+      "Samuel",
+      "Samuels"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4545,
+      "german_entry_sha256": "4a7cbf9060e3aac0c2bff3e31a34ebf49c9fa4bc10a818f7233f0651b230cc60",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Samuel"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "e0e1691a0714149cd4a2b8c58f46776c6d2654c0b316bd773fe7f15127f196d6",
+      "dictionary_lemma_forms": [
+        "Σαμουήλ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.24#07=NKO",
+        "row_sha256": "31d5940133b191905afa1cb37eeaa5eade5c670bac7bf338306ddb22ff7f775a"
+      }
+    },
+    "evidence_sha256": "ed99879a3a64c8433bd04018e96b90c3e2e2fd4a7cb1d9d39a52c6681c11aa19",
+    "source_lemmas": [
+      "Σαμουήλ"
+    ]
+  },
+  "H8050": {
+    "strong": "H8050",
+    "german_forms": [
+      "Samuel",
+      "Samuels"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4545,
+      "german_entry_sha256": "4a7cbf9060e3aac0c2bff3e31a34ebf49c9fa4bc10a818f7233f0651b230cc60",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Samuel"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "e0e1691a0714149cd4a2b8c58f46776c6d2654c0b316bd773fe7f15127f196d6",
+      "dictionary_lemma_forms": [
+        "Σαμουήλ"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.24#07=NKO",
+        "row_sha256": "31d5940133b191905afa1cb37eeaa5eade5c670bac7bf338306ddb22ff7f775a"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H8050",
+      "hebrew_entry_sha256": "149a568ddfdc056072d973fdaf96c21dfea8c36d5853a8fbe455e1a7bc2b5610",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "שְׁמוּאֵל"
+      ]
+    },
+    "evidence_sha256": "e44e312b53de7caedd85a8011e798761c2ad69d2f4ae6cc14980f56c8a983011",
+    "hebrew_consonants": [
+      "שמואל"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G4672": {
+    "strong": "G4672",
+    "german_forms": [
+      "Salomo",
+      "Salomos",
+      "Salomon",
+      "Salomons"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4672,
+      "german_entry_sha256": "488f48b714ef45b2148d24e7fca9f41c70acf2393572c9335fe4e390240310a4",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Salomon"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "b500fb6d7ea433827b8f12035bac00beec533b7cfe04d6eb7e7cf844e4175426",
+      "dictionary_lemma_forms": [
+        "Σολομών"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.11#22=NKO",
+        "row_sha256": "1cad43baf6b31b6561f77d50e0b60a7fd3ad2123a46bb5e3b946e1de6fb966ed"
+      }
+    },
+    "evidence_sha256": "7ca670901ddd29fb6a9c22718bcc9065a6c0720ef372376386edd873e99cf3fa",
+    "source_lemmas": [
+      "Σολομών, Σαλωμών"
+    ]
+  },
+  "H8010": {
+    "strong": "H8010",
+    "german_forms": [
+      "Salomo",
+      "Salomos",
+      "Salomon",
+      "Salomons"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4672,
+      "german_entry_sha256": "488f48b714ef45b2148d24e7fca9f41c70acf2393572c9335fe4e390240310a4",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Salomon"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "b500fb6d7ea433827b8f12035bac00beec533b7cfe04d6eb7e7cf844e4175426",
+      "dictionary_lemma_forms": [
+        "Σολομών"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.11#22=NKO",
+        "row_sha256": "1cad43baf6b31b6561f77d50e0b60a7fd3ad2123a46bb5e3b946e1de6fb966ed"
+      },
+      "hebrew_lexicon": "sources/originals/hebrewstrong.xml",
+      "hebrew_entry": "H8010",
+      "hebrew_entry_sha256": "e2361ac2fa2ba2c7098f73ae06b1c3c5a117b7ae3f39108143f19dee13acc422",
+      "german_link": "Explicit Kautz Hebrew derivation cross-reference plus original Hebrew proper-name entry; German machine translation is not the sole evidence.",
+      "hebrew_lemma_forms": [
+        "שְׁלֹמֹה"
+      ]
+    },
+    "evidence_sha256": "562c908e4969915dbcf4ac415b05492a108ee86448cc8547cab04fc067eb6dba",
+    "hebrew_consonants": [
+      "שלמה"
+    ],
+    "source_morphs": [
+      "HNpm"
+    ]
+  },
+  "G2491": {
+    "strong": "G2491",
+    "german_forms": [
+      "Johannes",
+      "Johannis",
+      "Johannem"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2491,
+      "german_entry_sha256": "43db10d8861280a50a8c5b3baeaa754db5ca63dde2d18017b589235334a3ea5e",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Johannes"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "2b136384ba312ad6c02cbd31f0cf38bf3d17bfb21bc106c9590711bac4bca298",
+      "dictionary_lemma_forms": [
+        "Ἰωάννης"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.5#02=NKO",
+        "row_sha256": "d9ae8dad7771bd803cc7e3446f108a42f247caa91daea842f24a4e97e2cd74a6"
+      }
+    },
+    "evidence_sha256": "d8b3c0e78cd3a04130811532269b847e3f80db8895da061d19a43dc614537e2c",
+    "source_lemmas": [
+      "Ἰωάννης"
+    ]
+  },
+  "G2424": {
+    "strong": "G2424",
+    "german_forms": [
+      "Jesus",
+      "Jesu",
+      "Jesum"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2424,
+      "german_entry_sha256": "840e8626ccd7441e6a429d59fde254c7db445f7e6df8a13bbc00233b925082ea",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Jesus"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "91daefadb3a695a75b0d7ec31f6dfbb97bcd550137f2c28dad4b276cc029c3e2",
+      "dictionary_lemma_forms": [
+        "Ἰησοῦς"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.1#13=NKO",
+        "row_sha256": "7ef42bd02b96236437fbb80873dbb2bf21f23a8c66dbb19aadc6d60653b3f2e8"
+      }
+    },
+    "evidence_sha256": "d0fbb14b33eafb7a4cd533cee5c4238348d20622a10495d288abde1fd174a191",
+    "source_lemmas": [
+      "Ἰησοῦς"
+    ]
+  },
+  "G3972": {
+    "strong": "G3972",
+    "german_forms": [
+      "Paulus",
+      "Pauli",
+      "Paulum"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 3972,
+      "german_entry_sha256": "0c29448abb4af9d7069a18f8e57b458125fd149916a527cca7d9b3e032d1fdd4",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Paulus"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "8452eb5d71fa692941b5daf2a008e3c2eabebdc75d7902b5141d5c4ac13db139",
+      "dictionary_lemma_forms": [
+        "Παῦλος"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.13.7#07=NKO",
+        "row_sha256": "e37208692417eda59103f99c4487fb7d181e472d35aad1583c37d037ba92f138"
+      }
+    },
+    "evidence_sha256": "f15c08dc51ac2582abf5b76634143f167bf169eb2be1b7877c1934afa234eaf5",
+    "source_lemmas": [
+      "Παῦλος"
+    ]
+  },
+  "G4074": {
+    "strong": "G4074",
+    "german_forms": [
+      "Petrus",
+      "Petri",
+      "Petrum"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4074,
+      "german_entry_sha256": "d461a270747715d5b3df113c9ecfc5a17827bca03c2f36e0abafc8dd227f98c2",
+      "definition_headings": [
+        {
+          "line": 5,
+          "heading": "I.) Petrus"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "4243fe63b7e195e7d684f446bef29eedf72a08335b83b8f5065924652c066dd9",
+      "dictionary_lemma_forms": [
+        "Πέτρος"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.13#13=NKO",
+        "row_sha256": "67ae735c656e59a46e2e538ed0836450b617e2dbf9c3436356fa93f948dd878a"
+      }
+    },
+    "evidence_sha256": "6c4116727c743f02966c957ec6d7cd6e0d9bc0c30b2c74aa4017066ed06e7390",
+    "source_lemmas": [
+      "Πέτρος"
+    ]
+  },
+  "G2264": {
+    "strong": "G2264",
+    "german_forms": [
+      "Herodes",
+      "Herodis",
+      "Herodem"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 2264,
+      "german_entry_sha256": "517e2b2029365cd5f027b5ce9b0734b9ad2807f11954e832c2fa788fad20e032",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Herodes"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "340249dc1e58b692bc667c6d603c6b1db0a13503546fb76bacbe3c27d2d991a3",
+      "dictionary_lemma_forms": [
+        "ἥρως",
+        "Ἡρώδης"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.4.27#17=NKO",
+        "row_sha256": "ceac9b5df53291528e0e16e29ff01b92168d38277db3035934419df22e764dd9"
+      }
+    },
+    "evidence_sha256": "d290d89de0ba4932caf3430526473211f08198f5d2d3e94136e4c1fae88a9f71",
+    "source_lemmas": [
+      "Ἡρώδης"
+    ]
+  },
+  "G4091": {
+    "strong": "G4091",
+    "german_forms": [
+      "Pilatus",
+      "Pilati",
+      "Pilatum"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4091,
+      "german_entry_sha256": "f15ce84e2975d36cc3b83e201cc194b4715641cce846a033d9667077bc563d9f",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Pilatus"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "4e7f9dd2ea4c69a07de7ad2367213bdfcd7f099d0880f17f7c932ce27c5166f2",
+      "dictionary_lemma_forms": [
+        "Πιλᾶτος"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.3.13#31=NKO",
+        "row_sha256": "f3a17484071cbbb4f4ae8f26108dab43dac869e91c4d167dadea05598007a82c"
+      }
+    },
+    "evidence_sha256": "b3498e02ace0e23f07aa8d04d41667779c4868f60e295e96559b505a8a6dc45b",
+    "source_lemmas": [
+      "Πιλᾶτος"
+    ]
+  },
+  "G3137": {
+    "strong": "G3137",
+    "german_forms": [
+      "Maria",
+      "Marias",
+      "Marien",
+      "Mariam"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 3137,
+      "german_entry_sha256": "30f3cd5555fc12b8b9c4c86a246dbc59cdbba187930f46e1d2d746b2969a865e",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Maria"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "d6e5e8f6b947552ba4fc884a6d463f1b51a2b8e3c74ce67228647c6bc5ed8434",
+      "dictionary_lemma_forms": [
+        "Μαριάμ",
+        "Μαρία"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.14#14=NKO",
+        "row_sha256": "9f15a07adfa92a396006772518e85fd5506d917d1211797138f8798acca8a3f1"
+      }
+    },
+    "evidence_sha256": "fa374d551831ad2d977e88498209297c739e969d327d4a86004baec705463055",
+    "source_lemmas": [
+      "Μαρία"
+    ]
+  },
+  "G4613": {
+    "strong": "G4613",
+    "german_forms": [
+      "Simon",
+      "Simons",
+      "Simonem"
+    ],
+    "german_inflection_scope": "Explicit editorial name forms, including historical Latin declension; no generic stemming.",
+    "evidence": {
+      "german_lexicon": "sources/originals/stronggreek_de_kautz.xml",
+      "greek_entry": 4613,
+      "german_entry_sha256": "17f368ff034f6196d259af2e4e02b26cda919cf204a327215c6c6ed908845f08",
+      "definition_headings": [
+        {
+          "line": 1,
+          "heading": "I.) Simon"
+        }
+      ],
+      "greek_lexicon": "sources/originals/strongsgreek.xml",
+      "greek_entry_sha256": "c8d32e616ad8c8531e6aed840d63981735468d3178d4ed538f41b53f1aa6b981",
+      "dictionary_lemma_forms": [
+        "Σίμων"
+      ],
+      "step_lemma_evidence": {
+        "source": "sources/originals/TAGNT_Act-Rev.tsv",
+        "origin_id": "Act.1.13#29=NKO",
+        "row_sha256": "8cbdfec328d586db7b15292ea13a2056a83baa6b3e3db451206b64e1e2b7e12b"
+      }
+    },
+    "evidence_sha256": "776d7fcefafdf6d0221fdbce4bebccf9f83e613e22b657b0912833b75fed0c78",
+    "source_lemmas": [
+      "Σίμων"
+    ]
+  }
+}

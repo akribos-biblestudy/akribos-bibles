@@ -5,6 +5,7 @@ need word (TAGNT raw ref # component), conjoined, morph, and optional editions_r
 Greek source lists MUST already be filtered to the chosen NT textual edition.
 """
 import re
+from .common import canonical_ref
 
 ARTICLES=frozenset('der die das den dem des'.split())
 
@@ -282,3 +283,28 @@ def classify_uncertain(ref,text,tokens,source,inventory_mismatch=False):
         else:status,reason='review','alignment-needs-semantic-evidence'
         out.append(row|{'status':status,'reason':reason})
     return out
+
+
+def _source_shape_problem(source, nt_edition, is_nt, expected_ref):
+    """Malformed/mixed fixtures and unsupported source mixtures cannot be evidence."""
+    seen = set()
+    for token in source:
+        origin = token.get('origin_id')
+        if not origin or origin in seen:
+            return 'duplicate-or-missing-source-occurrence-id'
+        seen.add(origin)
+        match = re.match(r'^([1-3]?[A-Za-z]+\.\d+\.\d+)', origin)
+        if not match:
+            return 'invalid-source-verse-reference'
+        try:
+            actual_ref = canonical_ref(match[1])
+        except ValueError:
+            return 'invalid-source-verse-reference'
+        if actual_ref != expected_ref:
+            return 'source-occurrence-belongs-to-other-verse'
+        edition = token.get('edition')
+        if is_nt and edition not in (None, '', nt_edition):
+            return 'wrong-selected-nt-edition'
+        if not is_nt and '=' in origin and not origin.split('=', 1)[1].startswith(('L', 'Q')):
+            return 'unsupported-hebrew-witness'
+    return None

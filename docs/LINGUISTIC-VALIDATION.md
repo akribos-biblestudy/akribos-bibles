@@ -97,6 +97,22 @@ Hinweis, `review` erhält ihn wegen fehlender Beweise, `reject` dokumentiert
 einen Widerspruch. Auch bei `reject` bleiben Nummer und Hinweis erhalten;
 eine unbewiesene Ersatznummer wird nicht eingesetzt.
 
+### Bestehende Eigennamen
+
+Ein [ausdrücklicher Namenskatalog](LINGUISTIC-NAMES.md) erlaubt zusätzlich die
+Bestätigung einzelner bereits unsicher markierter Namen. Dazu müssen deutsche
+Namensform, vorhandener Code, tatsächliches einmaliges STEP-Namensvorkommen,
+Eigenname-Morphologie und belegtes Lemma beziehungsweise hebräische
+Konsonantenschreibung übereinstimmen. Name und Code müssen im ganzen deutschen
+Vers jeweils eindeutig sein; auch unmarkierte Namenswiederholungen und Codes
+in größeren Spannen zählen mit.
+
+Mindestens eine genaue BK-/CSV-Wortbestätigung bleibt zwingend. Die Regel
+entfernt ausschließlich den vorhandenen Hinweis, ergänzt keine Namensnummern
+und ersetzt keine Namen. Alle bisherigen Vers-, Varianten-, Inventar- und
+Provenienzprüfungen gelten weiter. Katalog, Quellenbelege und Prüfcode werden
+gehasht; der öffentliche Replay prüft den tatsächlichen STEP-/Katalogbeleg erneut.
+
 ## Protokolle und Erhaltung
 
 Im unveränderlichen Laufarchiv entstehen zusätzlich:

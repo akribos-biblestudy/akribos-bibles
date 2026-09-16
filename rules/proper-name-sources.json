@@ -1,0 +1,21 @@
+{
+  "lexica": {
+    "sources/originals/stronggreek_de_kautz.xml": "f30bcc658ec4a9d863099eef097b9456ef8ec8d95fc1468da3f561a4f359fda9",
+    "sources/originals/strongsgreek.xml": "25c8816f2a4a8481d0d3f270a727b1093525b53c2eddfaa2edffe0d4a82eefd0",
+    "sources/originals/hebrewstrong.xml": "447c1cdf31f2026c47eac67884d892901e8de455826e9a69284d964a31422ed8"
+  },
+  "catalog_entries": 28,
+  "hebrew_entries": 10,
+  "excluded": [
+    "H3068/HERR",
+    "H136/Adonai",
+    "new Strong assignments",
+    "generic proper-name stemming"
+  ],
+  "rights": {
+    "sources/originals/stronggreek_de_kautz.xml": "Copyright Gerhard Kautz, Update 5/2026. Original and derived evidence retain the Kautz attribution and publication conditions; see licenses/LicenseRef-Kautz-Akribos-Permission.md.",
+    "sources/originals/strongsgreek.xml": "Public Domain. James Strong; electronic edition Michael Grier / Ulrik Sandborg-Petersen.",
+    "sources/originals/hebrewstrong.xml": "Historical Strong text: Public Domain. Open Scriptures electronic data: CC BY 4.0. Akribos German additions: AGPLv3; no German machine-translation passage is used as sole name evidence.",
+    "sources/originals/TAGNT*.tsv": "CC BY 4.0. STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge."
+  }
+}
