@@ -2,7 +2,7 @@
 
 Dieses Repository enthält **die Originaldaten, den Python-Code, alle erzeugten Zwischenstände und die fertigen Bibeln**. Es erzeugt die IDs **`akribos.elb`** und **`akribos.lut`**. Die Versionsnummer steht in `revision`, im Auswahl-Untertitel und im Rechtehinweis. Der Titel benennt die Originalausgabe: **Elberfelder 1932** bzw. **Luther 1912**.
 
-Die Verarbeitung beginnt bei den unveränderten Originalen: **Sprachbearbeitung → vorhandene Strong-Zuordnungen → Lexika → weitere Übersetzungen**. Der Referenzvergleich ist ein eigener, ausschließlich lesender Schritt. ELB-BK-Dateien sind nicht enthalten und werden vom Aufbau nicht benutzt.
+Die Verarbeitung beginnt bei den unveränderten Originalen: **Sprachbearbeitung → vorhandene Strong-Zuordnungen → Lexika → weitere Übersetzungen**. Der Aufbau bis Version 1.2 verwendet keine ELB-BK-Dateien. Version 1.3 ergänzt eine Prüfung gegen zwei privat bereitgestellte Referenzen; diese Dateien werden nicht mitveröffentlicht.
 
 ## Sofort verwenden
 
@@ -40,7 +40,7 @@ python scripts/verify_repository.py --version 1.2
 Python **3.11 oder neuer** mit `pip`; keine API, kein KI-Abo und kein Internetzugriff während des Aufbaus erforderlich. Das deutsche Lemma-Wörterbuch von Simplemma 2.0.0 liegt als unverändertes Wheel im Repo.
 
 ```bash
-cd akribos-bible
+cd akribos-bibles
 python scripts/setup.py
 ```
 
@@ -77,6 +77,25 @@ Der Aufbau verwendet:
 Die KJV bestätigt **Urtext-Nummern im Vers**, keine direkte Zuordnung eines englischen Wortes zu einem deutschen Wort. Arbiträre Prozentgewichte werden nicht als Fehlerwahrscheinlichkeit ausgegeben. Mehrere Übersetzungen können dieselbe ältere Zuordnung übernommen haben und sind deshalb keine sicher unabhängigen Stimmen.
 
 Für ELB ist das NT-Prüfprofil `WH`, für Luther `TR`; abweichende Textgrundlagen und Verszählungen bleiben fachlich zu prüfen. Mit `--nt-edition WH` bzw. `TR` lässt sich das explizit ändern.
+
+### Optional: Version 1.3 mit zwei Referenzen aufbauen
+
+Version 1.3 prüft jeden vorhandenen Akribos-Strong-Hinweis gegen ELB BK und die
+Elberfelder Ausgabe des CSV-Verlags. Bei eindeutiger vollständiger Bestätigung
+und bestandenen zusätzlichen Kontextprüfungen entfällt der Hinweis. Wortlaut,
+vorhandene Nummern und Originalnotizen bleiben unverändert.
+
+[Referenzen beschaffen und Version 1.3 aufbauen](docs/REFERENCE-CONFIRMATION.md)
+beschreibt den vollständigen Ablauf. Für CSV gibt es einen
+[langsamen, fortsetzbaren Browser-Abruf](docs/CSV-REFERENCE.md). Beide
+Referenzdateien bleiben privat unter `.local/references/`.
+
+```bash
+python bible.py build --edition all --version 1.3 --rebuild \
+  --elb-bk .local/references/elb-bk.xml \
+  --elb-csv .local/references/elb-csv.xml
+python scripts/verify_repository.py --version 1.3
+```
 
 ### 3. Mit einer beliebigen Referenz vergleichen
 
