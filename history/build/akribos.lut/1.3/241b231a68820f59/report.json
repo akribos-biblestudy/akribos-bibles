@@ -1,0 +1,127 @@
+{
+  "bible_id": "akribos.lut",
+  "version": "1.3",
+  "stages": {
+    "02-baseline": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 350710,
+      "word_coverage_percent": 50.237,
+      "studynotes": 0,
+      "word_hints": 0,
+      "sha256": "df63a5c738948c12e639d1379d5fe9ff1f6ad955be34704dd3e4bd2ac75202e8",
+      "methods": {
+        "inherited": 350710
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "03-lexicon": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 351840,
+      "word_coverage_percent": 50.3989,
+      "studynotes": 0,
+      "word_hints": 1130,
+      "sha256": "58e80044980d8f332ef264442143cbd45345e05b7014ea2952f5172d9dbce6f2",
+      "methods": {
+        "inherited": 350710,
+        "lexicon": 1130
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "04-multisource": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 391844,
+      "word_coverage_percent": 56.1292,
+      "studynotes": 0,
+      "word_hints": 41134,
+      "sha256": "96c490eab5a68281aa390973db137b40fde95589b635187b99fde00a95630e07",
+      "methods": {
+        "inherited": 350710,
+        "other-translation": 34110,
+        "lexicon": 1130,
+        "concordance": 5530,
+        "verse-consensus": 364
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "05-reference-confirmed": {
+      "method": "two-reference-exact-strong-set-with-vetoes-v2",
+      "normalization": "NFC-lowercase-v1",
+      "safety_profile": "greek-hebrew-function-word-vetoes-v2",
+      "alignment": "forced-matches-in-all-optimal-LCS-alignments",
+      "hints_before": 41134,
+      "hints_removed": 3095,
+      "hints_remaining": 38039,
+      "decisions": {
+        "ambiguous-word-alignment": 1834,
+        "article-right-context-not-forced-adjacent": 24,
+        "article-target-context-boundary": 1,
+        "both-references-confirm-complete-set": 3095,
+        "conjunction-on-isolated-german-es": 1,
+        "different-strong-set": 4266,
+        "function-code-over-assigned-in-verse": 65,
+        "hebrew-source-occurrence-count-unproved": 2,
+        "missing-reference-strong-tags": 23248,
+        "missing-reference-verse": 1,
+        "preposition-on-possible-infinitival-zu": 1,
+        "source-verse-numbering-unproved": 1,
+        "word-not-aligned": 8595
+      },
+      "references": {
+        "elb-bk": {
+          "ambiguous-word-alignment": 1802,
+          "article-right-context-not-forced-adjacent": 23,
+          "article-target-context-boundary": 1,
+          "confirmed": 4776,
+          "different-strong-set": 4224,
+          "missing-reference-strong-tags": 21747,
+          "missing-reference-verse": 1,
+          "word-not-aligned": 8560
+        },
+        "elb-csv": {
+          "ambiguous-word-alignment": 1795,
+          "article-right-context-not-forced-adjacent": 26,
+          "article-target-context-boundary": 1,
+          "confirmed": 3378,
+          "different-strong-set": 3423,
+          "missing-reference-strong-tags": 23688,
+          "missing-reference-verse": 2,
+          "word-not-aligned": 8821
+        }
+      },
+      "new_strong_assignments": 0,
+      "changed_strong_assignments": 0,
+      "public_audit": "Target assignments and decisions only; no reference text or associations.",
+      "input_profile": "zefania-word-spans-with-article-context-v2",
+      "reference_sha256": {
+        "elb-bk": "cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5",
+        "elb-csv": "9cc0e72a334567f2bad23baefc0b7489d9b0e0dd25b7453a7869a462441410d9"
+      },
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 391844,
+      "word_coverage_percent": 56.1292,
+      "studynotes": 0,
+      "word_hints": 38039,
+      "input_sha256": "96c490eab5a68281aa390973db137b40fde95589b635187b99fde00a95630e07",
+      "sha256": "e1fa0a4b755ca810b529c20967930030029292511765c60814dbe98d766074a4",
+      "safety_evidence_sha256": {
+        "source_occurrences": "0d37d9a9bb6c83e168fcef8389f27f7769012eb0f4ab28c38447e817db68e53e",
+        "alignment": "dc645a59c88bd0b61cc4d031ad5a2a5a40b9d640adf088aac996132f0691da1e"
+      },
+      "selected_nt_edition": "TR",
+      "original_notes_preserved": 0,
+      "text_preserved": true,
+      "strong_attributes_preserved": true
+    }
+  },
+  "review_items": 20262,
+  "warning": "Coverage is not accuracy. Reference confirmation removes matching uncertainty notes; it never transfers Strong assignments.",
+  "step_edition": "TR",
+  "language_history": "history/edit/akribos.lut/1.3/077d725643cdf45d"
+}

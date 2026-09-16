@@ -1,86 +1,174 @@
-# Akribos Bibeln – reproduzierbare Version 1.2
+# Akribos Bibeln – reproduzierbare Version 1.3
 
-Dieses Repository enthält **die Originaldaten, den Python-Code, alle erzeugten Zwischenstände und die fertigen Bibeln**. Es erzeugt die IDs **`akribos.elb`** und **`akribos.lut`**. Die Versionsnummer steht in `revision`, im Auswahl-Untertitel und im Rechtehinweis. Der Titel benennt die Originalausgabe: **Elberfelder 1932** bzw. **Luther 1912**.
+Akribos bearbeitet die **Elberfelder 1932** und **Luther 1912** sprachlich und
+ergänzt Strong-Zuordnungen. Es handelt sich nicht um eigene Übersetzungen.
+Dieses Repository enthält die Originaldaten, Skripte, öffentlichen
+Zwischenstände und fertigen Ausgaben.
 
-Die Verarbeitung beginnt bei den unveränderten Originalen: **Sprachbearbeitung → vorhandene Strong-Zuordnungen → Lexika → weitere Übersetzungen**. Der Referenzvergleich ist ein eigener, ausschließlich lesender Schritt. ELB-BK-Dateien sind nicht enthalten und werden vom Aufbau nicht benutzt.
+Version 1.3 prüft die vorhandenen eigenen Unsicherheitshinweise gegen **ELB BK**
+und die **Elberfelder Ausgabe des CSV-Verlags**. Stimmen beide Referenzen am
+eindeutig zugeordneten Wortbereich vollständig überein und greift kein
+Sicherheitsveto, entfällt der Hinweis. Diese Prüfstufe verändert weder
+Bibeltext noch Strong-Nummern oder historische Notizen. Beide Referenzen
+werden privat bereitgestellt und nicht mitveröffentlicht.
 
-## Sofort verwenden
+## Fertige Dateien importieren
 
-Die fertigen Zefania-Dateien liegen unter:
+- [Elberfelder 1932](releases/akribos.elb.xml), ID `akribos.elb`
+- [Luther 1912](releases/akribos.lut.xml), ID `akribos.lut`
+- [King James Version 1611/1769](releases/kjv1611.xml), syntaxreparierter
+  Zefania-Export mit ursprünglichen Strong-Zuordnungen
 
-- `releases/akribos.elb.xml`
-- `releases/akribos.lut.xml`
-- `releases/kjv1611.xml` – syntaxreparierte englische King James Version 1611/1769 mit den ursprünglichen Strong-Zuordnungen
+Strong-Markierungen stehen beispielsweise als `<gr str="3068">HERR</gr>` im
+XML. Mehrere Nummern werden durch Leerzeichen getrennt; H/G ergibt sich in
+diesem Exportprofil aus dem Testament. Offene automatische Zuordnungen haben
+eine eigene `NOTE` unmittelbar nach dem Wort. Historische Studynotes bleiben
+erhalten; nicht zugeordnete Urtextnummern stehen nur in Begleitdateien.
 
-Akribos erhält Strong-Markierungen als **`<gr str="3068">HERR</gr>`**. Mehrere Nummern stehen durch Leerzeichen getrennt im Attribut. H/G ergibt sich in diesem Ausgabeprofil aus dem Testament. Alle ursprünglichen Studynotes bleiben erhalten. Automatische unsichere Ergänzungen haben unmittelbar nach dem Wort eine eigene `NOTE`; nicht zugeordnete Urtext-Nummern stehen ausschließlich in Begleitdateien.
+## Einrichten und vollständig aufbauen
 
-**Die Fassung ist ein überprüfbarer automatischer Arbeitsstand.** Wortabdeckung misst vorhandene Markierungen, keine Übersetzungs- oder Zuordnungsgenauigkeit. Messergebnisse stehen in [docs/RESULTS.md](docs/RESULTS.md).
+Voraussetzung: Python **3.11 oder neuer** mit `pip`. Das benötigte
+Simplemma-Wheel liegt mit Prüfsumme im Repository; Einrichtung und Aufbau
+benötigen nach Beschaffung der Referenzen keinen Internetzugriff und kein
+KI-Abonnement.
 
-## Titel und Rechtehinweis
+```bash
+git clone https://github.com/akribos-biblestudy/akribos-bibles.git
+cd akribos-bibles
+python scripts/setup.py
+mkdir -p .local/references/csv-cache
+```
 
-Die Skripte setzen die Anzeigeangaben bei jedem `edit`-/`build`-Aufruf automatisch:
+`setup.py` installiert die mitgelieferte Abhängigkeit unter `.local/python`.
+Falls Python auf deinem System `python3` heißt, verwende diesen Namen.
+
+Die beiden Referenzen werden einmalig beschafft:
+
+1. **ELB BK:** Das offizielle Zefania-Modul nach der
+   [Downloadanleitung](docs/REFERENCE-CONFIRMATION.md#vollständig-aufbauen)
+   entpacken und als `.local/references/elb-bk.xml` ablegen.
+2. **Edition CSV:** Dem [fortsetzbaren Browser-Abruf](docs/CSV-REFERENCE.md)
+   folgen und den vollständigen Cache unter `.local/references/csv-cache/`
+   speichern. „CSV“ bezeichnet den Verlag, nicht ein Dateiformat. Anschließend
+   alle 1.189 Kapitel prüfen und in das private Referenz-XML umwandeln:
+
+   ```bash
+   python -m akribos.csv_reference \
+     --cache-dir .local/references/csv-cache \
+     --output .local/references/elb-csv.xml --require-complete
+   ```
+
+Danach beide Ausgaben einschließlich der KJV-Importdatei aufbauen:
+
+```bash
+python bible.py build --edition all --version 1.3 \
+  --elb-bk .local/references/elb-bk.xml \
+  --elb-csv .local/references/elb-csv.xml
+python scripts/verify_repository.py --version 1.3
+```
+
+`--edition elb` und `--edition lut` wählen eine Ausgabe einzeln aus. Ein
+vorheriger `edit`-Aufruf ist nicht erforderlich. Standardversion ist **1.3**;
+auch ohne `--version` benötigt ein regulärer Build beide Referenzoptionen.
+Für einen späteren identischen Aufbau die privaten XML-Snapshots unverändert
+aufbewahren. Ein neuer Onlineabruf kann andere Dateihashes ergeben.
+
+## Was die Skripte prüfen
+
+Der Aufbau verläuft in fünf Stufen: **Sprachbearbeitung → vorhandene
+Strong-Zuordnungen → Lexika → weitere Übersetzungen → Referenzbestätigung**.
+
+- Die Sprachregeln berücksichtigen Artikel und Kasus bei Jehova → HERR,
+  einschließlich 1. Samuel 17,37 und Kapitel 20. Anreden werden getrennt
+  behandelt. Weitere explizite Regeln modernisieren Schreibungen und
+  Weib/Frau-Formen. Originalnotizen bleiben sprachlich unverändert.
+- Die Anreicherung verwendet die eingecheckten deutschen Quellen, Lexika und
+  STEP-Versinventare. KJV bestätigt Nummern im Vers, keine direkte
+  englisch-deutsche Wortzuordnung. Das NT-Prüfprofil ist WH für ELB und TR für
+  Luther; `--nt-edition` wählt es ausdrücklich.
+- Stufe 05 vergleicht jede vorhandene Unsicherheitsmarkierung mit beiden
+  privaten Referenzen. Vollständige Nummernmengen und eindeutige Wortbereiche
+  sind erforderlich. Kontext- und Belegzahlprüfungen halten bekannte gemeinsame
+  Referenzfehler konservativ offen. Eine Häufigkeitsabweichung benennt keine
+  einzelne Nummer als falsch.
+
+Die genauen Bedingungen und Grenzen stehen unter
+[Referenzbestätigung](docs/REFERENCE-CONFIRMATION.md), die Sprachkorrekturen
+unter [Artikelkorrektur](docs/DIVINE-NAME-CORRECTION.md). Wortabdeckung misst
+vorhandene Markierungen, keine Zuordnungsgenauigkeit.
+
+### Ergebnis der vollständigen 1.3-Prüfung
+
+Stand: **2026-09-16**. Die Zahlen stammen aus den jeweiligen
+`05-reference-confirmed.report.json` des endgültigen Builds.
+
+| Ausgabe | Hinweise vor Stufe 05 | Entfernt | Verbleibend |
+|---|---:|---:|---:|
+| Elberfelder 1932 | 51.998 | 20.831 | 31.167 |
+| Luther 1912 | 41.134 | 3.095 | 38.039 |
+
+Jede Entscheidung ist im zugehörigen Audit nachvollziehbar. Der technische
+Prüfer rekonstruiert die erlaubten XML-Änderungen; er beweist keine allgemeine
+Fehlerfreiheit aller Strong-Zuordnungen. Frühere Messungen sind in
+[docs/RESULTS.md](docs/RESULTS.md) mit ihrem jeweiligen Bearbeitungsstand dokumentiert.
+
+## Titel und Exportmetadaten
+
+Die Skripte setzen die Angaben bei jedem `edit`- und `build`-Aufruf:
 
 | Angabe | ELB | Luther |
 |---|---|---|
-| Cover-Titel / Tab-Titel | ELB | LUT |
+| Cover-/Tab-Titel | ELB | LUT |
 | Titel in der Auswahl | Elberfelder 1932 | Luther 1912 |
-| Untertitel in der Auswahl | mit Strongs (Akribos &lt;Version&gt;) | mit Strongs (Akribos &lt;Version&gt;) |
+| Auswahl-Untertitel | mit Strongs (Akribos 1.3) | mit Strongs (Akribos 1.3) |
 
-`<Version>` stammt aus `--version`; ohne dieses Argument gilt `VERSION` in `akribos/project.py` (aktuell **1.2**). Die XML-Dateien enthalten `title`, `description` und `rights` sowie die expliziten Akribos-Anzeigefelder `short_title`, `cover_title`, `tab_title`, `selection_title` und `selection_subtitle` unter `INFORMATION`. Die ursprüngliche Quellangabe in `source` bleibt erhalten. Der aktuelle Akribos-App-Importer übernimmt die zusätzlichen Anzeigefelder noch nicht automatisch; hier werden ausschließlich die Exportskripte angepasst.
+Die Versionsnummer stammt aus `--version` beziehungsweise `VERSION` in
+`akribos/project.py`; sie steht auch in `revision` und im Rechtehinweis.
+`INFORMATION` enthält `title`, `description`, `rights`, `short_title`,
+`cover_title`, `tab_title`, `selection_title` und `selection_subtitle`.
+Die ursprüngliche Angabe in `source` bleibt erhalten. Der Rechtehinweis
+benennt Originalausgabe und Akribos-Bearbeitung. Die zusätzlichen Anzeigefelder
+werden vom aktuellen App-Importer noch nicht automatisch übernommen; dieses
+Repository enthält ausschließlich die Exportskripte.
 
-Der Rechtehinweis benennt die Originalausgabe und kennzeichnet Akribos als sprachliche Bearbeitung mit ergänzten Strong-Zuordnungen; es handelt sich nicht um eine eigene Übersetzung. Beispiel für einen vollständigen Neuaufbau der vorhandenen Version 1.2:
+## Wiederholen und überprüfen
 
-```bash
-python bible.py build --edition all --version 1.2 --rebuild
-python scripts/verify_repository.py --version 1.2
-```
-
-## Einrichtung
-
-Python **3.11 oder neuer** mit `pip`; keine API, kein KI-Abo und kein Internetzugriff während des Aufbaus erforderlich. Das deutsche Lemma-Wörterbuch von Simplemma 2.0.0 liegt als unverändertes Wheel im Repo.
-
-```bash
-cd akribos-bible
-python scripts/setup.py
-```
-
-Das installiert nur die mitgelieferte, per SHA-256 geprüfte Abhängigkeit unter `.local/python`. Wenn auf deinem System Python `python3` heißt, verwende entsprechend `python3`.
-
-## Befehle
-
-### 1. Sprache bearbeiten
+Ein unveränderter Build prüft und verwendet seinen archivierten Lauf erneut.
+Ein echter Neuaufbau prüft zusätzlich die Bytegleichheit mit diesem Lauf:
 
 ```bash
-python bible.py edit --edition all --version 1.2
+python bible.py build --edition all --version 1.3 --rebuild \
+  --elb-bk .local/references/elb-bk.xml \
+  --elb-csv .local/references/elb-csv.xml
+python scripts/verify_repository.py --version 1.3
 ```
 
-`elb` und `lut` sind einzeln auswählbar. ELB: Jehova/Jehovas wird anhand von Kasussignalen angepasst, beispielsweise `zu Jehova` → `zu dem HERRN`. Beide: Weib/Weibe/Weibes/Weiber einschließlich erkannter Artikel und Adjektive wird Frau/Frauen. Luther: genau `HErr`, `HErrn`, `HErrs` wird `HERR`, `HERRN`, `HERRS`; ein gewöhnliches `Herr` bleibt erhalten. Eine explizite Wort- und Phrasenliste modernisiert sichere Schreibungen wie `daß` und `muß`. Kein pauschales ß→ss und kein KI-Aufruf.
+Geänderte Quellen, Referenzhashes, Regeln oder Optionen erzeugen einen neuen
+Laufordner. `releases/` behält feste Dateinamen; `.build.json` verknüpft jede
+Ausgabe mit ihrer Prüfsumme und dem vollständigen Lauf. Version 1.3
+veröffentlicht `05-reference-confirmed.xml`. Git-Commits und Tags bewahren
+die früheren Ausgaben. **`--version` lädt keinen historischen Code:** Für
+Version 1.1 oder 1.2 den passenden Tag verwenden, siehe
+[Versionshistorie](docs/HISTORY.md) und [Änderungsprotokoll](CHANGELOG.md).
 
-Die Jehova-Regeln berücksichtigen auch Relativsätze (`Jehova, der mich …` → `Der HERR, der mich …`), Wunschformeln (`so tue Jehova` → `so tue der HERR`) und getrennte Verb-/Objektstellungen. Anreden wie `Jehova, Gott Israels!` bleiben artikellos: `HERR, Gott Israels!`. Die Korrektur vom 15. September 2026 ist in den Skripten enthalten und wird bei jedem normalen `edit`-/`build`-Aufruf angewendet; ein `--overrides`-Argument ist dafür nicht nötig. Prüfbericht: [docs/DIVINE-NAME-CORRECTION.md](docs/DIVINE-NAME-CORRECTION.md).
+| Verzeichnis / Datei | Inhalt |
+|---|---|
+| `sources/originals/`, `config/sources.lock.json` | Quell-Snapshots, Herkunft, Rechte und Prüfsummen |
+| `history/edit/` | Sprachfassung und positionsgenaue Änderungsprotokolle |
+| `history/build/` | Stufen 02–05, Reports und gzip-komprimierte JSONL-Audits |
+| `history/implementations/` | Für jeden Lauf archivierter Code und Regelstand |
+| `alignment.jsonl.gz`, `source-occurrences.jsonl.gz` | Eigene Wortzuordnungen und STEP-Wortvorkommen |
+| `05-reference-confirmed.audit.jsonl.gz` | Eine Entscheidung pro ursprünglichem Unsicherheitshinweis |
+| `.local/` | Private Referenzen, Detailvergleiche und Laufzeitdateien |
 
-Die Originalnotizen einschließlich ihrer historischen Schreibungen werden nicht sprachlich bearbeitet. Die Umstellung ist **keine vollständige Neufassung nach heutiger Grammatik und Zeichensetzung**. Unklare Kasus, lange Pronomenbezüge und kontextabhängige Schreibungen werden in `01-language.review.csv` dokumentiert.
+Öffentliche Bestätigungsprotokolle enthalten eigene Positionen, Codes und
+Ergebnisgründe. Private Referenztexte und Referenzpositionen werden nicht
+kopiert. Die unveränderten Snapshots werden benötigt, um den privaten
+Referenzvergleich selbst erneut auszuführen.
 
-### 2. Strong-Ausgabe erzeugen
+## Weitere Befehle
 
-```bash
-python bible.py build --edition all --version 1.2
-```
-
-Dieser Befehl führt die Sprachbearbeitung selbst aus, falls der passende Zwischenstand fehlt. Ein vorheriger `edit`-Aufruf ist nicht nötig. Auch die deutschen Vergleichsübersetzungen werden vor dem Matching nach denselben Regeln bearbeitet.
-
-Der Aufbau verwendet:
-
-1. ELB1905 als primäre Zuordnungsquelle für ELB1932; bei Luther bleiben alle vorhandenen Zuordnungen erhalten.
-2. Kautz-Griechisch, das hebräisch-deutsche Lexikon und dokumentierte Akribos-Startregeln; lokale deutsche Lemmatisierung verbessert Flexionsvergleiche.
-3. ELB1905, Luther1912 und Schlachter1951 als weitere deutsche Quellen; STEP begrenzt neue Kandidaten auf das jeweilige Versinventar. KJV liefert zusätzliche dokumentierte Bestätigung derselben Strong-Nummern im Vers.
-
-Die KJV bestätigt **Urtext-Nummern im Vers**, keine direkte Zuordnung eines englischen Wortes zu einem deutschen Wort. Arbiträre Prozentgewichte werden nicht als Fehlerwahrscheinlichkeit ausgegeben. Mehrere Übersetzungen können dieselbe ältere Zuordnung übernommen haben und sind deshalb keine sicher unabhängigen Stimmen.
-
-Für ELB ist das NT-Prüfprofil `WH`, für Luther `TR`; abweichende Textgrundlagen und Verszählungen bleiben fachlich zu prüfen. Mit `--nt-edition WH` bzw. `TR` lässt sich das explizit ändern.
-
-### 3. Mit einer beliebigen Referenz vergleichen
-
-Die Referenz kommt in das ignorierte Verzeichnis `.local/references/`:
+Ein rein lesender Vergleich verändert keine Bibel:
 
 ```bash
 python bible.py compare \
@@ -89,103 +177,55 @@ python bible.py compare \
   --label meine-referenz --public-index
 ```
 
-Für Luther ändere `--input` auf `releases/akribos.lut.xml`. Die Referenz kann Zefania mit `<gr>` oder `<GRAM>` verwenden. Mehrfachnummern wie `1254-853` werden als zwei Nummern interpretiert. Auch unterstützte OSIS-Profile werden importiert.
+Mit `--public-index` werden nur Versstellen und Abweichungsarten öffentlich
+protokolliert. Vollständige Wortvergleiche bleiben unter `.local/comparisons/`.
+Details: [Referenzvergleich](docs/REFERENCE-COMPARISON.md).
 
-Ergebnisse:
-
-- `comparisons/<label>/<id>/<lauf>/summary.json`: Gesamtzahlen, Abdeckung und klar benannte Nenner.
-- `books.csv`: Messungen pro Buch.
-- `verse-differences.csv`: mit `--public-index` eine öffentliche Liste von Versstellen und Abweichungsarten, **ohne fremde Wortlaute, Strong-Werte oder Wortpositionen**.
-- `.local/comparisons/<label>/<id>/<lauf>/word-differences.jsonl.gz`: vollständige Wort- und Strong-Abweichungen zur lokalen Prüfung. Diese Datei wird nicht veröffentlicht.
-
-Ohne `--public-index` bleibt auch der Versindex lokal. Ein Vergleich verändert keine Bibel und keine Lexikonregel. Vergleichsberichte werden bei Bedarf mit eigenen Referenzdateien erzeugt. Fremde Referenzdateien bleiben lokal. Siehe [docs/REFERENCE-COMPARISON.md](docs/REFERENCE-COMPARISON.md).
-
-### 4. Reparierte KJV zum Import exportieren
+Die KJV-Syntaxreparatur lässt sich unabhängig und ohne Vergleichsreferenzen
+wiederholen:
 
 ```bash
 python bible.py repair-kjv --rebuild
 ```
 
-Die importierbare Datei liegt unter **`releases/kjv1611.xml`**. Auch ein normaler ELB-/Luther-`build` exportiert sie automatisch. Entfernt werden die fehlerhaft verschachtelten dekorativen `STYLE`-Tags; unmaskierte kaufmännische Und-Zeichen werden XML-konform geschrieben. Wortlaut, Strong-Tags, 7.716 Originalnotizen und Quellmetadaten bleiben erhalten. Die ursprüngliche ID lautet `bk_bible.kjv1611`.
+Sie erhält Wortlaut, Strong-Zuordnungen, Originalnotizen und Quellmetadaten;
+Protokoll und Prüfsummen stehen im zugehörigen Lauf.
+Details: [KJV-Importdatei](docs/KJV-IMPORT.md).
 
-`releases/kjv1611.build.json` verweist auf Quelle, Prüfsummen und Reparaturlauf. Dort liegen `report.json` und das vollständige Änderungsprotokoll `repairs.jsonl.gz`. Die Reparatur wird aus der unveränderten Originaldatei erzeugt und mit `--rebuild` auf Bytegleichheit geprüft. Details: [KJV-Importdatei](docs/KJV-IMPORT.md).
+### Eigene Texte ohne Referenzbestätigungsstufe
 
-## Zwischenstände und Wiederholbarkeit
-
-```text
-sources/originals/                   unveränderte, mitgelieferte Quell-Snapshots
-config/sources.lock.json              Download-URLs, SHA-256, Rechte und Zuschreibungen
-rules/                               explizite Sprach- und lexikalische Startregeln
-history/edit/<id>/<version>/<lauf>/   00-import.xml, 01-language.xml und Änderungsprotokolle
-history/prepared/kjv1611/<lauf>/       reparierte Arbeitskopie und vollständiges Reparaturlog
-history/build/<id>/<version>/<lauf>/  02-baseline.xml, 03-lexicon.xml, 04-multisource.xml
-releases/                            fertige Bibeln plus Verweis auf ihren vollständigen Lauf
-comparisons/                         öffentliche Vergleichsberichte
-.local/                              private Referenzen, Detailvergleiche, Laufzeitdateien
-```
-
-Ein Lauf wird aus Quellen, Regeln, Code, Optionen und Versionsnummer identifiziert. `manifest.json` erfasst die Prüfsummen aller Ergebnisse. Unveränderte Aufrufe prüfen den vorhandenen Lauf und verwenden ihn wieder. Geänderte Regeln oder Quellen erzeugen einen **neuen Laufordner**, ohne alte Zwischenstände zu ersetzen. `releases/` enthält immer die zuletzt gebaute Ausgabe unter denselben Dateinamen. Die zugehörigen `.build.json` verknüpfen jede Datei mit Version, Prüfsumme und vollständigem Lauf. Die redaktionellen Versionen werden durch Git-Commits und Tags festgehalten; siehe [Versionshistorie](docs/HISTORY.md) und [Änderungsprotokoll](CHANGELOG.md).
-
-Zum vollständigen Neuberechnen und Prüfen auf Bytegleichheit:
-
-```bash
-python bible.py build --edition all --version 1.2 --rebuild
-```
-
-Für den nächsten redaktionellen Stand `VERSION` in `akribos/project.py` erhöhen, vollständig bauen und Skripte, Ergebnisse und `CHANGELOG.md` gemeinsam committen und taggen. Die IDs bleiben `akribos.elb`/`akribos.lut`. **`--version` setzt nur die Ausgabenummer; für frühere Regeln muss der damalige Git-Stand ausgecheckt werden.**
-
-XML wird mit einem Vers pro Zeile gespeichert. Gemischte Inhalte innerhalb eines Verses werden nicht eingerückt. JSONL-Audits sind reproduzierbar gzip-komprimiert, damit einzelne Dateien unter GitHubs Dateigrößenlimit bleiben. Zum Lesen eignet sich Python `gzip.open(..., 'rt', encoding='utf-8')` oder `gzip -dc`.
-
-## Was in den Protokollen steht
-
-- `01-language.changes.csv`: jede Ersetzung mit alter/neuer Zeichenposition, Wortlaut und Regel.
-- `01-language.offset-map.jsonl`: Übertragung alter auf neue Zeichenpositionen.
-- `verification.json`: jeder bearbeitete Vers wurde unabhängig aus dem Änderungslog rekonstruiert; alle ursprünglichen Notiz-Unterbäume und Strong-Attribute verglichen.
-- `alignment.jsonl.gz`: Zielwörter, tatsächlich exportierte Nummern, Verfahren, Quellen, Wörterbuch-Lemmakandidaten, KJV-Bestätigung und Prüfstatus.
-- `source-occurrences.jsonl.gz`: STEP-Urtextvorkommen mit Originalreferenz, Lemma, Morphologie, Editions- und Variantenangaben. Die deutschen Wörter sind noch **nicht eindeutig auf einzelne Urtextvorkommen ausgerichtet**; der Versverweis erlaubt die fachliche Prüfung.
-- `review.jsonl.gz`: Mehrdeutigkeiten, auffällige Versinventare und Wörter über XML-Grenzen.
-- `unassigned-source.jsonl.gz`: Urtext-Strong-Einträge ohne zugeordnetes deutsches Wort. Keine sichtbaren Hinweise am Versende.
-
-## Weitere Bibeln und OSIS
-
-[docs/ADDING-BIBLES.md](docs/ADDING-BIBLES.md) beschreibt Import, Aufbau, Rechte und Verszählung. Beispiel für einen eigenen deutschen Text:
+Ein eigener Text kann mit einer eigenen Ausgabenummer, hier **0.1**, bis
+Stufe 04 angereichert werden:
 
 ```bash
 python bible.py build --edition custom \
   --input .local/inputs/meine-bibel.osis.xml \
-  --id akribos.meinetext --profile generic --nt-edition TR --version 1.2
+  --id akribos.meinetext --profile generic --nt-edition TR --version 0.1
 ```
 
-Das führt tatsächlich die Anreicherung aus. Solche nicht registrierten Texte und ihre Ergebnisse bleiben unter `.local/`; sie werden **nicht automatisch als Public Domain deklariert oder in das öffentliche Paket aufgenommen**.
+Die explizite eigene Versionsnummer fordert keine 1.3-Referenzbestätigung an;
+sie bezeichnet auch keinen historischen Akribos-Code. Ein eigener Build mit
+`--version 1.3` würde dagegen ebenfalls beide Referenzen benötigen. Eigene
+Texte und Ergebnisse bleiben unter `.local/` und werden nicht automatisch als
+gemeinfrei deklariert oder veröffentlicht. Importprofile und Erweiterungen:
+[Weitere Bibeln](docs/ADDING-BIBLES.md).
 
 ## Tests und Veröffentlichung
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/verify_repository.py
-python scripts/package.py --output ../akribos-bible-public.zip
+python scripts/verify_repository.py --version 1.3
+python scripts/package.py --output ../akribos-bibles-public.zip
 ```
 
-Das Paket enthält Originale einschließlich Kautz, alle öffentlichen Zwischenstände und Ergebnisse. Es schließt `.local`, fremde Referenzdateien, Caches und Git-Zugangsdaten aus. Vor einem Git-Push: `git status` prüfen. Für GitHub wird kein API-Token benötigt, um das Repo lokal zu bauen.
-
-Die lokale Git-Historie enthält `v1.1` (Bibelstand vor der Artikelkorrektur, mit einheitlichen Exportmetadaten) und `v1.2` (korrigierte Skripte, neue Metadaten). Die Ergebnisdateien sind direkt vergleichbar:
-
-```bash
-git log --oneline --decorate
-git diff v1.1 v1.2 -- akribos/modernize.py releases/akribos.elb.xml
-git show v1.1:releases/akribos.elb.xml > .local/akribos.elb-1.1.xml
-```
-
-Der Ablauf für kommende Versionen steht in [docs/HISTORY.md](docs/HISTORY.md). Builds erstellen keine Commits oder Tags automatisch. Das ZIP-Paket enthält die geprüften Daten und Quell-Snapshots, jedoch nicht das Git-Verzeichnis; für die Git-Historie das Repository klonen. Ein entferntes Repository kann separat verbunden werden. Das Prüfergebnis belegt technische Integrität und Reproduzierbarkeit, nicht die fachliche Richtigkeit jeder Zuordnung.
+Das Paket enthält die öffentlichen Quellen, Archive und Ergebnisse.
+`.local/`, private Referenzen, Caches und Git-Zugangsdaten sind ausgeschlossen.
+Für die Versionshistorie das Git-Repository klonen. Builds erzeugen keine
+Commits oder Tags automatisch. Die Schritte zur gemeinsamen Versionierung
+von Skripten und Ergebnissen stehen in [docs/HISTORY.md](docs/HISTORY.md).
 
 ## Rechte
 
 **Code: MIT. Gemeinfreie Bibeltexte bleiben gemeinfrei. Neue schutzfähige Akribos-Redaktion und Strong-Aufbereitung: Copyright © 2026 Akribos, CC BY 4.0.** Diese Erklärung beansprucht keine exklusiven Rechte an Strong-Nummern und ändert keine Quelllizenzen.
 
 Das Kautz-Lexikon wird mit Genehmigung veröffentlicht; Copyright Gerhard Kautz. STEP ist CC BY 4.0. Die hebräisch-deutschen Ergänzungen stehen unter AGPLv3. Quellen, Zuschreibungen und Lizenztexte: [LICENSE-DATA.md](LICENSE-DATA.md), [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), `licenses/` und `sources/evidence/`.
-
-## Quellcode früherer Läufe
-
-Jeder Aufruf archiviert die für die Berechnung verwendeten Python-Module, Regeln, Quellregister und Abhängigkeitsangaben unter `history/implementations/<hash>/`. Der jeweilige Lauf nennt deren Einzelprüfsummen in `manifest.json`. `scripts/verify_repository.py` prüft, dass zu jedem Lauf der vollständige passende Implementierungsstand vorhanden ist.
-
-Für einen historischen Aufbau diese Dateien in eine **separate Kopie des Repos** zurückkopieren und mit den im Laufmanifest genannten Optionen bauen. Die dort referenzierten Original-Hashes müssen ebenfalls vorhanden sein. Bei künftiger Arbeit zusätzlich jeden Regel-/Code-/Quellenwechsel gemeinsam mit den Ergebnissen committen.

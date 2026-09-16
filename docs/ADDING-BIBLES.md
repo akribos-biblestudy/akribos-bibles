@@ -8,12 +8,12 @@
 ```bash
 python bible.py build --edition custom \
   --input .local/inputs/schlachter2000.osis.xml \
-  --id akribos.schlachter --profile none --nt-edition TR --version 1.1
+  --id akribos.schlachter --profile none --nt-edition TR --version 0.1
 ```
 
 `--profile none` erhält den bereits modernen Wortlaut. `generic` wendet die explizite Rechtschreibliste und Weib/Frau-Regeln an, `elb` zusätzlich Jehova-Regeln, `lut` zusätzlich die HErr-Schreibweise. Eine vorhandene Strong-Zuordnung bleibt erhalten; fehlende wird aus demselben freien Quellenbestand wie bei ELB/Luther ergänzt.
 
-Ausgabe: `.local/custom-releases/1.1/akribos.schlachter.xml`. Alle Zwischenstände, Originalnotizen und Protokolle liegen unter `.local/custom-history/`. Die Originaldatei bleibt unverändert. Die Metadaten behaupten bei eigenen Texten **keine Gemeinfreiheit**.
+Ausgabe: `.local/custom-releases/0.1/akribos.schlachter.xml`. `0.1` ist hier eine eigene Ausgabenummer; der Aufbau endet bei Stufe 04 und verwendet den aktuellen Code. Alle Zwischenstände, Originalnotizen und Protokolle liegen unter `.local/custom-history/`. Die Originaldatei bleibt unverändert. Die Metadaten behaupten bei eigenen Texten **keine Gemeinfreiheit**.
 
 3. Änderungen und Kandidaten in den CSV-/JSONL-Berichten prüfen. Für den anschließenden Vergleich kann `--input` auf diese neue Datei zeigen. Der Aufbau liest niemals Dateien aus `.local/references/` als zusätzliche Strong-Spender.
 
@@ -53,7 +53,11 @@ Rechtschreibregeln stehen in `rules/orthography.json`. Für grammatische Einzelf
 Die Positionen beziehen sich auf den kanonischen Verswortlaut ohne Notizen **vor** der Sprachbearbeitung. Jede echte Änderung muss einen nachvollziehbaren Grund tragen. Falsche Ausgangspositionen oder abweichender Wortlaut lassen den Lauf abbrechen.
 
 ```bash
-python bible.py build --edition elb --version 1.2 --overrides rules/meine-ausnahmen.json
+python bible.py build --edition elb --overrides rules/meine-ausnahmen.json \
+  --elb-bk .local/references/elb-bk.xml \
+  --elb-csv .local/references/elb-csv.xml
 ```
+
+Der Befehl verwendet die aktuelle Standardversion und die beiden privaten Referenzen gemäß [Aufbauanleitung](REFERENCE-CONFIRMATION.md). `--version` bezeichnet die Ausgabe, lädt jedoch keinen früheren Programmstand. Historische Versionen werden vom passenden Git-Tag gebaut, siehe [Versionshistorie](HISTORY.md).
 
 Diese Ausnahmen betreffen die Sprache. Strong-Korrekturen müssen als geprüfte freie Evidenz in den Zuordnungsregeln oder Quellen dokumentiert werden. Ein automatischer Import geschützter Vergleichspatches ist nicht vorgesehen.

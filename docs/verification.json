@@ -1,58 +1,24 @@
 {
-  "version": "1.2",
+  "gzip_crc_checks": 35,
   "registered_originals": 14,
-  "verified_history_runs": 14,
-  "gzip_crc_checks": 22,
   "releases": {
     "akribos.elb": {
-      "sha256": "179b577c8960f872b521910817768e8564fdf0dba2b212c2a5d93154f80ce6a1",
+      "normalized_names": true,
       "original_studynotes": 9481,
-      "normalized_names": true
+      "sha256": "e96c492938d6f538ec1c01b14ac3509d43e87f2b21b43a39ad91b5df761b6e65"
     },
     "akribos.lut": {
-      "sha256": "1e68de51e5924fab83ff9fb00af2bc3562af3a009c390c359527b005329d7e14",
+      "normalized_names": true,
       "original_studynotes": 0,
-      "normalized_names": true
+      "sha256": "e1fa0a4b755ca810b529c20967930030029292511765c60814dbe98d766074a4"
     },
     "kjv1611": {
-      "sha256": "b0f829e0008ffd7a5c254e00813f62a404933c4aa651282507b7d295cc9ed334",
       "original_studynotes": 7716,
-      "verses": 31102,
-      "syntax_repaired": true
+      "sha256": "b0f829e0008ffd7a5c254e00813f62a404933c4aa651282507b7d295cc9ed334",
+      "syntax_repaired": true,
+      "verses": 31102
     }
   },
-  "tests_passed": 29,
-  "rebuild_byte_identical": [
-    "akribos.elb",
-    "akribos.lut",
-    "kjv1611"
-  ],
-  "date": "2026-09-16",
-  "biblical_content_v1_1_matches_original": true,
-  "elb_lut_v1_2_byte_identical_to_previous_release": true,
-  "kjv": {
-    "repair_count": 106618,
-    "verses": 31102,
-    "notes": 7716,
-    "all_strong_start_tags_unchanged": true,
-    "original_metadata_unchanged": true,
-    "repair_log_replayed": true,
-    "note_payloads_preserved": true,
-    "sha256": "b0f829e0008ffd7a5c254e00813f62a404933c4aa651282507b7d295cc9ed334"
-  },
-  "kjv_app_parser": {
-    "verses": 31102,
-    "notes": 7716,
-    "warnings": [],
-    "metadata": {
-      "id": "BK_BIBLE.KJV1611",
-      "name": "Englische King James Version von 1611/1769 mit Strongs",
-      "abbrev": "Englische King James Version von 1611/1769 mit",
-      "language": "en",
-      "direction": "ltr",
-      "licenseHtml": "Public Domain",
-      "description": "Englische King James Version von 1611/1769 mit Strongs"
-    },
-    "scope": "Akribos Zefania parser; no database import"
-  }
+  "verified_history_runs": 21,
+  "version": "1.3"
 }

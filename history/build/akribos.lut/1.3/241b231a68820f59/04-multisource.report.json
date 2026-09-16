@@ -1,0 +1,18 @@
+{
+  "verses": 31172,
+  "words": 698111,
+  "tagged_words": 391844,
+  "word_coverage_percent": 56.1292,
+  "studynotes": 0,
+  "word_hints": 41134,
+  "sha256": "96c490eab5a68281aa390973db137b40fde95589b635187b99fde00a95630e07",
+  "methods": {
+    "inherited": 350710,
+    "other-translation": 34110,
+    "lexicon": 1130,
+    "concordance": 5530,
+    "verse-consensus": 364
+  },
+  "original_notes_preserved": 0,
+  "text_preserved": true
+}

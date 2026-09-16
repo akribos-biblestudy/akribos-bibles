@@ -1,0 +1,72 @@
+{
+  "method": "two-reference-exact-strong-set-with-vetoes-v2",
+  "normalization": "NFC-lowercase-v1",
+  "safety_profile": "greek-hebrew-function-word-vetoes-v2",
+  "alignment": "forced-matches-in-all-optimal-LCS-alignments",
+  "hints_before": 51998,
+  "hints_removed": 20831,
+  "hints_remaining": 31167,
+  "decisions": {
+    "ambiguous-word-alignment": 126,
+    "article-right-context-not-forced-adjacent": 32,
+    "article-target-context-boundary": 1,
+    "both-references-confirm-complete-set": 20831,
+    "conjunction-on-isolated-german-es": 1,
+    "different-strong-set": 6560,
+    "function-code-over-assigned-in-verse": 108,
+    "hebrew-source-occurrence-count-unproved": 2,
+    "incomplete-reference-word-span": 3,
+    "missing-reference-strong-tags": 19792,
+    "missing-reference-verse": 10,
+    "preposition-on-possible-infinitival-zu": 3,
+    "source-verse-numbering-unproved": 2,
+    "word-not-aligned": 4527
+  },
+  "references": {
+    "elb-bk": {
+      "ambiguous-word-alignment": 69,
+      "article-right-context-not-forced-adjacent": 29,
+      "article-target-context-boundary": 1,
+      "confirmed": 24797,
+      "different-strong-set": 6364,
+      "missing-reference-strong-tags": 16693,
+      "missing-reference-verse": 10,
+      "word-not-aligned": 4035
+    },
+    "elb-csv": {
+      "ambiguous-word-alignment": 211,
+      "article-right-context-not-forced-adjacent": 26,
+      "article-target-context-boundary": 1,
+      "confirmed": 21637,
+      "different-strong-set": 4967,
+      "incomplete-reference-word-span": 3,
+      "missing-reference-strong-tags": 19597,
+      "missing-reference-verse": 10,
+      "word-not-aligned": 5546
+    }
+  },
+  "new_strong_assignments": 0,
+  "changed_strong_assignments": 0,
+  "public_audit": "Target assignments and decisions only; no reference text or associations.",
+  "input_profile": "zefania-word-spans-with-article-context-v2",
+  "reference_sha256": {
+    "elb-bk": "cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5",
+    "elb-csv": "9cc0e72a334567f2bad23baefc0b7489d9b0e0dd25b7453a7869a462441410d9"
+  },
+  "verses": 31170,
+  "words": 727791,
+  "tagged_words": 367044,
+  "word_coverage_percent": 50.4326,
+  "studynotes": 9481,
+  "word_hints": 31167,
+  "input_sha256": "eedbac33954828124424231819d8defff6a956af00a29dded8c4986e6976fa89",
+  "sha256": "e96c492938d6f538ec1c01b14ac3509d43e87f2b21b43a39ad91b5df761b6e65",
+  "safety_evidence_sha256": {
+    "source_occurrences": "ce65f80d2610685325e5c51e5d90b1b093eb905f6c50a088a6f20f0f81bd13aa",
+    "alignment": "7402e100d871263aee8a01f9e7e2a7b606cc1206a0cf5bf316bbdbc205d664c4"
+  },
+  "selected_nt_edition": "WH",
+  "original_notes_preserved": 9481,
+  "text_preserved": true,
+  "strong_attributes_preserved": true
+}

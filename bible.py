@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Reproducible language, Strong, KJV repair and reference comparison commands."""
-import argparse, json, sys
+import argparse, json, sys, xml.etree.ElementTree as ET
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'.local/python'))
@@ -20,7 +20,10 @@ def main():
         p.add_argument('--profile',choices=['elb','lut','generic','none'])
         p.add_argument('--overrides',type=Path,help='Positionsgesicherte redaktionelle Ausnahmen als JSON')
         p.add_argument('--rebuild',action='store_true',help='Erneut berechnen und Bytegleichheit des vorhandenen Laufs prüfen')
-        if name=='build':p.add_argument('--nt-edition',choices=['WH','TR'])
+        if name=='build':
+            p.add_argument('--nt-edition',choices=['WH','TR'])
+            p.add_argument('--elb-bk',type=Path,help='Private ELB-BK-Zefania-Referenz für Version 1.3')
+            p.add_argument('--elb-csv',type=Path,help='Private Edition-CSV-Zefania-Referenz für Version 1.3')
     p=sub.add_parser('repair-kjv',help='Syntaxreparierte KJV als importierbare XML-Datei exportieren')
     p.add_argument('--rebuild',action='store_true',help='Reparatur neu ausführen und Bytegleichheit prüfen')
     p=sub.add_parser('compare')
@@ -32,8 +35,19 @@ def main():
     p.add_argument('--rebuild',action='store_true')
     args=vars(parser.parse_args());cmd=args.pop('command')
     from scripts.snapshots import snapshot_current
-    snapshot_current()
     try:
+        if cmd in {'edit','build'}:
+            if args['input']:
+                if args['edition']!='custom' or not args['bible_id']:parser.error('--input benötigt --edition custom und --id')
+                if args['bible_id'] in {'akribos.elb','akribos.lut'}:parser.error('Für eigene Texte eine eigene ID wählen')
+            elif args['edition']=='custom':parser.error('--edition custom benötigt --input')
+            elif args['bible_id']:parser.error('--id ist nur für eigene Texte verfügbar; ELB/LUT-IDs sind fest')
+        if cmd=='build':
+            # Reject missing/duplicate/malformed references before snapshot_current
+            # writes any history or build() starts editing source material.
+            from akribos.confirm import prepare_confirmation
+            prepare_confirmation(args['version'],args['elb_bk'],args['elb_csv'])
+        snapshot_current()
         if cmd=='repair-kjv':
             from akribos.project import export_kjv
             print(export_kjv(**args));return
@@ -41,11 +55,6 @@ def main():
             from akribos.compare import compare
             args['input_path']=args.pop('input');args['reference_path']=args.pop('reference')
             print(compare(**args));return
-        if args['input']:
-            if args['edition']!='custom' or not args['bible_id']:parser.error('--input benötigt --edition custom und --id')
-            if args['bible_id'] in {'akribos.elb','akribos.lut'}:parser.error('Für eigene Texte eine eigene ID wählen')
-        elif args['edition']=='custom':parser.error('--edition custom benötigt --input')
-        elif args['bible_id']:parser.error('--id ist nur für eigene Texte verfügbar; ELB/LUT-IDs sind fest')
         from akribos.pipeline import edit,build
         args['input_path']=args.pop('input')
         editions=['elb','lut'] if args['edition']=='all' else [args['edition']]
@@ -55,7 +64,7 @@ def main():
         if cmd=='build' and not args['input_path']:
             from akribos.project import export_kjv
             print(export_kjv(rebuild=args['rebuild']))
-    except (DataError,FileNotFoundError) as exc:
+    except (DataError,OSError,ET.ParseError) as exc:
         parser.exit(2,f'Fehler: {exc}\n')
 
 if __name__=='__main__':main()

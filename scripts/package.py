@@ -6,7 +6,7 @@ from verify_repository import verify_repository
 from akribos.common import require,file_hash
 
 ROOT_FILES={'README.md','CHANGELOG.md','LICENSE','LICENSE-DATA.md','THIRD-PARTY-NOTICES.md','.gitignore','.gitattributes','bible.py','requirements.txt'}
-PUBLIC_DIRS={'akribos','config','rules','sources','licenses','vendor','scripts','tests','docs','history','releases','comparisons'}
+PUBLIC_DIRS={'.github','akribos','config','rules','sources','licenses','vendor','scripts','tests','docs','history','releases','comparisons'}
 FORBIDDEN_REFERENCE_SHA256='cc1a633a0e7a95b118a0b61fc8bcfeeb07a1379856b6b32122071f50117316d5'
 
 
