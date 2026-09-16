@@ -13,8 +13,9 @@ from unittest.mock import patch
 
 import bible
 from akribos.common import DataError,file_hash,write_json
+from akribos.confirm import HINT,SAFETY_PROFILE
 from akribos.importers import parse_xml
-from akribos.linguistic import PROVENANCE,rule_identity
+from akribos.linguistic import PROVENANCE,rule_identity,load_reference_occurrences
 from akribos.pipeline import build,publish
 from akribos.project import cached,jsonl_gz,line
 from akribos.xmlio import write_xml,plain
@@ -59,6 +60,12 @@ class LinguisticBuildTests(unittest.TestCase):
     @contextlib.contextmanager
     def pipeline(self):
         def edit(edition,*args,**kwargs):return self.edits[edition]
+        def inventory(folder,nt_edition):
+            references,_=load_reference_occurrences(self.root/'config/step-profiles.json',self.root,nt_edition)
+            with jsonl_gz(folder/'source-occurrences.jsonl.gz') as stream:
+                for ref,tokens in references.items():line(stream,{'ref':ref,'tokens':tokens})
+            return {ref:{code for token in tokens for code in token['strong']}
+                    for ref,tokens in references.items()}
         def additions(tokens,*args,**kwargs):
             for token in tokens:
                 if token['text']=='sieht':token.update(strong=['G991'],method='lexicon',uncertain=True,sources=['fixture'])
@@ -71,7 +78,7 @@ class LinguisticBuildTests(unittest.TestCase):
             stack.enter_context(patch('akribos.pipeline.check_sources'))
             stack.enter_context(patch('akribos.pipeline.edit',side_effect=edit))
             stack.enter_context(patch('akribos.pipeline.prepare_kjv',return_value=self.edits['elb1905']/'01-language.xml'))
-            stack.enter_context(patch('akribos.pipeline.reference_inventory',return_value={'Matt.1.1':{'G991','G3588','G5207'}}))
+            stack.enter_context(patch('akribos.pipeline.reference_inventory',side_effect=inventory))
             stack.enter_context(patch('akribos.pipeline.lexicons',return_value=({},{})))
             stack.enter_context(patch('akribos.pipeline.learn',return_value=({},{})))
             addition=stack.enter_context(patch('akribos.pipeline.additional_fill',side_effect=additions))
@@ -107,6 +114,12 @@ class LinguisticBuildTests(unittest.TestCase):
             self.assertEqual(verify_release_history(release,link,'1.4'),'06-linguistic.xml')
             manifest=json.loads((destination/'manifest.json').read_text())
             settings=manifest['settings']['linguistic_validation']
+            fifth_report=json.loads((destination/'05-reference-confirmed.report.json').read_text())
+            self.assertEqual(fifth_report['safety_profile'],SAFETY_PROFILE)
+            self.assertEqual(fifth_report['selected_nt_edition'],'WH')
+            self.assertEqual(fifth_report['safety_evidence_sha256'],{
+                'source_occurrences':file_hash(destination/'source-occurrences.jsonl.gz'),
+                'alignment':file_hash(destination/'alignment.jsonl.gz')})
             self.assertTrue(settings['article_corroboration_required'])
             self.assertTrue(settings['prior_alignment_required'])
             self.assertIn('sha256',settings['rule_identity'])
@@ -129,6 +142,36 @@ class LinguisticBuildTests(unittest.TestCase):
             source_run=self.run_build()
             self.assertNotEqual(reference_run,source_run)
             self.assertEqual(original,{p.name:p.read_bytes() for p in original_run.iterdir()})
+
+    def test_14_chain_keeps_the_hebrew_05_veto_and_replays_both_stages(self):
+        fragment='<gr str="259">ein</gr> <gr str="5971">Volk</gr>, <gr str="259">einen</gr> <gr str="7281">Augenblick</gr>.'
+        def hebrew(fragment,title='fixture'):
+            root=tree(fragment,title);root.find('BIBLEBOOK').set('bnumber','2')
+            root.find('.//CHAPTER').set('cnumber','33');root.find('.//VERS').set('vnumber','5')
+            return root
+        for edition,folder in self.edits.items():
+            target=fragment.replace('</gr>',f'</gr><NOTE ex="{HINT}">Eigener Hinweis</NOTE>',1) if edition=='elb' else fragment
+            write_xml(folder/'01-language.xml',hebrew(target))
+        for path,title in ((self.bk,'BK fixture'),(self.csv,'CSV fixture')):
+            write_xml(path,hebrew(fragment,title))
+        profile={'id':'tahot','paths':['hebrew.tsv'],'options':{'profile':'tahot','prefix':'H','witness':'L/Q',
+            'columns':{'ref':0,'text':1,'gloss':3,'strong':4,'morph':5,'variants':7,'alternate':9}}}
+        write_json(self.root/'config/step-profiles.json',[profile])
+        with (self.root/'hebrew.tsv').open('w',newline='') as stream:
+            writer=csv.writer(stream,delimiter='\t')
+            for n,code,morph in [(1,'H5971','HNcmsa'),(2,'H7281','HNcmsa'),(3,'H259','HAcmsa')]:
+                row=['']*10;row[0]=f'Exo.33.5#{n:02}=L';row[1]='Hebrew';row[4]=code;row[5]=morph
+                writer.writerow(row)
+        with self.pipeline():
+            destination=self.run_build();release,link=self.link()
+            with gzip.open(destination/'05-reference-confirmed.audit.jsonl.gz','rt',encoding='utf-8') as stream:
+                rows=[json.loads(line) for line in stream]
+            self.assertEqual(len(rows),1)
+            self.assertEqual(rows[0]['reason'],'function-code-over-assigned-in-verse')
+            self.assertEqual(rows[0]['references'],{'elb-bk':'confirmed','elb-csv':'confirmed'})
+            self.assertEqual(rows[0]['status'],'retained')
+            self.assertEqual(len(parse_xml(release).findall(f'.//NOTE[@ex="{HINT}"]')),1)
+            self.assertEqual(verify_release_history(release,link,'1.4'),'06-linguistic.xml')
 
     def test_missing_private_sources_fail_before_any_build_mutation(self):
         for kwargs in ({},{'elb_bk':self.bk},{'elb_bk':self.bk,'elb_csv':self.bk}):
