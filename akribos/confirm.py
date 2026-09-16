@@ -25,6 +25,125 @@ NORMALIZATION = 'NFC-lowercase-v1'
 METHOD = 'two-reference-exact-strong-set-v1'
 INPUT_PROFILE = 'zefania-word-spans-v1'
 PLACEHOLDER = re.compile(r'\[\s*\?\s*\]')
+REFERENCE_STATUSES = frozenset({
+    'confirmed', 'missing-reference-source', 'missing-reference-verse',
+    'uncertain-reference-verse', 'word-not-aligned', 'ambiguous-word-alignment',
+    'noncontiguous-reference-span', 'reference-placeholder-in-span',
+    'invalid-reference-strong-set', 'reference-annotation-crosses-span',
+    'incomplete-reference-word-span', 'missing-reference-strong-tags',
+    'different-strong-set',
+})
+TARGET_FAILURES = frozenset({
+    'structured-uncertainty-note', 'no-preceding-strong-span',
+    'text-between-assignment-and-hint', 'target-placeholder-in-span',
+    'invalid-target-strong-set', 'nested-target-strong-spans',
+    'incomplete-target-word-span',
+})
+AUDIT_FIELDS = frozenset({'ref', 'hint', 'target_token_ids', 'target_strong',
+                          'status', 'reason', 'references'})
+
+
+def verify_confirmation_transition(before, after, audit, *, output_identity=None):
+    """Replay the exact public stage-05 delta without needing private sources.
+
+    Every input hint must have one correctly located audit entry. A removal
+    needs two recorded confirmations of the complete existing assignment. This
+    validates those recorded decisions and their XML effects; reproducing the
+    private comparison still requires the separately identified source files.
+    """
+    rows = {}
+    reasons = REFERENCE_STATUSES | TARGET_FAILURES | {
+        'both-references-confirm-complete-set', 'outside-supported-verse-text'}
+    for row in audit:
+        require(isinstance(row, dict) and set(row) == AUDIT_FIELDS,
+                'Unexpected public confirmation audit fields')
+        require((row['ref'] is None or isinstance(row['ref'], str)) and
+                type(row['hint']) is int and row['hint'] > 0,
+                'Invalid confirmation audit location')
+        require(isinstance(row['target_token_ids'], list) and
+                all(isinstance(value, str) for value in row['target_token_ids']) and
+                isinstance(row['target_strong'], list) and
+                all(isinstance(value, str) for value in row['target_strong']),
+                'Invalid confirmation audit assignment')
+        require(isinstance(row['status'], str) and row['status'] in {'confirmed', 'retained'} and
+                isinstance(row['reason'], str) and row['reason'] in reasons,
+                'Unknown confirmation audit decision')
+        statuses = row['references']
+        require(isinstance(statuses, dict) and
+                set(statuses) == (set() if row['ref'] is None else {'elb-bk', 'elb-csv'}) and
+                all(isinstance(value, str) and value in REFERENCE_STATUSES | {'target-not-eligible'}
+                    for value in statuses.values()), 'Invalid confirmation reference statuses')
+        key = (row['ref'], row['hint'])
+        require(key not in rows, 'Duplicate confirmation audit location')
+        rows[key] = row
+
+    replay = copy.deepcopy(before)
+    markers = [node for node in replay.iter() if tag(node) == 'NOTE' and node.get('ex') == HINT]
+    require(len(rows) == len(markers), 'Incomplete reference-confirmation audit')
+    processed = set()
+    removed = 0
+    # Keep verse views local: replaying a full Bible need not retain every token,
+    # parent map and grammar span after its verse has been checked.
+    for ref, element in zef_verses(replay):
+        verse = _Verse(element, ref)
+        decisions = []
+        for number, hint in enumerate(verse.hints, 1):
+            processed.add(hint)
+            row = rows.pop((ref, number), None)
+            require(row is not None, 'Confirmation audit does not identify an input hint')
+            span, indices, failure = verse.hint_span(hint)
+            require(row['target_token_ids'] == [verse.tokens[i]['id'] for i in indices] and
+                    row['target_strong'] == (list(span.codes) if span else []),
+                    'Confirmation audit assignment differs from input hint')
+            statuses = row['references']
+            if failure:
+                require(row['status'] == 'retained' and row['reason'] == failure and
+                        all(value == 'target-not-eligible' for value in statuses.values()),
+                        'Ineligible confirmation hint was not retained')
+            else:
+                require(all(value in REFERENCE_STATUSES for value in statuses.values()),
+                        'Eligible confirmation hint has invalid reference statuses')
+                failures = [statuses[label] for label in ('elb-bk', 'elb-csv')
+                            if statuses[label] != 'confirmed']
+                if failures:
+                    require(row['status'] == 'retained' and row['reason'] == failures[0],
+                            'Confirmation decision disagrees with reference statuses')
+                else:
+                    require(row['status'] == 'confirmed' and
+                            row['reason'] == 'both-references-confirm-complete-set',
+                            'Confirmation removal lacks two recorded confirmations')
+                    decisions.append((verse.parents[hint], hint))
+        for parent, hint in decisions:
+            _remove_preserving_tail(parent, hint)
+            removed += 1
+
+    for number, hint in enumerate(markers, 1):
+        if hint in processed:
+            continue
+        row = rows.pop((None, number), None)
+        require(row is not None and row['target_token_ids'] == [] and row['target_strong'] == [] and
+                row['status'] == 'retained' and row['reason'] == 'outside-supported-verse-text',
+                'Unsupported confirmation hint was not retained')
+    require(not rows, 'Confirmation audit contains unknown input hints')
+    if output_identity is not None:
+        from .project import metadata
+        metadata(replay, output_identity[0], output_identity[1], '05-reference-confirmed')
+
+    def signature(root):
+        root = copy.deepcopy(root)
+        for element in root.iter():
+            if tag(element) in {'XMLBIBLE', 'BIBLEBOOK', 'CHAPTER'}:
+                if not (element.text or '').strip():
+                    element.text = None
+                for child in element:
+                    if not (child.tail or '').strip():
+                        child.tail = None
+        return ET.tostring(root, encoding='unicode')
+
+    require(signature(replay) == signature(after),
+            'XML contains changes outside the approved confirmation hint removals')
+    return {'hints_before': len(markers), 'hints_removed': removed,
+            'hints_remaining': len(markers) - removed}
 
 
 def word_key(word):

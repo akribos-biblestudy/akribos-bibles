@@ -7,7 +7,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from akribos.common import DataError, tokenize
-from akribos.confirm import HINT, confirm_files, confirm_uncertainty, forced_alignment, word_key
+from akribos.confirm import (HINT, confirm_files, confirm_uncertainty, forced_alignment,
+                             verify_confirmation_transition, word_key)
 from akribos.xmlio import plain, strong_fingerprints
 
 
@@ -30,7 +31,10 @@ class ConfirmationTests(unittest.TestCase):
         target = bible(target_fragment)
         bk = bible(bk_fragment) if bk_fragment is not None else None
         csv = bible(csv_fragment if csv_fragment is not None else bk_fragment) if bk_fragment is not None else None
-        return confirm_uncertainty(target, bk, csv)
+        result = confirm_uncertainty(target, bk, csv)
+        self.assertEqual(verify_confirmation_transition(target, result.root, result.audit),
+                         {key: result.summary[key] for key in ('hints_before', 'hints_removed', 'hints_remaining')})
+        return result
 
     def test_both_sources_confirm_without_changing_inputs(self):
         target = bible('<gr str="430">Gott</gr>' + hint() + ' sprach.')
@@ -153,6 +157,7 @@ class ConfirmationTests(unittest.TestCase):
         self.assertEqual(len(notes), 2)
         self.assertEqual(notes[0].find('STYLE').text, 'Notiz')
         self.assertEqual(notes[1].tail, ' Ende.')
+        self.assertEqual(verify_confirmation_transition(target, result.root, result.audit)['hints_removed'], 2)
 
     def test_public_audit_does_not_copy_reference_content_or_assignments(self):
         result = self.check('<gr str="430">Gott</gr>' + hint(),
@@ -213,6 +218,30 @@ class ConfirmationTests(unittest.TestCase):
         result = confirm_uncertainty(target, reference, copy.deepcopy(reference))
         self.assertEqual(result.audit[0]['reason'], 'outside-supported-verse-text')
         self.assertEqual(ET.tostring(result.root), before)
+        self.assertEqual(verify_confirmation_transition(target, result.root, result.audit)['hints_remaining'], 1)
+
+    def test_replay_handles_verse_local_hint_numbers_and_global_unsupported_hints(self):
+        target = bible('<gr str="430">Gott</gr>' + hint() + ' <gr str="559">sprach</gr>' + hint())
+        chapter = target.find('.//CHAPTER')
+        second = copy.deepcopy(chapter[0]);second.set('vnumber', '2');chapter.append(second)
+        ET.SubElement(target.find('INFORMATION'), 'NOTE', ex=HINT).text = 'Not a verse hint'
+        reference = bible('<gr str="430">Gott</gr> <gr str="559">sprach</gr>')
+        result = confirm_uncertainty(target, reference, copy.deepcopy(reference))
+        self.assertEqual(verify_confirmation_transition(target, result.root, result.audit),
+                         {'hints_before': 5, 'hints_removed': 2, 'hints_remaining': 3})
+
+    def test_replay_rejects_duplicate_locations_and_wrong_removed_hint(self):
+        target = bible('<gr str="430">Gott</gr>' + hint() + ' <gr str="559">sprach</gr>' + hint())
+        reference = bible('<gr str="430">Gott</gr> sprach')
+        result = confirm_uncertainty(target, reference, copy.deepcopy(reference))
+        duplicate = [result.audit[0], copy.deepcopy(result.audit[0])]
+        with self.assertRaisesRegex(DataError, 'Duplicate confirmation audit location'):
+            verify_confirmation_transition(target, result.root, duplicate)
+        wrong = copy.deepcopy(target);verse = wrong.find('.//VERS')
+        # Remove the retained second note instead of the confirmed first note.
+        verse.remove(verse[-1])
+        with self.assertRaisesRegex(DataError, 'outside the approved confirmation hint removals'):
+            verify_confirmation_transition(target, wrong, result.audit)
 
     def test_structured_hint_cannot_remove_other_data(self):
         target = '<gr str="430">Gott</gr>' + hint('<STYLE>Eigene Struktur</STYLE>')

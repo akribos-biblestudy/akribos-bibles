@@ -6,7 +6,7 @@ from akribos.common import file_hash,require,digest
 from akribos.project import VERSION,EDITION_TITLES,check_sources,cached,original_notes
 from akribos.importers import parse_xml
 from akribos.xmlio import zef_verses,plain,strong_fingerprints
-from akribos.confirm import METHOD,INPUT_PROFILE,NORMALIZATION
+from akribos.confirm import METHOD,INPUT_PROFILE,NORMALIZATION,verify_confirmation_transition
 
 
 def verify_release_history(path,link,version):
@@ -41,10 +41,8 @@ def verify_release_history(path,link,version):
             report.get('hints_removed')==hints(before)-hints(after),'Confirmation hint counts differ')
     with gzip.open(history/'05-reference-confirmed.audit.jsonl.gz','rt',encoding='utf-8') as stream:
         rows=[json.loads(line) for line in stream]
-    require(len(rows)==hints(before),'Incomplete reference-confirmation audit')
-    require(sum(row.get('status')=='confirmed' for row in rows)==report['hints_removed'],'Confirmation audit totals differ')
-    require(all(set(row)=={'ref','hint','target_token_ids','target_strong','status','reason','references'} for row in rows),
-            'Unexpected public confirmation audit fields')
+    counts=verify_confirmation_transition(before,after,rows,output_identity=(link['bible_id'],version))
+    require(all(report.get(key)==value for key,value in counts.items()),'Confirmation audit totals differ')
     return artifact
 
 

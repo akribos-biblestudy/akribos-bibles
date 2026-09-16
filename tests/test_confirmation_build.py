@@ -18,6 +18,7 @@ from akribos.common import DataError,file_hash,write_json
 from akribos.confirm import prepare_confirmation
 from akribos.importers import parse_xml
 from akribos.pipeline import build,publish
+from akribos.project import cached,jsonl_gz,line
 from akribos.xmlio import plain,strong_fingerprints,write_xml
 from scripts.verify_repository import verify_release_history
 
@@ -151,6 +152,69 @@ class ConfirmationBuildTests(unittest.TestCase):
             write_json(destination/'manifest.json',manifest)
             with self.assertRaisesRegex(DataError,'identical references'):
                 verify_release_history(release,link,'1.3')
+
+    def rehash_confirmation(self,destination,release,link):
+        """Model changed artifacts with internally consistent hashes/inventory."""
+        stage=destination/'05-reference-confirmed.xml'
+        release.write_bytes(stage.read_bytes());link['sha256']=file_hash(stage)
+        write_json(release.with_suffix('.build.json'),link)
+        report_path=destination/'05-reference-confirmed.report.json'
+        report=json.loads(report_path.read_text());report['sha256']=file_hash(stage)
+        write_json(report_path,report)
+        manifest_path=destination/'manifest.json';manifest=json.loads(manifest_path.read_text())
+        manifest['files']={str(p.relative_to(destination)):file_hash(p)
+                           for p in destination.rglob('*') if p.is_file() and p!=manifest_path}
+        write_json(manifest_path,manifest)
+        self.assertTrue(cached(destination))
+
+    def test_verifier_rejects_retargeted_strong_span_after_rehash(self):
+        with self.pipeline():
+            destination=self.run_build();release=self.root/'releases/akribos.elb.xml'
+            link=json.loads(release.with_suffix('.build.json').read_text())
+            stage=destination/'05-reference-confirmed.xml';before=parse_xml(stage);after=copy.deepcopy(before)
+            grammar=after.find('.//gr[@str="430"]')
+            grammar.text='Go';grammar.tail='tt'+(grammar.tail or '')
+            self.assertEqual(plain(before.find('.//VERS')),plain(after.find('.//VERS')))
+            self.assertEqual(strong_fingerprints(before),strong_fingerprints(after))
+            write_xml(stage,after);self.rehash_confirmation(destination,release,link)
+            with self.assertRaisesRegex(DataError,'outside the approved confirmation hint removals'):
+                verify_release_history(release,link,'1.3')
+
+    def test_verifier_rejects_fabricated_audit_locations_and_assignments(self):
+        changes=({'ref':'Rev.22.21'}, {'hint':999}, {'target_token_ids':['d999']},
+                 {'target_strong':['H1']}, {'references':{}})
+        with self.pipeline():
+            destination=self.run_build();release=self.root/'releases/akribos.elb.xml'
+            link=json.loads(release.with_suffix('.build.json').read_text())
+            path=destination/'05-reference-confirmed.audit.jsonl.gz'
+            with gzip.open(path,'rt') as stream:original=[json.loads(row) for row in stream]
+            for change in changes:
+                with self.subTest(change=change):
+                    rows=copy.deepcopy(original);rows[0].update(change)
+                    with jsonl_gz(path) as stream:
+                        for row in rows:line(stream,row)
+                    self.rehash_confirmation(destination,release,link)
+                    with self.assertRaises(DataError):verify_release_history(release,link,'1.3')
+
+    def test_verifier_rejects_additional_fields_and_free_text_decisions(self):
+        changes=({'private_path':'/private/reference.xml'},
+                 {'reason':'SYNTHETIC PRIVATE REFERENCE TEXT'},
+                 {'status':'SYNTHETIC PRIVATE REFERENCE TEXT'},
+                 {'references':{'elb-bk':'confirmed','elb-csv':'SYNTHETIC PRIVATE REFERENCE TEXT'}},
+                 {'references':{'elb-bk':'confirmed','elb-csv':{'text':'PRIVATE'}}},
+                 {'references':{'elb-bk':'confirmed','elb-csv':'different-strong-set'}})
+        with self.pipeline():
+            destination=self.run_build();release=self.root/'releases/akribos.elb.xml'
+            link=json.loads(release.with_suffix('.build.json').read_text())
+            path=destination/'05-reference-confirmed.audit.jsonl.gz'
+            with gzip.open(path,'rt') as stream:original=[json.loads(row) for row in stream]
+            for change in changes:
+                with self.subTest(change=change):
+                    rows=copy.deepcopy(original);rows[0].update(change)
+                    with jsonl_gz(path) as stream:
+                        for row in rows:line(stream,row)
+                    self.rehash_confirmation(destination,release,link)
+                    with self.assertRaises(DataError):verify_release_history(release,link,'1.3')
 
     def test_prepare_rejects_duplicate_verses_and_wrong_profile(self):
         invalid=parse_xml(self.csv);chapter=invalid.find('.//CHAPTER');chapter.append(copy.deepcopy(chapter[0]))
