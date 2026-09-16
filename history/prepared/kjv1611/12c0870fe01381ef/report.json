@@ -1,0 +1,14 @@
+{
+  "repair_count": 106618,
+  "discarded_markup": "STYLE tags in derivative KJV donor copy only; original archived intact",
+  "notes_retained": 7716,
+  "gr_start_tags_unchanged": true,
+  "stats": {
+    "verses": 31102,
+    "words": 790685,
+    "tagged_words": 347131,
+    "word_coverage_percent": 43.9026,
+    "studynotes": 7716,
+    "word_hints": 0
+  }
+}

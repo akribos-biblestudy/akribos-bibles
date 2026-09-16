@@ -1,0 +1,10 @@
+# Original bytes are pinned; prevent checkout line-ending changes.
+sources/originals/** -text
+vendor/** -text
+history/** -text
+releases/** -text
+comparisons/** -text
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.gz -text

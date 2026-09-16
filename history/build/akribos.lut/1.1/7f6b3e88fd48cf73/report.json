@@ -1,0 +1,57 @@
+{
+  "bible_id": "akribos.lut",
+  "version": "1.1",
+  "stages": {
+    "02-baseline": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 350710,
+      "word_coverage_percent": 50.237,
+      "studynotes": 0,
+      "word_hints": 0,
+      "sha256": "ee337ebfe66ee82e1129ce407c6ce653ed6a0f7d07653ea066a4f7d176bfc988",
+      "methods": {
+        "inherited": 350710
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "03-lexicon": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 351840,
+      "word_coverage_percent": 50.3989,
+      "studynotes": 0,
+      "word_hints": 1130,
+      "sha256": "cfda4771e473e0c8ff3d1360b3dfcb968133dd2bb0ba07dd9e136e668854bdb8",
+      "methods": {
+        "inherited": 350710,
+        "lexicon": 1130
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    },
+    "04-multisource": {
+      "verses": 31172,
+      "words": 698111,
+      "tagged_words": 391385,
+      "word_coverage_percent": 56.0634,
+      "studynotes": 0,
+      "word_hints": 40675,
+      "sha256": "5cfaca84929bcb7f132d0538d67a517f14fceafc63b80cc27ecd1ce6d1f11320",
+      "methods": {
+        "inherited": 350710,
+        "other-translation": 33651,
+        "lexicon": 1130,
+        "concordance": 5530,
+        "verse-consensus": 364
+      },
+      "original_notes_preserved": 0,
+      "text_preserved": true
+    }
+  },
+  "review_items": 20262,
+  "warning": "Coverage is not accuracy. Reference verse numbers provisionally aligned. Existing annotations retained; new candidates require review. No BK input used.",
+  "step_edition": "TR",
+  "language_history": "history/edit/akribos.lut/1.1/e7f5904d052febd7"
+}

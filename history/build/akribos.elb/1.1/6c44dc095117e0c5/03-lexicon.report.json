@@ -1,0 +1,15 @@
+{
+  "verses": 31170,
+  "words": 727220,
+  "tagged_words": 320749,
+  "word_coverage_percent": 44.1062,
+  "studynotes": 9481,
+  "word_hints": 6232,
+  "sha256": "058bbe463330f50ca2e5b43040215af304dba82dc2853230287aac34c276c596",
+  "methods": {
+    "baseline-transfer": 314517,
+    "lexicon": 6232
+  },
+  "original_notes_preserved": 9481,
+  "text_preserved": true
+}

@@ -1,0 +1,13 @@
+Original INFORMATION aus der archivierten Quelldatei.
+
+<INFORMATION>
+<title>Unrevidierte Elberfelder Übersetzung von 1932</title>
+<creator>www.bibelkommentare.de</creator>
+<description>Unrevidierte Elberfelder Übersetzung von 1932</description>
+<format>Zefania XML Bible Markup Langauge</format>
+<identifier>bk_bible.elb_1932</identifier>
+<language>ger</language>
+<rights>Public Domain</rights>
+<source>http://www.bibelkommentare.de</source>
+</INFORMATION>
+

@@ -1,0 +1,19 @@
+Original INFORMATION aus der archivierten Quelldatei.
+
+<INFORMATION>
+    <title>Elberfelder 1905</title>
+    <creator>http://www.bibelkommentare.de</creator>
+    <subject>Heilige Schrift</subject>
+    <description>Die Elberfelderbibel von 1905 mit Strongs</description>
+    <date>2009-01-22</date>
+    <type>Bible</type>
+    <format>Zefania XML Bible Markup Language</format>
+    <identifier>ELB1905STR</identifier>
+    <source>Internet</source>
+    <language>GER</language>
+    <rights>We believe that this Bible is found in the Public Domain.</rights>
+    <contributors />
+    <publisher />
+    <coverage />
+  </INFORMATION>
+  

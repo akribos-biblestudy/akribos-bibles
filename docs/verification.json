@@ -1,0 +1,27 @@
+{
+  "version": "1.1",
+  "registered_originals": 14,
+  "verified_history_runs": 7,
+  "gzip_crc_checks": 11,
+  "releases": {
+    "akribos.elb": {
+      "sha256": "4010ea25f5f239d9e6a8a6c7da23fe441c9ac0e786653657b5ac0bb9d33f7112",
+      "original_studynotes": 9481,
+      "normalized_names": true
+    },
+    "akribos.lut": {
+      "sha256": "5cfaca84929bcb7f132d0538d67a517f14fceafc63b80cc27ecd1ce6d1f11320",
+      "original_studynotes": 0,
+      "normalized_names": true
+    },
+    "kjv1611": {
+      "sha256": "b0f829e0008ffd7a5c254e00813f62a404933c4aa651282507b7d295cc9ed334",
+      "original_studynotes": 7716,
+      "verses": 31102,
+      "syntax_repaired": true
+    }
+  },
+  "tests_passed": 22,
+  "bible_subtrees_match_original_1_1": true,
+  "common_export_metadata": true
+}

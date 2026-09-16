@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "verses_and_captions": 31171,
+  "notes": 0,
+  "strong_elements": 311002,
+  "reconstructed_edits": 14980,
+  "input_sha256": "a393d4ce286349c26f404b934738ef9ba5991fe0dd9e8cd319ea670ad91c2276",
+  "output_sha256": "3970e1592ee754786b9b638ac16b0247c0b3fa18ce58d091264e75aa21bb150d",
+  "checks": [
+    "All note subtrees preserved",
+    "All Strong attributes/order preserved",
+    "Same verses/captions",
+    "Every output verse reconstructed exactly from CSV audit"
+  ]
+}

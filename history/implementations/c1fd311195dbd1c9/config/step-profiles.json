@@ -1,0 +1,66 @@
+[
+  {
+    "id": "tahot",
+    "role": "reference",
+    "format": "tsv",
+    "paths": [
+      "sources/originals/TAHOT_Gen-Deu.tsv",
+      "sources/originals/TAHOT_Isa-Mal.tsv",
+      "sources/originals/TAHOT_Job-Sng.tsv",
+      "sources/originals/TAHOT_Jos-Est.tsv"
+    ],
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+    "source_url": "https://github.com/STEPBible/STEPBible-Data",
+    "version": "ae39711d7843b2902d54993e432de9c12d6a4b9a",
+    "evidence": "data/evidence/step-readme.md",
+    "rights_scope": "Lexikalisch und morphologisch annotierte Grundtextdaten des genannten Datensatzes.",
+    "options": {
+      "profile": "tahot",
+      "prefix": "H",
+      "witness": "L/Q",
+      "morph_scheme": "STEP-Hebrew",
+      "columns": {
+        "ref": 0,
+        "text": 1,
+        "gloss": 3,
+        "strong": 4,
+        "morph": 5,
+        "variants": 7
+      }
+    }
+  },
+  {
+    "id": "tagnt",
+    "role": "reference",
+    "format": "tsv",
+    "paths": [
+      "sources/originals/TAGNT_Act-Rev.tsv",
+      "sources/originals/TAGNT_Mat-Jhn.tsv"
+    ],
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "STEP Bible (www.STEPBible.org), based on work at Tyndale House Cambridge",
+    "source_url": "https://github.com/STEPBible/STEPBible-Data",
+    "version": "ae39711d7843b2902d54993e432de9c12d6a4b9a",
+    "evidence": "data/evidence/step-readme.md",
+    "rights_scope": "Lexikalisch und morphologisch annotierte Grundtextdaten des genannten Datensatzes.",
+    "options": {
+      "profile": "tagnt",
+      "prefix": "G",
+      "edition": "WH",
+      "morph_scheme": "STEP-Greek",
+      "columns": {
+        "ref": 0,
+        "text": 1,
+        "gloss": 2,
+        "strong": 11,
+        "combined": 3,
+        "lemma": 4,
+        "editions": 5,
+        "variants": 6
+      }
+    }
+  }
+]

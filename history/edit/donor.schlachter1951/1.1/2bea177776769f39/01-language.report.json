@@ -1,0 +1,42 @@
+{
+  "edition": "generic",
+  "version": "1.1",
+  "input_sha256": "658d1b316558bbb01222306b7e559194fc065efa67ddef1e5ba0bc9f591470df",
+  "output_sha256": "7210ec1614791ac4bc0feab70aa78348336c4c1e850a7ac14c60a6b1e3e87c0b",
+  "rule_sha256": "edc8837342f0bc34132eb79b2f25d3bd75fbccf9400fb913efc1e3ea779f4ede",
+  "implementation_sha256": {
+    "modernize.py": "a361ad2b8af393f48fae9a9ec48946f9d4efdacc2c20f5761836bd32790fb3d6",
+    "xmlio.py": "f7c0e17758118e4a377ee1e7d222a5bccc2ff3f84cb4cf03b99aac1db5903645",
+    "common.py": "afa8e6a47eb4f36668ce3105df864d9694ae83fc47013a519cdd6e9f674c0ba5",
+    "importers.py": "7115c6e77de6b2452247332678fc6abaedff2e2861a850957cdb189c72d42f74"
+  },
+  "overrides_sha256": null,
+  "edits": 8258,
+  "changed_verses": 6434,
+  "rules": {
+    "orthography:wordlist": 7012,
+    "grammar:Frau-determiner": 507,
+    "word:Weib-Frau": 705,
+    "grammar:Frau-relative": 18,
+    "grammar:Frau-adjective": 14,
+    "orthography:phrase": 2
+  },
+  "notes_preserved": 1,
+  "strong_elements_preserved": 293635,
+  "review_items": 711,
+  "review_kinds": {
+    "gender-agreement": 584,
+    "spelling-context": 127
+  },
+  "preservation_checks": {
+    "note_subtrees": true,
+    "strong_attributes_and_order": true,
+    "serialized_xml": true
+  },
+  "limits": [
+    "Deterministic partial spelling modernization; not a new translation or expert-verified edition.",
+    "Jehova/HERR uses explicit case/context rules; unclassified articles/case are queued for review.",
+    "Original study notes and their quotations retain source spelling.",
+    "Old external token offsets are obsolete; use offset-map.jsonl and re-tokenize."
+  ]
+}

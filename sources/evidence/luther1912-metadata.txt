@@ -1,0 +1,19 @@
+Original INFORMATION aus der archivierten Quelldatei.
+
+<INFORMATION>
+    <format>Zefania XML Bible Markup Language</format>
+    <date>2022-02-27</date>
+    <title>Luther 1912</title>
+    <creator>www.toledot.info</creator>
+    <subject>Die Heilige Schrift</subject>
+    <description>Luther-Bibel von 1912 (in neuer Rechtschreibung)</description>
+    <publisher>www.toledot.info</publisher>
+    <contributors />
+    <type>bible</type>
+    <identifier>luth1912</identifier>
+    <source>Jens Grabner, unbekannt, J. Barkowsky</source>
+    <language>DE</language>
+    <coverage>provide the Bible to the nations of the world</coverage>
+    <rights>This Text is in the Public Domain</rights>
+  </INFORMATION>
+  
