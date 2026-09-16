@@ -1,5 +1,57 @@
 # Änderungen
 
+## 1.4 — 2026-09-16
+
+- Nach der Pflichtprüfung durch ELB BK und Edition CSV alle verbliebenen
+  eigenen Unsicherheitshinweise an konkreten STEP-Wortvorkommen prüfen.
+  Morphologie, ausdrückliche Formenlisten und eindeutige Nachbarbelege
+  entscheiden über eine Bestätigung. Fehlende oder mehrdeutige Belege lassen
+  den Hinweis stehen; es werden keine Ersatznummern aus deutschem Wortlaut
+  oder bloßer Vershäufigkeit abgeleitet.
+- Ausgewählte griechische Artikel G3588 ergänzen, wenn die genaue
+  Artikel-Nomen-Verbindung der gewählten Ausgabe und mindestens eine private
+  Wortreferenz sie bestätigen. Bestehende Eigennamen können mit ausdrücklichem
+  Namenskatalog, echter Quelle und genauem Referenzbeleg bestätigt werden.
+- 43 positionsgesicherte redaktionelle Regeln ergänzen: 41 betreffen den
+  geprüften Bestand 1.2 (24 markierte, 17 geerbte Zuordnungen), zwei betreffen
+  neue Codesätze aus dem 1.4-Neuaufbau. Falsche Nummern werden gezielt entfernt
+  oder durch einen belegten Artikelcode ersetzt. Bei `Rohr` in Luther
+  Offenbarung 21,16 entfällt nur G1909; G2563 bleibt erhalten. Anwendbarkeit
+  und tatsächliche Änderungen werden pro Regel protokolliert.
+- Weitere HERR-Artikel und Kasusformen in der vorgelagerten Sprachstufe
+  berichtigen: 213 geänderte ELB-Namensersetzungen in 190 Versen gegenüber
+  dem Skriptstand 1.3. Luthers Wortlaut bleibt gleich. Der erneute Abgleich
+  enthält außerdem 196 zusätzliche deutsche H3068-Artikelverlinkungen in ELB
+  und 176 in Luther aus bereits vorhandenen Mehrwortbezügen. Sie sind getrennt
+  von neuen G3588-Artikeln zu zählen und erzeugen keine zusätzlichen
+  hebräischen Wortvorkommen.
+- Stufe `06-linguistic` mit geschlossenem Audit, vollständigen Quell-/Regelhashes
+  und exaktem XML-Replay veröffentlichen. Prüfen, dass Stufe 05 und 06 den
+  bereits bearbeiteten Wortlaut und Originalnotizen erhalten. Eigene Provenienz
+  verhindert, dass neue Bestätigungen sich in Folgeläufen selbst begründen.
+- Standardversion auf **1.4** setzen. Originalausgaben, Cover-/Tab-Titel und
+  feste Dateinamen beibehalten; Untertitel, Revision und Rechtehinweis tragen
+  die aktuelle Bearbeitungsversion. Der vollständige Build beginnt bei den
+  Originalen und benötigt keinen vorherigen 1.3-Lauf.
+- Endgültiger vollständiger Lauf: Stufe 06 entfernt in ELB
+  **18** Hinweise und ergänzt
+  **791** G3588-Artikel; in Luther
+  **11** Hinweise und
+  **355** Artikel. Es verbleiben
+  **31.149** beziehungsweise
+  **38.205** Hinweise. Tatsächlich angewandt wurden
+  **19** ELB- und
+  **24** Luther-Korrekturregeln. Die Hinweiszählung
+  umfasst dabei tatsächlich entfernte redaktionelle Hinweise.
+- Vollständigen Aufbau, echte bytegleiche Wiederholung und Repository-Verifier
+  prüfen; **291** Python-Tests bestehen. Skripte, Regeln,
+  Laufarchive und Ergebnisdateien gemeinsam als `v1.4` festhalten; frühere Tags
+  unverändert erhalten.
+
+Details: [Sprachliche Prüfung](docs/LINGUISTIC-VALIDATION.md),
+[redaktionelle Strong-Korrekturen](docs/EDITORIAL-STRONG-CORRECTIONS.md),
+[HERR-Korrekturen](docs/DIVINE-NAME-CORRECTION.md#ergänzung-in-version-14).
+
 ## 1.3 — 2026-09-16
 
 - Jede bestehende eigene Strong-Unsicherheitsmarkierung gegen ELB BK und die

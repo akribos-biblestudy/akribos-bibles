@@ -1,16 +1,16 @@
-# Akribos Bibeln – reproduzierbare Version 1.3
+# Akribos Bibeln – reproduzierbare Version 1.4
 
 Akribos bearbeitet die **Elberfelder 1932** und **Luther 1912** sprachlich und
 ergänzt Strong-Zuordnungen. Es handelt sich nicht um eigene Übersetzungen.
 Dieses Repository enthält die Originaldaten, Skripte, öffentlichen
 Zwischenstände und fertigen Ausgaben.
 
-Version 1.3 prüft die vorhandenen eigenen Unsicherheitshinweise gegen **ELB BK**
-und die **Elberfelder Ausgabe des CSV-Verlags**. Stimmen beide Referenzen am
-eindeutig zugeordneten Wortbereich vollständig überein und greift kein
-Sicherheitsveto, entfällt der Hinweis. Diese Prüfstufe verändert weder
-Bibeltext noch Strong-Nummern oder historische Notizen. Beide Referenzen
-werden privat bereitgestellt und nicht mitveröffentlicht.
+Version 1.4 prüft nach dem Referenzabgleich alle verbliebenen eigenen
+Unsicherheitshinweise an konkreten griechischen und hebräischen Wortbelegen.
+Sie bestätigt belegte Zuordnungen, ergänzt ausgewählte griechische Artikel
+und korrigiert einzeln geprüfte Fehlverlinkungen. Fälle ohne ausreichenden
+Beleg bleiben markiert. Weitere Sprachregeln verbessern die HERR-Artikel und
+Kasusformen der ELB; historische Originalnotizen bleiben erhalten.
 
 ## Fertige Dateien importieren
 
@@ -61,56 +61,85 @@ Die beiden Referenzen werden einmalig beschafft:
 Danach beide Ausgaben einschließlich der KJV-Importdatei aufbauen:
 
 ```bash
-python bible.py build --edition all --version 1.3 \
+python bible.py build --edition all --version 1.4 \
   --elb-bk .local/references/elb-bk.xml \
   --elb-csv .local/references/elb-csv.xml
-python scripts/verify_repository.py --version 1.3
+python scripts/verify_repository.py --version 1.4
 ```
 
 `--edition elb` und `--edition lut` wählen eine Ausgabe einzeln aus. Ein
-vorheriger `edit`-Aufruf ist nicht erforderlich. Standardversion ist **1.3**;
-auch ohne `--version` benötigt ein regulärer Build beide Referenzoptionen.
-Für einen späteren identischen Aufbau die privaten XML-Snapshots unverändert
-aufbewahren. Ein neuer Onlineabruf kann andere Dateihashes ergeben.
+vorheriger `edit`-Aufruf oder 1.3-Build ist nicht erforderlich. Standardversion
+ist **1.4**; auch ohne `--version` benötigt ein regulärer Build beide
+Referenzoptionen. Für einen späteren identischen Aufbau die privaten
+XML-Snapshots unverändert aufbewahren. Ein neuer Onlineabruf kann andere
+Dateihashes ergeben. Die Referenztexte werden nicht mitveröffentlicht.
 
-## Was die Skripte prüfen
+## Was Version 1.4 prüft und korrigiert
 
-Der Aufbau verläuft in fünf Stufen: **Sprachbearbeitung → vorhandene
-Strong-Zuordnungen → Lexika → weitere Übersetzungen → Referenzbestätigung**.
+Der Aufbau verläuft in sechs Stufen: **Sprachbearbeitung → vorhandene
+Strong-Zuordnungen → Lexika → weitere Übersetzungen → Referenzbestätigung →
+sprachliche Strong-Prüfung**.
 
-- Die Sprachregeln berücksichtigen Artikel und Kasus bei Jehova → HERR,
-  einschließlich 1. Samuel 17,37 und Kapitel 20. Anreden werden getrennt
-  behandelt. Weitere explizite Regeln modernisieren Schreibungen und
-  Weib/Frau-Formen. Originalnotizen bleiben sprachlich unverändert.
-- Die Anreicherung verwendet die eingecheckten deutschen Quellen, Lexika und
-  STEP-Versinventare. KJV bestätigt Nummern im Vers, keine direkte
-  englisch-deutsche Wortzuordnung. Das NT-Prüfprofil ist WH für ELB und TR für
-  Luther; `--nt-edition` wählt es ausdrücklich.
-- Stufe 05 vergleicht jede vorhandene Unsicherheitsmarkierung mit beiden
-  privaten Referenzen. Vollständige Nummernmengen und eindeutige Wortbereiche
-  sind erforderlich. Kontext- und Belegzahlprüfungen halten bekannte gemeinsame
-  Referenzfehler konservativ offen. Eine Häufigkeitsabweichung benennt keine
-  einzelne Nummer als falsch.
+- **Sprachbearbeitung:** Weitere Regeln unterscheiden Titelbeifügungen,
+  Anreden und Sprecher-Konstruktionen bei Jehova → HERR. Gegenüber dem
+  Skriptstand von 1.3 ändern sich in ELB 213 Namensersetzungen in 190 Versen.
+  Luthers Wortlaut bleibt gleich. Die
+  [Sprachdokumentation](docs/DIVINE-NAME-CORRECTION.md#ergänzung-in-version-14)
+  nennt Beispiele und Gegenfälle.
+- **Referenzbestätigung, Stufe 05:** Eine bestehende Unsicherheitsmarkierung
+  entfällt nur, wenn ELB BK und Edition CSV denselben eindeutigen Wortbereich
+  mit derselben vollständigen Nummernmenge bestätigen und kein Sicherheitsveto
+  greift. Bekannte gemeinsame Referenzfehler bleiben dadurch offen. Diese
+  Stufe ändert weder Bibeltext noch Strong-Nummern oder Originalnotizen.
+- **Sprachliche Prüfung, Stufe 06:** Echte STEP-Wortvorkommen, Morphologie,
+  eindeutige Nachbarwörter und ausdrückliche Formenlisten prüfen die noch
+  offenen Zuordnungen. Neue G3588-Artikel benötigen zudem eine genaue
+  Wortbestätigung durch mindestens eine private Referenz. Deutsche Artikel
+  werden nicht allein wegen ihrer Form verlinkt; `der`, `die`, `das` können
+  auch Pronomen sein. Fehlende oder mehrdeutige Belege lassen den Hinweis
+  stehen. Bibelwortlaut und Originalnotizen bleiben in dieser Stufe erhalten.
+- **Feste redaktionelle Korrekturen:** Der
+  [Katalog](docs/EDITORIAL-STRONG-CORRECTIONS.md) umfasst 43 positionsgenau
+  geprüfte Regeln: 41 aus dem Bestand 1.2 (24 markierte und 17 geerbte
+  Zuordnungen) sowie zwei neue Codesätze des 1.4-Neuaufbaus. Jede Änderung
+  benötigt die festgelegte Ausgabe, Wortposition, den vollständigen Verstext,
+  alten Codesatz und dieselben Quellbelege. Die Kataloggröße ist keine
+  Ergebniszahl; der jeweilige Lauf weist die tatsächlich angewandten Regeln aus.
 
-Die genauen Bedingungen und Grenzen stehen unter
-[Referenzbestätigung](docs/REFERENCE-CONFIRMATION.md), die Sprachkorrekturen
-unter [Artikelkorrektur](docs/DIVINE-NAME-CORRECTION.md). Wortabdeckung misst
-vorhandene Markierungen, keine Zuordnungsgenauigkeit.
+Die vorgelagerte deutsche Mehrwortzuordnung enthält zusätzlich 196 H3068-
+Artikelverlinkungen in ELB und 176 in Luther. Sie gehören jeweils zu einem
+bereits vorhandenen ursprünglichen Jehova/H3068-Bezug und zählen keine neuen
+hebräischen Wortvorkommen. Diese Änderungen werden getrennt von den neuen
+G3588-Artikelbelegen der Stufe 06 ausgewiesen.
 
-### Ergebnis der vollständigen 1.3-Prüfung
+Details: [Referenzbestätigung](docs/REFERENCE-CONFIRMATION.md),
+[sprachliche Strong-Prüfung](docs/LINGUISTIC-VALIDATION.md),
+[Namen](docs/LINGUISTIC-NAMES.md) und [Nomenformen](docs/LINGUISTIC-NOUNS.md).
+Das NT-Prüfprofil ist WH für ELB und TR für Luther; `--nt-edition` wählt es
+ausdrücklich. KJV bestätigt Nummern im Vers, keine direkte englisch-deutsche
+Wortzuordnung. Wortabdeckung misst Markierungen, keine Zuordnungsgenauigkeit.
 
-Stand: **2026-09-16**. Die Zahlen stammen aus den jeweiligen
-`05-reference-confirmed.report.json` des endgültigen Builds.
+### Ergebnis des vollständigen 1.4-Aufbaus
 
-| Ausgabe | Hinweise vor Stufe 05 | Entfernt | Verbleibend |
+Stand: **2026-09-16**. Alle Zahlen stammen aus den endgültigen
+Reports dieses 1.4-Laufs; Stufe 05 wird dabei mit dem aktuellen Eingang neu
+berechnet. Ihre Zähler müssen deshalb nicht dem früheren 1.3-Release entsprechen.
+
+| Ausgabe | Hinweise entfernt: Stufe 05 | Hinweise entfernt: Stufe 06 | Hinweise verbleibend |
 |---|---:|---:|---:|
-| Elberfelder 1932 | 51.998 | 20.831 | 31.167 |
-| Luther 1912 | 41.134 | 3.095 | 38.039 |
+| Elberfelder 1932 | 20.832 | 18 | 31.149 |
+| Luther 1912 | 3.095 | 11 | 38.205 |
 
-Jede Entscheidung ist im zugehörigen Audit nachvollziehbar. Der technische
-Prüfer rekonstruiert die erlaubten XML-Änderungen; er beweist keine allgemeine
-Fehlerfreiheit aller Strong-Zuordnungen. Frühere Messungen sind in
-[docs/RESULTS.md](docs/RESULTS.md) mit ihrem jeweiligen Bearbeitungsstand dokumentiert.
+| Ausgabe | Neue G3588-Artikel | Angewandte redaktionelle Korrekturen |
+|---|---:|---:|
+| Elberfelder 1932 | 791 | 19 |
+| Luther 1912 | 355 | 24 |
+
+Die Hinweiszahl der Stufe 06 enthält auch tatsächlich entfernte Hinweise bei
+redaktionellen Korrekturen. Diese Korrekturen betreffen teils geerbte,
+unmarkierte Spannen und sind daher eine eigene Zählung. Die beiden Tabellen
+werden nicht addiert. Jede Entscheidung steht im Audit. Frühere Messungen
+bleiben mit ihrem jeweiligen Stand in [docs/RESULTS.md](docs/RESULTS.md).
 
 ## Titel und Exportmetadaten
 
@@ -120,7 +149,7 @@ Die Skripte setzen die Angaben bei jedem `edit`- und `build`-Aufruf:
 |---|---|---|
 | Cover-/Tab-Titel | ELB | LUT |
 | Titel in der Auswahl | Elberfelder 1932 | Luther 1912 |
-| Auswahl-Untertitel | mit Strongs (Akribos 1.3) | mit Strongs (Akribos 1.3) |
+| Auswahl-Untertitel | mit Strongs (Akribos 1.4) | mit Strongs (Akribos 1.4) |
 
 Die Versionsnummer stammt aus `--version` beziehungsweise `VERSION` in
 `akribos/project.py`; sie steht auch in `revision` und im Rechtehinweis.
@@ -137,34 +166,39 @@ Ein unveränderter Build prüft und verwendet seinen archivierten Lauf erneut.
 Ein echter Neuaufbau prüft zusätzlich die Bytegleichheit mit diesem Lauf:
 
 ```bash
-python bible.py build --edition all --version 1.3 --rebuild \
+python bible.py build --edition all --version 1.4 --rebuild \
   --elb-bk .local/references/elb-bk.xml \
   --elb-csv .local/references/elb-csv.xml
-python scripts/verify_repository.py --version 1.3
+python scripts/verify_repository.py --version 1.4
 ```
 
 Geänderte Quellen, Referenzhashes, Regeln oder Optionen erzeugen einen neuen
 Laufordner. `releases/` behält feste Dateinamen; `.build.json` verknüpft jede
-Ausgabe mit ihrer Prüfsumme und dem vollständigen Lauf. Version 1.3
-veröffentlicht `05-reference-confirmed.xml`. Git-Commits und Tags bewahren
-die früheren Ausgaben. **`--version` lädt keinen historischen Code:** Für
-Version 1.1 oder 1.2 den passenden Tag verwenden, siehe
+Ausgabe mit ihrer Prüfsumme und dem vollständigen Lauf. Version 1.4
+veröffentlicht `06-linguistic.xml`. Git-Commits und Tags bewahren die früheren
+Ausgaben. **`--version` lädt keinen historischen Code:** Für Version 1.3,
+1.2 oder 1.1 den passenden Tag verwenden, siehe
 [Versionshistorie](docs/HISTORY.md) und [Änderungsprotokoll](CHANGELOG.md).
 
 | Verzeichnis / Datei | Inhalt |
 |---|---|
 | `sources/originals/`, `config/sources.lock.json` | Quell-Snapshots, Herkunft, Rechte und Prüfsummen |
 | `history/edit/` | Sprachfassung und positionsgenaue Änderungsprotokolle |
-| `history/build/` | Stufen 02–05, Reports und gzip-komprimierte JSONL-Audits |
+| `history/build/` | Stufen 02–06, Reports und gzip-komprimierte JSONL-Audits |
 | `history/implementations/` | Für jeden Lauf archivierter Code und Regelstand |
 | `alignment.jsonl.gz`, `source-occurrences.jsonl.gz` | Eigene Wortzuordnungen und STEP-Wortvorkommen |
-| `05-reference-confirmed.audit.jsonl.gz` | Eine Entscheidung pro ursprünglichem Unsicherheitshinweis |
+| `05-reference-confirmed.audit.jsonl.gz` | Eine Entscheidung pro eingehendem Unsicherheitshinweis |
+| `06-linguistic.audit.jsonl.gz` | Verbleibende Hinweise, Artikelkandidaten und feste Korrekturregeln |
 | `.local/` | Private Referenzen, Detailvergleiche und Laufzeitdateien |
 
-Öffentliche Bestätigungsprotokolle enthalten eigene Positionen, Codes und
-Ergebnisgründe. Private Referenztexte und Referenzpositionen werden nicht
-kopiert. Die unveränderten Snapshots werden benötigt, um den privaten
-Referenzvergleich selbst erneut auszuführen.
+Der Verifier rekonstruiert die protokollierten XML-Änderungen von 04 → 05 → 06
+und prüft die öffentlichen Quellbelege. Neu erzeugte Verlinkungen dienen bei
+einer Wiederholung nicht als neue Beweisanker. Öffentliche Audits enthalten
+eigene Positionen, Codes, festgelegte Gründe und STEP-Belege; private
+Referenztexte und deren Wortpositionen werden nicht kopiert. Die unveränderten
+privaten Snapshots werden benötigt, um den Referenzvergleich selbst erneut
+auszuführen. Technische Reproduzierbarkeit beweist keine allgemeine
+Fehlerfreiheit aller Strong-Zuordnungen.
 
 ## Weitere Befehle
 
@@ -203,18 +237,18 @@ python bible.py build --edition custom \
   --id akribos.meinetext --profile generic --nt-edition TR --version 0.1
 ```
 
-Die explizite eigene Versionsnummer fordert keine 1.3-Referenzbestätigung an;
+Die explizite eigene Versionsnummer fordert keine 1.3-/1.4-Prüfstufe an;
 sie bezeichnet auch keinen historischen Akribos-Code. Ein eigener Build mit
-`--version 1.3` würde dagegen ebenfalls beide Referenzen benötigen. Eigene
-Texte und Ergebnisse bleiben unter `.local/` und werden nicht automatisch als
-gemeinfrei deklariert oder veröffentlicht. Importprofile und Erweiterungen:
-[Weitere Bibeln](docs/ADDING-BIBLES.md).
+`--version 1.3` oder `--version 1.4` benötigt dagegen ebenfalls beide
+Referenzen. Eigene Texte und Ergebnisse bleiben unter `.local/` und werden
+nicht automatisch als gemeinfrei deklariert oder veröffentlicht. Importprofile
+und Erweiterungen: [Weitere Bibeln](docs/ADDING-BIBLES.md).
 
 ## Tests und Veröffentlichung
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/verify_repository.py --version 1.3
+python scripts/verify_repository.py --version 1.4
 python scripts/package.py --output ../akribos-bibles-public.zip
 ```
 

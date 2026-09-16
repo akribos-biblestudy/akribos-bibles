@@ -9,9 +9,10 @@ Strong-Nummern ändern sich ausschließlich durch die unten beschriebenen
 positionsgesicherten redaktionellen Regeln. Nicht ausreichend belegte Fälle
 behalten ihren Hinweis.
 
-Die Standardversion und die veröffentlichten Dateien bleiben bis zum
-abgeschlossenen Release-Aufbau bei **1.2**. Die folgenden Befehle wählen den
-vorbereiteten 1.4-Aufbau ausdrücklich aus.
+Die Standardversion und die veröffentlichten Dateien tragen **1.4**. Die
+folgenden Befehle nennen diese Version ausdrücklich; derselbe Aufbau ist
+auch ohne `--version` möglich. Frühere Stände werden vom jeweiligen Git-Tag
+aufgebaut, siehe [Versionshistorie](HISTORY.md).
 
 ## Vollständig aufbauen
 

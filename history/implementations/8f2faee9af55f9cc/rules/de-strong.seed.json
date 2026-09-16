@@ -1,0 +1,1632 @@
+[
+  {
+    "de": "Gott",
+    "strong": "H430",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gottes",
+    "strong": "H430",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Götter",
+    "strong": "H430",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Göttern",
+    "strong": "H430",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jehova",
+    "strong": "H3068",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "schuf",
+    "strong": "H1254",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "erschuf",
+    "strong": "H1254",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Anfang",
+    "strong": "H7225",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Erde",
+    "strong": "H776",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Landes",
+    "strong": "H776",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Land",
+    "strong": "H776",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Himmel",
+    "strong": "H8064",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Himmels",
+    "strong": "H8064",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Licht",
+    "strong": "H216",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Finsternis",
+    "strong": "H2822",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Geist",
+    "strong": "H7307",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Geistes",
+    "strong": "H7307",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wind",
+    "strong": "H7307",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wasser",
+    "strong": "H4325",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wassern",
+    "strong": "H4325",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wassers",
+    "strong": "H4325",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tag",
+    "strong": "H3117",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tage",
+    "strong": "H3117",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tagen",
+    "strong": "H3117",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tages",
+    "strong": "H3117",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Nacht",
+    "strong": "H3915",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abend",
+    "strong": "H6153",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Morgen",
+    "strong": "H1242",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sprach",
+    "strong": "H559",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "spricht",
+    "strong": "H559",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sprechen",
+    "strong": "H559",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sah",
+    "strong": "H7200",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sehen",
+    "strong": "H7200",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sieht",
+    "strong": "H7200",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "gut",
+    "strong": "H2896",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gute",
+    "strong": "H2896",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gutes",
+    "strong": "H2896",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "nannte",
+    "strong": "H7121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "rief",
+    "strong": "H7121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "ruft",
+    "strong": "H7121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sohn",
+    "strong": "H1121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Söhne",
+    "strong": "H1121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Söhnen",
+    "strong": "H1121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sohnes",
+    "strong": "H1121",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Vater",
+    "strong": "H1",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Vaters",
+    "strong": "H1",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Väter",
+    "strong": "H1",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Vätern",
+    "strong": "H1",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weib",
+    "strong": "H802",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weibes",
+    "strong": "H802",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weiber",
+    "strong": "H802",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Frau",
+    "strong": "H802",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mann",
+    "strong": "H376",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Männer",
+    "strong": "H376",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Männern",
+    "strong": "H376",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mannes",
+    "strong": "H376",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mensch",
+    "strong": "H120",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Menschen",
+    "strong": "H120",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "König",
+    "strong": "H4428",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Könige",
+    "strong": "H4428",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Königen",
+    "strong": "H4428",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Königs",
+    "strong": "H4428",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "herrschte",
+    "strong": "H4427",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "regierte",
+    "strong": "H4427",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Israel",
+    "strong": "H3478",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Israels",
+    "strong": "H3478",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mose",
+    "strong": "H4872",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Moses",
+    "strong": "H4872",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "David",
+    "strong": "H1732",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Davids",
+    "strong": "H1732",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abraham",
+    "strong": "H85",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abrahams",
+    "strong": "H85",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abram",
+    "strong": "H86",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abrams",
+    "strong": "H86",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jakob",
+    "strong": "H3290",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jakobs",
+    "strong": "H3290",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Isaak",
+    "strong": "H3327",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Isaaks",
+    "strong": "H3327",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Joseph",
+    "strong": "H3130",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Josephs",
+    "strong": "H3130",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Ägypten",
+    "strong": "H4714",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Ägyptens",
+    "strong": "H4714",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jerusalem",
+    "strong": "H3389",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jerusalems",
+    "strong": "H3389",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Haus",
+    "strong": "H1004",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hause",
+    "strong": "H1004",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hauses",
+    "strong": "H1004",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Häuser",
+    "strong": "H1004",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Häusern",
+    "strong": "H1004",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wort",
+    "strong": "H1697",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Worte",
+    "strong": "H1697",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Worten",
+    "strong": "H1697",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wortes",
+    "strong": "H1697",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Seele",
+    "strong": "H5315",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Seelen",
+    "strong": "H5315",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herz",
+    "strong": "H3820",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herzen",
+    "strong": "H3820",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herzens",
+    "strong": "H3820",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hand",
+    "strong": "H3027",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hände",
+    "strong": "H3027",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Händen",
+    "strong": "H3027",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Auge",
+    "strong": "H5869",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Augen",
+    "strong": "H5869",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Ohr",
+    "strong": "H241",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Ohren",
+    "strong": "H241",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mund",
+    "strong": "H6310",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Munde",
+    "strong": "H6310",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mundes",
+    "strong": "H6310",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Fuß",
+    "strong": "H7272",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Füße",
+    "strong": "H7272",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Füßen",
+    "strong": "H7272",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brot",
+    "strong": "H3899",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brote",
+    "strong": "H3899",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brotes",
+    "strong": "H3899",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Blut",
+    "strong": "H1818",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Blutes",
+    "strong": "H1818",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "starb",
+    "strong": "H4191",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sterben",
+    "strong": "H4191",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tod",
+    "strong": "H4194",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Todes",
+    "strong": "H4194",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Leben",
+    "strong": "H2416",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "lebendig",
+    "strong": "H2416",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "lebendige",
+    "strong": "H2416",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Friede",
+    "strong": "H7965",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Frieden",
+    "strong": "H7965",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Friedens",
+    "strong": "H7965",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Güte",
+    "strong": "H2617",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Bund",
+    "strong": "H1285",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Bundes",
+    "strong": "H1285",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Priester",
+    "strong": "H3548",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Prophet",
+    "strong": "H5030",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Propheten",
+    "strong": "H5030",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knecht",
+    "strong": "H5650",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knechte",
+    "strong": "H5650",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knechten",
+    "strong": "H5650",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "gab",
+    "strong": "H5414",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "geben",
+    "strong": "H5414",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "gibt",
+    "strong": "H5414",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "kam",
+    "strong": "H935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "kommen",
+    "strong": "H935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "kommt",
+    "strong": "H935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "ging",
+    "strong": "H1980",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "gehen",
+    "strong": "H1980",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "geht",
+    "strong": "H1980",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "machte",
+    "strong": "H6213",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "machen",
+    "strong": "H6213",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "macht",
+    "strong": "H6213",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "hörte",
+    "strong": "H8085",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "hören",
+    "strong": "H8085",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "hört",
+    "strong": "H8085",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "lieben",
+    "strong": "H157",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "liebte",
+    "strong": "H157",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "liebt",
+    "strong": "H157",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "fürchten",
+    "strong": "H3372",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "fürchtet",
+    "strong": "H3372",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gerechte",
+    "strong": "H6662",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gerechten",
+    "strong": "H6662",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "gerecht",
+    "strong": "H6662",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gottlose",
+    "strong": "H7563",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gottlosen",
+    "strong": "H7563",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sünde",
+    "strong": "H2403",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sünden",
+    "strong": "H2403",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wahrheit",
+    "strong": "H571",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Berg",
+    "strong": "H2022",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Berge",
+    "strong": "H2022",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Bergen",
+    "strong": "H2022",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Berges",
+    "strong": "H2022",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Meer",
+    "strong": "H3220",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Meeres",
+    "strong": "H3220",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Baum",
+    "strong": "H6086",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Bäume",
+    "strong": "H6086",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Baumes",
+    "strong": "H6086",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Frucht",
+    "strong": "H6529",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Früchte",
+    "strong": "H6529",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Same",
+    "strong": "H2233",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Samen",
+    "strong": "H2233",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Feld",
+    "strong": "H7704",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Felde",
+    "strong": "H7704",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Feldes",
+    "strong": "H7704",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Widder",
+    "strong": "H359",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "tausend",
+    "strong": "H505",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "hundert",
+    "strong": "H3967",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "sieben",
+    "strong": "H7651",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "dreißig",
+    "strong": "H7970",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jahr",
+    "strong": "H8141",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jahre",
+    "strong": "H8141",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jahren",
+    "strong": "H8141",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gott",
+    "strong": "G2316",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gottes",
+    "strong": "G2316",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Götter",
+    "strong": "G2316",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herr",
+    "strong": "G2962",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herrn",
+    "strong": "G2962",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jesus",
+    "strong": "G2424",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jesu",
+    "strong": "G2424",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jesum",
+    "strong": "G2424",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Christus",
+    "strong": "G5547",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Christi",
+    "strong": "G5547",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Christum",
+    "strong": "G5547",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wort",
+    "strong": "G3056",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Worte",
+    "strong": "G3056",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Worten",
+    "strong": "G3056",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wortes",
+    "strong": "G3056",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Anfang",
+    "strong": "G746",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Licht",
+    "strong": "G5457",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Finsternis",
+    "strong": "G4653",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Geist",
+    "strong": "G4151",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Geistes",
+    "strong": "G4151",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wasser",
+    "strong": "G5204",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wassers",
+    "strong": "G5204",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Leben",
+    "strong": "G2222",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Lebens",
+    "strong": "G2222",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tod",
+    "strong": "G2288",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Todes",
+    "strong": "G2288",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Vater",
+    "strong": "G3962",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Vaters",
+    "strong": "G3962",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Väter",
+    "strong": "G3962",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sohn",
+    "strong": "G5207",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Söhne",
+    "strong": "G5207",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sohnes",
+    "strong": "G5207",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mensch",
+    "strong": "G444",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Menschen",
+    "strong": "G444",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mann",
+    "strong": "G435",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Männer",
+    "strong": "G435",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mannes",
+    "strong": "G435",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weib",
+    "strong": "G1135",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Frau",
+    "strong": "G1135",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weibes",
+    "strong": "G1135",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Bruder",
+    "strong": "G80",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brüder",
+    "strong": "G80",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brüdern",
+    "strong": "G80",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "lieben",
+    "strong": "G25",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "liebt",
+    "strong": "G25",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "liebte",
+    "strong": "G25",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Liebe",
+    "strong": "G26",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Glaube",
+    "strong": "G4102",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Glauben",
+    "strong": "G4102",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Glaubens",
+    "strong": "G4102",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "glauben",
+    "strong": "G4100",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "glaubt",
+    "strong": "G4100",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "glaubte",
+    "strong": "G4100",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hoffnung",
+    "strong": "G1680",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gnade",
+    "strong": "G5485",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wahrheit",
+    "strong": "G225",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Friede",
+    "strong": "G1515",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Frieden",
+    "strong": "G1515",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gerechtigkeit",
+    "strong": "G1343",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sünde",
+    "strong": "G266",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sünden",
+    "strong": "G266",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Welt",
+    "strong": "G2889",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Erde",
+    "strong": "G1093",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Land",
+    "strong": "G1093",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Himmel",
+    "strong": "G3772",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Himmels",
+    "strong": "G3772",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Reich",
+    "strong": "G932",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Reiches",
+    "strong": "G932",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "König",
+    "strong": "G935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Königs",
+    "strong": "G935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Könige",
+    "strong": "G935",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Versammlung",
+    "strong": "G1577",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gemeinde",
+    "strong": "G1577",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gütigkeit",
+    "strong": "G5544",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Engel",
+    "strong": "G32",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Engeln",
+    "strong": "G32",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Prophet",
+    "strong": "G4396",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Propheten",
+    "strong": "G4396",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Apostel",
+    "strong": "G652",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Aposteln",
+    "strong": "G652",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knecht",
+    "strong": "G1401",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knechte",
+    "strong": "G1401",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Knechten",
+    "strong": "G1401",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herz",
+    "strong": "G2588",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herzen",
+    "strong": "G2588",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Herzens",
+    "strong": "G2588",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hand",
+    "strong": "G5495",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hände",
+    "strong": "G5495",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Händen",
+    "strong": "G5495",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Auge",
+    "strong": "G3788",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Augen",
+    "strong": "G3788",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Leib",
+    "strong": "G4983",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Leibes",
+    "strong": "G4983",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Fleisch",
+    "strong": "G4561",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Fleisches",
+    "strong": "G4561",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Blut",
+    "strong": "G129",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Blutes",
+    "strong": "G129",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Seele",
+    "strong": "G5590",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Seelen",
+    "strong": "G5590",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brot",
+    "strong": "G740",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Brote",
+    "strong": "G740",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Wein",
+    "strong": "G3631",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Weines",
+    "strong": "G3631",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Kreuz",
+    "strong": "G4716",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Kreuzes",
+    "strong": "G4716",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Auferstehung",
+    "strong": "G386",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sabbat",
+    "strong": "G4521",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Sabbats",
+    "strong": "G4521",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tag",
+    "strong": "G2250",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tage",
+    "strong": "G2250",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tagen",
+    "strong": "G2250",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Tages",
+    "strong": "G2250",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Nacht",
+    "strong": "G3571",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Zeit",
+    "strong": "G5550",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Stunde",
+    "strong": "G5610",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Stunden",
+    "strong": "G5610",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Evangelium",
+    "strong": "G2098",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Evangeliums",
+    "strong": "G2098",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gesetz",
+    "strong": "G3551",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Gesetzes",
+    "strong": "G3551",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Schrift",
+    "strong": "G1124",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Schriften",
+    "strong": "G1124",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Hymnen",
+    "strong": "G5215",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Johannes",
+    "strong": "G2491",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Paulus",
+    "strong": "G3972",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Petrus",
+    "strong": "G4074",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Mose",
+    "strong": "G3475",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Moses",
+    "strong": "G3475",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abraham",
+    "strong": "G11",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Abrahams",
+    "strong": "G11",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jakob",
+    "strong": "G2384",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jakobs",
+    "strong": "G2384",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Isaak",
+    "strong": "G2464",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Isaaks",
+    "strong": "G2464",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Israel",
+    "strong": "G2474",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Israels",
+    "strong": "G2474",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Andreas",
+    "strong": "G406",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Philippus",
+    "strong": "G5376",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  },
+  {
+    "de": "Jakobus",
+    "strong": "G2385",
+    "provenance": "Akribos: neu erstellte heuristische Startregel; keine fachliche Freigabe."
+  }
+]
